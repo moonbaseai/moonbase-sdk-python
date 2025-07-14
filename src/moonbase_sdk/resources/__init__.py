@@ -24,6 +24,14 @@ from .items import (
     ItemsResourceWithStreamingResponse,
     AsyncItemsResourceWithStreamingResponse,
 )
+from .notes import (
+    NotesResource,
+    AsyncNotesResource,
+    NotesResourceWithRawResponse,
+    AsyncNotesResourceWithRawResponse,
+    NotesResourceWithStreamingResponse,
+    AsyncNotesResourceWithStreamingResponse,
+)
 from .views import (
     ViewsResource,
     AsyncViewsResource,
@@ -55,14 +63,6 @@ from .collections import (
     AsyncCollectionsResourceWithRawResponse,
     CollectionsResourceWithStreamingResponse,
     AsyncCollectionsResourceWithStreamingResponse,
-)
-from .program_messages import (
-    ProgramMessagesResource,
-    AsyncProgramMessagesResource,
-    ProgramMessagesResourceWithRawResponse,
-    AsyncProgramMessagesResourceWithRawResponse,
-    ProgramMessagesResourceWithStreamingResponse,
-    AsyncProgramMessagesResourceWithStreamingResponse,
 )
 from .program_templates import (
     ProgramTemplatesResource,
@@ -98,12 +98,12 @@ __all__ = [
     "AsyncItemsResourceWithRawResponse",
     "ItemsResourceWithStreamingResponse",
     "AsyncItemsResourceWithStreamingResponse",
-    "ProgramMessagesResource",
-    "AsyncProgramMessagesResource",
-    "ProgramMessagesResourceWithRawResponse",
-    "AsyncProgramMessagesResourceWithRawResponse",
-    "ProgramMessagesResourceWithStreamingResponse",
-    "AsyncProgramMessagesResourceWithStreamingResponse",
+    "NotesResource",
+    "AsyncNotesResource",
+    "NotesResourceWithRawResponse",
+    "AsyncNotesResourceWithRawResponse",
+    "NotesResourceWithStreamingResponse",
+    "AsyncNotesResourceWithStreamingResponse",
     "ProgramTemplatesResource",
     "AsyncProgramTemplatesResource",
     "ProgramTemplatesResourceWithRawResponse",
