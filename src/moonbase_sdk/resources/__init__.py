@@ -24,14 +24,6 @@ from .items import (
     ItemsResourceWithStreamingResponse,
     AsyncItemsResourceWithStreamingResponse,
 )
-from .programs import (
-    ProgramsResource,
-    AsyncProgramsResource,
-    ProgramsResourceWithRawResponse,
-    AsyncProgramsResourceWithRawResponse,
-    ProgramsResourceWithStreamingResponse,
-    AsyncProgramsResourceWithStreamingResponse,
-)
 from .collections import (
     CollectionsResource,
     AsyncCollectionsResource,
@@ -39,14 +31,6 @@ from .collections import (
     AsyncCollectionsResourceWithRawResponse,
     CollectionsResourceWithStreamingResponse,
     AsyncCollectionsResourceWithStreamingResponse,
-)
-from .program_templates import (
-    ProgramTemplatesResource,
-    AsyncProgramTemplatesResource,
-    ProgramTemplatesResourceWithRawResponse,
-    AsyncProgramTemplatesResourceWithRawResponse,
-    ProgramTemplatesResourceWithStreamingResponse,
-    AsyncProgramTemplatesResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -74,16 +58,4 @@ __all__ = [
     "AsyncItemsResourceWithRawResponse",
     "ItemsResourceWithStreamingResponse",
     "AsyncItemsResourceWithStreamingResponse",
-    "ProgramTemplatesResource",
-    "AsyncProgramTemplatesResource",
-    "ProgramTemplatesResourceWithRawResponse",
-    "AsyncProgramTemplatesResourceWithRawResponse",
-    "ProgramTemplatesResourceWithStreamingResponse",
-    "AsyncProgramTemplatesResourceWithStreamingResponse",
-    "ProgramsResource",
-    "AsyncProgramsResource",
-    "ProgramsResourceWithRawResponse",
-    "AsyncProgramsResourceWithRawResponse",
-    "ProgramsResourceWithStreamingResponse",
-    "AsyncProgramsResourceWithStreamingResponse",
 ]

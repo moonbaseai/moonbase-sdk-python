@@ -21,7 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import calls, files, items, programs, program_templates
+from .resources import calls, files, items
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import MoonbaseError, APIStatusError
 from ._base_client import (
@@ -48,8 +48,6 @@ class Moonbase(SyncAPIClient):
     collections: collections.CollectionsResource
     files: files.FilesResource
     items: items.ItemsResource
-    program_templates: program_templates.ProgramTemplatesResource
-    programs: programs.ProgramsResource
     with_raw_response: MoonbaseWithRawResponse
     with_streaming_response: MoonbaseWithStreamedResponse
 
@@ -111,8 +109,6 @@ class Moonbase(SyncAPIClient):
         self.collections = collections.CollectionsResource(self)
         self.files = files.FilesResource(self)
         self.items = items.ItemsResource(self)
-        self.program_templates = program_templates.ProgramTemplatesResource(self)
-        self.programs = programs.ProgramsResource(self)
         self.with_raw_response = MoonbaseWithRawResponse(self)
         self.with_streaming_response = MoonbaseWithStreamedResponse(self)
 
@@ -226,8 +222,6 @@ class AsyncMoonbase(AsyncAPIClient):
     collections: collections.AsyncCollectionsResource
     files: files.AsyncFilesResource
     items: items.AsyncItemsResource
-    program_templates: program_templates.AsyncProgramTemplatesResource
-    programs: programs.AsyncProgramsResource
     with_raw_response: AsyncMoonbaseWithRawResponse
     with_streaming_response: AsyncMoonbaseWithStreamedResponse
 
@@ -289,8 +283,6 @@ class AsyncMoonbase(AsyncAPIClient):
         self.collections = collections.AsyncCollectionsResource(self)
         self.files = files.AsyncFilesResource(self)
         self.items = items.AsyncItemsResource(self)
-        self.program_templates = program_templates.AsyncProgramTemplatesResource(self)
-        self.programs = programs.AsyncProgramsResource(self)
         self.with_raw_response = AsyncMoonbaseWithRawResponse(self)
         self.with_streaming_response = AsyncMoonbaseWithStreamedResponse(self)
 
@@ -405,8 +397,6 @@ class MoonbaseWithRawResponse:
         self.collections = collections.CollectionsResourceWithRawResponse(client.collections)
         self.files = files.FilesResourceWithRawResponse(client.files)
         self.items = items.ItemsResourceWithRawResponse(client.items)
-        self.program_templates = program_templates.ProgramTemplatesResourceWithRawResponse(client.program_templates)
-        self.programs = programs.ProgramsResourceWithRawResponse(client.programs)
 
 
 class AsyncMoonbaseWithRawResponse:
@@ -415,10 +405,6 @@ class AsyncMoonbaseWithRawResponse:
         self.collections = collections.AsyncCollectionsResourceWithRawResponse(client.collections)
         self.files = files.AsyncFilesResourceWithRawResponse(client.files)
         self.items = items.AsyncItemsResourceWithRawResponse(client.items)
-        self.program_templates = program_templates.AsyncProgramTemplatesResourceWithRawResponse(
-            client.program_templates
-        )
-        self.programs = programs.AsyncProgramsResourceWithRawResponse(client.programs)
 
 
 class MoonbaseWithStreamedResponse:
@@ -427,10 +413,6 @@ class MoonbaseWithStreamedResponse:
         self.collections = collections.CollectionsResourceWithStreamingResponse(client.collections)
         self.files = files.FilesResourceWithStreamingResponse(client.files)
         self.items = items.ItemsResourceWithStreamingResponse(client.items)
-        self.program_templates = program_templates.ProgramTemplatesResourceWithStreamingResponse(
-            client.program_templates
-        )
-        self.programs = programs.ProgramsResourceWithStreamingResponse(client.programs)
 
 
 class AsyncMoonbaseWithStreamedResponse:
@@ -439,10 +421,6 @@ class AsyncMoonbaseWithStreamedResponse:
         self.collections = collections.AsyncCollectionsResourceWithStreamingResponse(client.collections)
         self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
         self.items = items.AsyncItemsResourceWithStreamingResponse(client.items)
-        self.program_templates = program_templates.AsyncProgramTemplatesResourceWithStreamingResponse(
-            client.program_templates
-        )
-        self.programs = programs.AsyncProgramsResourceWithStreamingResponse(client.programs)
 
 
 Client = Moonbase
