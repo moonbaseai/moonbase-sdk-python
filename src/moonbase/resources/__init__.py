@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .items import (
+    ItemsResource,
+    AsyncItemsResource,
+    ItemsResourceWithRawResponse,
+    AsyncItemsResourceWithRawResponse,
+    ItemsResourceWithStreamingResponse,
+    AsyncItemsResourceWithStreamingResponse,
+)
 from .programs import (
     ProgramsResource,
     AsyncProgramsResource,
@@ -7,6 +15,14 @@ from .programs import (
     AsyncProgramsResourceWithRawResponse,
     ProgramsResourceWithStreamingResponse,
     AsyncProgramsResourceWithStreamingResponse,
+)
+from .collections import (
+    CollectionsResource,
+    AsyncCollectionsResource,
+    CollectionsResourceWithRawResponse,
+    AsyncCollectionsResourceWithRawResponse,
+    CollectionsResourceWithStreamingResponse,
+    AsyncCollectionsResourceWithStreamingResponse,
 )
 from .program_messages import (
     ProgramMessagesResource,
@@ -26,6 +42,18 @@ from .program_templates import (
 )
 
 __all__ = [
+    "CollectionsResource",
+    "AsyncCollectionsResource",
+    "CollectionsResourceWithRawResponse",
+    "AsyncCollectionsResourceWithRawResponse",
+    "CollectionsResourceWithStreamingResponse",
+    "AsyncCollectionsResourceWithStreamingResponse",
+    "ItemsResource",
+    "AsyncItemsResource",
+    "ItemsResourceWithRawResponse",
+    "AsyncItemsResourceWithRawResponse",
+    "ItemsResourceWithStreamingResponse",
+    "AsyncItemsResourceWithStreamingResponse",
     "ProgramMessagesResource",
     "AsyncProgramMessagesResource",
     "ProgramMessagesResourceWithRawResponse",
