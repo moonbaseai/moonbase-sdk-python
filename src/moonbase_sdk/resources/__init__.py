@@ -24,14 +24,6 @@ from .items import (
     ItemsResourceWithStreamingResponse,
     AsyncItemsResourceWithStreamingResponse,
 )
-from .notes import (
-    NotesResource,
-    AsyncNotesResource,
-    NotesResourceWithRawResponse,
-    AsyncNotesResourceWithRawResponse,
-    NotesResourceWithStreamingResponse,
-    AsyncNotesResourceWithStreamingResponse,
-)
 from .views import (
     ViewsResource,
     AsyncViewsResource,
@@ -47,14 +39,6 @@ from .tagsets import (
     AsyncTagsetsResourceWithRawResponse,
     TagsetsResourceWithStreamingResponse,
     AsyncTagsetsResourceWithStreamingResponse,
-)
-from .meetings import (
-    MeetingsResource,
-    AsyncMeetingsResource,
-    MeetingsResourceWithRawResponse,
-    AsyncMeetingsResourceWithRawResponse,
-    MeetingsResourceWithStreamingResponse,
-    AsyncMeetingsResourceWithStreamingResponse,
 )
 from .programs import (
     ProgramsResource,
@@ -114,18 +98,6 @@ __all__ = [
     "AsyncItemsResourceWithRawResponse",
     "ItemsResourceWithStreamingResponse",
     "AsyncItemsResourceWithStreamingResponse",
-    "MeetingsResource",
-    "AsyncMeetingsResource",
-    "MeetingsResourceWithRawResponse",
-    "AsyncMeetingsResourceWithRawResponse",
-    "MeetingsResourceWithStreamingResponse",
-    "AsyncMeetingsResourceWithStreamingResponse",
-    "NotesResource",
-    "AsyncNotesResource",
-    "NotesResourceWithRawResponse",
-    "AsyncNotesResourceWithRawResponse",
-    "NotesResourceWithStreamingResponse",
-    "AsyncNotesResourceWithStreamingResponse",
     "ProgramMessagesResource",
     "AsyncProgramMessagesResource",
     "ProgramMessagesResourceWithRawResponse",
