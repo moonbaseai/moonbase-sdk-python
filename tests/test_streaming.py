@@ -5,8 +5,8 @@ from typing import Iterator, AsyncIterator
 import httpx
 import pytest
 
-from moonbase_sdk import Moonbase, AsyncMoonbase
-from moonbase_sdk._streaming import Stream, AsyncStream, ServerSentEvent
+from moonbase import Moonbase, AsyncMoonbase
+from moonbase._streaming import Stream, AsyncStream, ServerSentEvent
 
 
 @pytest.mark.asyncio

@@ -1,7 +1,7 @@
 # Moonbase Python API library
 
 <!-- prettier-ignore -->
-[![PyPI version](https://img.shields.io/pypi/v/moonbase_sdk.svg?label=pypi%20(stable))](https://pypi.org/project/moonbase_sdk/)
+[![PyPI version](https://img.shields.io/pypi/v/moonbase.svg?label=pypi%20(stable))](https://pypi.org/project/moonbase/)
 
 The Moonbase Python library provides convenient access to the Moonbase REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -21,7 +21,7 @@ pip install git+ssh://git@github.com/stainless-sdks/moonbase-sdk-python.git
 ```
 
 > [!NOTE]
-> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install --pre moonbase_sdk`
+> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install --pre moonbase`
 
 ## Usage
 
@@ -29,7 +29,7 @@ The full API of this library can be found in [api.md](api.md).
 
 ```python
 import os
-from moonbase_sdk import Moonbase
+from moonbase import Moonbase
 
 client = Moonbase(
     api_key=os.environ.get("MOONBASE_API_KEY"),  # This is the default and can be omitted
@@ -51,7 +51,7 @@ Simply import `AsyncMoonbase` instead of `Moonbase` and use `await` with each AP
 ```python
 import os
 import asyncio
-from moonbase_sdk import AsyncMoonbase
+from moonbase import AsyncMoonbase
 
 client = AsyncMoonbase(
     api_key=os.environ.get("MOONBASE_API_KEY"),  # This is the default and can be omitted
@@ -76,15 +76,15 @@ You can enable this by installing `aiohttp`:
 
 ```sh
 # install from this staging repo
-pip install 'moonbase_sdk[aiohttp] @ git+ssh://git@github.com/stainless-sdks/moonbase-sdk-python.git'
+pip install 'moonbase[aiohttp] @ git+ssh://git@github.com/stainless-sdks/moonbase-sdk-python.git'
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
 import asyncio
-from moonbase_sdk import DefaultAioHttpClient
-from moonbase_sdk import AsyncMoonbase
+from moonbase import DefaultAioHttpClient
+from moonbase import AsyncMoonbase
 
 
 async def main() -> None:
@@ -115,7 +115,7 @@ List methods in the Moonbase API are paginated.
 This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
 
 ```python
-from moonbase_sdk import Moonbase
+from moonbase import Moonbase
 
 client = Moonbase()
 
@@ -133,7 +133,7 @@ Or, asynchronously:
 
 ```python
 import asyncio
-from moonbase_sdk import AsyncMoonbase
+from moonbase import AsyncMoonbase
 
 client = AsyncMoonbase()
 
@@ -184,7 +184,7 @@ for program_template in first_page.data:
 Nested parameters are dictionaries, typed using `TypedDict`, for example:
 
 ```python
-from moonbase_sdk import Moonbase
+from moonbase import Moonbase
 
 client = Moonbase()
 
@@ -197,27 +197,27 @@ print(response.person)
 
 ## Handling errors
 
-When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `moonbase_sdk.APIConnectionError` is raised.
+When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `moonbase.APIConnectionError` is raised.
 
 When the API returns a non-success status code (that is, 4xx or 5xx
-response), a subclass of `moonbase_sdk.APIStatusError` is raised, containing `status_code` and `response` properties.
+response), a subclass of `moonbase.APIStatusError` is raised, containing `status_code` and `response` properties.
 
-All errors inherit from `moonbase_sdk.APIError`.
+All errors inherit from `moonbase.APIError`.
 
 ```python
-import moonbase_sdk
-from moonbase_sdk import Moonbase
+import moonbase
+from moonbase import Moonbase
 
 client = Moonbase()
 
 try:
     client.program_templates.list()
-except moonbase_sdk.APIConnectionError as e:
+except moonbase.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
-except moonbase_sdk.RateLimitError as e:
+except moonbase.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
-except moonbase_sdk.APIStatusError as e:
+except moonbase.APIStatusError as e:
     print("Another non-200-range status code was received")
     print(e.status_code)
     print(e.response)
@@ -245,7 +245,7 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from moonbase_sdk import Moonbase
+from moonbase import Moonbase
 
 # Configure the default for all requests:
 client = Moonbase(
@@ -263,7 +263,7 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
 
 ```python
-from moonbase_sdk import Moonbase
+from moonbase import Moonbase
 
 # Configure the default for all requests:
 client = Moonbase(
@@ -315,7 +315,7 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from moonbase_sdk import Moonbase
+from moonbase import Moonbase
 
 client = Moonbase()
 response = client.program_templates.with_raw_response.list()
@@ -325,9 +325,9 @@ program_template = response.parse()  # get the object that `program_templates.li
 print(program_template.id)
 ```
 
-These methods return an [`APIResponse`](https://github.com/stainless-sdks/moonbase-sdk-python/tree/main/src/moonbase_sdk/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/stainless-sdks/moonbase-sdk-python/tree/main/src/moonbase/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/moonbase-sdk-python/tree/main/src/moonbase_sdk/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/moonbase-sdk-python/tree/main/src/moonbase/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -389,7 +389,7 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 
 ```python
 import httpx
-from moonbase_sdk import Moonbase, DefaultHttpxClient
+from moonbase import Moonbase, DefaultHttpxClient
 
 client = Moonbase(
     # Or use the `MOONBASE_BASE_URL` env var
@@ -412,7 +412,7 @@ client.with_options(http_client=DefaultHttpxClient(...))
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
 
 ```py
-from moonbase_sdk import Moonbase
+from moonbase import Moonbase
 
 with Moonbase() as client:
   # make requests here
@@ -440,8 +440,8 @@ If you've upgraded to the latest version but aren't seeing any new features you 
 You can determine the version that is being used at runtime with:
 
 ```py
-import moonbase_sdk
-print(moonbase_sdk.__version__)
+import moonbase
+print(moonbase.__version__)
 ```
 
 ## Requirements

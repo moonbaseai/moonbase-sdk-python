@@ -8,15 +8,15 @@ from typing_extensions import Required, Annotated, TypedDict
 
 import pytest
 
-from moonbase_sdk._types import NOT_GIVEN, Base64FileInput
-from moonbase_sdk._utils import (
+from moonbase._types import NOT_GIVEN, Base64FileInput
+from moonbase._utils import (
     PropertyInfo,
     transform as _transform,
     parse_datetime,
     async_transform as _async_transform,
 )
-from moonbase_sdk._compat import PYDANTIC_V2
-from moonbase_sdk._models import BaseModel
+from moonbase._compat import PYDANTIC_V2
+from moonbase._models import BaseModel
 
 _T = TypeVar("_T")
 
