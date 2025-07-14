@@ -32,7 +32,6 @@ from .resources import (
     tagsets,
     meetings,
     programs,
-    activities,
     inbox_messages,
     program_messages,
     program_templates,
@@ -60,7 +59,6 @@ __all__ = [
 
 
 class Moonbase(SyncAPIClient):
-    activities: activities.ActivitiesResource
     calls: calls.CallsResource
     collections: collections.CollectionsResource
     files: files.FilesResource
@@ -133,7 +131,6 @@ class Moonbase(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.activities = activities.ActivitiesResource(self)
         self.calls = calls.CallsResource(self)
         self.collections = collections.CollectionsResource(self)
         self.files = files.FilesResource(self)
@@ -258,7 +255,6 @@ class Moonbase(SyncAPIClient):
 
 
 class AsyncMoonbase(AsyncAPIClient):
-    activities: activities.AsyncActivitiesResource
     calls: calls.AsyncCallsResource
     collections: collections.AsyncCollectionsResource
     files: files.AsyncFilesResource
@@ -331,7 +327,6 @@ class AsyncMoonbase(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.activities = activities.AsyncActivitiesResource(self)
         self.calls = calls.AsyncCallsResource(self)
         self.collections = collections.AsyncCollectionsResource(self)
         self.files = files.AsyncFilesResource(self)
@@ -457,7 +452,6 @@ class AsyncMoonbase(AsyncAPIClient):
 
 class MoonbaseWithRawResponse:
     def __init__(self, client: Moonbase) -> None:
-        self.activities = activities.ActivitiesResourceWithRawResponse(client.activities)
         self.calls = calls.CallsResourceWithRawResponse(client.calls)
         self.collections = collections.CollectionsResourceWithRawResponse(client.collections)
         self.files = files.FilesResourceWithRawResponse(client.files)
@@ -479,7 +473,6 @@ class MoonbaseWithRawResponse:
 
 class AsyncMoonbaseWithRawResponse:
     def __init__(self, client: AsyncMoonbase) -> None:
-        self.activities = activities.AsyncActivitiesResourceWithRawResponse(client.activities)
         self.calls = calls.AsyncCallsResourceWithRawResponse(client.calls)
         self.collections = collections.AsyncCollectionsResourceWithRawResponse(client.collections)
         self.files = files.AsyncFilesResourceWithRawResponse(client.files)
@@ -503,7 +496,6 @@ class AsyncMoonbaseWithRawResponse:
 
 class MoonbaseWithStreamedResponse:
     def __init__(self, client: Moonbase) -> None:
-        self.activities = activities.ActivitiesResourceWithStreamingResponse(client.activities)
         self.calls = calls.CallsResourceWithStreamingResponse(client.calls)
         self.collections = collections.CollectionsResourceWithStreamingResponse(client.collections)
         self.files = files.FilesResourceWithStreamingResponse(client.files)
@@ -527,7 +519,6 @@ class MoonbaseWithStreamedResponse:
 
 class AsyncMoonbaseWithStreamedResponse:
     def __init__(self, client: AsyncMoonbase) -> None:
-        self.activities = activities.AsyncActivitiesResourceWithStreamingResponse(client.activities)
         self.calls = calls.AsyncCallsResourceWithStreamingResponse(client.calls)
         self.collections = collections.AsyncCollectionsResourceWithStreamingResponse(client.collections)
         self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
