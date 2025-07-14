@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict
 from typing_extensions import Literal
 
 import httpx
@@ -49,7 +49,7 @@ class ItemsResource(SyncAPIResource):
         self,
         *,
         collection_id: str,
-        values: Dict[str, Optional[FieldValueParam]],
+        values: Dict[str, FieldValueParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -125,7 +125,7 @@ class ItemsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        values: Dict[str, Optional[FieldValueParam]],
+        values: Dict[str, FieldValueParam],
         update_many_strategy: Literal["replace", "preserve", "merge"] | NotGiven = NOT_GIVEN,
         update_one_strategy: Literal["replace", "preserve"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -207,8 +207,8 @@ class ItemsResource(SyncAPIResource):
         self,
         *,
         collection_id: str,
-        identifiers: Dict[str, Optional[FieldValueParam]],
-        values: Dict[str, Optional[FieldValueParam]],
+        identifiers: Dict[str, FieldValueParam],
+        values: Dict[str, FieldValueParam],
         update_many_strategy: Literal["replace", "preserve", "merge"] | NotGiven = NOT_GIVEN,
         update_one_strategy: Literal["replace", "preserve"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -288,7 +288,7 @@ class AsyncItemsResource(AsyncAPIResource):
         self,
         *,
         collection_id: str,
-        values: Dict[str, Optional[FieldValueParam]],
+        values: Dict[str, FieldValueParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -364,7 +364,7 @@ class AsyncItemsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        values: Dict[str, Optional[FieldValueParam]],
+        values: Dict[str, FieldValueParam],
         update_many_strategy: Literal["replace", "preserve", "merge"] | NotGiven = NOT_GIVEN,
         update_one_strategy: Literal["replace", "preserve"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -446,8 +446,8 @@ class AsyncItemsResource(AsyncAPIResource):
         self,
         *,
         collection_id: str,
-        identifiers: Dict[str, Optional[FieldValueParam]],
-        values: Dict[str, Optional[FieldValueParam]],
+        identifiers: Dict[str, FieldValueParam],
+        values: Dict[str, FieldValueParam],
         update_many_strategy: Literal["replace", "preserve", "merge"] | NotGiven = NOT_GIVEN,
         update_one_strategy: Literal["replace", "preserve"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

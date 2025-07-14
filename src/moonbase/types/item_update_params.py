@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -11,7 +11,7 @@ __all__ = ["ItemUpdateParams"]
 
 
 class ItemUpdateParams(TypedDict, total=False):
-    values: Required[Dict[str, Optional["FieldValueParam"]]]
+    values: Required[Dict[str, "FieldValueParam"]]
     """
     A hash where keys are the `ref` of a `Field` and values are the new data to be
     set.

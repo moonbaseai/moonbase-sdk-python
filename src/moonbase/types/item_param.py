@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["ItemParam"]
@@ -15,7 +15,7 @@ class ItemParam(TypedDict, total=False):
     type: Required[Literal["item"]]
     """String representing the object’s type. Always `item` for this object."""
 
-    values: Dict[str, Optional["FieldValueParam"]]
+    values: Dict[str, "FieldValueParam"]
     """
     A hash where keys are the `ref` of a `Field` and values are the data stored for
     that field.
