@@ -1,7 +1,7 @@
 # Moonbase Python API library
 
 <!-- prettier-ignore -->
-[![PyPI version](https://img.shields.io/pypi/v/moonbase.svg?label=pypi%20(stable))](https://pypi.org/project/moonbase/)
+[![PyPI version](https://img.shields.io/pypi/v/moonbase-sdk.svg?label=pypi%20(stable))](https://pypi.org/project/moonbase-sdk/)
 
 The Moonbase Python library provides convenient access to the Moonbase REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -21,7 +21,7 @@ pip install git+ssh://git@github.com/stainless-sdks/moonbase-sdk-python.git
 ```
 
 > [!NOTE]
-> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install --pre moonbase`
+> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install --pre moonbase-sdk`
 
 ## Usage
 
@@ -76,7 +76,7 @@ You can enable this by installing `aiohttp`:
 
 ```sh
 # install from this staging repo
-pip install 'moonbase[aiohttp] @ git+ssh://git@github.com/stainless-sdks/moonbase-sdk-python.git'
+pip install 'moonbase-sdk[aiohttp] @ git+ssh://git@github.com/stainless-sdks/moonbase-sdk-python.git'
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
