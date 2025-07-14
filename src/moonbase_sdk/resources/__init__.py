@@ -40,14 +40,6 @@ from .views import (
     ViewsResourceWithStreamingResponse,
     AsyncViewsResourceWithStreamingResponse,
 )
-from .tagsets import (
-    TagsetsResource,
-    AsyncTagsetsResource,
-    TagsetsResourceWithRawResponse,
-    AsyncTagsetsResourceWithRawResponse,
-    TagsetsResourceWithStreamingResponse,
-    AsyncTagsetsResourceWithStreamingResponse,
-)
 from .programs import (
     ProgramsResource,
     AsyncProgramsResource,
@@ -116,12 +108,6 @@ __all__ = [
     "AsyncProgramsResourceWithRawResponse",
     "ProgramsResourceWithStreamingResponse",
     "AsyncProgramsResourceWithStreamingResponse",
-    "TagsetsResource",
-    "AsyncTagsetsResource",
-    "TagsetsResourceWithRawResponse",
-    "AsyncTagsetsResourceWithRawResponse",
-    "TagsetsResourceWithStreamingResponse",
-    "AsyncTagsetsResourceWithStreamingResponse",
     "ViewsResource",
     "AsyncViewsResource",
     "ViewsResourceWithRawResponse",
