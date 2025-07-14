@@ -8,13 +8,13 @@ from .programs import (
     ProgramsResourceWithStreamingResponse,
     AsyncProgramsResourceWithStreamingResponse,
 )
-from .collections import (
-    CollectionsResource,
-    AsyncCollectionsResource,
-    CollectionsResourceWithRawResponse,
-    AsyncCollectionsResourceWithRawResponse,
-    CollectionsResourceWithStreamingResponse,
-    AsyncCollectionsResourceWithStreamingResponse,
+from .program_messages import (
+    ProgramMessagesResource,
+    AsyncProgramMessagesResource,
+    ProgramMessagesResourceWithRawResponse,
+    AsyncProgramMessagesResourceWithRawResponse,
+    ProgramMessagesResourceWithStreamingResponse,
+    AsyncProgramMessagesResourceWithStreamingResponse,
 )
 from .program_templates import (
     ProgramTemplatesResource,
@@ -26,12 +26,12 @@ from .program_templates import (
 )
 
 __all__ = [
-    "CollectionsResource",
-    "AsyncCollectionsResource",
-    "CollectionsResourceWithRawResponse",
-    "AsyncCollectionsResourceWithRawResponse",
-    "CollectionsResourceWithStreamingResponse",
-    "AsyncCollectionsResourceWithStreamingResponse",
+    "ProgramMessagesResource",
+    "AsyncProgramMessagesResource",
+    "ProgramMessagesResourceWithRawResponse",
+    "AsyncProgramMessagesResourceWithRawResponse",
+    "ProgramMessagesResourceWithStreamingResponse",
+    "AsyncProgramMessagesResourceWithStreamingResponse",
     "ProgramTemplatesResource",
     "AsyncProgramTemplatesResource",
     "ProgramTemplatesResourceWithRawResponse",
