@@ -87,19 +87,6 @@ Methods:
 - <code title="delete /items/{id}">client.items.<a href="./src/moonbase_sdk/resources/items.py">delete</a>(id) -> <a href="./src/moonbase_sdk/types/item.py">Item</a></code>
 - <code title="post /items/upsert">client.items.<a href="./src/moonbase_sdk/resources/items.py">upsert</a>(\*\*<a href="src/moonbase_sdk/types/item_upsert_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/item.py">Item</a></code>
 
-# Notes
-
-Types:
-
-```python
-from moonbase_sdk.types import Note
-```
-
-Methods:
-
-- <code title="get /notes/{id}">client.notes.<a href="./src/moonbase_sdk/resources/notes.py">retrieve</a>(id) -> <a href="./src/moonbase_sdk/types/note.py">Note</a></code>
-- <code title="get /notes">client.notes.<a href="./src/moonbase_sdk/resources/notes.py">list</a>(\*\*<a href="src/moonbase_sdk/types/note_list_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/note.py">SyncCursorPage[Note]</a></code>
-
 # ProgramTemplates
 
 Types:
