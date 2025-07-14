@@ -21,7 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import calls, items
+from .resources import items
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import MoonbaseError, APIStatusError
 from ._base_client import (
@@ -44,7 +44,6 @@ __all__ = [
 
 
 class Moonbase(SyncAPIClient):
-    calls: calls.CallsResource
     collections: collections.CollectionsResource
     items: items.ItemsResource
     with_raw_response: MoonbaseWithRawResponse
@@ -104,7 +103,6 @@ class Moonbase(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.calls = calls.CallsResource(self)
         self.collections = collections.CollectionsResource(self)
         self.items = items.ItemsResource(self)
         self.with_raw_response = MoonbaseWithRawResponse(self)
@@ -216,7 +214,6 @@ class Moonbase(SyncAPIClient):
 
 
 class AsyncMoonbase(AsyncAPIClient):
-    calls: calls.AsyncCallsResource
     collections: collections.AsyncCollectionsResource
     items: items.AsyncItemsResource
     with_raw_response: AsyncMoonbaseWithRawResponse
@@ -276,7 +273,6 @@ class AsyncMoonbase(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.calls = calls.AsyncCallsResource(self)
         self.collections = collections.AsyncCollectionsResource(self)
         self.items = items.AsyncItemsResource(self)
         self.with_raw_response = AsyncMoonbaseWithRawResponse(self)
@@ -389,28 +385,24 @@ class AsyncMoonbase(AsyncAPIClient):
 
 class MoonbaseWithRawResponse:
     def __init__(self, client: Moonbase) -> None:
-        self.calls = calls.CallsResourceWithRawResponse(client.calls)
         self.collections = collections.CollectionsResourceWithRawResponse(client.collections)
         self.items = items.ItemsResourceWithRawResponse(client.items)
 
 
 class AsyncMoonbaseWithRawResponse:
     def __init__(self, client: AsyncMoonbase) -> None:
-        self.calls = calls.AsyncCallsResourceWithRawResponse(client.calls)
         self.collections = collections.AsyncCollectionsResourceWithRawResponse(client.collections)
         self.items = items.AsyncItemsResourceWithRawResponse(client.items)
 
 
 class MoonbaseWithStreamedResponse:
     def __init__(self, client: Moonbase) -> None:
-        self.calls = calls.CallsResourceWithStreamingResponse(client.calls)
         self.collections = collections.CollectionsResourceWithStreamingResponse(client.collections)
         self.items = items.ItemsResourceWithStreamingResponse(client.items)
 
 
 class AsyncMoonbaseWithStreamedResponse:
     def __init__(self, client: AsyncMoonbase) -> None:
-        self.calls = calls.AsyncCallsResourceWithStreamingResponse(client.calls)
         self.collections = collections.AsyncCollectionsResourceWithStreamingResponse(client.collections)
         self.items = items.AsyncItemsResourceWithStreamingResponse(client.items)
 

@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .calls import (
-    CallsResource,
-    AsyncCallsResource,
-    CallsResourceWithRawResponse,
-    AsyncCallsResourceWithRawResponse,
-    CallsResourceWithStreamingResponse,
-    AsyncCallsResourceWithStreamingResponse,
-)
 from .items import (
     ItemsResource,
     AsyncItemsResource,
@@ -26,12 +18,6 @@ from .collections import (
 )
 
 __all__ = [
-    "CallsResource",
-    "AsyncCallsResource",
-    "CallsResourceWithRawResponse",
-    "AsyncCallsResourceWithRawResponse",
-    "CallsResourceWithStreamingResponse",
-    "AsyncCallsResourceWithStreamingResponse",
     "CollectionsResource",
     "AsyncCollectionsResource",
     "CollectionsResourceWithRawResponse",
