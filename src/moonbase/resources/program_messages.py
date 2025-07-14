@@ -6,7 +6,7 @@ from typing import Dict
 
 import httpx
 
-from ..types import program_message_send_params
+from ..types import program_message_create_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -18,7 +18,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.program_message_send_response import ProgramMessageSendResponse
+from ..types.program_message_create_response import ProgramMessageCreateResponse
 
 __all__ = ["ProgramMessagesResource", "AsyncProgramMessagesResource"]
 
@@ -43,10 +43,10 @@ class ProgramMessagesResource(SyncAPIResource):
         """
         return ProgramMessagesResourceWithStreamingResponse(self)
 
-    def send(
+    def create(
         self,
         *,
-        person: program_message_send_params.Person,
+        person: program_message_create_params.Person,
         program_template_id: str,
         custom_variables: Dict[str, object] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -55,7 +55,7 @@ class ProgramMessagesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProgramMessageSendResponse:
+    ) -> ProgramMessageCreateResponse:
         """
         Sends a message using a program template.
 
@@ -82,12 +82,12 @@ class ProgramMessagesResource(SyncAPIResource):
                     "program_template_id": program_template_id,
                     "custom_variables": custom_variables,
                 },
-                program_message_send_params.ProgramMessageSendParams,
+                program_message_create_params.ProgramMessageCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ProgramMessageSendResponse,
+            cast_to=ProgramMessageCreateResponse,
         )
 
 
@@ -111,10 +111,10 @@ class AsyncProgramMessagesResource(AsyncAPIResource):
         """
         return AsyncProgramMessagesResourceWithStreamingResponse(self)
 
-    async def send(
+    async def create(
         self,
         *,
-        person: program_message_send_params.Person,
+        person: program_message_create_params.Person,
         program_template_id: str,
         custom_variables: Dict[str, object] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -123,7 +123,7 @@ class AsyncProgramMessagesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProgramMessageSendResponse:
+    ) -> ProgramMessageCreateResponse:
         """
         Sends a message using a program template.
 
@@ -150,12 +150,12 @@ class AsyncProgramMessagesResource(AsyncAPIResource):
                     "program_template_id": program_template_id,
                     "custom_variables": custom_variables,
                 },
-                program_message_send_params.ProgramMessageSendParams,
+                program_message_create_params.ProgramMessageCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=ProgramMessageSendResponse,
+            cast_to=ProgramMessageCreateResponse,
         )
 
 
@@ -163,8 +163,8 @@ class ProgramMessagesResourceWithRawResponse:
     def __init__(self, program_messages: ProgramMessagesResource) -> None:
         self._program_messages = program_messages
 
-        self.send = to_raw_response_wrapper(
-            program_messages.send,
+        self.create = to_raw_response_wrapper(
+            program_messages.create,
         )
 
 
@@ -172,8 +172,8 @@ class AsyncProgramMessagesResourceWithRawResponse:
     def __init__(self, program_messages: AsyncProgramMessagesResource) -> None:
         self._program_messages = program_messages
 
-        self.send = async_to_raw_response_wrapper(
-            program_messages.send,
+        self.create = async_to_raw_response_wrapper(
+            program_messages.create,
         )
 
 
@@ -181,8 +181,8 @@ class ProgramMessagesResourceWithStreamingResponse:
     def __init__(self, program_messages: ProgramMessagesResource) -> None:
         self._program_messages = program_messages
 
-        self.send = to_streamed_response_wrapper(
-            program_messages.send,
+        self.create = to_streamed_response_wrapper(
+            program_messages.create,
         )
 
 
@@ -190,6 +190,6 @@ class AsyncProgramMessagesResourceWithStreamingResponse:
     def __init__(self, program_messages: AsyncProgramMessagesResource) -> None:
         self._program_messages = program_messages
 
-        self.send = async_to_streamed_response_wrapper(
-            program_messages.send,
+        self.create = async_to_streamed_response_wrapper(
+            program_messages.create,
         )

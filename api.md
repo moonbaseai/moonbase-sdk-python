@@ -183,12 +183,12 @@ Methods:
 Types:
 
 ```python
-from moonbase.types import ProgramMessageSendResponse
+from moonbase.types import ProgramMessageCreateResponse
 ```
 
 Methods:
 
-- <code title="post /program_messages">client.program_messages.<a href="./src/moonbase/resources/program_messages.py">send</a>(\*\*<a href="src/moonbase/types/program_message_send_params.py">params</a>) -> <a href="./src/moonbase/types/program_message_send_response.py">ProgramMessageSendResponse</a></code>
+- <code title="post /program_messages">client.program_messages.<a href="./src/moonbase/resources/program_messages.py">create</a>(\*\*<a href="src/moonbase/types/program_message_create_params.py">params</a>) -> <a href="./src/moonbase/types/program_message_create_response.py">ProgramMessageCreateResponse</a></code>
 
 # ProgramTemplates
 

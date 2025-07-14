@@ -188,11 +188,11 @@ from moonbase import Moonbase
 
 client = Moonbase()
 
-response = client.program_messages.send(
+program_message = client.program_messages.create(
     person={"email": "person-71@example-71.com"},
     program_template_id="1CR2QLhLQPX9WCiWH3cXCe",
 )
-print(response.person)
+print(program_message.person)
 ```
 
 ## Handling errors

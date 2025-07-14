@@ -8,7 +8,7 @@ from typing_extensions import Literal
 from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 
-__all__ = ["ProgramMessageSendResponse", "Links"]
+__all__ = ["ProgramMessageCreateResponse", "Links"]
 
 
 class Links(BaseModel):
@@ -16,7 +16,7 @@ class Links(BaseModel):
     """A link to the `ProgramTemplate` used."""
 
 
-class ProgramMessageSendResponse(BaseModel):
+class ProgramMessageCreateResponse(BaseModel):
     id: str
     """Unique identifier for the object."""
 
@@ -44,8 +44,8 @@ class ProgramMessageSendResponse(BaseModel):
 from .program_template import ProgramTemplate
 
 if PYDANTIC_V2:
-    ProgramMessageSendResponse.model_rebuild()
+    ProgramMessageCreateResponse.model_rebuild()
     Links.model_rebuild()
 else:
-    ProgramMessageSendResponse.update_forward_refs()  # type: ignore
+    ProgramMessageCreateResponse.update_forward_refs()  # type: ignore
     Links.update_forward_refs()  # type: ignore
