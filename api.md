@@ -1,27 +1,20 @@
 # Shared Types
 
 ```python
-from moonbase_sdk.types import Error, View
+from moonbase_sdk.types import Error
 ```
 
-# Collections
+# ProgramMessages
 
 Types:
 
 ```python
-from moonbase_sdk.types import Collection, Field
+from moonbase_sdk.types import ProgramMessageSendResponse
 ```
 
 Methods:
 
-- <code title="get /collections/{id}">client.collections.<a href="./src/moonbase_sdk/resources/collections/collections.py">retrieve</a>(id, \*\*<a href="src/moonbase_sdk/types/collection_retrieve_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/collection.py">Collection</a></code>
-- <code title="get /collections">client.collections.<a href="./src/moonbase_sdk/resources/collections/collections.py">list</a>(\*\*<a href="src/moonbase_sdk/types/collection_list_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/collection.py">SyncCursorPage[Collection]</a></code>
-
-## Fields
-
-Methods:
-
-- <code title="get /collections/{collection_id}/fields/{id}">client.collections.fields.<a href="./src/moonbase_sdk/resources/collections/fields.py">retrieve</a>(id, \*, collection_id) -> <a href="./src/moonbase_sdk/types/field.py">Field</a></code>
+- <code title="post /program_messages">client.program_messages.<a href="./src/moonbase_sdk/resources/program_messages.py">send</a>(\*\*<a href="src/moonbase_sdk/types/program_message_send_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/program_message_send_response.py">ProgramMessageSendResponse</a></code>
 
 # ProgramTemplates
 

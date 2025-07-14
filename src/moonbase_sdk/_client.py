@@ -21,7 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import programs, program_templates
+from .resources import programs, program_messages, program_templates
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import MoonbaseError, APIStatusError
 from ._base_client import (
@@ -29,7 +29,6 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.collections import collections
 
 __all__ = [
     "Timeout",
@@ -44,7 +43,7 @@ __all__ = [
 
 
 class Moonbase(SyncAPIClient):
-    collections: collections.CollectionsResource
+    program_messages: program_messages.ProgramMessagesResource
     program_templates: program_templates.ProgramTemplatesResource
     programs: programs.ProgramsResource
     with_raw_response: MoonbaseWithRawResponse
@@ -104,7 +103,7 @@ class Moonbase(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.collections = collections.CollectionsResource(self)
+        self.program_messages = program_messages.ProgramMessagesResource(self)
         self.program_templates = program_templates.ProgramTemplatesResource(self)
         self.programs = programs.ProgramsResource(self)
         self.with_raw_response = MoonbaseWithRawResponse(self)
@@ -216,7 +215,7 @@ class Moonbase(SyncAPIClient):
 
 
 class AsyncMoonbase(AsyncAPIClient):
-    collections: collections.AsyncCollectionsResource
+    program_messages: program_messages.AsyncProgramMessagesResource
     program_templates: program_templates.AsyncProgramTemplatesResource
     programs: programs.AsyncProgramsResource
     with_raw_response: AsyncMoonbaseWithRawResponse
@@ -276,7 +275,7 @@ class AsyncMoonbase(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.collections = collections.AsyncCollectionsResource(self)
+        self.program_messages = program_messages.AsyncProgramMessagesResource(self)
         self.program_templates = program_templates.AsyncProgramTemplatesResource(self)
         self.programs = programs.AsyncProgramsResource(self)
         self.with_raw_response = AsyncMoonbaseWithRawResponse(self)
@@ -389,14 +388,14 @@ class AsyncMoonbase(AsyncAPIClient):
 
 class MoonbaseWithRawResponse:
     def __init__(self, client: Moonbase) -> None:
-        self.collections = collections.CollectionsResourceWithRawResponse(client.collections)
+        self.program_messages = program_messages.ProgramMessagesResourceWithRawResponse(client.program_messages)
         self.program_templates = program_templates.ProgramTemplatesResourceWithRawResponse(client.program_templates)
         self.programs = programs.ProgramsResourceWithRawResponse(client.programs)
 
 
 class AsyncMoonbaseWithRawResponse:
     def __init__(self, client: AsyncMoonbase) -> None:
-        self.collections = collections.AsyncCollectionsResourceWithRawResponse(client.collections)
+        self.program_messages = program_messages.AsyncProgramMessagesResourceWithRawResponse(client.program_messages)
         self.program_templates = program_templates.AsyncProgramTemplatesResourceWithRawResponse(
             client.program_templates
         )
@@ -405,7 +404,7 @@ class AsyncMoonbaseWithRawResponse:
 
 class MoonbaseWithStreamedResponse:
     def __init__(self, client: Moonbase) -> None:
-        self.collections = collections.CollectionsResourceWithStreamingResponse(client.collections)
+        self.program_messages = program_messages.ProgramMessagesResourceWithStreamingResponse(client.program_messages)
         self.program_templates = program_templates.ProgramTemplatesResourceWithStreamingResponse(
             client.program_templates
         )
@@ -414,7 +413,9 @@ class MoonbaseWithStreamedResponse:
 
 class AsyncMoonbaseWithStreamedResponse:
     def __init__(self, client: AsyncMoonbase) -> None:
-        self.collections = collections.AsyncCollectionsResourceWithStreamingResponse(client.collections)
+        self.program_messages = program_messages.AsyncProgramMessagesResourceWithStreamingResponse(
+            client.program_messages
+        )
         self.program_templates = program_templates.AsyncProgramTemplatesResourceWithStreamingResponse(
             client.program_templates
         )
