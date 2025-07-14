@@ -51,7 +51,6 @@ if TYPE_CHECKING or PYDANTIC_V2:
             FunnelStep,
             "RelationValue",
             List["Value"],
-            None,
         ],
     )
 else:
@@ -76,7 +75,6 @@ else:
         FunnelStep,
         "RelationValue",
         List["Value"],
-        None,
     ]
 
 from .value import Value
