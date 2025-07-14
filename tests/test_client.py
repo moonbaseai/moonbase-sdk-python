@@ -727,9 +727,9 @@ class TestMoonbase:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/collections").mock(side_effect=retry_handler)
+        respx_mock.get("/program_templates").mock(side_effect=retry_handler)
 
-        response = client.collections.with_raw_response.list()
+        response = client.program_templates.with_raw_response.list()
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -751,9 +751,9 @@ class TestMoonbase:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/collections").mock(side_effect=retry_handler)
+        respx_mock.get("/program_templates").mock(side_effect=retry_handler)
 
-        response = client.collections.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
+        response = client.program_templates.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -774,9 +774,9 @@ class TestMoonbase:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/collections").mock(side_effect=retry_handler)
+        respx_mock.get("/program_templates").mock(side_effect=retry_handler)
 
-        response = client.collections.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
+        response = client.program_templates.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
@@ -1524,9 +1524,9 @@ class TestAsyncMoonbase:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/collections").mock(side_effect=retry_handler)
+        respx_mock.get("/program_templates").mock(side_effect=retry_handler)
 
-        response = await client.collections.with_raw_response.list()
+        response = await client.program_templates.with_raw_response.list()
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1549,9 +1549,11 @@ class TestAsyncMoonbase:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/collections").mock(side_effect=retry_handler)
+        respx_mock.get("/program_templates").mock(side_effect=retry_handler)
 
-        response = await client.collections.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
+        response = await client.program_templates.with_raw_response.list(
+            extra_headers={"x-stainless-retry-count": Omit()}
+        )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -1573,9 +1575,11 @@ class TestAsyncMoonbase:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/collections").mock(side_effect=retry_handler)
+        respx_mock.get("/program_templates").mock(side_effect=retry_handler)
 
-        response = await client.collections.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
+        response = await client.program_templates.with_raw_response.list(
+            extra_headers={"x-stainless-retry-count": "42"}
+        )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
