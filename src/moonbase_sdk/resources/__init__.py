@@ -16,14 +16,6 @@ from .files import (
     FilesResourceWithStreamingResponse,
     AsyncFilesResourceWithStreamingResponse,
 )
-from .forms import (
-    FormsResource,
-    AsyncFormsResource,
-    FormsResourceWithRawResponse,
-    AsyncFormsResourceWithRawResponse,
-    FormsResourceWithStreamingResponse,
-    AsyncFormsResourceWithStreamingResponse,
-)
 from .items import (
     ItemsResource,
     AsyncItemsResource,
@@ -140,12 +132,6 @@ __all__ = [
     "AsyncFilesResourceWithRawResponse",
     "FilesResourceWithStreamingResponse",
     "AsyncFilesResourceWithStreamingResponse",
-    "FormsResource",
-    "AsyncFormsResource",
-    "FormsResourceWithRawResponse",
-    "AsyncFormsResourceWithRawResponse",
-    "FormsResourceWithStreamingResponse",
-    "AsyncFormsResourceWithStreamingResponse",
     "InboxConversationsResource",
     "AsyncInboxConversationsResource",
     "InboxConversationsResourceWithRawResponse",

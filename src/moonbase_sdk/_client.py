@@ -24,7 +24,6 @@ from ._version import __version__
 from .resources import (
     calls,
     files,
-    forms,
     items,
     notes,
     views,
@@ -62,7 +61,6 @@ class Moonbase(SyncAPIClient):
     calls: calls.CallsResource
     collections: collections.CollectionsResource
     files: files.FilesResource
-    forms: forms.FormsResource
     inbox_conversations: inbox_conversations.InboxConversationsResource
     inbox_messages: inbox_messages.InboxMessagesResource
     inboxes: inboxes.InboxesResource
@@ -134,7 +132,6 @@ class Moonbase(SyncAPIClient):
         self.calls = calls.CallsResource(self)
         self.collections = collections.CollectionsResource(self)
         self.files = files.FilesResource(self)
-        self.forms = forms.FormsResource(self)
         self.inbox_conversations = inbox_conversations.InboxConversationsResource(self)
         self.inbox_messages = inbox_messages.InboxMessagesResource(self)
         self.inboxes = inboxes.InboxesResource(self)
@@ -258,7 +255,6 @@ class AsyncMoonbase(AsyncAPIClient):
     calls: calls.AsyncCallsResource
     collections: collections.AsyncCollectionsResource
     files: files.AsyncFilesResource
-    forms: forms.AsyncFormsResource
     inbox_conversations: inbox_conversations.AsyncInboxConversationsResource
     inbox_messages: inbox_messages.AsyncInboxMessagesResource
     inboxes: inboxes.AsyncInboxesResource
@@ -330,7 +326,6 @@ class AsyncMoonbase(AsyncAPIClient):
         self.calls = calls.AsyncCallsResource(self)
         self.collections = collections.AsyncCollectionsResource(self)
         self.files = files.AsyncFilesResource(self)
-        self.forms = forms.AsyncFormsResource(self)
         self.inbox_conversations = inbox_conversations.AsyncInboxConversationsResource(self)
         self.inbox_messages = inbox_messages.AsyncInboxMessagesResource(self)
         self.inboxes = inboxes.AsyncInboxesResource(self)
@@ -455,7 +450,6 @@ class MoonbaseWithRawResponse:
         self.calls = calls.CallsResourceWithRawResponse(client.calls)
         self.collections = collections.CollectionsResourceWithRawResponse(client.collections)
         self.files = files.FilesResourceWithRawResponse(client.files)
-        self.forms = forms.FormsResourceWithRawResponse(client.forms)
         self.inbox_conversations = inbox_conversations.InboxConversationsResourceWithRawResponse(
             client.inbox_conversations
         )
@@ -476,7 +470,6 @@ class AsyncMoonbaseWithRawResponse:
         self.calls = calls.AsyncCallsResourceWithRawResponse(client.calls)
         self.collections = collections.AsyncCollectionsResourceWithRawResponse(client.collections)
         self.files = files.AsyncFilesResourceWithRawResponse(client.files)
-        self.forms = forms.AsyncFormsResourceWithRawResponse(client.forms)
         self.inbox_conversations = inbox_conversations.AsyncInboxConversationsResourceWithRawResponse(
             client.inbox_conversations
         )
@@ -499,7 +492,6 @@ class MoonbaseWithStreamedResponse:
         self.calls = calls.CallsResourceWithStreamingResponse(client.calls)
         self.collections = collections.CollectionsResourceWithStreamingResponse(client.collections)
         self.files = files.FilesResourceWithStreamingResponse(client.files)
-        self.forms = forms.FormsResourceWithStreamingResponse(client.forms)
         self.inbox_conversations = inbox_conversations.InboxConversationsResourceWithStreamingResponse(
             client.inbox_conversations
         )
@@ -522,7 +514,6 @@ class AsyncMoonbaseWithStreamedResponse:
         self.calls = calls.AsyncCallsResourceWithStreamingResponse(client.calls)
         self.collections = collections.AsyncCollectionsResourceWithStreamingResponse(client.collections)
         self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
-        self.forms = forms.AsyncFormsResourceWithStreamingResponse(client.forms)
         self.inbox_conversations = inbox_conversations.AsyncInboxConversationsResourceWithStreamingResponse(
             client.inbox_conversations
         )
