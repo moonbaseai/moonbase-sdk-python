@@ -21,7 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import calls, files, items, notes, views, tagsets, programs, program_templates
+from .resources import calls, files, items, notes, views, programs, program_templates
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import MoonbaseError, APIStatusError
 from ._base_client import (
@@ -51,7 +51,6 @@ class Moonbase(SyncAPIClient):
     notes: notes.NotesResource
     program_templates: program_templates.ProgramTemplatesResource
     programs: programs.ProgramsResource
-    tagsets: tagsets.TagsetsResource
     views: views.ViewsResource
     with_raw_response: MoonbaseWithRawResponse
     with_streaming_response: MoonbaseWithStreamedResponse
@@ -117,7 +116,6 @@ class Moonbase(SyncAPIClient):
         self.notes = notes.NotesResource(self)
         self.program_templates = program_templates.ProgramTemplatesResource(self)
         self.programs = programs.ProgramsResource(self)
-        self.tagsets = tagsets.TagsetsResource(self)
         self.views = views.ViewsResource(self)
         self.with_raw_response = MoonbaseWithRawResponse(self)
         self.with_streaming_response = MoonbaseWithStreamedResponse(self)
@@ -235,7 +233,6 @@ class AsyncMoonbase(AsyncAPIClient):
     notes: notes.AsyncNotesResource
     program_templates: program_templates.AsyncProgramTemplatesResource
     programs: programs.AsyncProgramsResource
-    tagsets: tagsets.AsyncTagsetsResource
     views: views.AsyncViewsResource
     with_raw_response: AsyncMoonbaseWithRawResponse
     with_streaming_response: AsyncMoonbaseWithStreamedResponse
@@ -301,7 +298,6 @@ class AsyncMoonbase(AsyncAPIClient):
         self.notes = notes.AsyncNotesResource(self)
         self.program_templates = program_templates.AsyncProgramTemplatesResource(self)
         self.programs = programs.AsyncProgramsResource(self)
-        self.tagsets = tagsets.AsyncTagsetsResource(self)
         self.views = views.AsyncViewsResource(self)
         self.with_raw_response = AsyncMoonbaseWithRawResponse(self)
         self.with_streaming_response = AsyncMoonbaseWithStreamedResponse(self)
@@ -420,7 +416,6 @@ class MoonbaseWithRawResponse:
         self.notes = notes.NotesResourceWithRawResponse(client.notes)
         self.program_templates = program_templates.ProgramTemplatesResourceWithRawResponse(client.program_templates)
         self.programs = programs.ProgramsResourceWithRawResponse(client.programs)
-        self.tagsets = tagsets.TagsetsResourceWithRawResponse(client.tagsets)
         self.views = views.ViewsResourceWithRawResponse(client.views)
 
 
@@ -435,7 +430,6 @@ class AsyncMoonbaseWithRawResponse:
             client.program_templates
         )
         self.programs = programs.AsyncProgramsResourceWithRawResponse(client.programs)
-        self.tagsets = tagsets.AsyncTagsetsResourceWithRawResponse(client.tagsets)
         self.views = views.AsyncViewsResourceWithRawResponse(client.views)
 
 
@@ -450,7 +444,6 @@ class MoonbaseWithStreamedResponse:
             client.program_templates
         )
         self.programs = programs.ProgramsResourceWithStreamingResponse(client.programs)
-        self.tagsets = tagsets.TagsetsResourceWithStreamingResponse(client.tagsets)
         self.views = views.ViewsResourceWithStreamingResponse(client.views)
 
 
@@ -465,7 +458,6 @@ class AsyncMoonbaseWithStreamedResponse:
             client.program_templates
         )
         self.programs = programs.AsyncProgramsResourceWithStreamingResponse(client.programs)
-        self.tagsets = tagsets.AsyncTagsetsResourceWithStreamingResponse(client.tagsets)
         self.views = views.AsyncViewsResourceWithStreamingResponse(client.views)
 
 

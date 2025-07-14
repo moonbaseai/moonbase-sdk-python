@@ -126,19 +126,6 @@ Methods:
 - <code title="get /programs/{id}">client.programs.<a href="./src/moonbase_sdk/resources/programs.py">retrieve</a>(id, \*\*<a href="src/moonbase_sdk/types/program_retrieve_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/program.py">Program</a></code>
 - <code title="get /programs">client.programs.<a href="./src/moonbase_sdk/resources/programs.py">list</a>(\*\*<a href="src/moonbase_sdk/types/program_list_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/program.py">SyncCursorPage[Program]</a></code>
 
-# Tagsets
-
-Types:
-
-```python
-from moonbase_sdk.types import Tagset
-```
-
-Methods:
-
-- <code title="get /tagsets/{id}">client.tagsets.<a href="./src/moonbase_sdk/resources/tagsets.py">retrieve</a>(id) -> <a href="./src/moonbase_sdk/types/tagset.py">Tagset</a></code>
-- <code title="get /tagsets">client.tagsets.<a href="./src/moonbase_sdk/resources/tagsets.py">list</a>(\*\*<a href="src/moonbase_sdk/types/tagset_list_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/tagset.py">SyncCursorPage[Tagset]</a></code>
-
 # Views
 
 Types:

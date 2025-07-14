@@ -10,7 +10,6 @@ from .field import Field as Field
 from .value import Value as Value
 from .choice import Choice as Choice
 from .shared import Error as Error
-from .tagset import Tagset as Tagset
 from .program import Program as Program
 from .geo_value import GeoValue as GeoValue
 from .url_value import URLValue as URLValue
@@ -48,7 +47,6 @@ from .domain_value_param import DomainValueParam as DomainValueParam
 from .item_create_params import ItemCreateParams as ItemCreateParams
 from .item_update_params import ItemUpdateParams as ItemUpdateParams
 from .item_upsert_params import ItemUpsertParams as ItemUpsertParams
-from .tagset_list_params import TagsetListParams as TagsetListParams
 from .boolean_value_param import BooleanValueParam as BooleanValueParam
 from .integer_value_param import IntegerValueParam as IntegerValueParam
 from .program_list_params import ProgramListParams as ProgramListParams
