@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal
 
-from .._compat import PYDANTIC_V2
-from .._models import BaseModel
+from ..._compat import PYDANTIC_V2
+from ..._models import BaseModel
 
 __all__ = ["View", "Links"]
 
@@ -41,7 +41,7 @@ class View(BaseModel):
     """The type of view, such as `table` or `board`."""
 
 
-from .collection import Collection
+from ..collection import Collection
 
 if PYDANTIC_V2:
     View.model_rebuild()

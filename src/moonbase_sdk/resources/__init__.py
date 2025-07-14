@@ -24,14 +24,6 @@ from .items import (
     ItemsResourceWithStreamingResponse,
     AsyncItemsResourceWithStreamingResponse,
 )
-from .views import (
-    ViewsResource,
-    AsyncViewsResource,
-    ViewsResourceWithRawResponse,
-    AsyncViewsResourceWithRawResponse,
-    ViewsResourceWithStreamingResponse,
-    AsyncViewsResourceWithStreamingResponse,
-)
 from .programs import (
     ProgramsResource,
     AsyncProgramsResource,
@@ -58,12 +50,6 @@ from .program_templates import (
 )
 
 __all__ = [
-    "ViewsResource",
-    "AsyncViewsResource",
-    "ViewsResourceWithRawResponse",
-    "AsyncViewsResourceWithRawResponse",
-    "ViewsResourceWithStreamingResponse",
-    "AsyncViewsResourceWithStreamingResponse",
     "CallsResource",
     "AsyncCallsResource",
     "CallsResourceWithRawResponse",
