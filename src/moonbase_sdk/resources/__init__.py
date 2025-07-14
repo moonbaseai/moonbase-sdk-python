@@ -8,14 +8,6 @@ from .calls import (
     CallsResourceWithStreamingResponse,
     AsyncCallsResourceWithStreamingResponse,
 )
-from .files import (
-    FilesResource,
-    AsyncFilesResource,
-    FilesResourceWithRawResponse,
-    AsyncFilesResourceWithRawResponse,
-    FilesResourceWithStreamingResponse,
-    AsyncFilesResourceWithStreamingResponse,
-)
 from .items import (
     ItemsResource,
     AsyncItemsResource,
@@ -46,12 +38,6 @@ __all__ = [
     "AsyncCollectionsResourceWithRawResponse",
     "CollectionsResourceWithStreamingResponse",
     "AsyncCollectionsResourceWithStreamingResponse",
-    "FilesResource",
-    "AsyncFilesResource",
-    "FilesResourceWithRawResponse",
-    "AsyncFilesResourceWithRawResponse",
-    "FilesResourceWithStreamingResponse",
-    "AsyncFilesResourceWithStreamingResponse",
     "ItemsResource",
     "AsyncItemsResource",
     "ItemsResourceWithRawResponse",

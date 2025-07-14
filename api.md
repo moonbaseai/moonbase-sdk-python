@@ -35,19 +35,6 @@ Methods:
 
 - <code title="get /collections/{collection_id}/fields/{id}">client.collections.fields.<a href="./src/moonbase_sdk/resources/collections/fields.py">retrieve</a>(id, \*, collection_id) -> <a href="./src/moonbase_sdk/types/field.py">Field</a></code>
 
-# Files
-
-Types:
-
-```python
-from moonbase_sdk.types import MoonbaseFile
-```
-
-Methods:
-
-- <code title="get /files/{id}">client.files.<a href="./src/moonbase_sdk/resources/files.py">retrieve</a>(id) -> <a href="./src/moonbase_sdk/types/moonbase_file.py">MoonbaseFile</a></code>
-- <code title="get /files">client.files.<a href="./src/moonbase_sdk/resources/files.py">list</a>(\*\*<a href="src/moonbase_sdk/types/file_list_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/moonbase_file.py">SyncCursorPage[MoonbaseFile]</a></code>
-
 # Items
 
 Types:
