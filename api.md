@@ -4,6 +4,19 @@
 from moonbase_sdk.types import Error
 ```
 
+# Views
+
+Types:
+
+```python
+from moonbase_sdk.types import View
+```
+
+Methods:
+
+- <code title="get /views/{id}">client.views.<a href="./src/moonbase_sdk/resources/views.py">retrieve</a>(id, \*\*<a href="src/moonbase_sdk/types/view_retrieve_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/view.py">View</a></code>
+- <code title="get /views/{id}/items">client.views.<a href="./src/moonbase_sdk/resources/views.py">list_items</a>(id, \*\*<a href="src/moonbase_sdk/types/view_list_items_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/item.py">SyncCursorPage[Item]</a></code>
+
 # Calls
 
 Types:
@@ -112,16 +125,3 @@ Methods:
 
 - <code title="get /programs/{id}">client.programs.<a href="./src/moonbase_sdk/resources/programs.py">retrieve</a>(id, \*\*<a href="src/moonbase_sdk/types/program_retrieve_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/program.py">Program</a></code>
 - <code title="get /programs">client.programs.<a href="./src/moonbase_sdk/resources/programs.py">list</a>(\*\*<a href="src/moonbase_sdk/types/program_list_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/program.py">SyncCursorPage[Program]</a></code>
-
-# Views
-
-Types:
-
-```python
-from moonbase_sdk.types import View
-```
-
-Methods:
-
-- <code title="get /views/{id}">client.views.<a href="./src/moonbase_sdk/resources/views.py">retrieve</a>(id, \*\*<a href="src/moonbase_sdk/types/view_retrieve_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/view.py">View</a></code>
-- <code title="get /views/{id}/items">client.views.<a href="./src/moonbase_sdk/resources/views.py">list_items</a>(id, \*\*<a href="src/moonbase_sdk/types/view_list_items_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/item.py">SyncCursorPage[Item]</a></code>

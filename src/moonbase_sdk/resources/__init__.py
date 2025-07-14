@@ -58,6 +58,12 @@ from .program_templates import (
 )
 
 __all__ = [
+    "ViewsResource",
+    "AsyncViewsResource",
+    "ViewsResourceWithRawResponse",
+    "AsyncViewsResourceWithRawResponse",
+    "ViewsResourceWithStreamingResponse",
+    "AsyncViewsResourceWithStreamingResponse",
     "CallsResource",
     "AsyncCallsResource",
     "CallsResourceWithRawResponse",
@@ -94,10 +100,4 @@ __all__ = [
     "AsyncProgramsResourceWithRawResponse",
     "ProgramsResourceWithStreamingResponse",
     "AsyncProgramsResourceWithStreamingResponse",
-    "ViewsResource",
-    "AsyncViewsResource",
-    "ViewsResourceWithRawResponse",
-    "AsyncViewsResourceWithRawResponse",
-    "ViewsResourceWithStreamingResponse",
-    "AsyncViewsResourceWithStreamingResponse",
 ]
