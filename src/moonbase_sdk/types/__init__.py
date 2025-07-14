@@ -4,11 +4,10 @@ from __future__ import annotations
 
 from .call import Call as Call
 from .item import Item as Item
-from .view import View as View
 from .field import Field as Field
 from .value import Value as Value
 from .choice import Choice as Choice
-from .shared import Error as Error
+from .shared import View as View, Error as Error
 from .program import Program as Program
 from .geo_value import GeoValue as GeoValue
 from .url_value import URLValue as URLValue
@@ -52,14 +51,12 @@ from .datetime_value_param import DatetimeValueParam as DatetimeValueParam
 from .monetary_value_param import MonetaryValueParam as MonetaryValueParam
 from .relation_value_param import RelationValueParam as RelationValueParam
 from .social_x_value_param import SocialXValueParam as SocialXValueParam
-from .view_retrieve_params import ViewRetrieveParams as ViewRetrieveParams
 from .multi_line_text_value import MultiLineTextValue as MultiLineTextValue
 from .collection_list_params import CollectionListParams as CollectionListParams
 from .percentage_value_param import PercentageValueParam as PercentageValueParam
 from .single_line_text_value import SingleLineTextValue as SingleLineTextValue
 from .social_linked_in_value import SocialLinkedInValue as SocialLinkedInValue
 from .telephone_number_param import TelephoneNumberParam as TelephoneNumberParam
-from .view_list_items_params import ViewListItemsParams as ViewListItemsParams
 from .program_retrieve_params import ProgramRetrieveParams as ProgramRetrieveParams
 from .collection_retrieve_params import CollectionRetrieveParams as CollectionRetrieveParams
 from .multi_line_text_value_param import MultiLineTextValueParam as MultiLineTextValueParam

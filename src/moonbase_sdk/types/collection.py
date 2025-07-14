@@ -54,7 +54,7 @@ class Collection(BaseModel):
     """A list of saved `View` objects for presenting the collection's data."""
 
 
-from .view import View
+from .shared.view import View
 
 if PYDANTIC_V2:
     Collection.model_rebuild()
