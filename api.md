@@ -48,45 +48,6 @@ Methods:
 - <code title="get /files/{id}">client.files.<a href="./src/moonbase_sdk/resources/files.py">retrieve</a>(id) -> <a href="./src/moonbase_sdk/types/moonbase_file.py">MoonbaseFile</a></code>
 - <code title="get /files">client.files.<a href="./src/moonbase_sdk/resources/files.py">list</a>(\*\*<a href="src/moonbase_sdk/types/file_list_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/moonbase_file.py">SyncCursorPage[MoonbaseFile]</a></code>
 
-# InboxConversations
-
-Types:
-
-```python
-from moonbase_sdk.types import InboxConversation
-```
-
-Methods:
-
-- <code title="get /inbox_conversations/{id}">client.inbox_conversations.<a href="./src/moonbase_sdk/resources/inbox_conversations.py">retrieve</a>(id, \*\*<a href="src/moonbase_sdk/types/inbox_conversation_retrieve_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/inbox_conversation.py">InboxConversation</a></code>
-- <code title="get /inbox_conversations">client.inbox_conversations.<a href="./src/moonbase_sdk/resources/inbox_conversations.py">list</a>(\*\*<a href="src/moonbase_sdk/types/inbox_conversation_list_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/inbox_conversation.py">SyncCursorPage[InboxConversation]</a></code>
-
-# InboxMessages
-
-Types:
-
-```python
-from moonbase_sdk.types import Address, EmailMessage
-```
-
-Methods:
-
-- <code title="get /inbox_messages/{id}">client.inbox_messages.<a href="./src/moonbase_sdk/resources/inbox_messages.py">retrieve</a>(id, \*\*<a href="src/moonbase_sdk/types/inbox_message_retrieve_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/email_message.py">EmailMessage</a></code>
-- <code title="get /inbox_messages">client.inbox_messages.<a href="./src/moonbase_sdk/resources/inbox_messages.py">list</a>(\*\*<a href="src/moonbase_sdk/types/inbox_message_list_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/email_message.py">SyncCursorPage[EmailMessage]</a></code>
-
-# Inboxes
-
-Types:
-
-```python
-from moonbase_sdk.types import Inbox
-```
-
-Methods:
-
-- <code title="get /inboxes/{id}">client.inboxes.<a href="./src/moonbase_sdk/resources/inboxes.py">retrieve</a>(id, \*\*<a href="src/moonbase_sdk/types/inbox_retrieve_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/inbox.py">Inbox</a></code>
-- <code title="get /inboxes">client.inboxes.<a href="./src/moonbase_sdk/resources/inboxes.py">list</a>(\*\*<a href="src/moonbase_sdk/types/inbox_list_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/inbox.py">SyncCursorPage[Inbox]</a></code>
-
 # Items
 
 Types:

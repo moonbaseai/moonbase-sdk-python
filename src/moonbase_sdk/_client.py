@@ -27,14 +27,11 @@ from .resources import (
     items,
     notes,
     views,
-    inboxes,
     tagsets,
     meetings,
     programs,
-    inbox_messages,
     program_messages,
     program_templates,
-    inbox_conversations,
 )
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import MoonbaseError, APIStatusError
@@ -61,9 +58,6 @@ class Moonbase(SyncAPIClient):
     calls: calls.CallsResource
     collections: collections.CollectionsResource
     files: files.FilesResource
-    inbox_conversations: inbox_conversations.InboxConversationsResource
-    inbox_messages: inbox_messages.InboxMessagesResource
-    inboxes: inboxes.InboxesResource
     items: items.ItemsResource
     meetings: meetings.MeetingsResource
     notes: notes.NotesResource
@@ -132,9 +126,6 @@ class Moonbase(SyncAPIClient):
         self.calls = calls.CallsResource(self)
         self.collections = collections.CollectionsResource(self)
         self.files = files.FilesResource(self)
-        self.inbox_conversations = inbox_conversations.InboxConversationsResource(self)
-        self.inbox_messages = inbox_messages.InboxMessagesResource(self)
-        self.inboxes = inboxes.InboxesResource(self)
         self.items = items.ItemsResource(self)
         self.meetings = meetings.MeetingsResource(self)
         self.notes = notes.NotesResource(self)
@@ -255,9 +246,6 @@ class AsyncMoonbase(AsyncAPIClient):
     calls: calls.AsyncCallsResource
     collections: collections.AsyncCollectionsResource
     files: files.AsyncFilesResource
-    inbox_conversations: inbox_conversations.AsyncInboxConversationsResource
-    inbox_messages: inbox_messages.AsyncInboxMessagesResource
-    inboxes: inboxes.AsyncInboxesResource
     items: items.AsyncItemsResource
     meetings: meetings.AsyncMeetingsResource
     notes: notes.AsyncNotesResource
@@ -326,9 +314,6 @@ class AsyncMoonbase(AsyncAPIClient):
         self.calls = calls.AsyncCallsResource(self)
         self.collections = collections.AsyncCollectionsResource(self)
         self.files = files.AsyncFilesResource(self)
-        self.inbox_conversations = inbox_conversations.AsyncInboxConversationsResource(self)
-        self.inbox_messages = inbox_messages.AsyncInboxMessagesResource(self)
-        self.inboxes = inboxes.AsyncInboxesResource(self)
         self.items = items.AsyncItemsResource(self)
         self.meetings = meetings.AsyncMeetingsResource(self)
         self.notes = notes.AsyncNotesResource(self)
@@ -450,11 +435,6 @@ class MoonbaseWithRawResponse:
         self.calls = calls.CallsResourceWithRawResponse(client.calls)
         self.collections = collections.CollectionsResourceWithRawResponse(client.collections)
         self.files = files.FilesResourceWithRawResponse(client.files)
-        self.inbox_conversations = inbox_conversations.InboxConversationsResourceWithRawResponse(
-            client.inbox_conversations
-        )
-        self.inbox_messages = inbox_messages.InboxMessagesResourceWithRawResponse(client.inbox_messages)
-        self.inboxes = inboxes.InboxesResourceWithRawResponse(client.inboxes)
         self.items = items.ItemsResourceWithRawResponse(client.items)
         self.meetings = meetings.MeetingsResourceWithRawResponse(client.meetings)
         self.notes = notes.NotesResourceWithRawResponse(client.notes)
@@ -470,11 +450,6 @@ class AsyncMoonbaseWithRawResponse:
         self.calls = calls.AsyncCallsResourceWithRawResponse(client.calls)
         self.collections = collections.AsyncCollectionsResourceWithRawResponse(client.collections)
         self.files = files.AsyncFilesResourceWithRawResponse(client.files)
-        self.inbox_conversations = inbox_conversations.AsyncInboxConversationsResourceWithRawResponse(
-            client.inbox_conversations
-        )
-        self.inbox_messages = inbox_messages.AsyncInboxMessagesResourceWithRawResponse(client.inbox_messages)
-        self.inboxes = inboxes.AsyncInboxesResourceWithRawResponse(client.inboxes)
         self.items = items.AsyncItemsResourceWithRawResponse(client.items)
         self.meetings = meetings.AsyncMeetingsResourceWithRawResponse(client.meetings)
         self.notes = notes.AsyncNotesResourceWithRawResponse(client.notes)
@@ -492,11 +467,6 @@ class MoonbaseWithStreamedResponse:
         self.calls = calls.CallsResourceWithStreamingResponse(client.calls)
         self.collections = collections.CollectionsResourceWithStreamingResponse(client.collections)
         self.files = files.FilesResourceWithStreamingResponse(client.files)
-        self.inbox_conversations = inbox_conversations.InboxConversationsResourceWithStreamingResponse(
-            client.inbox_conversations
-        )
-        self.inbox_messages = inbox_messages.InboxMessagesResourceWithStreamingResponse(client.inbox_messages)
-        self.inboxes = inboxes.InboxesResourceWithStreamingResponse(client.inboxes)
         self.items = items.ItemsResourceWithStreamingResponse(client.items)
         self.meetings = meetings.MeetingsResourceWithStreamingResponse(client.meetings)
         self.notes = notes.NotesResourceWithStreamingResponse(client.notes)
@@ -514,11 +484,6 @@ class AsyncMoonbaseWithStreamedResponse:
         self.calls = calls.AsyncCallsResourceWithStreamingResponse(client.calls)
         self.collections = collections.AsyncCollectionsResourceWithStreamingResponse(client.collections)
         self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
-        self.inbox_conversations = inbox_conversations.AsyncInboxConversationsResourceWithStreamingResponse(
-            client.inbox_conversations
-        )
-        self.inbox_messages = inbox_messages.AsyncInboxMessagesResourceWithStreamingResponse(client.inbox_messages)
-        self.inboxes = inboxes.AsyncInboxesResourceWithStreamingResponse(client.inboxes)
         self.items = items.AsyncItemsResourceWithStreamingResponse(client.items)
         self.meetings = meetings.AsyncMeetingsResourceWithStreamingResponse(client.meetings)
         self.notes = notes.AsyncNotesResourceWithStreamingResponse(client.notes)
