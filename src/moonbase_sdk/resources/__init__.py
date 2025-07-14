@@ -40,14 +40,6 @@ from .views import (
     ViewsResourceWithStreamingResponse,
     AsyncViewsResourceWithStreamingResponse,
 )
-from .inboxes import (
-    InboxesResource,
-    AsyncInboxesResource,
-    InboxesResourceWithRawResponse,
-    AsyncInboxesResourceWithRawResponse,
-    InboxesResourceWithStreamingResponse,
-    AsyncInboxesResourceWithStreamingResponse,
-)
 from .tagsets import (
     TagsetsResource,
     AsyncTagsetsResource,
@@ -80,14 +72,6 @@ from .collections import (
     CollectionsResourceWithStreamingResponse,
     AsyncCollectionsResourceWithStreamingResponse,
 )
-from .inbox_messages import (
-    InboxMessagesResource,
-    AsyncInboxMessagesResource,
-    InboxMessagesResourceWithRawResponse,
-    AsyncInboxMessagesResourceWithRawResponse,
-    InboxMessagesResourceWithStreamingResponse,
-    AsyncInboxMessagesResourceWithStreamingResponse,
-)
 from .program_messages import (
     ProgramMessagesResource,
     AsyncProgramMessagesResource,
@@ -103,14 +87,6 @@ from .program_templates import (
     AsyncProgramTemplatesResourceWithRawResponse,
     ProgramTemplatesResourceWithStreamingResponse,
     AsyncProgramTemplatesResourceWithStreamingResponse,
-)
-from .inbox_conversations import (
-    InboxConversationsResource,
-    AsyncInboxConversationsResource,
-    InboxConversationsResourceWithRawResponse,
-    AsyncInboxConversationsResourceWithRawResponse,
-    InboxConversationsResourceWithStreamingResponse,
-    AsyncInboxConversationsResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -132,24 +108,6 @@ __all__ = [
     "AsyncFilesResourceWithRawResponse",
     "FilesResourceWithStreamingResponse",
     "AsyncFilesResourceWithStreamingResponse",
-    "InboxConversationsResource",
-    "AsyncInboxConversationsResource",
-    "InboxConversationsResourceWithRawResponse",
-    "AsyncInboxConversationsResourceWithRawResponse",
-    "InboxConversationsResourceWithStreamingResponse",
-    "AsyncInboxConversationsResourceWithStreamingResponse",
-    "InboxMessagesResource",
-    "AsyncInboxMessagesResource",
-    "InboxMessagesResourceWithRawResponse",
-    "AsyncInboxMessagesResourceWithRawResponse",
-    "InboxMessagesResourceWithStreamingResponse",
-    "AsyncInboxMessagesResourceWithStreamingResponse",
-    "InboxesResource",
-    "AsyncInboxesResource",
-    "InboxesResourceWithRawResponse",
-    "AsyncInboxesResourceWithRawResponse",
-    "InboxesResourceWithStreamingResponse",
-    "AsyncInboxesResourceWithStreamingResponse",
     "ItemsResource",
     "AsyncItemsResource",
     "ItemsResourceWithRawResponse",
