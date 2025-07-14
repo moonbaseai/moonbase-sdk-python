@@ -48,19 +48,6 @@ Methods:
 - <code title="get /files/{id}">client.files.<a href="./src/moonbase_sdk/resources/files.py">retrieve</a>(id) -> <a href="./src/moonbase_sdk/types/moonbase_file.py">MoonbaseFile</a></code>
 - <code title="get /files">client.files.<a href="./src/moonbase_sdk/resources/files.py">list</a>(\*\*<a href="src/moonbase_sdk/types/file_list_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/moonbase_file.py">SyncCursorPage[MoonbaseFile]</a></code>
 
-# Forms
-
-Types:
-
-```python
-from moonbase_sdk.types import Form
-```
-
-Methods:
-
-- <code title="get /forms/{id}">client.forms.<a href="./src/moonbase_sdk/resources/forms.py">retrieve</a>(id, \*\*<a href="src/moonbase_sdk/types/form_retrieve_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/form.py">Form</a></code>
-- <code title="get /forms">client.forms.<a href="./src/moonbase_sdk/resources/forms.py">list</a>(\*\*<a href="src/moonbase_sdk/types/form_list_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/form.py">SyncCursorPage[Form]</a></code>
-
 # InboxConversations
 
 Types:
