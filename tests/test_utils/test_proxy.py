@@ -2,7 +2,7 @@ import operator
 from typing import Any
 from typing_extensions import override
 
-from moonbase_sdk._utils import LazyProxy
+from moonbase._utils import LazyProxy
 
 
 class RecursiveLazyProxy(LazyProxy[Any]):

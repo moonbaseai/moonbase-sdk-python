@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from moonbase import Moonbase, AsyncMoonbase
 from tests.utils import assert_matches_type
-from moonbase_sdk import Moonbase, AsyncMoonbase
-from moonbase_sdk.types import ProgramMessageSendResponse
+from moonbase.types import ProgramMessageSendResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

@@ -6,8 +6,8 @@ import httpx
 import pytest
 import pydantic
 
-from moonbase_sdk import Moonbase, BaseModel, AsyncMoonbase
-from moonbase_sdk._response import (
+from moonbase import Moonbase, BaseModel, AsyncMoonbase
+from moonbase._response import (
     APIResponse,
     BaseAPIResponse,
     AsyncAPIResponse,
@@ -15,8 +15,8 @@ from moonbase_sdk._response import (
     AsyncBinaryAPIResponse,
     extract_response_type,
 )
-from moonbase_sdk._streaming import Stream
-from moonbase_sdk._base_client import FinalRequestOptions
+from moonbase._streaming import Stream
+from moonbase._base_client import FinalRequestOptions
 
 
 class ConcreteBaseAPIResponse(APIResponse[bytes]): ...
@@ -37,7 +37,7 @@ def test_extract_response_type_direct_classes() -> None:
 def test_extract_response_type_direct_class_missing_type_arg() -> None:
     with pytest.raises(
         RuntimeError,
-        match="Expected type <class 'moonbase_sdk._response.AsyncAPIResponse'> to have a type argument at index 0 but it did not",
+        match="Expected type <class 'moonbase._response.AsyncAPIResponse'> to have a type argument at index 0 but it did not",
     ):
         extract_response_type(AsyncAPIResponse)
 
@@ -68,7 +68,7 @@ def test_response_parse_mismatched_basemodel(client: Moonbase) -> None:
 
     with pytest.raises(
         TypeError,
-        match="Pydantic models must subclass our base model type, e.g. `from moonbase_sdk import BaseModel`",
+        match="Pydantic models must subclass our base model type, e.g. `from moonbase import BaseModel`",
     ):
         response.parse(to=PydanticModel)
 
@@ -86,7 +86,7 @@ async def test_async_response_parse_mismatched_basemodel(async_client: AsyncMoon
 
     with pytest.raises(
         TypeError,
-        match="Pydantic models must subclass our base model type, e.g. `from moonbase_sdk import BaseModel`",
+        match="Pydantic models must subclass our base model type, e.g. `from moonbase import BaseModel`",
     ):
         await response.parse(to=PydanticModel)
 

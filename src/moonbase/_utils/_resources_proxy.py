@@ -7,17 +7,17 @@ from ._proxy import LazyProxy
 
 
 class ResourcesProxy(LazyProxy[Any]):
-    """A proxy for the `moonbase_sdk.resources` module.
+    """A proxy for the `moonbase.resources` module.
 
-    This is used so that we can lazily import `moonbase_sdk.resources` only when
-    needed *and* so that users can just import `moonbase_sdk` and reference `moonbase_sdk.resources`
+    This is used so that we can lazily import `moonbase.resources` only when
+    needed *and* so that users can just import `moonbase` and reference `moonbase.resources`
     """
 
     @override
     def __load__(self) -> Any:
         import importlib
 
-        mod = importlib.import_module("moonbase_sdk.resources")
+        mod = importlib.import_module("moonbase.resources")
         return mod
 
 
