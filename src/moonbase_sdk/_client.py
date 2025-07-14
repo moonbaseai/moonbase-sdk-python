@@ -21,18 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import (
-    calls,
-    files,
-    items,
-    notes,
-    views,
-    tagsets,
-    meetings,
-    programs,
-    program_messages,
-    program_templates,
-)
+from .resources import calls, files, items, views, tagsets, programs, program_messages, program_templates
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import MoonbaseError, APIStatusError
 from ._base_client import (
@@ -59,8 +48,6 @@ class Moonbase(SyncAPIClient):
     collections: collections.CollectionsResource
     files: files.FilesResource
     items: items.ItemsResource
-    meetings: meetings.MeetingsResource
-    notes: notes.NotesResource
     program_messages: program_messages.ProgramMessagesResource
     program_templates: program_templates.ProgramTemplatesResource
     programs: programs.ProgramsResource
@@ -127,8 +114,6 @@ class Moonbase(SyncAPIClient):
         self.collections = collections.CollectionsResource(self)
         self.files = files.FilesResource(self)
         self.items = items.ItemsResource(self)
-        self.meetings = meetings.MeetingsResource(self)
-        self.notes = notes.NotesResource(self)
         self.program_messages = program_messages.ProgramMessagesResource(self)
         self.program_templates = program_templates.ProgramTemplatesResource(self)
         self.programs = programs.ProgramsResource(self)
@@ -247,8 +232,6 @@ class AsyncMoonbase(AsyncAPIClient):
     collections: collections.AsyncCollectionsResource
     files: files.AsyncFilesResource
     items: items.AsyncItemsResource
-    meetings: meetings.AsyncMeetingsResource
-    notes: notes.AsyncNotesResource
     program_messages: program_messages.AsyncProgramMessagesResource
     program_templates: program_templates.AsyncProgramTemplatesResource
     programs: programs.AsyncProgramsResource
@@ -315,8 +298,6 @@ class AsyncMoonbase(AsyncAPIClient):
         self.collections = collections.AsyncCollectionsResource(self)
         self.files = files.AsyncFilesResource(self)
         self.items = items.AsyncItemsResource(self)
-        self.meetings = meetings.AsyncMeetingsResource(self)
-        self.notes = notes.AsyncNotesResource(self)
         self.program_messages = program_messages.AsyncProgramMessagesResource(self)
         self.program_templates = program_templates.AsyncProgramTemplatesResource(self)
         self.programs = programs.AsyncProgramsResource(self)
@@ -436,8 +417,6 @@ class MoonbaseWithRawResponse:
         self.collections = collections.CollectionsResourceWithRawResponse(client.collections)
         self.files = files.FilesResourceWithRawResponse(client.files)
         self.items = items.ItemsResourceWithRawResponse(client.items)
-        self.meetings = meetings.MeetingsResourceWithRawResponse(client.meetings)
-        self.notes = notes.NotesResourceWithRawResponse(client.notes)
         self.program_messages = program_messages.ProgramMessagesResourceWithRawResponse(client.program_messages)
         self.program_templates = program_templates.ProgramTemplatesResourceWithRawResponse(client.program_templates)
         self.programs = programs.ProgramsResourceWithRawResponse(client.programs)
@@ -451,8 +430,6 @@ class AsyncMoonbaseWithRawResponse:
         self.collections = collections.AsyncCollectionsResourceWithRawResponse(client.collections)
         self.files = files.AsyncFilesResourceWithRawResponse(client.files)
         self.items = items.AsyncItemsResourceWithRawResponse(client.items)
-        self.meetings = meetings.AsyncMeetingsResourceWithRawResponse(client.meetings)
-        self.notes = notes.AsyncNotesResourceWithRawResponse(client.notes)
         self.program_messages = program_messages.AsyncProgramMessagesResourceWithRawResponse(client.program_messages)
         self.program_templates = program_templates.AsyncProgramTemplatesResourceWithRawResponse(
             client.program_templates
@@ -468,8 +445,6 @@ class MoonbaseWithStreamedResponse:
         self.collections = collections.CollectionsResourceWithStreamingResponse(client.collections)
         self.files = files.FilesResourceWithStreamingResponse(client.files)
         self.items = items.ItemsResourceWithStreamingResponse(client.items)
-        self.meetings = meetings.MeetingsResourceWithStreamingResponse(client.meetings)
-        self.notes = notes.NotesResourceWithStreamingResponse(client.notes)
         self.program_messages = program_messages.ProgramMessagesResourceWithStreamingResponse(client.program_messages)
         self.program_templates = program_templates.ProgramTemplatesResourceWithStreamingResponse(
             client.program_templates
@@ -485,8 +460,6 @@ class AsyncMoonbaseWithStreamedResponse:
         self.collections = collections.AsyncCollectionsResourceWithStreamingResponse(client.collections)
         self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
         self.items = items.AsyncItemsResourceWithStreamingResponse(client.items)
-        self.meetings = meetings.AsyncMeetingsResourceWithStreamingResponse(client.meetings)
-        self.notes = notes.AsyncNotesResourceWithStreamingResponse(client.notes)
         self.program_messages = program_messages.AsyncProgramMessagesResourceWithStreamingResponse(
             client.program_messages
         )

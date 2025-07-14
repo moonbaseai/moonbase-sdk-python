@@ -4,18 +4,14 @@ from __future__ import annotations
 
 from .call import Call as Call
 from .item import Item as Item
-from .note import Note as Note
 from .view import View as View
 from .field import Field as Field
 from .value import Value as Value
 from .choice import Choice as Choice
 from .shared import Error as Error
 from .tagset import Tagset as Tagset
-from .meeting import Meeting as Meeting
 from .program import Program as Program
-from .attendee import Attendee as Attendee
 from .geo_value import GeoValue as GeoValue
-from .organizer import Organizer as Organizer
 from .url_value import URLValue as URLValue
 from .collection import Collection as Collection
 from .date_value import DateValue as DateValue
@@ -38,7 +34,6 @@ from .geo_value_param import GeoValueParam as GeoValueParam
 from .url_value_param import URLValueParam as URLValueParam
 from .date_value_param import DateValueParam as DateValueParam
 from .file_list_params import FileListParams as FileListParams
-from .note_list_params import NoteListParams as NoteListParams
 from .percentage_value import PercentageValue as PercentageValue
 from .program_template import ProgramTemplate as ProgramTemplate
 from .telephone_number import TelephoneNumber as TelephoneNumber
@@ -54,7 +49,6 @@ from .item_upsert_params import ItemUpsertParams as ItemUpsertParams
 from .tagset_list_params import TagsetListParams as TagsetListParams
 from .boolean_value_param import BooleanValueParam as BooleanValueParam
 from .integer_value_param import IntegerValueParam as IntegerValueParam
-from .meeting_list_params import MeetingListParams as MeetingListParams
 from .program_list_params import ProgramListParams as ProgramListParams
 from .datetime_value_param import DatetimeValueParam as DatetimeValueParam
 from .monetary_value_param import MonetaryValueParam as MonetaryValueParam
@@ -68,7 +62,6 @@ from .single_line_text_value import SingleLineTextValue as SingleLineTextValue
 from .social_linked_in_value import SocialLinkedInValue as SocialLinkedInValue
 from .telephone_number_param import TelephoneNumberParam as TelephoneNumberParam
 from .view_list_items_params import ViewListItemsParams as ViewListItemsParams
-from .meeting_retrieve_params import MeetingRetrieveParams as MeetingRetrieveParams
 from .program_retrieve_params import ProgramRetrieveParams as ProgramRetrieveParams
 from .collection_retrieve_params import CollectionRetrieveParams as CollectionRetrieveParams
 from .multi_line_text_value_param import MultiLineTextValueParam as MultiLineTextValueParam
