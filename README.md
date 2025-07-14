@@ -35,7 +35,7 @@ client = Moonbase(
     api_key=os.environ.get("MOONBASE_API_KEY"),  # This is the default and can be omitted
 )
 
-page = client.collections.list()
+page = client.program_templates.list()
 print(page.data)
 ```
 
@@ -59,7 +59,7 @@ client = AsyncMoonbase(
 
 
 async def main() -> None:
-    page = await client.collections.list()
+    page = await client.program_templates.list()
     print(page.data)
 
 
@@ -92,7 +92,7 @@ async def main() -> None:
         api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
-        page = await client.collections.list()
+        page = await client.program_templates.list()
         print(page.data)
 
 
@@ -119,14 +119,14 @@ from moonbase_sdk import Moonbase
 
 client = Moonbase()
 
-all_collections = []
+all_program_templates = []
 # Automatically fetches more pages as needed.
-for collection in client.collections.list(
+for program_template in client.program_templates.list(
     limit=20,
 ):
-    # Do something with collection here
-    all_collections.append(collection)
-print(all_collections)
+    # Do something with program_template here
+    all_program_templates.append(program_template)
+print(all_program_templates)
 ```
 
 Or, asynchronously:
@@ -139,13 +139,13 @@ client = AsyncMoonbase()
 
 
 async def main() -> None:
-    all_collections = []
+    all_program_templates = []
     # Iterate through items across all pages, issuing requests as needed.
-    async for collection in client.collections.list(
+    async for program_template in client.program_templates.list(
         limit=20,
     ):
-        all_collections.append(collection)
-    print(all_collections)
+        all_program_templates.append(program_template)
+    print(all_program_templates)
 
 
 asyncio.run(main())
@@ -154,7 +154,7 @@ asyncio.run(main())
 Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
 
 ```python
-first_page = await client.collections.list(
+first_page = await client.program_templates.list(
     limit=20,
 )
 if first_page.has_next_page():
@@ -168,13 +168,13 @@ if first_page.has_next_page():
 Or just work directly with the returned data:
 
 ```python
-first_page = await client.collections.list(
+first_page = await client.program_templates.list(
     limit=20,
 )
 
 print(f"next page cursor: {first_page.meta.cursor.next}")  # => "next page cursor: ..."
-for collection in first_page.data:
-    print(collection.id)
+for program_template in first_page.data:
+    print(program_template.id)
 
 # Remove `await` for non-async usage.
 ```
@@ -195,7 +195,7 @@ from moonbase_sdk import Moonbase
 client = Moonbase()
 
 try:
-    client.collections.list()
+    client.program_templates.list()
 except moonbase_sdk.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -238,7 +238,7 @@ client = Moonbase(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).collections.list()
+client.with_options(max_retries=5).program_templates.list()
 ```
 
 ### Timeouts
@@ -261,7 +261,7 @@ client = Moonbase(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).collections.list()
+client.with_options(timeout=5.0).program_templates.list()
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -302,11 +302,11 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from moonbase_sdk import Moonbase
 
 client = Moonbase()
-response = client.collections.with_raw_response.list()
+response = client.program_templates.with_raw_response.list()
 print(response.headers.get('X-My-Header'))
 
-collection = response.parse()  # get the object that `collections.list()` would have returned
-print(collection.id)
+program_template = response.parse()  # get the object that `program_templates.list()` would have returned
+print(program_template.id)
 ```
 
 These methods return an [`APIResponse`](https://github.com/stainless-sdks/moonbase-sdk-python/tree/main/src/moonbase_sdk/_response.py) object.
@@ -320,7 +320,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.collections.with_streaming_response.list() as response:
+with client.program_templates.with_streaming_response.list() as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():

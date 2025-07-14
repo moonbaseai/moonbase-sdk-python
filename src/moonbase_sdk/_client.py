@@ -21,7 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import items
+from .resources import programs, program_templates
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import MoonbaseError, APIStatusError
 from ._base_client import (
@@ -45,7 +45,8 @@ __all__ = [
 
 class Moonbase(SyncAPIClient):
     collections: collections.CollectionsResource
-    items: items.ItemsResource
+    program_templates: program_templates.ProgramTemplatesResource
+    programs: programs.ProgramsResource
     with_raw_response: MoonbaseWithRawResponse
     with_streaming_response: MoonbaseWithStreamedResponse
 
@@ -104,7 +105,8 @@ class Moonbase(SyncAPIClient):
         )
 
         self.collections = collections.CollectionsResource(self)
-        self.items = items.ItemsResource(self)
+        self.program_templates = program_templates.ProgramTemplatesResource(self)
+        self.programs = programs.ProgramsResource(self)
         self.with_raw_response = MoonbaseWithRawResponse(self)
         self.with_streaming_response = MoonbaseWithStreamedResponse(self)
 
@@ -215,7 +217,8 @@ class Moonbase(SyncAPIClient):
 
 class AsyncMoonbase(AsyncAPIClient):
     collections: collections.AsyncCollectionsResource
-    items: items.AsyncItemsResource
+    program_templates: program_templates.AsyncProgramTemplatesResource
+    programs: programs.AsyncProgramsResource
     with_raw_response: AsyncMoonbaseWithRawResponse
     with_streaming_response: AsyncMoonbaseWithStreamedResponse
 
@@ -274,7 +277,8 @@ class AsyncMoonbase(AsyncAPIClient):
         )
 
         self.collections = collections.AsyncCollectionsResource(self)
-        self.items = items.AsyncItemsResource(self)
+        self.program_templates = program_templates.AsyncProgramTemplatesResource(self)
+        self.programs = programs.AsyncProgramsResource(self)
         self.with_raw_response = AsyncMoonbaseWithRawResponse(self)
         self.with_streaming_response = AsyncMoonbaseWithStreamedResponse(self)
 
@@ -386,25 +390,35 @@ class AsyncMoonbase(AsyncAPIClient):
 class MoonbaseWithRawResponse:
     def __init__(self, client: Moonbase) -> None:
         self.collections = collections.CollectionsResourceWithRawResponse(client.collections)
-        self.items = items.ItemsResourceWithRawResponse(client.items)
+        self.program_templates = program_templates.ProgramTemplatesResourceWithRawResponse(client.program_templates)
+        self.programs = programs.ProgramsResourceWithRawResponse(client.programs)
 
 
 class AsyncMoonbaseWithRawResponse:
     def __init__(self, client: AsyncMoonbase) -> None:
         self.collections = collections.AsyncCollectionsResourceWithRawResponse(client.collections)
-        self.items = items.AsyncItemsResourceWithRawResponse(client.items)
+        self.program_templates = program_templates.AsyncProgramTemplatesResourceWithRawResponse(
+            client.program_templates
+        )
+        self.programs = programs.AsyncProgramsResourceWithRawResponse(client.programs)
 
 
 class MoonbaseWithStreamedResponse:
     def __init__(self, client: Moonbase) -> None:
         self.collections = collections.CollectionsResourceWithStreamingResponse(client.collections)
-        self.items = items.ItemsResourceWithStreamingResponse(client.items)
+        self.program_templates = program_templates.ProgramTemplatesResourceWithStreamingResponse(
+            client.program_templates
+        )
+        self.programs = programs.ProgramsResourceWithStreamingResponse(client.programs)
 
 
 class AsyncMoonbaseWithStreamedResponse:
     def __init__(self, client: AsyncMoonbase) -> None:
         self.collections = collections.AsyncCollectionsResourceWithStreamingResponse(client.collections)
-        self.items = items.AsyncItemsResourceWithStreamingResponse(client.items)
+        self.program_templates = program_templates.AsyncProgramTemplatesResourceWithStreamingResponse(
+            client.program_templates
+        )
+        self.programs = programs.AsyncProgramsResourceWithStreamingResponse(client.programs)
 
 
 Client = Moonbase
