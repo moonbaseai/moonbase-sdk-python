@@ -16,7 +16,6 @@ from .tagset import Tagset as Tagset
 from .address import Address as Address
 from .meeting import Meeting as Meeting
 from .program import Program as Program
-from .activity import Activity as Activity
 from .attendee import Attendee as Attendee
 from .geo_value import GeoValue as GeoValue
 from .organizer import Organizer as Organizer
@@ -64,7 +63,6 @@ from .boolean_value_param import BooleanValueParam as BooleanValueParam
 from .integer_value_param import IntegerValueParam as IntegerValueParam
 from .meeting_list_params import MeetingListParams as MeetingListParams
 from .program_list_params import ProgramListParams as ProgramListParams
-from .activity_list_params import ActivityListParams as ActivityListParams
 from .datetime_value_param import DatetimeValueParam as DatetimeValueParam
 from .form_retrieve_params import FormRetrieveParams as FormRetrieveParams
 from .monetary_value_param import MonetaryValueParam as MonetaryValueParam

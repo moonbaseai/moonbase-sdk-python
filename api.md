@@ -4,19 +4,6 @@
 from moonbase_sdk.types import Error
 ```
 
-# Activities
-
-Types:
-
-```python
-from moonbase_sdk.types import Activity
-```
-
-Methods:
-
-- <code title="get /activities/{id}">client.activities.<a href="./src/moonbase_sdk/resources/activities.py">retrieve</a>(id) -> <a href="./src/moonbase_sdk/types/activity.py">Activity</a></code>
-- <code title="get /activities">client.activities.<a href="./src/moonbase_sdk/resources/activities.py">list</a>(\*\*<a href="src/moonbase_sdk/types/activity_list_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/activity.py">SyncCursorPage[Activity]</a></code>
-
 # Calls
 
 Types:

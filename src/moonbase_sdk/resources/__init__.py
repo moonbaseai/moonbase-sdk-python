@@ -80,14 +80,6 @@ from .programs import (
     ProgramsResourceWithStreamingResponse,
     AsyncProgramsResourceWithStreamingResponse,
 )
-from .activities import (
-    ActivitiesResource,
-    AsyncActivitiesResource,
-    ActivitiesResourceWithRawResponse,
-    AsyncActivitiesResourceWithRawResponse,
-    ActivitiesResourceWithStreamingResponse,
-    AsyncActivitiesResourceWithStreamingResponse,
-)
 from .collections import (
     CollectionsResource,
     AsyncCollectionsResource,
@@ -130,12 +122,6 @@ from .inbox_conversations import (
 )
 
 __all__ = [
-    "ActivitiesResource",
-    "AsyncActivitiesResource",
-    "ActivitiesResourceWithRawResponse",
-    "AsyncActivitiesResourceWithRawResponse",
-    "ActivitiesResourceWithStreamingResponse",
-    "AsyncActivitiesResourceWithStreamingResponse",
     "CallsResource",
     "AsyncCallsResource",
     "CallsResourceWithRawResponse",
