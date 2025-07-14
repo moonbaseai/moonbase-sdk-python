@@ -44,13 +44,13 @@ __all__ = [
 
 
 class Moonbase(SyncAPIClient):
+    views: views.ViewsResource
     calls: calls.CallsResource
     collections: collections.CollectionsResource
     files: files.FilesResource
     items: items.ItemsResource
     program_templates: program_templates.ProgramTemplatesResource
     programs: programs.ProgramsResource
-    views: views.ViewsResource
     with_raw_response: MoonbaseWithRawResponse
     with_streaming_response: MoonbaseWithStreamedResponse
 
@@ -108,13 +108,13 @@ class Moonbase(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
+        self.views = views.ViewsResource(self)
         self.calls = calls.CallsResource(self)
         self.collections = collections.CollectionsResource(self)
         self.files = files.FilesResource(self)
         self.items = items.ItemsResource(self)
         self.program_templates = program_templates.ProgramTemplatesResource(self)
         self.programs = programs.ProgramsResource(self)
-        self.views = views.ViewsResource(self)
         self.with_raw_response = MoonbaseWithRawResponse(self)
         self.with_streaming_response = MoonbaseWithStreamedResponse(self)
 
@@ -224,13 +224,13 @@ class Moonbase(SyncAPIClient):
 
 
 class AsyncMoonbase(AsyncAPIClient):
+    views: views.AsyncViewsResource
     calls: calls.AsyncCallsResource
     collections: collections.AsyncCollectionsResource
     files: files.AsyncFilesResource
     items: items.AsyncItemsResource
     program_templates: program_templates.AsyncProgramTemplatesResource
     programs: programs.AsyncProgramsResource
-    views: views.AsyncViewsResource
     with_raw_response: AsyncMoonbaseWithRawResponse
     with_streaming_response: AsyncMoonbaseWithStreamedResponse
 
@@ -288,13 +288,13 @@ class AsyncMoonbase(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
+        self.views = views.AsyncViewsResource(self)
         self.calls = calls.AsyncCallsResource(self)
         self.collections = collections.AsyncCollectionsResource(self)
         self.files = files.AsyncFilesResource(self)
         self.items = items.AsyncItemsResource(self)
         self.program_templates = program_templates.AsyncProgramTemplatesResource(self)
         self.programs = programs.AsyncProgramsResource(self)
-        self.views = views.AsyncViewsResource(self)
         self.with_raw_response = AsyncMoonbaseWithRawResponse(self)
         self.with_streaming_response = AsyncMoonbaseWithStreamedResponse(self)
 
@@ -405,17 +405,18 @@ class AsyncMoonbase(AsyncAPIClient):
 
 class MoonbaseWithRawResponse:
     def __init__(self, client: Moonbase) -> None:
+        self.views = views.ViewsResourceWithRawResponse(client.views)
         self.calls = calls.CallsResourceWithRawResponse(client.calls)
         self.collections = collections.CollectionsResourceWithRawResponse(client.collections)
         self.files = files.FilesResourceWithRawResponse(client.files)
         self.items = items.ItemsResourceWithRawResponse(client.items)
         self.program_templates = program_templates.ProgramTemplatesResourceWithRawResponse(client.program_templates)
         self.programs = programs.ProgramsResourceWithRawResponse(client.programs)
-        self.views = views.ViewsResourceWithRawResponse(client.views)
 
 
 class AsyncMoonbaseWithRawResponse:
     def __init__(self, client: AsyncMoonbase) -> None:
+        self.views = views.AsyncViewsResourceWithRawResponse(client.views)
         self.calls = calls.AsyncCallsResourceWithRawResponse(client.calls)
         self.collections = collections.AsyncCollectionsResourceWithRawResponse(client.collections)
         self.files = files.AsyncFilesResourceWithRawResponse(client.files)
@@ -424,11 +425,11 @@ class AsyncMoonbaseWithRawResponse:
             client.program_templates
         )
         self.programs = programs.AsyncProgramsResourceWithRawResponse(client.programs)
-        self.views = views.AsyncViewsResourceWithRawResponse(client.views)
 
 
 class MoonbaseWithStreamedResponse:
     def __init__(self, client: Moonbase) -> None:
+        self.views = views.ViewsResourceWithStreamingResponse(client.views)
         self.calls = calls.CallsResourceWithStreamingResponse(client.calls)
         self.collections = collections.CollectionsResourceWithStreamingResponse(client.collections)
         self.files = files.FilesResourceWithStreamingResponse(client.files)
@@ -437,11 +438,11 @@ class MoonbaseWithStreamedResponse:
             client.program_templates
         )
         self.programs = programs.ProgramsResourceWithStreamingResponse(client.programs)
-        self.views = views.ViewsResourceWithStreamingResponse(client.views)
 
 
 class AsyncMoonbaseWithStreamedResponse:
     def __init__(self, client: AsyncMoonbase) -> None:
+        self.views = views.AsyncViewsResourceWithStreamingResponse(client.views)
         self.calls = calls.AsyncCallsResourceWithStreamingResponse(client.calls)
         self.collections = collections.AsyncCollectionsResourceWithStreamingResponse(client.collections)
         self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
@@ -450,7 +451,6 @@ class AsyncMoonbaseWithStreamedResponse:
             client.program_templates
         )
         self.programs = programs.AsyncProgramsResourceWithStreamingResponse(client.programs)
-        self.views = views.AsyncViewsResourceWithStreamingResponse(client.views)
 
 
 Client = Moonbase
