@@ -4,18 +4,6 @@
 from moonbase_sdk.types import Error, View
 ```
 
-# Calls
-
-Types:
-
-```python
-from moonbase_sdk.types import Call
-```
-
-Methods:
-
-- <code title="post /calls">client.calls.<a href="./src/moonbase_sdk/resources/calls.py">create</a>(\*\*<a href="src/moonbase_sdk/types/call_create_params.py">params</a>) -> <a href="./src/moonbase_sdk/types/call.py">Call</a></code>
-
 # Collections
 
 Types:
