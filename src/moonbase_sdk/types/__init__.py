@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .call import Call as Call
 from .item import Item as Item
+from .note import Note as Note
 from .view import View as View
 from .field import Field as Field
 from .value import Value as Value
@@ -34,6 +35,7 @@ from .geo_value_param import GeoValueParam as GeoValueParam
 from .url_value_param import URLValueParam as URLValueParam
 from .date_value_param import DateValueParam as DateValueParam
 from .file_list_params import FileListParams as FileListParams
+from .note_list_params import NoteListParams as NoteListParams
 from .percentage_value import PercentageValue as PercentageValue
 from .program_template import ProgramTemplate as ProgramTemplate
 from .telephone_number import TelephoneNumber as TelephoneNumber
@@ -65,9 +67,7 @@ from .view_list_items_params import ViewListItemsParams as ViewListItemsParams
 from .program_retrieve_params import ProgramRetrieveParams as ProgramRetrieveParams
 from .collection_retrieve_params import CollectionRetrieveParams as CollectionRetrieveParams
 from .multi_line_text_value_param import MultiLineTextValueParam as MultiLineTextValueParam
-from .program_message_send_params import ProgramMessageSendParams as ProgramMessageSendParams
 from .program_template_list_params import ProgramTemplateListParams as ProgramTemplateListParams
 from .single_line_text_value_param import SingleLineTextValueParam as SingleLineTextValueParam
 from .social_linked_in_value_param import SocialLinkedInValueParam as SocialLinkedInValueParam
-from .program_message_send_response import ProgramMessageSendResponse as ProgramMessageSendResponse
 from .program_template_retrieve_params import ProgramTemplateRetrieveParams as ProgramTemplateRetrieveParams

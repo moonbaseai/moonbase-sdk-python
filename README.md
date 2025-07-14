@@ -179,22 +179,6 @@ for collection in first_page.data:
 # Remove `await` for non-async usage.
 ```
 
-## Nested params
-
-Nested parameters are dictionaries, typed using `TypedDict`, for example:
-
-```python
-from moonbase_sdk import Moonbase
-
-client = Moonbase()
-
-response = client.program_messages.send(
-    person={"email": "person-71@example-71.com"},
-    program_template_id="1CR2QLhLQPX9WCiWH3cXCe",
-)
-print(response.person)
-```
-
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `moonbase_sdk.APIConnectionError` is raised.
