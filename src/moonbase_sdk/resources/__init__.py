@@ -24,14 +24,6 @@ from .items import (
     ItemsResourceWithStreamingResponse,
     AsyncItemsResourceWithStreamingResponse,
 )
-from .notes import (
-    NotesResource,
-    AsyncNotesResource,
-    NotesResourceWithRawResponse,
-    AsyncNotesResourceWithRawResponse,
-    NotesResourceWithStreamingResponse,
-    AsyncNotesResourceWithStreamingResponse,
-)
 from .views import (
     ViewsResource,
     AsyncViewsResource,
@@ -90,12 +82,6 @@ __all__ = [
     "AsyncItemsResourceWithRawResponse",
     "ItemsResourceWithStreamingResponse",
     "AsyncItemsResourceWithStreamingResponse",
-    "NotesResource",
-    "AsyncNotesResource",
-    "NotesResourceWithRawResponse",
-    "AsyncNotesResourceWithRawResponse",
-    "NotesResourceWithStreamingResponse",
-    "AsyncNotesResourceWithStreamingResponse",
     "ProgramTemplatesResource",
     "AsyncProgramTemplatesResource",
     "ProgramTemplatesResourceWithRawResponse",
