@@ -20,19 +20,12 @@ class TestItems:
     @parametrize
     def test_method_create(self, client: Moonbase) -> None:
         item = client.items.create(
-            collection_id="1CR2QLsnhwrJX7Z33jnyGV",
+            collection_id="collection_id",
             values={
-                "name": {
-                    "text": "Aperture Science",
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
-                },
-                "ceo": {
-                    "item": {
-                        "id": "1CR2QLtx9doK4wFiFB7VAS",
-                        "type": "item",
-                    },
-                    "type": "value/relation",
-                },
+                }
             },
         )
         assert_matches_type(Item, item, path=["response"])
@@ -40,19 +33,12 @@ class TestItems:
     @parametrize
     def test_raw_response_create(self, client: Moonbase) -> None:
         response = client.items.with_raw_response.create(
-            collection_id="1CR2QLsnhwrJX7Z33jnyGV",
+            collection_id="collection_id",
             values={
-                "name": {
-                    "text": "Aperture Science",
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
-                },
-                "ceo": {
-                    "item": {
-                        "id": "1CR2QLtx9doK4wFiFB7VAS",
-                        "type": "item",
-                    },
-                    "type": "value/relation",
-                },
+                }
             },
         )
 
@@ -64,19 +50,12 @@ class TestItems:
     @parametrize
     def test_streaming_response_create(self, client: Moonbase) -> None:
         with client.items.with_streaming_response.create(
-            collection_id="1CR2QLsnhwrJX7Z33jnyGV",
+            collection_id="collection_id",
             values={
-                "name": {
-                    "text": "Aperture Science",
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
-                },
-                "ceo": {
-                    "item": {
-                        "id": "1CR2QLtx9doK4wFiFB7VAS",
-                        "type": "item",
-                    },
-                    "type": "value/relation",
-                },
+                }
             },
         ) as response:
             assert not response.is_closed
@@ -243,18 +222,18 @@ class TestItems:
     @parametrize
     def test_method_upsert(self, client: Moonbase) -> None:
         item = client.items.upsert(
-            collection_id="1CR2QLbeMAqKQ6PvQu39pZ",
-            identifiers={"domain": []},
-            values={
-                "name": {
-                    "text": "Aperture Science",
+            collection_id="collection_id",
+            identifiers={
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
-                },
-                "domain": [],
-                "linked_in": {
-                    "profile": {},
-                    "type": "value/uri/social_linked_in",
-                },
+                }
+            },
+            values={
+                "foo": {
+                    "text": "text",
+                    "type": "value/text/single_line",
+                }
             },
         )
         assert_matches_type(Item, item, path=["response"])
@@ -262,21 +241,18 @@ class TestItems:
     @parametrize
     def test_method_upsert_with_all_params(self, client: Moonbase) -> None:
         item = client.items.upsert(
-            collection_id="1CR2QLbeMAqKQ6PvQu39pZ",
-            identifiers={"domain": []},
-            values={
-                "name": {
-                    "text": "Aperture Science",
+            collection_id="collection_id",
+            identifiers={
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
-                },
-                "domain": [],
-                "linked_in": {
-                    "profile": {
-                        "url": "https://linkedin.com/company/aperturescience",
-                        "username": "username",
-                    },
-                    "type": "value/uri/social_linked_in",
-                },
+                }
+            },
+            values={
+                "foo": {
+                    "text": "text",
+                    "type": "value/text/single_line",
+                }
             },
             update_many_strategy="replace",
             update_one_strategy="replace",
@@ -286,18 +262,18 @@ class TestItems:
     @parametrize
     def test_raw_response_upsert(self, client: Moonbase) -> None:
         response = client.items.with_raw_response.upsert(
-            collection_id="1CR2QLbeMAqKQ6PvQu39pZ",
-            identifiers={"domain": []},
-            values={
-                "name": {
-                    "text": "Aperture Science",
+            collection_id="collection_id",
+            identifiers={
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
-                },
-                "domain": [],
-                "linked_in": {
-                    "profile": {},
-                    "type": "value/uri/social_linked_in",
-                },
+                }
+            },
+            values={
+                "foo": {
+                    "text": "text",
+                    "type": "value/text/single_line",
+                }
             },
         )
 
@@ -309,18 +285,18 @@ class TestItems:
     @parametrize
     def test_streaming_response_upsert(self, client: Moonbase) -> None:
         with client.items.with_streaming_response.upsert(
-            collection_id="1CR2QLbeMAqKQ6PvQu39pZ",
-            identifiers={"domain": []},
-            values={
-                "name": {
-                    "text": "Aperture Science",
+            collection_id="collection_id",
+            identifiers={
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
-                },
-                "domain": [],
-                "linked_in": {
-                    "profile": {},
-                    "type": "value/uri/social_linked_in",
-                },
+                }
+            },
+            values={
+                "foo": {
+                    "text": "text",
+                    "type": "value/text/single_line",
+                }
             },
         ) as response:
             assert not response.is_closed
@@ -340,19 +316,12 @@ class TestAsyncItems:
     @parametrize
     async def test_method_create(self, async_client: AsyncMoonbase) -> None:
         item = await async_client.items.create(
-            collection_id="1CR2QLsnhwrJX7Z33jnyGV",
+            collection_id="collection_id",
             values={
-                "name": {
-                    "text": "Aperture Science",
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
-                },
-                "ceo": {
-                    "item": {
-                        "id": "1CR2QLtx9doK4wFiFB7VAS",
-                        "type": "item",
-                    },
-                    "type": "value/relation",
-                },
+                }
             },
         )
         assert_matches_type(Item, item, path=["response"])
@@ -360,19 +329,12 @@ class TestAsyncItems:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncMoonbase) -> None:
         response = await async_client.items.with_raw_response.create(
-            collection_id="1CR2QLsnhwrJX7Z33jnyGV",
+            collection_id="collection_id",
             values={
-                "name": {
-                    "text": "Aperture Science",
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
-                },
-                "ceo": {
-                    "item": {
-                        "id": "1CR2QLtx9doK4wFiFB7VAS",
-                        "type": "item",
-                    },
-                    "type": "value/relation",
-                },
+                }
             },
         )
 
@@ -384,19 +346,12 @@ class TestAsyncItems:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncMoonbase) -> None:
         async with async_client.items.with_streaming_response.create(
-            collection_id="1CR2QLsnhwrJX7Z33jnyGV",
+            collection_id="collection_id",
             values={
-                "name": {
-                    "text": "Aperture Science",
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
-                },
-                "ceo": {
-                    "item": {
-                        "id": "1CR2QLtx9doK4wFiFB7VAS",
-                        "type": "item",
-                    },
-                    "type": "value/relation",
-                },
+                }
             },
         ) as response:
             assert not response.is_closed
@@ -563,18 +518,18 @@ class TestAsyncItems:
     @parametrize
     async def test_method_upsert(self, async_client: AsyncMoonbase) -> None:
         item = await async_client.items.upsert(
-            collection_id="1CR2QLbeMAqKQ6PvQu39pZ",
-            identifiers={"domain": []},
-            values={
-                "name": {
-                    "text": "Aperture Science",
+            collection_id="collection_id",
+            identifiers={
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
-                },
-                "domain": [],
-                "linked_in": {
-                    "profile": {},
-                    "type": "value/uri/social_linked_in",
-                },
+                }
+            },
+            values={
+                "foo": {
+                    "text": "text",
+                    "type": "value/text/single_line",
+                }
             },
         )
         assert_matches_type(Item, item, path=["response"])
@@ -582,21 +537,18 @@ class TestAsyncItems:
     @parametrize
     async def test_method_upsert_with_all_params(self, async_client: AsyncMoonbase) -> None:
         item = await async_client.items.upsert(
-            collection_id="1CR2QLbeMAqKQ6PvQu39pZ",
-            identifiers={"domain": []},
-            values={
-                "name": {
-                    "text": "Aperture Science",
+            collection_id="collection_id",
+            identifiers={
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
-                },
-                "domain": [],
-                "linked_in": {
-                    "profile": {
-                        "url": "https://linkedin.com/company/aperturescience",
-                        "username": "username",
-                    },
-                    "type": "value/uri/social_linked_in",
-                },
+                }
+            },
+            values={
+                "foo": {
+                    "text": "text",
+                    "type": "value/text/single_line",
+                }
             },
             update_many_strategy="replace",
             update_one_strategy="replace",
@@ -606,18 +558,18 @@ class TestAsyncItems:
     @parametrize
     async def test_raw_response_upsert(self, async_client: AsyncMoonbase) -> None:
         response = await async_client.items.with_raw_response.upsert(
-            collection_id="1CR2QLbeMAqKQ6PvQu39pZ",
-            identifiers={"domain": []},
-            values={
-                "name": {
-                    "text": "Aperture Science",
+            collection_id="collection_id",
+            identifiers={
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
-                },
-                "domain": [],
-                "linked_in": {
-                    "profile": {},
-                    "type": "value/uri/social_linked_in",
-                },
+                }
+            },
+            values={
+                "foo": {
+                    "text": "text",
+                    "type": "value/text/single_line",
+                }
             },
         )
 
@@ -629,18 +581,18 @@ class TestAsyncItems:
     @parametrize
     async def test_streaming_response_upsert(self, async_client: AsyncMoonbase) -> None:
         async with async_client.items.with_streaming_response.upsert(
-            collection_id="1CR2QLbeMAqKQ6PvQu39pZ",
-            identifiers={"domain": []},
-            values={
-                "name": {
-                    "text": "Aperture Science",
+            collection_id="collection_id",
+            identifiers={
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
-                },
-                "domain": [],
-                "linked_in": {
-                    "profile": {},
-                    "type": "value/uri/social_linked_in",
-                },
+                }
+            },
+            values={
+                "foo": {
+                    "text": "text",
+                    "type": "value/text/single_line",
+                }
             },
         ) as response:
             assert not response.is_closed
