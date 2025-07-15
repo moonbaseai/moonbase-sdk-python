@@ -18,7 +18,7 @@ class Item(BaseModel):
     type: Literal["item"]
     """String representing the object’s type. Always `item` for this object."""
 
-    values: Optional[Dict[str, "FieldValue"]] = None
+    values: Optional[Dict[str, Optional["FieldValue"]]] = None
     """
     A hash where keys are the `ref` of a `Field` and values are the data stored for
     that field.

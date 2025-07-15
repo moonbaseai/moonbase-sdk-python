@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Optional
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -14,14 +14,14 @@ class ItemUpsertParams(TypedDict, total=False):
     collection_id: Required[str]
     """The ID of the `Collection` to create the item in."""
 
-    identifiers: Required[Dict[str, "FieldValueParam"]]
+    identifiers: Required[Dict[str, Optional["FieldValueParam"]]]
     """
     A hash where keys are the `ref` of a `Field` and values are used to identify the
     item to update. When multiple identifiers are provided, the update will find
     items that match any of the identifiers.
     """
 
-    values: Required[Dict[str, "FieldValueParam"]]
+    values: Required[Dict[str, Optional["FieldValueParam"]]]
     """A hash where keys are the `ref` of a `Field` and values are the data to be set."""
 
     update_many_strategy: Annotated[Literal["replace", "preserve", "merge"], PropertyInfo(alias="update-many-strategy")]
