@@ -79,3 +79,56 @@ else:
 
 from .value import Value
 from .relation_value import RelationValue
+
+# Manually resolve the forward references in the TypeAliasType for Pydantic v2
+if TYPE_CHECKING or PYDANTIC_V2:
+    # We need to update the TypeAliasType to have the resolved class instead of string
+    FieldValue = TypeAliasType(  # type: ignore[misc]
+        "FieldValue",
+        Union[
+            SingleLineTextValue,
+            MultiLineTextValue,
+            IntegerValue,
+            FloatValue,
+            MonetaryValue,
+            PercentageValue,
+            BooleanValue,
+            EmailValue,
+            URLValue,
+            DomainValue,
+            SocialXValue,
+            SocialLinkedInValue,
+            TelephoneNumber,
+            GeoValue,
+            DateValue,
+            DatetimeValue,
+            Choice,
+            FunnelStep,
+            RelationValue,  # Now resolved to the actual class
+            List[Value],    # Now resolved to the actual class
+        ],
+    )
+else:
+    # For Pydantic v1, we need to keep the TypeAlias version but with resolved classes
+    FieldValue: TypeAlias = Union[
+        SingleLineTextValue,
+        MultiLineTextValue,
+        IntegerValue,
+        FloatValue,
+        MonetaryValue,
+        PercentageValue,
+        BooleanValue,
+        EmailValue,
+        URLValue,
+        DomainValue,
+        SocialXValue,
+        SocialLinkedInValue,
+        TelephoneNumber,
+        GeoValue,
+        DateValue,
+        DatetimeValue,
+        Choice,
+        FunnelStep,
+        RelationValue,  # Now resolved to the actual class
+        List[Value],    # Now resolved to the actual class
+    ]

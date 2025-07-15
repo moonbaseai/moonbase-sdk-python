@@ -2,13 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import TYPE_CHECKING, Dict, Optional
 from typing_extensions import Literal
 
 from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 
 __all__ = ["Item"]
+
+if TYPE_CHECKING:
+    from .field_value import FieldValue
 
 
 class Item(BaseModel):
@@ -25,9 +28,20 @@ class Item(BaseModel):
     """
 
 
+# Import these to ensure they're available when forward refs are resolved
+from .value import Value
 from .field_value import FieldValue
 
+# Now rebuild/update forward refs
 if PYDANTIC_V2:
+    # For Pydantic v2, we need to rebuild both models
+    from . import relation_value
+
+    relation_value.RelationValue.model_rebuild()
     Item.model_rebuild()
 else:
-    Item.update_forward_refs()  # type: ignore
+    # For Pydantic v1, update forward refs with the proper namespace
+    from . import relation_value
+
+    relation_value.RelationValue.update_forward_refs(Item=Item)  # type: ignore
+    Item.update_forward_refs(FieldValue=FieldValue, Value=Value, RelationValue=relation_value.RelationValue)  # type: ignore
