@@ -24,18 +24,14 @@ class TestCalls:
             direction="incoming",
             participants=[
                 {
-                    "phone": "+14155551212",
+                    "phone": "phone",
                     "role": "caller",
-                },
-                {
-                    "phone": "+16505551212",
-                    "role": "callee",
-                },
+                }
             ],
-            provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-12T02:19:39.553Z"),
-            status="completed",
+            provider="provider",
+            provider_id="provider_id",
+            start_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            status="queued",
         )
         assert_matches_type(Call, call, path=["response"])
 
@@ -45,26 +41,17 @@ class TestCalls:
             direction="incoming",
             participants=[
                 {
-                    "phone": "+14155551212",
+                    "phone": "phone",
                     "role": "caller",
-                },
-                {
-                    "phone": "+16505551212",
-                    "role": "callee",
-                },
+                }
             ],
-            provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-12T02:19:39.553Z"),
-            status="completed",
-            answered_at=parse_datetime("2025-07-12T02:20:39Z"),
-            end_at=parse_datetime("2025-07-12T02:49:39.553Z"),
-            provider_metadata={
-                "answered_by": "bar",
-                "user_id": "bar",
-                "phone_number_id": "bar",
-                "conversation_id": "bar",
-            },
+            provider="provider",
+            provider_id="provider_id",
+            start_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            status="queued",
+            answered_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            end_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            provider_metadata={"foo": "bar"},
         )
         assert_matches_type(Call, call, path=["response"])
 
@@ -74,18 +61,14 @@ class TestCalls:
             direction="incoming",
             participants=[
                 {
-                    "phone": "+14155551212",
+                    "phone": "phone",
                     "role": "caller",
-                },
-                {
-                    "phone": "+16505551212",
-                    "role": "callee",
-                },
+                }
             ],
-            provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-12T02:19:39.553Z"),
-            status="completed",
+            provider="provider",
+            provider_id="provider_id",
+            start_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            status="queued",
         )
 
         assert response.is_closed is True
@@ -99,18 +82,14 @@ class TestCalls:
             direction="incoming",
             participants=[
                 {
-                    "phone": "+14155551212",
+                    "phone": "phone",
                     "role": "caller",
-                },
-                {
-                    "phone": "+16505551212",
-                    "role": "callee",
-                },
+                }
             ],
-            provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-12T02:19:39.553Z"),
-            status="completed",
+            provider="provider",
+            provider_id="provider_id",
+            start_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            status="queued",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -132,18 +111,14 @@ class TestAsyncCalls:
             direction="incoming",
             participants=[
                 {
-                    "phone": "+14155551212",
+                    "phone": "phone",
                     "role": "caller",
-                },
-                {
-                    "phone": "+16505551212",
-                    "role": "callee",
-                },
+                }
             ],
-            provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-12T02:19:39.553Z"),
-            status="completed",
+            provider="provider",
+            provider_id="provider_id",
+            start_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            status="queued",
         )
         assert_matches_type(Call, call, path=["response"])
 
@@ -153,26 +128,17 @@ class TestAsyncCalls:
             direction="incoming",
             participants=[
                 {
-                    "phone": "+14155551212",
+                    "phone": "phone",
                     "role": "caller",
-                },
-                {
-                    "phone": "+16505551212",
-                    "role": "callee",
-                },
+                }
             ],
-            provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-12T02:19:39.553Z"),
-            status="completed",
-            answered_at=parse_datetime("2025-07-12T02:20:39Z"),
-            end_at=parse_datetime("2025-07-12T02:49:39.553Z"),
-            provider_metadata={
-                "answered_by": "bar",
-                "user_id": "bar",
-                "phone_number_id": "bar",
-                "conversation_id": "bar",
-            },
+            provider="provider",
+            provider_id="provider_id",
+            start_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            status="queued",
+            answered_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            end_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            provider_metadata={"foo": "bar"},
         )
         assert_matches_type(Call, call, path=["response"])
 
@@ -182,18 +148,14 @@ class TestAsyncCalls:
             direction="incoming",
             participants=[
                 {
-                    "phone": "+14155551212",
+                    "phone": "phone",
                     "role": "caller",
-                },
-                {
-                    "phone": "+16505551212",
-                    "role": "callee",
-                },
+                }
             ],
-            provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-12T02:19:39.553Z"),
-            status="completed",
+            provider="provider",
+            provider_id="provider_id",
+            start_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            status="queued",
         )
 
         assert response.is_closed is True
@@ -207,18 +169,14 @@ class TestAsyncCalls:
             direction="incoming",
             participants=[
                 {
-                    "phone": "+14155551212",
+                    "phone": "phone",
                     "role": "caller",
-                },
-                {
-                    "phone": "+16505551212",
-                    "role": "callee",
-                },
+                }
             ],
-            provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-12T02:19:39.553Z"),
-            status="completed",
+            provider="provider",
+            provider_id="provider_id",
+            start_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            status="queued",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
