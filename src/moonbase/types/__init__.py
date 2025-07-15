@@ -10,7 +10,7 @@ from .field import Field as Field
 from .inbox import Inbox as Inbox
 from .value import Value as Value
 from .choice import Choice as Choice
-from .shared import View as View, Error as Error
+from .shared import Error as Error
 from .tagset import Tagset as Tagset
 from .address import Address as Address
 from .meeting import Meeting as Meeting
@@ -77,6 +77,7 @@ from .percentage_value_param import PercentageValueParam as PercentageValueParam
 from .single_line_text_value import SingleLineTextValue as SingleLineTextValue
 from .social_linked_in_value import SocialLinkedInValue as SocialLinkedInValue
 from .telephone_number_param import TelephoneNumberParam as TelephoneNumberParam
+from .view_retrieve_response import ViewRetrieveResponse as ViewRetrieveResponse
 from .meeting_retrieve_params import MeetingRetrieveParams as MeetingRetrieveParams
 from .program_retrieve_params import ProgramRetrieveParams as ProgramRetrieveParams
 from .inbox_message_list_params import InboxMessageListParams as InboxMessageListParams

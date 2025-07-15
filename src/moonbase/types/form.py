@@ -1,13 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
-
 from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
+from .collection import Collection
 
 __all__ = ["Form", "Links"]
 
@@ -24,7 +22,7 @@ class Form(BaseModel):
     id: str
     """Unique identifier for the object."""
 
-    collection: "Collection"
+    collection: Collection
     """The `Collection` that submissions to this form are saved to."""
 
     links: Links
@@ -49,13 +47,3 @@ class Form(BaseModel):
 
     updated_at: Optional[datetime] = None
     """Time at which the object was last updated, as an RFC 3339 timestamp."""
-
-
-from .collection import Collection
-
-if PYDANTIC_V2:
-    Form.model_rebuild()
-    Links.model_rebuild()
-else:
-    Form.update_forward_refs()  # type: ignore
-    Links.update_forward_refs()  # type: ignore

@@ -9,7 +9,7 @@ import pytest
 
 from moonbase import Moonbase, AsyncMoonbase
 from tests.utils import assert_matches_type
-from moonbase.types.shared import View
+from moonbase.types import ViewRetrieveResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +22,7 @@ class TestViews:
         view = client.views.retrieve(
             id="id",
         )
-        assert_matches_type(View, view, path=["response"])
+        assert_matches_type(ViewRetrieveResponse, view, path=["response"])
 
     @parametrize
     def test_method_retrieve_with_all_params(self, client: Moonbase) -> None:
@@ -30,7 +30,7 @@ class TestViews:
             id="id",
             include=["collection"],
         )
-        assert_matches_type(View, view, path=["response"])
+        assert_matches_type(ViewRetrieveResponse, view, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Moonbase) -> None:
@@ -41,7 +41,7 @@ class TestViews:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         view = response.parse()
-        assert_matches_type(View, view, path=["response"])
+        assert_matches_type(ViewRetrieveResponse, view, path=["response"])
 
     @parametrize
     def test_streaming_response_retrieve(self, client: Moonbase) -> None:
@@ -52,7 +52,7 @@ class TestViews:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             view = response.parse()
-            assert_matches_type(View, view, path=["response"])
+            assert_matches_type(ViewRetrieveResponse, view, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -74,7 +74,7 @@ class TestAsyncViews:
         view = await async_client.views.retrieve(
             id="id",
         )
-        assert_matches_type(View, view, path=["response"])
+        assert_matches_type(ViewRetrieveResponse, view, path=["response"])
 
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncMoonbase) -> None:
@@ -82,7 +82,7 @@ class TestAsyncViews:
             id="id",
             include=["collection"],
         )
-        assert_matches_type(View, view, path=["response"])
+        assert_matches_type(ViewRetrieveResponse, view, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncMoonbase) -> None:
@@ -93,7 +93,7 @@ class TestAsyncViews:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         view = await response.parse()
-        assert_matches_type(View, view, path=["response"])
+        assert_matches_type(ViewRetrieveResponse, view, path=["response"])
 
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncMoonbase) -> None:
@@ -104,7 +104,7 @@ class TestAsyncViews:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             view = await response.parse()
-            assert_matches_type(View, view, path=["response"])
+            assert_matches_type(ViewRetrieveResponse, view, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -1,13 +1,10 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
-
 from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .field import Field
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 
 __all__ = ["Collection", "Links"]
@@ -50,15 +47,5 @@ class Collection(BaseModel):
     updated_at: Optional[datetime] = None
     """Time at which the object was last updated, as an RFC 3339 timestamp."""
 
-    views: Optional[List["View"]] = None
+    views: Optional[List[object]] = None
     """A list of saved `View` objects for presenting the collection's data."""
-
-
-from .shared.view import View
-
-if PYDANTIC_V2:
-    Collection.model_rebuild()
-    Links.model_rebuild()
-else:
-    Collection.update_forward_refs()  # type: ignore
-    Links.update_forward_refs()  # type: ignore

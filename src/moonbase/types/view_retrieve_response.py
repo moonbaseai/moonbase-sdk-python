@@ -1,14 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
-
 from typing import Optional
 from typing_extensions import Literal
 
-from ..._compat import PYDANTIC_V2
-from ..._models import BaseModel
+from .._models import BaseModel
+from .collection import Collection
 
-__all__ = ["View", "Links"]
+__all__ = ["ViewRetrieveResponse", "Links"]
 
 
 class Links(BaseModel):
@@ -22,7 +20,7 @@ class Links(BaseModel):
     """The canonical URL for this object."""
 
 
-class View(BaseModel):
+class ViewRetrieveResponse(BaseModel):
     id: str
     """Unique identifier for the object."""
 
@@ -34,18 +32,8 @@ class View(BaseModel):
     type: Literal["view"]
     """String representing the object’s type. Always `view` for this object."""
 
-    collection: Optional["Collection"] = None
+    collection: Optional[Collection] = None
     """The `Collection` this view belongs to."""
 
     view_type: Optional[Literal["table", "board"]] = None
     """The type of view, such as `table` or `board`."""
-
-
-from ..collection import Collection
-
-if PYDANTIC_V2:
-    View.model_rebuild()
-    Links.model_rebuild()
-else:
-    View.update_forward_refs()  # type: ignore
-    Links.update_forward_refs()  # type: ignore
