@@ -34,7 +34,7 @@ class TestCalls:
             ],
             provider="openphone",
             provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-12T02:19:39.553Z"),
+            start_at=parse_datetime("2025-07-15T08:23:09.649Z"),
             status="completed",
         )
         assert_matches_type(Call, call, path=["response"])
@@ -55,10 +55,10 @@ class TestCalls:
             ],
             provider="openphone",
             provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-12T02:19:39.553Z"),
+            start_at=parse_datetime("2025-07-15T08:23:09.649Z"),
             status="completed",
-            answered_at=parse_datetime("2025-07-12T02:20:39Z"),
-            end_at=parse_datetime("2025-07-12T02:49:39.553Z"),
+            answered_at=parse_datetime("2025-07-15T08:24:09Z"),
+            end_at=parse_datetime("2025-07-15T08:53:09.649Z"),
             provider_metadata={
                 "answered_by": "bar",
                 "user_id": "bar",
@@ -84,7 +84,7 @@ class TestCalls:
             ],
             provider="openphone",
             provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-12T02:19:39.553Z"),
+            start_at=parse_datetime("2025-07-15T08:23:09.649Z"),
             status="completed",
         )
 
@@ -109,7 +109,7 @@ class TestCalls:
             ],
             provider="openphone",
             provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-12T02:19:39.553Z"),
+            start_at=parse_datetime("2025-07-15T08:23:09.649Z"),
             status="completed",
         ) as response:
             assert not response.is_closed
@@ -142,7 +142,7 @@ class TestAsyncCalls:
             ],
             provider="openphone",
             provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-12T02:19:39.553Z"),
+            start_at=parse_datetime("2025-07-15T08:23:09.649Z"),
             status="completed",
         )
         assert_matches_type(Call, call, path=["response"])
@@ -163,10 +163,10 @@ class TestAsyncCalls:
             ],
             provider="openphone",
             provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-12T02:19:39.553Z"),
+            start_at=parse_datetime("2025-07-15T08:23:09.649Z"),
             status="completed",
-            answered_at=parse_datetime("2025-07-12T02:20:39Z"),
-            end_at=parse_datetime("2025-07-12T02:49:39.553Z"),
+            answered_at=parse_datetime("2025-07-15T08:24:09Z"),
+            end_at=parse_datetime("2025-07-15T08:53:09.649Z"),
             provider_metadata={
                 "answered_by": "bar",
                 "user_id": "bar",
@@ -192,7 +192,7 @@ class TestAsyncCalls:
             ],
             provider="openphone",
             provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-12T02:19:39.553Z"),
+            start_at=parse_datetime("2025-07-15T08:23:09.649Z"),
             status="completed",
         )
 
@@ -217,7 +217,7 @@ class TestAsyncCalls:
             ],
             provider="openphone",
             provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-12T02:19:39.553Z"),
+            start_at=parse_datetime("2025-07-15T08:23:09.649Z"),
             status="completed",
         ) as response:
             assert not response.is_closed
