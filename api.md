@@ -234,12 +234,12 @@ Methods:
 Types:
 
 ```python
-from moonbase.types import ViewRetrieveResponse
+from moonbase.types import View
 ```
 
 Methods:
 
-- <code title="get /views/{id}">client.views.<a href="./src/moonbase/resources/views/views.py">retrieve</a>(id, \*\*<a href="src/moonbase/types/view_retrieve_params.py">params</a>) -> <a href="./src/moonbase/types/view_retrieve_response.py">ViewRetrieveResponse</a></code>
+- <code title="get /views/{id}">client.views.<a href="./src/moonbase/resources/views/views.py">retrieve</a>(id, \*\*<a href="src/moonbase/types/view_retrieve_params.py">params</a>) -> <a href="./src/moonbase/types/view.py">View</a></code>
 
 ## Items
 
