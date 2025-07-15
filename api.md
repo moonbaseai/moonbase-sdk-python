@@ -1,7 +1,7 @@
 # Shared Types
 
 ```python
-from moonbase.types import Error, View
+from moonbase.types import Error
 ```
 
 # Activities
@@ -231,9 +231,15 @@ Methods:
 
 # Views
 
+Types:
+
+```python
+from moonbase.types import ViewRetrieveResponse
+```
+
 Methods:
 
-- <code title="get /views/{id}">client.views.<a href="./src/moonbase/resources/views/views.py">retrieve</a>(id, \*\*<a href="src/moonbase/types/view_retrieve_params.py">params</a>) -> <a href="./src/moonbase/types/shared/view.py">View</a></code>
+- <code title="get /views/{id}">client.views.<a href="./src/moonbase/resources/views/views.py">retrieve</a>(id, \*\*<a href="src/moonbase/types/view_retrieve_params.py">params</a>) -> <a href="./src/moonbase/types/view_retrieve_response.py">ViewRetrieveResponse</a></code>
 
 ## Items
 

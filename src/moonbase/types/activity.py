@@ -15,6 +15,7 @@ from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 from .attendee import Attendee
 from .organizer import Organizer
+from .collection import Collection
 from .email_message import EmailMessage
 
 __all__ = [
@@ -98,7 +99,7 @@ class FormSubmittedActivity(BaseModel):
     type: Literal["activity/form_submitted"]
     """The type of activity. Always `activity/form_submitted`."""
 
-    collection: Optional["Collection"] = None
+    collection: Optional[Collection] = None
     """The `Collection` the new item was added to."""
 
     item: Optional["Item"] = None
@@ -158,7 +159,7 @@ class ItemCreatedActivity(BaseModel):
     type: Literal["activity/item_created"]
     """The type of activity. Always `activity/item_created`."""
 
-    collection: Optional["Collection"] = None
+    collection: Optional[Collection] = None
     """The `Collection` the item was added to."""
 
     item: Optional["Item"] = None
@@ -188,7 +189,7 @@ class ItemMentionedActivity(BaseModel):
     type: Literal["activity/item_mentioned"]
     """The type of activity. Always `activity/item_mentioned`."""
 
-    collection: Optional["Collection"] = None
+    collection: Optional[Collection] = None
     """The `Collection` the item belongs to."""
 
     item: Optional["Item"] = None
@@ -485,7 +486,6 @@ Activity: TypeAlias = Annotated[
 ]
 
 from .item import Item
-from .collection import Collection
 
 if PYDANTIC_V2:
     CallOccurredActivity.model_rebuild()

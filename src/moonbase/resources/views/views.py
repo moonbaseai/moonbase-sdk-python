@@ -27,7 +27,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._base_client import make_request_options
-from ...types.shared.view import View
+from ...types.view_retrieve_response import ViewRetrieveResponse
 
 __all__ = ["ViewsResource", "AsyncViewsResource"]
 
@@ -67,7 +67,7 @@ class ViewsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> View:
+    ) -> ViewRetrieveResponse:
         """
         Retrieves the details of an existing view.
 
@@ -94,7 +94,7 @@ class ViewsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"include": include}, view_retrieve_params.ViewRetrieveParams),
             ),
-            cast_to=View,
+            cast_to=ViewRetrieveResponse,
         )
 
 
@@ -133,7 +133,7 @@ class AsyncViewsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> View:
+    ) -> ViewRetrieveResponse:
         """
         Retrieves the details of an existing view.
 
@@ -160,7 +160,7 @@ class AsyncViewsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"include": include}, view_retrieve_params.ViewRetrieveParams),
             ),
-            cast_to=View,
+            cast_to=ViewRetrieveResponse,
         )
 
 
