@@ -131,7 +131,6 @@ from moonbase.types import (
     GeoValue,
     IntegerValue,
     Item,
-    ItemCreateParams,
     MonetaryValue,
     MultiLineTextValue,
     PercentageValue,
