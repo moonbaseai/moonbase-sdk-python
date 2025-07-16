@@ -35,8 +35,12 @@ client = Moonbase(
     api_key=os.environ.get("MOONBASE_API_KEY"),  # This is the default and can be omitted
 )
 
-page = client.program_templates.list()
-print(page.data)
+program_message = client.program_messages.create(
+    person={"email": "user@example.com"},
+    program_template_id="MOONBASE_PROGRAM_TEMPLATE_ID",
+    custom_variables={},
+)
+print(program_message.id)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -59,8 +63,12 @@ client = AsyncMoonbase(
 
 
 async def main() -> None:
-    page = await client.program_templates.list()
-    print(page.data)
+    program_message = await client.program_messages.create(
+        person={"email": "user@example.com"},
+        program_template_id="MOONBASE_PROGRAM_TEMPLATE_ID",
+        custom_variables={},
+    )
+    print(program_message.id)
 
 
 asyncio.run(main())
@@ -92,8 +100,12 @@ async def main() -> None:
         api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
-        page = await client.program_templates.list()
-        print(page.data)
+        program_message = await client.program_messages.create(
+            person={"email": "user@example.com"},
+            program_template_id="MOONBASE_PROGRAM_TEMPLATE_ID",
+            custom_variables={},
+        )
+        print(program_message.id)
 
 
 asyncio.run(main())
@@ -211,7 +223,11 @@ from moonbase import Moonbase
 client = Moonbase()
 
 try:
-    client.program_templates.list()
+    client.program_messages.create(
+        person={"email": "user@example.com"},
+        program_template_id="MOONBASE_PROGRAM_TEMPLATE_ID",
+        custom_variables={},
+    )
 except moonbase.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -254,7 +270,11 @@ client = Moonbase(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).program_templates.list()
+client.with_options(max_retries=5).program_messages.create(
+    person={"email": "user@example.com"},
+    program_template_id="MOONBASE_PROGRAM_TEMPLATE_ID",
+    custom_variables={},
+)
 ```
 
 ### Timeouts
@@ -277,7 +297,11 @@ client = Moonbase(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).program_templates.list()
+client.with_options(timeout=5.0).program_messages.create(
+    person={"email": "user@example.com"},
+    program_template_id="MOONBASE_PROGRAM_TEMPLATE_ID",
+    custom_variables={},
+)
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -318,11 +342,17 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from moonbase import Moonbase
 
 client = Moonbase()
-response = client.program_templates.with_raw_response.list()
+response = client.program_messages.with_raw_response.create(
+    person={
+        "email": "user@example.com"
+    },
+    program_template_id="MOONBASE_PROGRAM_TEMPLATE_ID",
+    custom_variables={},
+)
 print(response.headers.get('X-My-Header'))
 
-program_template = response.parse()  # get the object that `program_templates.list()` would have returned
-print(program_template.id)
+program_message = response.parse()  # get the object that `program_messages.create()` would have returned
+print(program_message.id)
 ```
 
 These methods return an [`APIResponse`](https://github.com/stainless-sdks/moonbase-sdk-python/tree/main/src/moonbase/_response.py) object.
@@ -336,7 +366,11 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.program_templates.with_streaming_response.list() as response:
+with client.program_messages.with_streaming_response.create(
+    person={"email": "user@example.com"},
+    program_template_id="MOONBASE_PROGRAM_TEMPLATE_ID",
+    custom_variables={},
+) as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
