@@ -20,7 +20,7 @@ class TestItems:
     @parametrize
     def test_method_create(self, client: Moonbase) -> None:
         item = client.items.create(
-            collection_id="1CR8ZUPSRgSsYUg8HVzSV6",
+            collection_id="1CRD6MdCL7s2gPB539XjP6",
             values={
                 "name": {
                     "text": "Aperture Science",
@@ -28,7 +28,7 @@ class TestItems:
                 },
                 "ceo": {
                     "item": {
-                        "id": "1CR8ZUQk3g9D6v8bvQPh7U",
+                        "id": "1CRD6MeP2cCUHptvnsW7yJ",
                         "type": "item",
                     },
                     "type": "value/relation",
@@ -40,7 +40,7 @@ class TestItems:
     @parametrize
     def test_raw_response_create(self, client: Moonbase) -> None:
         response = client.items.with_raw_response.create(
-            collection_id="1CR8ZUPSRgSsYUg8HVzSV6",
+            collection_id="1CRD6MdCL7s2gPB539XjP6",
             values={
                 "name": {
                     "text": "Aperture Science",
@@ -48,7 +48,7 @@ class TestItems:
                 },
                 "ceo": {
                     "item": {
-                        "id": "1CR8ZUQk3g9D6v8bvQPh7U",
+                        "id": "1CRD6MeP2cCUHptvnsW7yJ",
                         "type": "item",
                     },
                     "type": "value/relation",
@@ -64,7 +64,7 @@ class TestItems:
     @parametrize
     def test_streaming_response_create(self, client: Moonbase) -> None:
         with client.items.with_streaming_response.create(
-            collection_id="1CR8ZUPSRgSsYUg8HVzSV6",
+            collection_id="1CRD6MdCL7s2gPB539XjP6",
             values={
                 "name": {
                     "text": "Aperture Science",
@@ -72,7 +72,7 @@ class TestItems:
                 },
                 "ceo": {
                     "item": {
-                        "id": "1CR8ZUQk3g9D6v8bvQPh7U",
+                        "id": "1CRD6MeP2cCUHptvnsW7yJ",
                         "type": "item",
                     },
                     "type": "value/relation",
@@ -130,8 +130,8 @@ class TestItems:
         item = client.items.update(
             id="id",
             values={
-                "name": {
-                    "text": "Jony Appleseed",
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
                 }
             },
@@ -143,8 +143,8 @@ class TestItems:
         item = client.items.update(
             id="id",
             values={
-                "name": {
-                    "text": "Jony Appleseed",
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
                 }
             },
@@ -158,8 +158,8 @@ class TestItems:
         response = client.items.with_raw_response.update(
             id="id",
             values={
-                "name": {
-                    "text": "Jony Appleseed",
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
                 }
             },
@@ -175,8 +175,8 @@ class TestItems:
         with client.items.with_streaming_response.update(
             id="id",
             values={
-                "name": {
-                    "text": "Jony Appleseed",
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
                 }
             },
@@ -195,8 +195,8 @@ class TestItems:
             client.items.with_raw_response.update(
                 id="",
                 values={
-                    "name": {
-                        "text": "Jony Appleseed",
+                    "foo": {
+                        "text": "text",
                         "type": "value/text/single_line",
                     }
                 },
@@ -243,7 +243,7 @@ class TestItems:
     @parametrize
     def test_method_upsert(self, client: Moonbase) -> None:
         item = client.items.upsert(
-            collection_id="1CR8ZTkjJggbDcKLRBk8FL",
+            collection_id="1CRD6Lnrjaiiu4B9ptBpuP",
             identifiers={"domain": []},
             values={
                 "name": {
@@ -262,7 +262,7 @@ class TestItems:
     @parametrize
     def test_method_upsert_with_all_params(self, client: Moonbase) -> None:
         item = client.items.upsert(
-            collection_id="1CR8ZTkjJggbDcKLRBk8FL",
+            collection_id="1CRD6Lnrjaiiu4B9ptBpuP",
             identifiers={"domain": []},
             values={
                 "name": {
@@ -286,7 +286,7 @@ class TestItems:
     @parametrize
     def test_raw_response_upsert(self, client: Moonbase) -> None:
         response = client.items.with_raw_response.upsert(
-            collection_id="1CR8ZTkjJggbDcKLRBk8FL",
+            collection_id="1CRD6Lnrjaiiu4B9ptBpuP",
             identifiers={"domain": []},
             values={
                 "name": {
@@ -309,7 +309,7 @@ class TestItems:
     @parametrize
     def test_streaming_response_upsert(self, client: Moonbase) -> None:
         with client.items.with_streaming_response.upsert(
-            collection_id="1CR8ZTkjJggbDcKLRBk8FL",
+            collection_id="1CRD6Lnrjaiiu4B9ptBpuP",
             identifiers={"domain": []},
             values={
                 "name": {
@@ -340,7 +340,7 @@ class TestAsyncItems:
     @parametrize
     async def test_method_create(self, async_client: AsyncMoonbase) -> None:
         item = await async_client.items.create(
-            collection_id="1CR8ZUPSRgSsYUg8HVzSV6",
+            collection_id="1CRD6MdCL7s2gPB539XjP6",
             values={
                 "name": {
                     "text": "Aperture Science",
@@ -348,7 +348,7 @@ class TestAsyncItems:
                 },
                 "ceo": {
                     "item": {
-                        "id": "1CR8ZUQk3g9D6v8bvQPh7U",
+                        "id": "1CRD6MeP2cCUHptvnsW7yJ",
                         "type": "item",
                     },
                     "type": "value/relation",
@@ -360,7 +360,7 @@ class TestAsyncItems:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncMoonbase) -> None:
         response = await async_client.items.with_raw_response.create(
-            collection_id="1CR8ZUPSRgSsYUg8HVzSV6",
+            collection_id="1CRD6MdCL7s2gPB539XjP6",
             values={
                 "name": {
                     "text": "Aperture Science",
@@ -368,7 +368,7 @@ class TestAsyncItems:
                 },
                 "ceo": {
                     "item": {
-                        "id": "1CR8ZUQk3g9D6v8bvQPh7U",
+                        "id": "1CRD6MeP2cCUHptvnsW7yJ",
                         "type": "item",
                     },
                     "type": "value/relation",
@@ -384,7 +384,7 @@ class TestAsyncItems:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncMoonbase) -> None:
         async with async_client.items.with_streaming_response.create(
-            collection_id="1CR8ZUPSRgSsYUg8HVzSV6",
+            collection_id="1CRD6MdCL7s2gPB539XjP6",
             values={
                 "name": {
                     "text": "Aperture Science",
@@ -392,7 +392,7 @@ class TestAsyncItems:
                 },
                 "ceo": {
                     "item": {
-                        "id": "1CR8ZUQk3g9D6v8bvQPh7U",
+                        "id": "1CRD6MeP2cCUHptvnsW7yJ",
                         "type": "item",
                     },
                     "type": "value/relation",
@@ -450,8 +450,8 @@ class TestAsyncItems:
         item = await async_client.items.update(
             id="id",
             values={
-                "name": {
-                    "text": "Jony Appleseed",
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
                 }
             },
@@ -463,8 +463,8 @@ class TestAsyncItems:
         item = await async_client.items.update(
             id="id",
             values={
-                "name": {
-                    "text": "Jony Appleseed",
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
                 }
             },
@@ -478,8 +478,8 @@ class TestAsyncItems:
         response = await async_client.items.with_raw_response.update(
             id="id",
             values={
-                "name": {
-                    "text": "Jony Appleseed",
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
                 }
             },
@@ -495,8 +495,8 @@ class TestAsyncItems:
         async with async_client.items.with_streaming_response.update(
             id="id",
             values={
-                "name": {
-                    "text": "Jony Appleseed",
+                "foo": {
+                    "text": "text",
                     "type": "value/text/single_line",
                 }
             },
@@ -515,8 +515,8 @@ class TestAsyncItems:
             await async_client.items.with_raw_response.update(
                 id="",
                 values={
-                    "name": {
-                        "text": "Jony Appleseed",
+                    "foo": {
+                        "text": "text",
                         "type": "value/text/single_line",
                     }
                 },
@@ -563,7 +563,7 @@ class TestAsyncItems:
     @parametrize
     async def test_method_upsert(self, async_client: AsyncMoonbase) -> None:
         item = await async_client.items.upsert(
-            collection_id="1CR8ZTkjJggbDcKLRBk8FL",
+            collection_id="1CRD6Lnrjaiiu4B9ptBpuP",
             identifiers={"domain": []},
             values={
                 "name": {
@@ -582,7 +582,7 @@ class TestAsyncItems:
     @parametrize
     async def test_method_upsert_with_all_params(self, async_client: AsyncMoonbase) -> None:
         item = await async_client.items.upsert(
-            collection_id="1CR8ZTkjJggbDcKLRBk8FL",
+            collection_id="1CRD6Lnrjaiiu4B9ptBpuP",
             identifiers={"domain": []},
             values={
                 "name": {
@@ -606,7 +606,7 @@ class TestAsyncItems:
     @parametrize
     async def test_raw_response_upsert(self, async_client: AsyncMoonbase) -> None:
         response = await async_client.items.with_raw_response.upsert(
-            collection_id="1CR8ZTkjJggbDcKLRBk8FL",
+            collection_id="1CRD6Lnrjaiiu4B9ptBpuP",
             identifiers={"domain": []},
             values={
                 "name": {
@@ -629,7 +629,7 @@ class TestAsyncItems:
     @parametrize
     async def test_streaming_response_upsert(self, async_client: AsyncMoonbase) -> None:
         async with async_client.items.with_streaming_response.upsert(
-            collection_id="1CR8ZTkjJggbDcKLRBk8FL",
+            collection_id="1CRD6Lnrjaiiu4B9ptBpuP",
             identifiers={"domain": []},
             values={
                 "name": {

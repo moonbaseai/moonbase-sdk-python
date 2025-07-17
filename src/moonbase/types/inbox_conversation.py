@@ -38,6 +38,9 @@ class InboxConversation(BaseModel):
 
     links: Links
 
+    state: Literal["unassigned", "active", "closed", "waiting"]
+    """The current state, which can be `unassigned`, `active`, `closed`, or `waiting`."""
+
     type: Literal["inbox_conversation"]
     """String representing the object’s type.
 
@@ -50,9 +53,6 @@ class InboxConversation(BaseModel):
     bulk: Optional[bool] = None
     """`true` if the conversation appears to be part of a bulk mailing."""
 
-    closed: Optional[bool] = None
-    """`true` if the conversation is currently closed."""
-
     created_at: Optional[datetime] = None
     """Time at which the object was created, as an RFC 3339 timestamp."""
 
@@ -61,9 +61,6 @@ class InboxConversation(BaseModel):
 
     new_draft_conversation: Optional[bool] = None
     """`true` if a new draft reply to this conversation has been started."""
-
-    open: Optional[bool] = None
-    """`true` if the conversation is currently open."""
 
     spam: Optional[bool] = None
     """`true` if the conversation is marked as spam."""

@@ -24,14 +24,14 @@ class Address(BaseModel):
     email: str
     """The email address."""
 
-    links: Links
-    """A hash of related links."""
-
     type: Literal["address"]
     """String representing the object’s type. Always `address` for this object."""
 
     created_at: Optional[datetime] = None
     """Time at which the object was created, as an RFC 3339 timestamp."""
+
+    links: Optional[Links] = None
+    """A hash of related links."""
 
     role: Optional[Literal["from", "reply_to", "to", "cc", "bcc"]] = None
     """The role of the address in the message.
