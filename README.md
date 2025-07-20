@@ -181,7 +181,7 @@ first_page = await client.program_templates.list(
     limit=20,
 )
 
-print(f"next page cursor: {first_page.meta.cursor.next}")  # => "next page cursor: ..."
+print(f"next page cursor: {first_page.meta.cursors.next}")  # => "next page cursor: ..."
 for program_template in first_page.data:
     print(program_template.id)
 
