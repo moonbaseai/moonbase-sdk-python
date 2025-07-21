@@ -6,17 +6,17 @@ from typing_extensions import override
 from ._models import BaseModel
 from ._base_client import BasePage, PageInfo, BaseSyncPage, BaseAsyncPage
 
-__all__ = ["CursorPageMeta", "CursorPageCursor", "SyncCursorPage", "AsyncCursorPage"]
+__all__ = ["CursorPageMeta", "CursorPageCursors", "SyncCursorPage", "AsyncCursorPage"]
 
 _T = TypeVar("_T")
 
 
-class CursorPageCursor(BaseModel):
+class CursorPageCursors(BaseModel):
     next: Optional[str] = None
 
 
 class CursorPageMeta(BaseModel):
-    cursor: Optional[CursorPageCursor] = None
+    cursors: Optional[CursorPageCursors] = None
 
 
 class SyncCursorPage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
@@ -34,9 +34,9 @@ class SyncCursorPage(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
     def next_page_info(self) -> Optional[PageInfo]:
         next = None
         if self.meta is not None:
-            if self.meta.cursor is not None:
-                if self.meta.cursor.next is not None:
-                    next = self.meta.cursor.next
+            if self.meta.cursors is not None:
+                if self.meta.cursors.next is not None:
+                    next = self.meta.cursors.next
         if not next:
             return None
 
@@ -58,9 +58,9 @@ class AsyncCursorPage(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
     def next_page_info(self) -> Optional[PageInfo]:
         next = None
         if self.meta is not None:
-            if self.meta.cursor is not None:
-                if self.meta.cursor.next is not None:
-                    next = self.meta.cursor.next
+            if self.meta.cursors is not None:
+                if self.meta.cursors.next is not None:
+                    next = self.meta.cursors.next
         if not next:
             return None
 

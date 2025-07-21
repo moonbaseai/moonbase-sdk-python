@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2025-07-20)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Bug Fixes
+
+* pagination ([014a292](https://github.com/moonbaseai/moonbase-sdk-python/commit/014a2927f9c55c734a620b1f025e824b8aabdb2b))
+
 ## 0.1.0-alpha.1 (2025-07-18)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
