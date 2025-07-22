@@ -198,8 +198,8 @@ from moonbase import Moonbase
 client = Moonbase()
 
 program_message = client.program_messages.create(
-    person={"email": "person-60@example-60.com"},
-    program_template_id="1CRDSENp2MzMSfBMCbyEJd",
+    person={"email": "person-12@example-12.com"},
+    program_template_id="1CRMPDbi5U9joyZVuMZo78",
 )
 print(program_message.person)
 ```
