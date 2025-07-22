@@ -5,7 +5,6 @@ from __future__ import annotations
 from datetime import datetime
 from typing_extensions import Literal
 
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 
 __all__ = ["ProgramMessageCreateResponse", "Links"]
@@ -42,10 +41,3 @@ class ProgramMessageCreateResponse(BaseModel):
 
 
 from .program_template import ProgramTemplate
-
-if PYDANTIC_V2:
-    ProgramMessageCreateResponse.model_rebuild()
-    Links.model_rebuild()
-else:
-    ProgramMessageCreateResponse.update_forward_refs()  # type: ignore
-    Links.update_forward_refs()  # type: ignore

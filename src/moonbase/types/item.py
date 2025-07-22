@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Dict, Optional
 from typing_extensions import Literal
 
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 
 __all__ = ["Item", "Links"]
@@ -36,10 +35,3 @@ class Item(BaseModel):
 
 
 from .field_value import FieldValue
-
-if PYDANTIC_V2:
-    Item.model_rebuild()
-    Links.model_rebuild()
-else:
-    Item.update_forward_refs()  # type: ignore
-    Links.update_forward_refs()  # type: ignore

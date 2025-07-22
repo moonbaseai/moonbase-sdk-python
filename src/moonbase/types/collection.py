@@ -7,7 +7,6 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .field import Field
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 
 __all__ = ["Collection", "Links"]
@@ -55,10 +54,3 @@ class Collection(BaseModel):
 
 
 from .view import View
-
-if PYDANTIC_V2:
-    Collection.model_rebuild()
-    Links.model_rebuild()
-else:
-    Collection.update_forward_refs()  # type: ignore
-    Links.update_forward_refs()  # type: ignore

@@ -6,7 +6,6 @@ from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 
 __all__ = ["Form", "Links"]
@@ -52,10 +51,3 @@ class Form(BaseModel):
 
 
 from .collection import Collection
-
-if PYDANTIC_V2:
-    Form.model_rebuild()
-    Links.model_rebuild()
-else:
-    Form.update_forward_refs()  # type: ignore
-    Links.update_forward_refs()  # type: ignore
