@@ -71,6 +71,8 @@ class CallsResource(SyncAPIResource):
         answered_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         end_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         provider_metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
+        recordings: Iterable[call_create_params.Recording] | NotGiven = NOT_GIVEN,
+        transcript: call_create_params.Transcript | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -100,6 +102,10 @@ class CallsResource(SyncAPIResource):
 
           provider_metadata: A hash of additional metadata from the provider.
 
+          recordings: Any recordings associated with the call.
+
+          transcript: A transcript of the call.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -121,6 +127,8 @@ class CallsResource(SyncAPIResource):
                     "answered_at": answered_at,
                     "end_at": end_at,
                     "provider_metadata": provider_metadata,
+                    "recordings": recordings,
+                    "transcript": transcript,
                 },
                 call_create_params.CallCreateParams,
             ),
@@ -177,6 +185,8 @@ class AsyncCallsResource(AsyncAPIResource):
         answered_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         end_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         provider_metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
+        recordings: Iterable[call_create_params.Recording] | NotGiven = NOT_GIVEN,
+        transcript: call_create_params.Transcript | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -206,6 +216,10 @@ class AsyncCallsResource(AsyncAPIResource):
 
           provider_metadata: A hash of additional metadata from the provider.
 
+          recordings: Any recordings associated with the call.
+
+          transcript: A transcript of the call.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -227,6 +241,8 @@ class AsyncCallsResource(AsyncAPIResource):
                     "answered_at": answered_at,
                     "end_at": end_at,
                     "provider_metadata": provider_metadata,
+                    "recordings": recordings,
+                    "transcript": transcript,
                 },
                 call_create_params.CallCreateParams,
             ),

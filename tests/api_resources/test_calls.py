@@ -33,8 +33,8 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-22T02:56:27.836Z"),
+            provider_id="openphone_id_000000000006",
+            start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
             status="completed",
         )
         assert_matches_type(Call, call, path=["response"])
@@ -54,16 +54,33 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-22T02:56:27.836Z"),
+            provider_id="openphone_id_000000000006",
+            start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
             status="completed",
-            answered_at=parse_datetime("2025-07-22T02:57:27Z"),
-            end_at=parse_datetime("2025-07-22T03:26:27.836Z"),
+            answered_at=parse_datetime("2025-08-11T21:12:10Z"),
+            end_at=parse_datetime("2025-08-11T21:41:10.467Z"),
             provider_metadata={
                 "answered_by": "bar",
                 "user_id": "bar",
                 "phone_number_id": "bar",
                 "conversation_id": "bar",
+            },
+            recordings=[
+                {
+                    "content_type": "content_type",
+                    "provider_id": "provider_id",
+                    "url": "https://example.com",
+                }
+            ],
+            transcript={
+                "cues": [
+                    {
+                        "from": 0,
+                        "speaker": "speaker",
+                        "text": "text",
+                        "to": 0,
+                    }
+                ]
             },
         )
         assert_matches_type(Call, call, path=["response"])
@@ -83,8 +100,8 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-22T02:56:27.836Z"),
+            provider_id="openphone_id_000000000006",
+            start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
             status="completed",
         )
 
@@ -108,8 +125,8 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-22T02:56:27.836Z"),
+            provider_id="openphone_id_000000000006",
+            start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
             status="completed",
         ) as response:
             assert not response.is_closed
@@ -141,8 +158,8 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-22T02:56:27.836Z"),
+            provider_id="openphone_id_000000000006",
+            start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
             status="completed",
         )
         assert_matches_type(Call, call, path=["response"])
@@ -162,16 +179,33 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-22T02:56:27.836Z"),
+            provider_id="openphone_id_000000000006",
+            start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
             status="completed",
-            answered_at=parse_datetime("2025-07-22T02:57:27Z"),
-            end_at=parse_datetime("2025-07-22T03:26:27.836Z"),
+            answered_at=parse_datetime("2025-08-11T21:12:10Z"),
+            end_at=parse_datetime("2025-08-11T21:41:10.467Z"),
             provider_metadata={
                 "answered_by": "bar",
                 "user_id": "bar",
                 "phone_number_id": "bar",
                 "conversation_id": "bar",
+            },
+            recordings=[
+                {
+                    "content_type": "content_type",
+                    "provider_id": "provider_id",
+                    "url": "https://example.com",
+                }
+            ],
+            transcript={
+                "cues": [
+                    {
+                        "from": 0,
+                        "speaker": "speaker",
+                        "text": "text",
+                        "to": 0,
+                    }
+                ]
             },
         )
         assert_matches_type(Call, call, path=["response"])
@@ -191,8 +225,8 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-22T02:56:27.836Z"),
+            provider_id="openphone_id_000000000006",
+            start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
             status="completed",
         )
 
@@ -216,8 +250,8 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-07-22T02:56:27.836Z"),
+            provider_id="openphone_id_000000000006",
+            start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
             status="completed",
         ) as response:
             assert not response.is_closed
