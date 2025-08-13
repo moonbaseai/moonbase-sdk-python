@@ -137,6 +137,125 @@ class TestCalls:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_method_upsert(self, client: Moonbase) -> None:
+        call = client.calls.upsert(
+            direction="incoming",
+            participants=[
+                {
+                    "phone": "+14155551212",
+                    "role": "caller",
+                },
+                {
+                    "phone": "+16505551212",
+                    "role": "callee",
+                },
+            ],
+            provider="openphone",
+            provider_id="openphone_id_000000000001",
+            start_at=parse_datetime("2025-08-11T21:10:54.916Z"),
+            status="completed",
+        )
+        assert_matches_type(Call, call, path=["response"])
+
+    @parametrize
+    def test_method_upsert_with_all_params(self, client: Moonbase) -> None:
+        call = client.calls.upsert(
+            direction="incoming",
+            participants=[
+                {
+                    "phone": "+14155551212",
+                    "role": "caller",
+                },
+                {
+                    "phone": "+16505551212",
+                    "role": "callee",
+                },
+            ],
+            provider="openphone",
+            provider_id="openphone_id_000000000001",
+            start_at=parse_datetime("2025-08-11T21:10:54.916Z"),
+            status="completed",
+            answered_at=parse_datetime("2025-08-11T21:11:54Z"),
+            end_at=parse_datetime("2025-08-11T21:40:54.916Z"),
+            provider_metadata={
+                "answered_by": "bar",
+                "user_id": "bar",
+                "phone_number_id": "bar",
+                "conversation_id": "bar",
+            },
+            recordings=[
+                {
+                    "content_type": "content_type",
+                    "provider_id": "provider_id",
+                    "url": "https://example.com",
+                }
+            ],
+            transcript={
+                "cues": [
+                    {
+                        "from": 0,
+                        "speaker": "speaker",
+                        "text": "text",
+                        "to": 0,
+                    }
+                ]
+            },
+        )
+        assert_matches_type(Call, call, path=["response"])
+
+    @parametrize
+    def test_raw_response_upsert(self, client: Moonbase) -> None:
+        response = client.calls.with_raw_response.upsert(
+            direction="incoming",
+            participants=[
+                {
+                    "phone": "+14155551212",
+                    "role": "caller",
+                },
+                {
+                    "phone": "+16505551212",
+                    "role": "callee",
+                },
+            ],
+            provider="openphone",
+            provider_id="openphone_id_000000000001",
+            start_at=parse_datetime("2025-08-11T21:10:54.916Z"),
+            status="completed",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        call = response.parse()
+        assert_matches_type(Call, call, path=["response"])
+
+    @parametrize
+    def test_streaming_response_upsert(self, client: Moonbase) -> None:
+        with client.calls.with_streaming_response.upsert(
+            direction="incoming",
+            participants=[
+                {
+                    "phone": "+14155551212",
+                    "role": "caller",
+                },
+                {
+                    "phone": "+16505551212",
+                    "role": "callee",
+                },
+            ],
+            provider="openphone",
+            provider_id="openphone_id_000000000001",
+            start_at=parse_datetime("2025-08-11T21:10:54.916Z"),
+            status="completed",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            call = response.parse()
+            assert_matches_type(Call, call, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
 
 class TestAsyncCalls:
     parametrize = pytest.mark.parametrize(
@@ -252,6 +371,125 @@ class TestAsyncCalls:
             provider="openphone",
             provider_id="openphone_id_000000000006",
             start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
+            status="completed",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            call = await response.parse()
+            assert_matches_type(Call, call, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_upsert(self, async_client: AsyncMoonbase) -> None:
+        call = await async_client.calls.upsert(
+            direction="incoming",
+            participants=[
+                {
+                    "phone": "+14155551212",
+                    "role": "caller",
+                },
+                {
+                    "phone": "+16505551212",
+                    "role": "callee",
+                },
+            ],
+            provider="openphone",
+            provider_id="openphone_id_000000000001",
+            start_at=parse_datetime("2025-08-11T21:10:54.916Z"),
+            status="completed",
+        )
+        assert_matches_type(Call, call, path=["response"])
+
+    @parametrize
+    async def test_method_upsert_with_all_params(self, async_client: AsyncMoonbase) -> None:
+        call = await async_client.calls.upsert(
+            direction="incoming",
+            participants=[
+                {
+                    "phone": "+14155551212",
+                    "role": "caller",
+                },
+                {
+                    "phone": "+16505551212",
+                    "role": "callee",
+                },
+            ],
+            provider="openphone",
+            provider_id="openphone_id_000000000001",
+            start_at=parse_datetime("2025-08-11T21:10:54.916Z"),
+            status="completed",
+            answered_at=parse_datetime("2025-08-11T21:11:54Z"),
+            end_at=parse_datetime("2025-08-11T21:40:54.916Z"),
+            provider_metadata={
+                "answered_by": "bar",
+                "user_id": "bar",
+                "phone_number_id": "bar",
+                "conversation_id": "bar",
+            },
+            recordings=[
+                {
+                    "content_type": "content_type",
+                    "provider_id": "provider_id",
+                    "url": "https://example.com",
+                }
+            ],
+            transcript={
+                "cues": [
+                    {
+                        "from": 0,
+                        "speaker": "speaker",
+                        "text": "text",
+                        "to": 0,
+                    }
+                ]
+            },
+        )
+        assert_matches_type(Call, call, path=["response"])
+
+    @parametrize
+    async def test_raw_response_upsert(self, async_client: AsyncMoonbase) -> None:
+        response = await async_client.calls.with_raw_response.upsert(
+            direction="incoming",
+            participants=[
+                {
+                    "phone": "+14155551212",
+                    "role": "caller",
+                },
+                {
+                    "phone": "+16505551212",
+                    "role": "callee",
+                },
+            ],
+            provider="openphone",
+            provider_id="openphone_id_000000000001",
+            start_at=parse_datetime("2025-08-11T21:10:54.916Z"),
+            status="completed",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        call = await response.parse()
+        assert_matches_type(Call, call, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_upsert(self, async_client: AsyncMoonbase) -> None:
+        async with async_client.calls.with_streaming_response.upsert(
+            direction="incoming",
+            participants=[
+                {
+                    "phone": "+14155551212",
+                    "role": "caller",
+                },
+                {
+                    "phone": "+16505551212",
+                    "role": "callee",
+                },
+            ],
+            provider="openphone",
+            provider_id="openphone_id_000000000001",
+            start_at=parse_datetime("2025-08-11T21:10:54.916Z"),
             status="completed",
         ) as response:
             assert not response.is_closed

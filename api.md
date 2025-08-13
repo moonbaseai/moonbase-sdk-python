@@ -28,6 +28,7 @@ from moonbase.types import Call
 Methods:
 
 - <code title="post /calls">client.calls.<a href="./src/moonbase/resources/calls.py">create</a>(\*\*<a href="src/moonbase/types/call_create_params.py">params</a>) -> <a href="./src/moonbase/types/call.py">Call</a></code>
+- <code title="post /calls/upsert">client.calls.<a href="./src/moonbase/resources/calls.py">upsert</a>(\*\*<a href="src/moonbase/types/call_upsert_params.py">params</a>) -> <a href="./src/moonbase/types/call.py">Call</a></code>
 
 # Collections
 
