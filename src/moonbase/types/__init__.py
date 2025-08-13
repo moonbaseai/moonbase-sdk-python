@@ -56,6 +56,7 @@ from .float_value_param import FloatValueParam as FloatValueParam
 from .funnel_step_param import FunnelStepParam as FunnelStepParam
 from .inbox_list_params import InboxListParams as InboxListParams
 from .call_create_params import CallCreateParams as CallCreateParams
+from .call_upsert_params import CallUpsertParams as CallUpsertParams
 from .domain_value_param import DomainValueParam as DomainValueParam
 from .inbox_conversation import InboxConversation as InboxConversation
 from .item_create_params import ItemCreateParams as ItemCreateParams
