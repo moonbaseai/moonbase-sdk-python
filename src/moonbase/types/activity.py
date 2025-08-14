@@ -1,61 +1,93 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
-
 from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypeAlias
 
-from .call import Call
-from .note import Note
 from .._utils import PropertyInfo
-from .address import Address
-from .meeting import Meeting
 from .._models import BaseModel
-from .attendee import Attendee
-from .organizer import Organizer
-from .email_message import EmailMessage
 
 __all__ = [
     "Activity",
     "CallOccurredActivity",
     "CallOccurredActivityLinks",
+    "CallOccurredActivityCall",
     "FormSubmittedActivity",
     "FormSubmittedActivityLinks",
+    "FormSubmittedActivityCollection",
+    "FormSubmittedActivityRelatedItem",
     "InboxMessageSentActivity",
     "InboxMessageSentActivityLinks",
+    "InboxMessageSentActivityMessage",
     "ItemCreatedActivity",
     "ItemCreatedActivityLinks",
+    "ItemCreatedActivityCollection",
+    "ItemCreatedActivityCreatedItem",
     "ItemMentionedActivity",
     "ItemMentionedActivityLinks",
+    "ItemMentionedActivityAuthor",
+    "ItemMentionedActivityMentionedItem",
+    "ItemMentionedActivityNote",
+    "ItemMergedActivity",
+    "ItemMergedActivityLinks",
+    "ItemMergedActivityDestination",
+    "ItemMergedActivityInitiator",
+    "ItemMergedActivitySource",
     "MeetingHeldActivity",
     "MeetingHeldActivityLinks",
+    "MeetingHeldActivityMeeting",
     "MeetingScheduledActivity",
     "MeetingScheduledActivityLinks",
+    "MeetingScheduledActivityMeeting",
     "NoteCreatedActivity",
     "NoteCreatedActivityLinks",
+    "NoteCreatedActivityNote",
+    "NoteCreatedActivityRelatedItem",
+    "NoteCreatedActivityRelatedMeeting",
     "ProgramMessageBouncedActivity",
     "ProgramMessageBouncedActivityLinks",
+    "ProgramMessageBouncedActivityProgramMessage",
+    "ProgramMessageBouncedActivityRecipient",
     "ProgramMessageClickedActivity",
     "ProgramMessageClickedActivityLinks",
+    "ProgramMessageClickedActivityProgramMessage",
+    "ProgramMessageClickedActivityRecipient",
     "ProgramMessageComplainedActivity",
     "ProgramMessageComplainedActivityLinks",
+    "ProgramMessageComplainedActivityProgramMessage",
+    "ProgramMessageComplainedActivityRecipient",
     "ProgramMessageFailedActivity",
     "ProgramMessageFailedActivityLinks",
+    "ProgramMessageFailedActivityProgramMessage",
+    "ProgramMessageFailedActivityRecipient",
     "ProgramMessageOpenedActivity",
     "ProgramMessageOpenedActivityLinks",
+    "ProgramMessageOpenedActivityProgramMessage",
+    "ProgramMessageOpenedActivityRecipient",
     "ProgramMessageSentActivity",
     "ProgramMessageSentActivityLinks",
+    "ProgramMessageSentActivityProgramMessage",
+    "ProgramMessageSentActivityRecipient",
     "ProgramMessageShieldedActivity",
     "ProgramMessageShieldedActivityLinks",
+    "ProgramMessageShieldedActivityProgramMessage",
+    "ProgramMessageShieldedActivityRecipient",
     "ProgramMessageUnsubscribedActivity",
     "ProgramMessageUnsubscribedActivityLinks",
+    "ProgramMessageUnsubscribedActivityProgramMessage",
+    "ProgramMessageUnsubscribedActivityRecipient",
 ]
 
 
 class CallOccurredActivityLinks(BaseModel):
     self: str
     """The canonical URL for this object."""
+
+
+class CallOccurredActivityCall(BaseModel):
+    id: str
+
+    type: str
 
 
 class CallOccurredActivity(BaseModel):
@@ -70,7 +102,7 @@ class CallOccurredActivity(BaseModel):
     type: Literal["activity/call_occurred"]
     """The type of activity. Always `activity/call_occurred`."""
 
-    call: Optional[Call] = None
+    call: Optional[CallOccurredActivityCall] = None
     """The `Call` object associated with this event."""
 
 
@@ -85,6 +117,18 @@ class FormSubmittedActivityLinks(BaseModel):
     """A link to the `Item` created by the form submission."""
 
 
+class FormSubmittedActivityCollection(BaseModel):
+    id: str
+
+    type: str
+
+
+class FormSubmittedActivityRelatedItem(BaseModel):
+    id: str
+
+    type: str
+
+
 class FormSubmittedActivity(BaseModel):
     id: str
     """Unique identifier for the object."""
@@ -97,11 +141,10 @@ class FormSubmittedActivity(BaseModel):
     type: Literal["activity/form_submitted"]
     """The type of activity. Always `activity/form_submitted`."""
 
-    collection: Optional["Collection"] = None
+    collection: Optional[FormSubmittedActivityCollection] = None
     """The `Collection` the new item was added to."""
 
-    item: Optional["Item"] = None
-    """The `Item` that was created by the form submission."""
+    related_item: Optional[FormSubmittedActivityRelatedItem] = None
 
 
 class InboxMessageSentActivityLinks(BaseModel):
@@ -110,6 +153,12 @@ class InboxMessageSentActivityLinks(BaseModel):
 
     message: Optional[str] = None
     """A link to the `EmailMessage` that was sent."""
+
+
+class InboxMessageSentActivityMessage(BaseModel):
+    id: str
+
+    type: str
 
 
 class InboxMessageSentActivity(BaseModel):
@@ -124,14 +173,8 @@ class InboxMessageSentActivity(BaseModel):
     type: Literal["activity/inbox_message_sent"]
     """The type of activity. Always `activity/inbox_message_sent`."""
 
-    message: Optional[EmailMessage] = None
+    message: Optional[InboxMessageSentActivityMessage] = None
     """The `EmailMessage` that was sent."""
-
-    recipients: Optional[List[Address]] = None
-    """A list of `Address` objects for the recipients."""
-
-    sender: Optional[Address] = None
-    """The `Address` of the sender."""
 
 
 class ItemCreatedActivityLinks(BaseModel):
@@ -143,6 +186,18 @@ class ItemCreatedActivityLinks(BaseModel):
 
     item: Optional[str] = None
     """A link to the `Item` that was created."""
+
+
+class ItemCreatedActivityCollection(BaseModel):
+    id: str
+
+    type: str
+
+
+class ItemCreatedActivityCreatedItem(BaseModel):
+    id: str
+
+    type: str
 
 
 class ItemCreatedActivity(BaseModel):
@@ -157,22 +212,42 @@ class ItemCreatedActivity(BaseModel):
     type: Literal["activity/item_created"]
     """The type of activity. Always `activity/item_created`."""
 
-    collection: Optional["Collection"] = None
+    collection: Optional[ItemCreatedActivityCollection] = None
     """The `Collection` the item was added to."""
 
-    item: Optional["Item"] = None
-    """The `Item` that was created."""
+    created_item: Optional[ItemCreatedActivityCreatedItem] = None
 
 
 class ItemMentionedActivityLinks(BaseModel):
     self: str
     """The canonical URL for this object."""
 
-    collection: Optional[str] = None
-    """A link to the `Collection` the item belongs to."""
+    author: Optional[str] = None
+    """A link to the `Person` who mentioned the item."""
 
     item: Optional[str] = None
     """A link to the `Item` that was mentioned."""
+
+    note: Optional[str] = None
+    """A link to the `Note` where the item was mentioned."""
+
+
+class ItemMentionedActivityAuthor(BaseModel):
+    id: str
+
+    type: str
+
+
+class ItemMentionedActivityMentionedItem(BaseModel):
+    id: str
+
+    type: str
+
+
+class ItemMentionedActivityNote(BaseModel):
+    id: str
+
+    type: str
 
 
 class ItemMentionedActivity(BaseModel):
@@ -187,11 +262,62 @@ class ItemMentionedActivity(BaseModel):
     type: Literal["activity/item_mentioned"]
     """The type of activity. Always `activity/item_mentioned`."""
 
-    collection: Optional["Collection"] = None
-    """The `Collection` the item belongs to."""
+    author: Optional[ItemMentionedActivityAuthor] = None
 
-    item: Optional["Item"] = None
-    """The `Item` that was mentioned."""
+    mentioned_item: Optional[ItemMentionedActivityMentionedItem] = None
+
+    note: Optional[ItemMentionedActivityNote] = None
+
+
+class ItemMergedActivityLinks(BaseModel):
+    self: str
+    """The canonical URL for this object."""
+
+    destination: Optional[str] = None
+    """A link to the `Item` that received the data from the source."""
+
+    initiator: Optional[str] = None
+    """A link to the person that performed the merge."""
+
+
+class ItemMergedActivityDestination(BaseModel):
+    id: str
+
+    type: str
+
+
+class ItemMergedActivityInitiator(BaseModel):
+    id: str
+
+    type: str
+
+
+class ItemMergedActivitySource(BaseModel):
+    id: str
+
+    type: str
+
+
+class ItemMergedActivity(BaseModel):
+    id: str
+    """Unique identifier for the object."""
+
+    links: ItemMergedActivityLinks
+
+    occurred_at: datetime
+    """The time at which the event occurred, as an RFC 3339 timestamp."""
+
+    type: Literal["activity/item_merged"]
+    """The type of activity. Always `activity/item_merged`."""
+
+    destination: Optional[ItemMergedActivityDestination] = None
+    """A pointer to the `Item` that the data was merged into."""
+
+    initiator: Optional[ItemMergedActivityInitiator] = None
+    """The person that performed the merge."""
+
+    source: Optional[ItemMergedActivitySource] = None
+    """A pointer to the source `Item`."""
 
 
 class MeetingHeldActivityLinks(BaseModel):
@@ -200,6 +326,12 @@ class MeetingHeldActivityLinks(BaseModel):
 
     meeting: Optional[str] = None
     """A link to the `Meeting` that was held."""
+
+
+class MeetingHeldActivityMeeting(BaseModel):
+    id: str
+
+    type: str
 
 
 class MeetingHeldActivity(BaseModel):
@@ -214,10 +346,7 @@ class MeetingHeldActivity(BaseModel):
     type: Literal["activity/meeting_held"]
     """The type of activity. Always `activity/meeting_held`."""
 
-    attendees: Optional[List[Attendee]] = None
-    """A list of `Attendee` objects who were part of the meeting."""
-
-    meeting: Optional[Meeting] = None
+    meeting: Optional[MeetingHeldActivityMeeting] = None
     """The `Meeting` object associated with this event."""
 
 
@@ -227,6 +356,12 @@ class MeetingScheduledActivityLinks(BaseModel):
 
     meeting: Optional[str] = None
     """A link to the `Meeting` that was scheduled."""
+
+
+class MeetingScheduledActivityMeeting(BaseModel):
+    id: str
+
+    type: str
 
 
 class MeetingScheduledActivity(BaseModel):
@@ -241,14 +376,8 @@ class MeetingScheduledActivity(BaseModel):
     type: Literal["activity/meeting_scheduled"]
     """The type of activity. Always `activity/meeting_scheduled`."""
 
-    attendees: Optional[List[Attendee]] = None
-    """The list of `Attendee` objects invited to the meeting."""
-
-    meeting: Optional[Meeting] = None
+    meeting: Optional[MeetingScheduledActivityMeeting] = None
     """The `Meeting` object associated with this event."""
-
-    organizer: Optional[Organizer] = None
-    """The `Organizer` of the meeting."""
 
 
 class NoteCreatedActivityLinks(BaseModel):
@@ -265,6 +394,24 @@ class NoteCreatedActivityLinks(BaseModel):
     """A link to the related `Meeting`."""
 
 
+class NoteCreatedActivityNote(BaseModel):
+    id: str
+
+    type: str
+
+
+class NoteCreatedActivityRelatedItem(BaseModel):
+    id: str
+
+    type: str
+
+
+class NoteCreatedActivityRelatedMeeting(BaseModel):
+    id: str
+
+    type: str
+
+
 class NoteCreatedActivity(BaseModel):
     id: str
     """Unique identifier for the object."""
@@ -277,19 +424,34 @@ class NoteCreatedActivity(BaseModel):
     type: Literal["activity/note_created"]
     """The type of activity. Always `activity/note_created`."""
 
-    note: Optional[Note] = None
+    note: Optional[NoteCreatedActivityNote] = None
     """The `Note` object that was created."""
 
-    related_item: Optional["Item"] = None
+    related_item: Optional[NoteCreatedActivityRelatedItem] = None
     """The `Item` this note is related to, if any."""
 
-    related_meeting: Optional[Meeting] = None
+    related_meeting: Optional[NoteCreatedActivityRelatedMeeting] = None
     """The `Meeting` this note is related to, if any."""
 
 
 class ProgramMessageBouncedActivityLinks(BaseModel):
     self: str
     """The canonical URL for this object."""
+
+    recipient: Optional[str] = None
+    """A link to the `Address` of the recipient whose message bounced."""
+
+
+class ProgramMessageBouncedActivityProgramMessage(BaseModel):
+    id: str
+
+    type: str
+
+
+class ProgramMessageBouncedActivityRecipient(BaseModel):
+    id: str
+
+    type: str
 
 
 class ProgramMessageBouncedActivity(BaseModel):
@@ -304,13 +466,34 @@ class ProgramMessageBouncedActivity(BaseModel):
     type: Literal["activity/program_message_bounced"]
     """The type of activity. Always `activity/program_message_bounced`."""
 
-    recipient: Optional[Address] = None
-    """The `Address` of the recipient whose message bounced."""
+    bounce_type: Optional[str] = None
+
+    bounced_recipient_emails: Optional[List[str]] = None
+
+    program_message: Optional[ProgramMessageBouncedActivityProgramMessage] = None
+
+    recipient: Optional[ProgramMessageBouncedActivityRecipient] = None
+    """A link to the `Address` of the recipient whose message bounced."""
 
 
 class ProgramMessageClickedActivityLinks(BaseModel):
     self: str
     """The canonical URL for this object."""
+
+    recipient: Optional[str] = None
+    """A link to the `Address` of the recipient who clicked the link."""
+
+
+class ProgramMessageClickedActivityProgramMessage(BaseModel):
+    id: str
+
+    type: str
+
+
+class ProgramMessageClickedActivityRecipient(BaseModel):
+    id: str
+
+    type: str
 
 
 class ProgramMessageClickedActivity(BaseModel):
@@ -331,13 +514,30 @@ class ProgramMessageClickedActivity(BaseModel):
     link_url_unsafe: Optional[str] = None
     """The URL of the link that was clicked."""
 
-    recipient: Optional[Address] = None
-    """The `Address` of the recipient who clicked the link."""
+    program_message: Optional[ProgramMessageClickedActivityProgramMessage] = None
+
+    recipient: Optional[ProgramMessageClickedActivityRecipient] = None
+    """A link to the `Address` of the recipient who clicked the link."""
 
 
 class ProgramMessageComplainedActivityLinks(BaseModel):
     self: str
     """The canonical URL for this object."""
+
+    recipient: Optional[str] = None
+    """A link to the `Address` of the recipient who complained."""
+
+
+class ProgramMessageComplainedActivityProgramMessage(BaseModel):
+    id: str
+
+    type: str
+
+
+class ProgramMessageComplainedActivityRecipient(BaseModel):
+    id: str
+
+    type: str
 
 
 class ProgramMessageComplainedActivity(BaseModel):
@@ -352,13 +552,30 @@ class ProgramMessageComplainedActivity(BaseModel):
     type: Literal["activity/program_message_complained"]
     """The type of activity. Always `activity/program_message_complained`."""
 
-    recipient: Optional[Address] = None
-    """The `Address` of the recipient who complained."""
+    program_message: Optional[ProgramMessageComplainedActivityProgramMessage] = None
+
+    recipient: Optional[ProgramMessageComplainedActivityRecipient] = None
+    """A link to the `Address` of the recipient who complained."""
 
 
 class ProgramMessageFailedActivityLinks(BaseModel):
     self: str
     """The canonical URL for this object."""
+
+    recipient: Optional[str] = None
+    """A link to the `Address` of the recipient whose message failed."""
+
+
+class ProgramMessageFailedActivityProgramMessage(BaseModel):
+    id: str
+
+    type: str
+
+
+class ProgramMessageFailedActivityRecipient(BaseModel):
+    id: str
+
+    type: str
 
 
 class ProgramMessageFailedActivity(BaseModel):
@@ -373,13 +590,32 @@ class ProgramMessageFailedActivity(BaseModel):
     type: Literal["activity/program_message_failed"]
     """The type of activity. Always `activity/program_message_failed`."""
 
-    recipient: Optional[Address] = None
-    """The `Address` of the recipient whose message failed."""
+    program_message: Optional[ProgramMessageFailedActivityProgramMessage] = None
+
+    reason_code: Optional[str] = None
+
+    recipient: Optional[ProgramMessageFailedActivityRecipient] = None
+    """A link to the `Address` of the recipient whose message failed."""
 
 
 class ProgramMessageOpenedActivityLinks(BaseModel):
     self: str
     """The canonical URL for this object."""
+
+    recipient: Optional[str] = None
+    """A link to the `Address` of the recipient who opened the message."""
+
+
+class ProgramMessageOpenedActivityProgramMessage(BaseModel):
+    id: str
+
+    type: str
+
+
+class ProgramMessageOpenedActivityRecipient(BaseModel):
+    id: str
+
+    type: str
 
 
 class ProgramMessageOpenedActivity(BaseModel):
@@ -394,13 +630,30 @@ class ProgramMessageOpenedActivity(BaseModel):
     type: Literal["activity/program_message_opened"]
     """The type of activity. Always `activity/program_message_opened`."""
 
-    recipient: Optional[Address] = None
-    """The `Address` of the recipient who opened the message."""
+    program_message: Optional[ProgramMessageOpenedActivityProgramMessage] = None
+
+    recipient: Optional[ProgramMessageOpenedActivityRecipient] = None
+    """A link to the `Address` of the recipient who opened the message."""
 
 
 class ProgramMessageSentActivityLinks(BaseModel):
     self: str
     """The canonical URL for this object."""
+
+    recipient: Optional[str] = None
+    """A link to the `Address` of the recipient the message was sent to."""
+
+
+class ProgramMessageSentActivityProgramMessage(BaseModel):
+    id: str
+
+    type: str
+
+
+class ProgramMessageSentActivityRecipient(BaseModel):
+    id: str
+
+    type: str
 
 
 class ProgramMessageSentActivity(BaseModel):
@@ -415,13 +668,32 @@ class ProgramMessageSentActivity(BaseModel):
     type: Literal["activity/program_message_sent"]
     """The type of activity. Always `activity/program_message_sent`."""
 
-    recipient: Optional[Address] = None
-    """The `Address` of the recipient the message was sent to."""
+    program_message: Optional[ProgramMessageSentActivityProgramMessage] = None
+
+    recipient: Optional[ProgramMessageSentActivityRecipient] = None
+    """A link to the `Address` of the recipient the message was sent to."""
+
+    recipient_emails: Optional[List[str]] = None
 
 
 class ProgramMessageShieldedActivityLinks(BaseModel):
     self: str
     """The canonical URL for this object."""
+
+    recipient: Optional[str] = None
+    """A link to the `Address` of the recipient whose message was shielded."""
+
+
+class ProgramMessageShieldedActivityProgramMessage(BaseModel):
+    id: str
+
+    type: str
+
+
+class ProgramMessageShieldedActivityRecipient(BaseModel):
+    id: str
+
+    type: str
 
 
 class ProgramMessageShieldedActivity(BaseModel):
@@ -436,13 +708,32 @@ class ProgramMessageShieldedActivity(BaseModel):
     type: Literal["activity/program_message_shielded"]
     """The type of activity. Always `activity/program_message_shielded`."""
 
-    recipient: Optional[Address] = None
-    """The `Address` of the recipient whose message was shielded."""
+    program_message: Optional[ProgramMessageShieldedActivityProgramMessage] = None
+
+    reason_code: Optional[str] = None
+
+    recipient: Optional[ProgramMessageShieldedActivityRecipient] = None
+    """A link to the `Address` of the recipient whose message was shielded."""
 
 
 class ProgramMessageUnsubscribedActivityLinks(BaseModel):
     self: str
     """The canonical URL for this object."""
+
+    recipient: Optional[str] = None
+    """A link to the `Address` of the recipient who unsubscribed."""
+
+
+class ProgramMessageUnsubscribedActivityProgramMessage(BaseModel):
+    id: str
+
+    type: str
+
+
+class ProgramMessageUnsubscribedActivityRecipient(BaseModel):
+    id: str
+
+    type: str
 
 
 class ProgramMessageUnsubscribedActivity(BaseModel):
@@ -457,8 +748,12 @@ class ProgramMessageUnsubscribedActivity(BaseModel):
     type: Literal["activity/program_message_unsubscribed"]
     """The type of activity. Always `activity/program_message_unsubscribed`."""
 
-    recipient: Optional[Address] = None
-    """The `Address` of the recipient who unsubscribed."""
+    email: Optional[str] = None
+
+    program_message: Optional[ProgramMessageUnsubscribedActivityProgramMessage] = None
+
+    recipient: Optional[ProgramMessageUnsubscribedActivityRecipient] = None
+    """A link to the `Address` of the recipient who unsubscribed."""
 
 
 Activity: TypeAlias = Annotated[
@@ -468,6 +763,7 @@ Activity: TypeAlias = Annotated[
         InboxMessageSentActivity,
         ItemCreatedActivity,
         ItemMentionedActivity,
+        ItemMergedActivity,
         MeetingHeldActivity,
         MeetingScheduledActivity,
         NoteCreatedActivity,
@@ -482,6 +778,3 @@ Activity: TypeAlias = Annotated[
     ],
     PropertyInfo(discriminator="type"),
 ]
-
-from .item import Item
-from .collection import Collection
