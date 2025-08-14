@@ -20,16 +20,16 @@ class TestProgramMessages:
     @parametrize
     def test_method_create(self, client: Moonbase) -> None:
         program_message = client.program_messages.create(
-            person={"email": "person-53@example-53.com"},
-            program_template_id="1CS2gt91vf74NCQpAnnfW1",
+            person={"email": "person-54@example-54.com"},
+            program_template_id="1CS85Sp4fDizR7R9PhcMTc",
         )
         assert_matches_type(ProgramMessageCreateResponse, program_message, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Moonbase) -> None:
         program_message = client.program_messages.create(
-            person={"email": "person-53@example-53.com"},
-            program_template_id="1CS2gt91vf74NCQpAnnfW1",
+            person={"email": "person-54@example-54.com"},
+            program_template_id="1CS85Sp4fDizR7R9PhcMTc",
             custom_variables={"coupon_code": "bar"},
         )
         assert_matches_type(ProgramMessageCreateResponse, program_message, path=["response"])
@@ -37,8 +37,8 @@ class TestProgramMessages:
     @parametrize
     def test_raw_response_create(self, client: Moonbase) -> None:
         response = client.program_messages.with_raw_response.create(
-            person={"email": "person-53@example-53.com"},
-            program_template_id="1CS2gt91vf74NCQpAnnfW1",
+            person={"email": "person-54@example-54.com"},
+            program_template_id="1CS85Sp4fDizR7R9PhcMTc",
         )
 
         assert response.is_closed is True
@@ -49,8 +49,8 @@ class TestProgramMessages:
     @parametrize
     def test_streaming_response_create(self, client: Moonbase) -> None:
         with client.program_messages.with_streaming_response.create(
-            person={"email": "person-53@example-53.com"},
-            program_template_id="1CS2gt91vf74NCQpAnnfW1",
+            person={"email": "person-54@example-54.com"},
+            program_template_id="1CS85Sp4fDizR7R9PhcMTc",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -69,16 +69,16 @@ class TestAsyncProgramMessages:
     @parametrize
     async def test_method_create(self, async_client: AsyncMoonbase) -> None:
         program_message = await async_client.program_messages.create(
-            person={"email": "person-53@example-53.com"},
-            program_template_id="1CS2gt91vf74NCQpAnnfW1",
+            person={"email": "person-54@example-54.com"},
+            program_template_id="1CS85Sp4fDizR7R9PhcMTc",
         )
         assert_matches_type(ProgramMessageCreateResponse, program_message, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncMoonbase) -> None:
         program_message = await async_client.program_messages.create(
-            person={"email": "person-53@example-53.com"},
-            program_template_id="1CS2gt91vf74NCQpAnnfW1",
+            person={"email": "person-54@example-54.com"},
+            program_template_id="1CS85Sp4fDizR7R9PhcMTc",
             custom_variables={"coupon_code": "bar"},
         )
         assert_matches_type(ProgramMessageCreateResponse, program_message, path=["response"])
@@ -86,8 +86,8 @@ class TestAsyncProgramMessages:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncMoonbase) -> None:
         response = await async_client.program_messages.with_raw_response.create(
-            person={"email": "person-53@example-53.com"},
-            program_template_id="1CS2gt91vf74NCQpAnnfW1",
+            person={"email": "person-54@example-54.com"},
+            program_template_id="1CS85Sp4fDizR7R9PhcMTc",
         )
 
         assert response.is_closed is True
@@ -98,8 +98,8 @@ class TestAsyncProgramMessages:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncMoonbase) -> None:
         async with async_client.program_messages.with_streaming_response.create(
-            person={"email": "person-53@example-53.com"},
-            program_template_id="1CS2gt91vf74NCQpAnnfW1",
+            person={"email": "person-54@example-54.com"},
+            program_template_id="1CS85Sp4fDizR7R9PhcMTc",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

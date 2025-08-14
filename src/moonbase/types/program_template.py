@@ -16,7 +16,7 @@ class Links(BaseModel):
     """The canonical URL for this object."""
 
     program: Optional[str] = None
-    """A link to the `Program` using this template."""
+    """The `Program` using this template."""
 
 
 class ProgramTemplate(BaseModel):

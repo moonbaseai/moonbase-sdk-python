@@ -33,8 +33,8 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000006",
-            start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
+            provider_id="openphone_id_000000000008",
+            start_at=parse_datetime("2025-08-14T17:30:13.526Z"),
             status="completed",
         )
         assert_matches_type(Call, call, path=["response"])
@@ -54,11 +54,11 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000006",
-            start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
+            provider_id="openphone_id_000000000008",
+            start_at=parse_datetime("2025-08-14T17:30:13.526Z"),
             status="completed",
-            answered_at=parse_datetime("2025-08-11T21:12:10Z"),
-            end_at=parse_datetime("2025-08-11T21:41:10.467Z"),
+            answered_at=parse_datetime("2025-08-14T17:31:13Z"),
+            end_at=parse_datetime("2025-08-14T18:00:13.526Z"),
             provider_metadata={
                 "answered_by": "bar",
                 "user_id": "bar",
@@ -100,8 +100,8 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000006",
-            start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
+            provider_id="openphone_id_000000000008",
+            start_at=parse_datetime("2025-08-14T17:30:13.526Z"),
             status="completed",
         )
 
@@ -125,8 +125,8 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000006",
-            start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
+            provider_id="openphone_id_000000000008",
+            start_at=parse_datetime("2025-08-14T17:30:13.526Z"),
             status="completed",
         ) as response:
             assert not response.is_closed
@@ -152,8 +152,8 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
-            start_at=parse_datetime("2025-08-11T21:10:54.916Z"),
+            provider_id="openphone_id_000000000004",
+            start_at=parse_datetime("2025-08-14T17:30:08.920Z"),
             status="completed",
         )
         assert_matches_type(Call, call, path=["response"])
@@ -173,11 +173,11 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
-            start_at=parse_datetime("2025-08-11T21:10:54.916Z"),
+            provider_id="openphone_id_000000000004",
+            start_at=parse_datetime("2025-08-14T17:30:08.920Z"),
             status="completed",
-            answered_at=parse_datetime("2025-08-11T21:11:54Z"),
-            end_at=parse_datetime("2025-08-11T21:40:54.916Z"),
+            answered_at=parse_datetime("2025-08-14T17:31:08Z"),
+            end_at=parse_datetime("2025-08-14T18:00:08.920Z"),
             provider_metadata={
                 "answered_by": "bar",
                 "user_id": "bar",
@@ -219,8 +219,8 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
-            start_at=parse_datetime("2025-08-11T21:10:54.916Z"),
+            provider_id="openphone_id_000000000004",
+            start_at=parse_datetime("2025-08-14T17:30:08.920Z"),
             status="completed",
         )
 
@@ -244,8 +244,8 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
-            start_at=parse_datetime("2025-08-11T21:10:54.916Z"),
+            provider_id="openphone_id_000000000004",
+            start_at=parse_datetime("2025-08-14T17:30:08.920Z"),
             status="completed",
         ) as response:
             assert not response.is_closed
@@ -277,8 +277,8 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000006",
-            start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
+            provider_id="openphone_id_000000000008",
+            start_at=parse_datetime("2025-08-14T17:30:13.526Z"),
             status="completed",
         )
         assert_matches_type(Call, call, path=["response"])
@@ -298,11 +298,11 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000006",
-            start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
+            provider_id="openphone_id_000000000008",
+            start_at=parse_datetime("2025-08-14T17:30:13.526Z"),
             status="completed",
-            answered_at=parse_datetime("2025-08-11T21:12:10Z"),
-            end_at=parse_datetime("2025-08-11T21:41:10.467Z"),
+            answered_at=parse_datetime("2025-08-14T17:31:13Z"),
+            end_at=parse_datetime("2025-08-14T18:00:13.526Z"),
             provider_metadata={
                 "answered_by": "bar",
                 "user_id": "bar",
@@ -344,8 +344,8 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000006",
-            start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
+            provider_id="openphone_id_000000000008",
+            start_at=parse_datetime("2025-08-14T17:30:13.526Z"),
             status="completed",
         )
 
@@ -369,8 +369,8 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000006",
-            start_at=parse_datetime("2025-08-11T21:11:10.467Z"),
+            provider_id="openphone_id_000000000008",
+            start_at=parse_datetime("2025-08-14T17:30:13.526Z"),
             status="completed",
         ) as response:
             assert not response.is_closed
@@ -396,8 +396,8 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
-            start_at=parse_datetime("2025-08-11T21:10:54.916Z"),
+            provider_id="openphone_id_000000000004",
+            start_at=parse_datetime("2025-08-14T17:30:08.920Z"),
             status="completed",
         )
         assert_matches_type(Call, call, path=["response"])
@@ -417,11 +417,11 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
-            start_at=parse_datetime("2025-08-11T21:10:54.916Z"),
+            provider_id="openphone_id_000000000004",
+            start_at=parse_datetime("2025-08-14T17:30:08.920Z"),
             status="completed",
-            answered_at=parse_datetime("2025-08-11T21:11:54Z"),
-            end_at=parse_datetime("2025-08-11T21:40:54.916Z"),
+            answered_at=parse_datetime("2025-08-14T17:31:08Z"),
+            end_at=parse_datetime("2025-08-14T18:00:08.920Z"),
             provider_metadata={
                 "answered_by": "bar",
                 "user_id": "bar",
@@ -463,8 +463,8 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
-            start_at=parse_datetime("2025-08-11T21:10:54.916Z"),
+            provider_id="openphone_id_000000000004",
+            start_at=parse_datetime("2025-08-14T17:30:08.920Z"),
             status="completed",
         )
 
@@ -488,8 +488,8 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
-            start_at=parse_datetime("2025-08-11T21:10:54.916Z"),
+            provider_id="openphone_id_000000000004",
+            start_at=parse_datetime("2025-08-14T17:30:08.920Z"),
             status="completed",
         ) as response:
             assert not response.is_closed
