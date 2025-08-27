@@ -32,12 +32,10 @@ client = Moonbase(
     api_key=os.environ.get("MOONBASE_API_KEY"),  # This is the default and can be omitted
 )
 
-program_message = client.program_messages.create(
-    person={"email": "user@example.com"},
-    program_template_id="MOONBASE_PROGRAM_TEMPLATE_ID",
-    custom_variables={},
+page = client.collections.list(
+    limit=10,
 )
-print(program_message.id)
+print(page.data)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -60,12 +58,10 @@ client = AsyncMoonbase(
 
 
 async def main() -> None:
-    program_message = await client.program_messages.create(
-        person={"email": "user@example.com"},
-        program_template_id="MOONBASE_PROGRAM_TEMPLATE_ID",
-        custom_variables={},
+    page = await client.collections.list(
+        limit=10,
     )
-    print(program_message.id)
+    print(page.data)
 
 
 asyncio.run(main())
@@ -97,12 +93,10 @@ async def main() -> None:
         api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
-        program_message = await client.program_messages.create(
-            person={"email": "user@example.com"},
-            program_template_id="MOONBASE_PROGRAM_TEMPLATE_ID",
-            custom_variables={},
+        page = await client.collections.list(
+            limit=10,
         )
-        print(program_message.id)
+        print(page.data)
 
 
 asyncio.run(main())
@@ -128,14 +122,14 @@ from moonbase import Moonbase
 
 client = Moonbase()
 
-all_program_templates = []
+all_collections = []
 # Automatically fetches more pages as needed.
-for program_template in client.program_templates.list(
-    limit=20,
+for collection in client.collections.list(
+    limit=10,
 ):
-    # Do something with program_template here
-    all_program_templates.append(program_template)
-print(all_program_templates)
+    # Do something with collection here
+    all_collections.append(collection)
+print(all_collections)
 ```
 
 Or, asynchronously:
@@ -148,13 +142,13 @@ client = AsyncMoonbase()
 
 
 async def main() -> None:
-    all_program_templates = []
+    all_collections = []
     # Iterate through items across all pages, issuing requests as needed.
-    async for program_template in client.program_templates.list(
-        limit=20,
+    async for collection in client.collections.list(
+        limit=10,
     ):
-        all_program_templates.append(program_template)
-    print(all_program_templates)
+        all_collections.append(collection)
+    print(all_collections)
 
 
 asyncio.run(main())
@@ -163,8 +157,8 @@ asyncio.run(main())
 Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
 
 ```python
-first_page = await client.program_templates.list(
-    limit=20,
+first_page = await client.collections.list(
+    limit=10,
 )
 if first_page.has_next_page():
     print(f"will fetch next page using these details: {first_page.next_page_info()}")
@@ -177,16 +171,18 @@ if first_page.has_next_page():
 Or just work directly with the returned data:
 
 ```python
-first_page = await client.program_templates.list(
-    limit=20,
+first_page = await client.collections.list(
+    limit=10,
 )
 
 print(f"next page cursor: {first_page.meta.cursors.next}")  # => "next page cursor: ..."
-for program_template in first_page.data:
-    print(program_template.id)
+for collection in first_page.data:
+    print(collection.id)
 
 # Remove `await` for non-async usage.
 ```
+
+from datetime import datetime
 
 ## Nested params
 
@@ -197,11 +193,34 @@ from moonbase import Moonbase
 
 client = Moonbase()
 
-program_message = client.program_messages.create(
-    person={"email": "person-57@example-57.com"},
-    program_template_id="1CSFjSwiF8LXS8a3ERBwp3",
+call = client.calls.create(
+    direction="incoming",
+    participants=[
+        {
+            "phone": "+14155551212",
+            "role": "caller",
+        },
+        {
+            "phone": "+16505551212",
+            "role": "callee",
+        },
+    ],
+    provider="openphone",
+    provider_id="openphone_id_000000000001",
+    start_at=datetime.fromisoformat("2025-08-18T18:32:13.332"),
+    status="completed",
+    transcript={
+        "cues": [
+            {
+                "from": 0,
+                "speaker": "speaker",
+                "text": "text",
+                "to": 0,
+            }
+        ]
+    },
 )
-print(program_message.person)
+print(call.transcript)
 ```
 
 ## Handling errors
@@ -220,10 +239,8 @@ from moonbase import Moonbase
 client = Moonbase()
 
 try:
-    client.program_messages.create(
-        person={"email": "user@example.com"},
-        program_template_id="MOONBASE_PROGRAM_TEMPLATE_ID",
-        custom_variables={},
+    client.collections.list(
+        limit=10,
     )
 except moonbase.APIConnectionError as e:
     print("The server could not be reached")
@@ -267,10 +284,8 @@ client = Moonbase(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).program_messages.create(
-    person={"email": "user@example.com"},
-    program_template_id="MOONBASE_PROGRAM_TEMPLATE_ID",
-    custom_variables={},
+client.with_options(max_retries=5).collections.list(
+    limit=10,
 )
 ```
 
@@ -294,10 +309,8 @@ client = Moonbase(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).program_messages.create(
-    person={"email": "user@example.com"},
-    program_template_id="MOONBASE_PROGRAM_TEMPLATE_ID",
-    custom_variables={},
+client.with_options(timeout=5.0).collections.list(
+    limit=10,
 )
 ```
 
@@ -339,17 +352,13 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from moonbase import Moonbase
 
 client = Moonbase()
-response = client.program_messages.with_raw_response.create(
-    person={
-        "email": "user@example.com"
-    },
-    program_template_id="MOONBASE_PROGRAM_TEMPLATE_ID",
-    custom_variables={},
+response = client.collections.with_raw_response.list(
+    limit=10,
 )
 print(response.headers.get('X-My-Header'))
 
-program_message = response.parse()  # get the object that `program_messages.create()` would have returned
-print(program_message.id)
+collection = response.parse()  # get the object that `collections.list()` would have returned
+print(collection.id)
 ```
 
 These methods return an [`APIResponse`](https://github.com/moonbaseai/moonbase-sdk-python/tree/main/src/moonbase/_response.py) object.
@@ -363,10 +372,8 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.program_messages.with_streaming_response.create(
-    person={"email": "user@example.com"},
-    program_template_id="MOONBASE_PROGRAM_TEMPLATE_ID",
-    custom_variables={},
+with client.collections.with_streaming_response.list(
+    limit=10,
 ) as response:
     print(response.headers.get("X-My-Header"))
 
