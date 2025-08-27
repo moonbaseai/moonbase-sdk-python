@@ -32,10 +32,10 @@ client = Moonbase(
     api_key=os.environ.get("MOONBASE_API_KEY"),  # This is the default and can be omitted
 )
 
-page = client.collections.list(
-    limit=10,
+collection = client.collections.retrieve(
+    id="organizations",
 )
-print(page.data)
+print(collection.id)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -58,10 +58,10 @@ client = AsyncMoonbase(
 
 
 async def main() -> None:
-    page = await client.collections.list(
-        limit=10,
+    collection = await client.collections.retrieve(
+        id="organizations",
     )
-    print(page.data)
+    print(collection.id)
 
 
 asyncio.run(main())
@@ -93,10 +93,10 @@ async def main() -> None:
         api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
-        page = await client.collections.list(
-            limit=10,
+        collection = await client.collections.retrieve(
+            id="organizations",
         )
-        print(page.data)
+        print(collection.id)
 
 
 asyncio.run(main())
@@ -239,8 +239,8 @@ from moonbase import Moonbase
 client = Moonbase()
 
 try:
-    client.collections.list(
-        limit=10,
+    client.collections.retrieve(
+        id="organizations",
     )
 except moonbase.APIConnectionError as e:
     print("The server could not be reached")
@@ -284,8 +284,8 @@ client = Moonbase(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).collections.list(
-    limit=10,
+client.with_options(max_retries=5).collections.retrieve(
+    id="organizations",
 )
 ```
 
@@ -309,8 +309,8 @@ client = Moonbase(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).collections.list(
-    limit=10,
+client.with_options(timeout=5.0).collections.retrieve(
+    id="organizations",
 )
 ```
 
@@ -352,12 +352,12 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from moonbase import Moonbase
 
 client = Moonbase()
-response = client.collections.with_raw_response.list(
-    limit=10,
+response = client.collections.with_raw_response.retrieve(
+    id="organizations",
 )
 print(response.headers.get('X-My-Header'))
 
-collection = response.parse()  # get the object that `collections.list()` would have returned
+collection = response.parse()  # get the object that `collections.retrieve()` would have returned
 print(collection.id)
 ```
 
@@ -372,8 +372,8 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.collections.with_streaming_response.list(
-    limit=10,
+with client.collections.with_streaming_response.retrieve(
+    id="organizations",
 ) as response:
     print(response.headers.get("X-My-Header"))
 
