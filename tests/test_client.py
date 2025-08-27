@@ -24,7 +24,7 @@ from pydantic import ValidationError
 from moonbase import Moonbase, AsyncMoonbase, APIResponseValidationError
 from moonbase._types import Omit
 from moonbase._models import BaseModel, FinalRequestOptions
-from moonbase._exceptions import MoonbaseError, APIStatusError, APIResponseValidationError
+from moonbase._exceptions import MoonbaseError, APIStatusError, APITimeoutError, APIResponseValidationError
 from moonbase._base_client import (
     DEFAULT_TIMEOUT,
     HTTPX_DEFAULT_TIMEOUT,
@@ -48,6 +48,14 @@ def _get_params(client: BaseClient[Any, Any]) -> dict[str, str]:
 
 def _low_retry_timeout(*_args: Any, **_kwargs: Any) -> float:
     return 0.1
+
+
+def _get_open_connections(client: Moonbase | AsyncMoonbase) -> int:
+    transport = client._client._transport
+    assert isinstance(transport, httpx.HTTPTransport) or isinstance(transport, httpx.AsyncHTTPTransport)
+
+    pool = transport._pool
+    return len(pool._requests)
 
 
 class TestMoonbase:
@@ -703,6 +711,25 @@ class TestMoonbase:
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
+    @mock.patch("moonbase._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
+    def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: Moonbase) -> None:
+        respx_mock.get("/collections/id").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+
+        with pytest.raises(APITimeoutError):
+            client.collections.with_streaming_response.retrieve(id="id").__enter__()
+
+        assert _get_open_connections(self.client) == 0
+
+    @mock.patch("moonbase._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
+    def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: Moonbase) -> None:
+        respx_mock.get("/collections/id").mock(return_value=httpx.Response(500))
+
+        with pytest.raises(APIStatusError):
+            client.collections.with_streaming_response.retrieve(id="id").__enter__()
+        assert _get_open_connections(self.client) == 0
+
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
     @mock.patch("moonbase._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
@@ -727,9 +754,9 @@ class TestMoonbase:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/collections").mock(side_effect=retry_handler)
+        respx_mock.get("/collections/id").mock(side_effect=retry_handler)
 
-        response = client.collections.with_raw_response.list()
+        response = client.collections.with_raw_response.retrieve(id="id")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -751,9 +778,11 @@ class TestMoonbase:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/collections").mock(side_effect=retry_handler)
+        respx_mock.get("/collections/id").mock(side_effect=retry_handler)
 
-        response = client.collections.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
+        response = client.collections.with_raw_response.retrieve(
+            id="id", extra_headers={"x-stainless-retry-count": Omit()}
+        )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -774,9 +803,11 @@ class TestMoonbase:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/collections").mock(side_effect=retry_handler)
+        respx_mock.get("/collections/id").mock(side_effect=retry_handler)
 
-        response = client.collections.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
+        response = client.collections.with_raw_response.retrieve(
+            id="id", extra_headers={"x-stainless-retry-count": "42"}
+        )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
@@ -1499,6 +1530,29 @@ class TestAsyncMoonbase:
         calculated = client._calculate_retry_timeout(remaining_retries, options, headers)
         assert calculated == pytest.approx(timeout, 0.5 * 0.875)  # pyright: ignore[reportUnknownMemberType]
 
+    @mock.patch("moonbase._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
+    async def test_retrying_timeout_errors_doesnt_leak(
+        self, respx_mock: MockRouter, async_client: AsyncMoonbase
+    ) -> None:
+        respx_mock.get("/collections/id").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+
+        with pytest.raises(APITimeoutError):
+            await async_client.collections.with_streaming_response.retrieve(id="id").__aenter__()
+
+        assert _get_open_connections(self.client) == 0
+
+    @mock.patch("moonbase._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
+    @pytest.mark.respx(base_url=base_url)
+    async def test_retrying_status_errors_doesnt_leak(
+        self, respx_mock: MockRouter, async_client: AsyncMoonbase
+    ) -> None:
+        respx_mock.get("/collections/id").mock(return_value=httpx.Response(500))
+
+        with pytest.raises(APIStatusError):
+            await async_client.collections.with_streaming_response.retrieve(id="id").__aenter__()
+        assert _get_open_connections(self.client) == 0
+
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
     @mock.patch("moonbase._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
@@ -1524,9 +1578,9 @@ class TestAsyncMoonbase:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/collections").mock(side_effect=retry_handler)
+        respx_mock.get("/collections/id").mock(side_effect=retry_handler)
 
-        response = await client.collections.with_raw_response.list()
+        response = await client.collections.with_raw_response.retrieve(id="id")
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1549,9 +1603,11 @@ class TestAsyncMoonbase:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/collections").mock(side_effect=retry_handler)
+        respx_mock.get("/collections/id").mock(side_effect=retry_handler)
 
-        response = await client.collections.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
+        response = await client.collections.with_raw_response.retrieve(
+            id="id", extra_headers={"x-stainless-retry-count": Omit()}
+        )
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -1573,9 +1629,11 @@ class TestAsyncMoonbase:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/collections").mock(side_effect=retry_handler)
+        respx_mock.get("/collections/id").mock(side_effect=retry_handler)
 
-        response = await client.collections.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
+        response = await client.collections.with_raw_response.retrieve(
+            id="id", extra_headers={"x-stainless-retry-count": "42"}
+        )
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
