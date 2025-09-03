@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, TypedDict
 
+from .._types import SequenceNotStr
+
 __all__ = ["InboxConversationListParams"]
 
 
@@ -23,7 +25,7 @@ class InboxConversationListParams(TypedDict, total=False):
     previous page of results.
     """
 
-    inbox: List[str]
+    inbox: SequenceNotStr[str]
     """Filter conversations by one or more inbox IDs."""
 
     include: List[Literal["addresses", "tags"]]
