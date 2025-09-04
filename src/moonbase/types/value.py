@@ -7,7 +7,7 @@ from typing_extensions import Annotated, TypeAlias, TypeAliasType
 
 from .choice import Choice
 from .._utils import PropertyInfo
-from .._compat import PYDANTIC_V2
+from .._compat import PYDANTIC_V1
 from .geo_value import GeoValue
 from .url_value import URLValue
 from .date_value import DateValue
@@ -28,7 +28,7 @@ from .social_linked_in_value import SocialLinkedInValue
 
 __all__ = ["Value"]
 
-if TYPE_CHECKING or PYDANTIC_V2:
+if TYPE_CHECKING or not PYDANTIC_V1:
     Value = TypeAliasType(
         "Value",
         Annotated[

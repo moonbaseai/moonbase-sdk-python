@@ -6,7 +6,7 @@ from typing import TYPE_CHECKING, List, Union
 from typing_extensions import TypeAlias, TypeAliasType
 
 from .choice import Choice
-from .._compat import PYDANTIC_V2
+from .._compat import PYDANTIC_V1
 from .geo_value import GeoValue
 from .url_value import URLValue
 from .date_value import DateValue
@@ -27,7 +27,7 @@ from .social_linked_in_value import SocialLinkedInValue
 
 __all__ = ["FieldValue"]
 
-if TYPE_CHECKING or PYDANTIC_V2:
+if TYPE_CHECKING or not PYDANTIC_V1:
     FieldValue = TypeAliasType(
         "FieldValue",
         Union[
