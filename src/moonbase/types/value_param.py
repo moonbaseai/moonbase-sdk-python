@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Union
 from typing_extensions import TypeAlias, TypeAliasType
 
-from .._compat import PYDANTIC_V2
+from .._compat import PYDANTIC_V1
 from .choice_param import ChoiceParam
 from .geo_value_param import GeoValueParam
 from .url_value_param import URLValueParam
@@ -27,7 +27,7 @@ from .social_linked_in_value_param import SocialLinkedInValueParam
 
 __all__ = ["ValueParam"]
 
-if TYPE_CHECKING or PYDANTIC_V2:
+if TYPE_CHECKING or not PYDANTIC_V1:
     ValueParam = TypeAliasType(
         "ValueParam",
         Union[

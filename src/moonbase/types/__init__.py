@@ -100,16 +100,7 @@ from .inbox_conversation_retrieve_params import InboxConversationRetrieveParams 
 # This ensures that, when building the deferred (due to cyclical references) model schema,
 # Pydantic can resolve the necessary references.
 # See: https://github.com/pydantic/pydantic/issues/11250 for more context.
-if _compat.PYDANTIC_V2:
-    collection.Collection.model_rebuild(_parent_namespace_depth=0)
-    form.Form.model_rebuild(_parent_namespace_depth=0)
-    item.Item.model_rebuild(_parent_namespace_depth=0)
-    relation_value.RelationValue.model_rebuild(_parent_namespace_depth=0)
-    program_message_create_response.ProgramMessageCreateResponse.model_rebuild(_parent_namespace_depth=0)
-    program_template.ProgramTemplate.model_rebuild(_parent_namespace_depth=0)
-    program.Program.model_rebuild(_parent_namespace_depth=0)
-    view.View.model_rebuild(_parent_namespace_depth=0)
-else:
+if _compat.PYDANTIC_V1:
     collection.Collection.update_forward_refs()  # type: ignore
     form.Form.update_forward_refs()  # type: ignore
     item.Item.update_forward_refs()  # type: ignore
@@ -118,3 +109,12 @@ else:
     program_template.ProgramTemplate.update_forward_refs()  # type: ignore
     program.Program.update_forward_refs()  # type: ignore
     view.View.update_forward_refs()  # type: ignore
+else:
+    collection.Collection.model_rebuild(_parent_namespace_depth=0)
+    form.Form.model_rebuild(_parent_namespace_depth=0)
+    item.Item.model_rebuild(_parent_namespace_depth=0)
+    relation_value.RelationValue.model_rebuild(_parent_namespace_depth=0)
+    program_message_create_response.ProgramMessageCreateResponse.model_rebuild(_parent_namespace_depth=0)
+    program_template.ProgramTemplate.model_rebuild(_parent_namespace_depth=0)
+    program.Program.model_rebuild(_parent_namespace_depth=0)
+    view.View.model_rebuild(_parent_namespace_depth=0)
