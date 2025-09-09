@@ -15,7 +15,12 @@ class FunnelStepParam(TypedDict, total=False):
     """The name of the step."""
 
     step_type: Required[Literal["active", "success", "failure"]]
-    """The type of step, which can be `active`, `success`, or `failure`."""
+    """The status of the step in the funnel flow.
+
+    - `active`: represents an in progress state within the funnel
+    - `success`: completed successfully and exited the funnel
+    - `failure`: exited the funnel without conversion
+    """
 
     type: Required[Literal["funnel_step"]]
     """String representing the object’s type. Always `funnel_step` for this object."""
