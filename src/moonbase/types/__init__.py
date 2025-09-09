@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from . import form, item, view, program, collection, relation_value, program_template, program_message_create_response
+from .. import _compat
 from .call import Call as Call
 from .form import Form as Form
 from .item import Item as Item
@@ -92,3 +94,26 @@ from .inbox_conversation_list_params import InboxConversationListParams as Inbox
 from .program_message_create_response import ProgramMessageCreateResponse as ProgramMessageCreateResponse
 from .program_template_retrieve_params import ProgramTemplateRetrieveParams as ProgramTemplateRetrieveParams
 from .inbox_conversation_retrieve_params import InboxConversationRetrieveParams as InboxConversationRetrieveParams
+
+# Rebuild cyclical models only after all modules are imported.
+# This ensures that, when building the deferred (due to cyclical references) model schema,
+# Pydantic can resolve the necessary references.
+# See: https://github.com/pydantic/pydantic/issues/11250 for more context.
+if _compat.PYDANTIC_V2:
+    collection.Collection.model_rebuild(_parent_namespace_depth=0)
+    form.Form.model_rebuild(_parent_namespace_depth=0)
+    item.Item.model_rebuild(_parent_namespace_depth=0)
+    relation_value.RelationValue.model_rebuild(_parent_namespace_depth=0)
+    program_message_create_response.ProgramMessageCreateResponse.model_rebuild(_parent_namespace_depth=0)
+    program_template.ProgramTemplate.model_rebuild(_parent_namespace_depth=0)
+    program.Program.model_rebuild(_parent_namespace_depth=0)
+    view.View.model_rebuild(_parent_namespace_depth=0)
+else:
+    collection.Collection.update_forward_refs()  # type: ignore
+    form.Form.update_forward_refs()  # type: ignore
+    item.Item.update_forward_refs()  # type: ignore
+    relation_value.RelationValue.update_forward_refs()  # type: ignore
+    program_message_create_response.ProgramMessageCreateResponse.update_forward_refs()  # type: ignore
+    program_template.ProgramTemplate.update_forward_refs()  # type: ignore
+    program.Program.update_forward_refs()  # type: ignore
+    view.View.update_forward_refs()  # type: ignore

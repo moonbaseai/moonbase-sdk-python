@@ -6,7 +6,6 @@ from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 
 __all__ = ["ProgramTemplate", "Links"]
@@ -49,10 +48,3 @@ class ProgramTemplate(BaseModel):
 
 
 from .program import Program
-
-if PYDANTIC_V2:
-    ProgramTemplate.model_rebuild()
-    Links.model_rebuild()
-else:
-    ProgramTemplate.update_forward_refs()  # type: ignore
-    Links.update_forward_refs()  # type: ignore

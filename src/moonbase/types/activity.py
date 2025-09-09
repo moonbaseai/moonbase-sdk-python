@@ -11,7 +11,6 @@ from .note import Note
 from .._utils import PropertyInfo
 from .address import Address
 from .meeting import Meeting
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 from .attendee import Attendee
 from .organizer import Organizer
@@ -486,70 +485,3 @@ Activity: TypeAlias = Annotated[
 
 from .item import Item
 from .collection import Collection
-
-if PYDANTIC_V2:
-    CallOccurredActivity.model_rebuild()
-    CallOccurredActivityLinks.model_rebuild()
-    FormSubmittedActivity.model_rebuild()
-    FormSubmittedActivityLinks.model_rebuild()
-    InboxMessageSentActivity.model_rebuild()
-    InboxMessageSentActivityLinks.model_rebuild()
-    ItemCreatedActivity.model_rebuild()
-    ItemCreatedActivityLinks.model_rebuild()
-    ItemMentionedActivity.model_rebuild()
-    ItemMentionedActivityLinks.model_rebuild()
-    MeetingHeldActivity.model_rebuild()
-    MeetingHeldActivityLinks.model_rebuild()
-    MeetingScheduledActivity.model_rebuild()
-    MeetingScheduledActivityLinks.model_rebuild()
-    NoteCreatedActivity.model_rebuild()
-    NoteCreatedActivityLinks.model_rebuild()
-    ProgramMessageBouncedActivity.model_rebuild()
-    ProgramMessageBouncedActivityLinks.model_rebuild()
-    ProgramMessageClickedActivity.model_rebuild()
-    ProgramMessageClickedActivityLinks.model_rebuild()
-    ProgramMessageComplainedActivity.model_rebuild()
-    ProgramMessageComplainedActivityLinks.model_rebuild()
-    ProgramMessageFailedActivity.model_rebuild()
-    ProgramMessageFailedActivityLinks.model_rebuild()
-    ProgramMessageOpenedActivity.model_rebuild()
-    ProgramMessageOpenedActivityLinks.model_rebuild()
-    ProgramMessageSentActivity.model_rebuild()
-    ProgramMessageSentActivityLinks.model_rebuild()
-    ProgramMessageShieldedActivity.model_rebuild()
-    ProgramMessageShieldedActivityLinks.model_rebuild()
-    ProgramMessageUnsubscribedActivity.model_rebuild()
-    ProgramMessageUnsubscribedActivityLinks.model_rebuild()
-else:
-    CallOccurredActivity.update_forward_refs()  # type: ignore
-    CallOccurredActivityLinks.update_forward_refs()  # type: ignore
-    FormSubmittedActivity.update_forward_refs()  # type: ignore
-    FormSubmittedActivityLinks.update_forward_refs()  # type: ignore
-    InboxMessageSentActivity.update_forward_refs()  # type: ignore
-    InboxMessageSentActivityLinks.update_forward_refs()  # type: ignore
-    ItemCreatedActivity.update_forward_refs()  # type: ignore
-    ItemCreatedActivityLinks.update_forward_refs()  # type: ignore
-    ItemMentionedActivity.update_forward_refs()  # type: ignore
-    ItemMentionedActivityLinks.update_forward_refs()  # type: ignore
-    MeetingHeldActivity.update_forward_refs()  # type: ignore
-    MeetingHeldActivityLinks.update_forward_refs()  # type: ignore
-    MeetingScheduledActivity.update_forward_refs()  # type: ignore
-    MeetingScheduledActivityLinks.update_forward_refs()  # type: ignore
-    NoteCreatedActivity.update_forward_refs()  # type: ignore
-    NoteCreatedActivityLinks.update_forward_refs()  # type: ignore
-    ProgramMessageBouncedActivity.update_forward_refs()  # type: ignore
-    ProgramMessageBouncedActivityLinks.update_forward_refs()  # type: ignore
-    ProgramMessageClickedActivity.update_forward_refs()  # type: ignore
-    ProgramMessageClickedActivityLinks.update_forward_refs()  # type: ignore
-    ProgramMessageComplainedActivity.update_forward_refs()  # type: ignore
-    ProgramMessageComplainedActivityLinks.update_forward_refs()  # type: ignore
-    ProgramMessageFailedActivity.update_forward_refs()  # type: ignore
-    ProgramMessageFailedActivityLinks.update_forward_refs()  # type: ignore
-    ProgramMessageOpenedActivity.update_forward_refs()  # type: ignore
-    ProgramMessageOpenedActivityLinks.update_forward_refs()  # type: ignore
-    ProgramMessageSentActivity.update_forward_refs()  # type: ignore
-    ProgramMessageSentActivityLinks.update_forward_refs()  # type: ignore
-    ProgramMessageShieldedActivity.update_forward_refs()  # type: ignore
-    ProgramMessageShieldedActivityLinks.update_forward_refs()  # type: ignore
-    ProgramMessageUnsubscribedActivity.update_forward_refs()  # type: ignore
-    ProgramMessageUnsubscribedActivityLinks.update_forward_refs()  # type: ignore
