@@ -9,10 +9,7 @@ __all__ = ["RelationValue"]
 
 
 class RelationValue(BaseModel):
-    item: ItemPointer
-    """
-    A reference to an `Item` within a specific `Collection`, providing the context
-    needed to locate the item.
-    """
+    data: ItemPointer
+    """A reference to another Moonbase item."""
 
     type: Literal["value/relation"]
