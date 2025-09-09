@@ -8,6 +8,7 @@ __all__ = ["DomainValueParam"]
 
 
 class DomainValueParam(TypedDict, total=False):
-    domain: Required[str]
+    data: Required[str]
+    """A valid internet domain name, without protocol (e.g., 'https://') or path."""
 
     type: Required[Literal["value/uri/domain"]]

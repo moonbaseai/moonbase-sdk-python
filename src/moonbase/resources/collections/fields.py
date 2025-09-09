@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -67,12 +69,15 @@ class FieldsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return self._get(
-            f"/collections/{collection_id}/fields/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        return cast(
+            Field,
+            self._get(
+                f"/collections/{collection_id}/fields/{id}",
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(Any, Field),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=Field,
         )
 
 
@@ -124,12 +129,15 @@ class AsyncFieldsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return await self._get(
-            f"/collections/{collection_id}/fields/{id}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        return cast(
+            Field,
+            await self._get(
+                f"/collections/{collection_id}/fields/{id}",
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(Any, Field),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=Field,
         )
 
 

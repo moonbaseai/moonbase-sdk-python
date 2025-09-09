@@ -4,18 +4,18 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["FunnelStepParam", "Step"]
-
-
-class Step(TypedDict, total=False):
-    id: Required[str]
-
-    type: Required[Literal["funnel_step"]]
-
-    name: str
+__all__ = ["FunnelStepParam"]
 
 
 class FunnelStepParam(TypedDict, total=False):
-    step: Required[Step]
+    id: Required[str]
+    """Unique identifier for the object."""
 
-    type: Required[Literal["value/funnel_step"]]
+    name: Required[str]
+    """The name of the step."""
+
+    step_type: Required[Literal["active", "success", "failure"]]
+    """The type of step, which can be `active`, `success`, or `failure`."""
+
+    type: Required[Literal["funnel_step"]]
+    """String representing the object’s type. Always `funnel_step` for this object."""

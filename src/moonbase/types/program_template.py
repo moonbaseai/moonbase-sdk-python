@@ -7,26 +7,20 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.formatted_text import FormattedText
 
-__all__ = ["ProgramTemplate", "Links"]
-
-
-class Links(BaseModel):
-    self: str
-    """The canonical URL for this object."""
-
-    program: Optional[str] = None
-    """The `Program` using this template."""
+__all__ = ["ProgramTemplate"]
 
 
 class ProgramTemplate(BaseModel):
     id: str
     """Unique identifier for the object."""
 
-    body: str
+    body: FormattedText
     """The body content of the email, which can include Liquid variables."""
 
-    links: Links
+    created_at: datetime
+    """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
 
     subject: str
     """The subject line of the email, which can include Liquid variables."""
@@ -37,14 +31,14 @@ class ProgramTemplate(BaseModel):
     Always `program_template` for this object.
     """
 
-    created_at: Optional[datetime] = None
-    """Time at which the object was created, as an RFC 3339 timestamp."""
+    updated_at: datetime
+    """Time at which the object was last updated, as an ISO 8601 timestamp in UTC."""
 
     program: Optional["Program"] = None
-    """The `Program` that uses this template."""
+    """The `Program` that uses this template.
 
-    updated_at: Optional[datetime] = None
-    """Time at which the object was last updated, as an RFC 3339 timestamp."""
+    **Note:** Only present when requested using the `include` query parameter.
+    """
 
 
 from .program import Program

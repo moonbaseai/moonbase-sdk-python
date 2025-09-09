@@ -3,29 +3,20 @@
 from __future__ import annotations
 
 from typing import Optional
+from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["View", "Links"]
-
-
-class Links(BaseModel):
-    collection: str
-    """A link to the `Collection` this view belongs to."""
-
-    items: str
-    """A link to the list of `Item` objects that are visible in this view."""
-
-    self: str
-    """The canonical URL for this object."""
+__all__ = ["View"]
 
 
 class View(BaseModel):
     id: str
     """Unique identifier for the object."""
 
-    links: Links
+    created_at: datetime
+    """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
 
     name: str
     """The name of the view."""
@@ -33,11 +24,17 @@ class View(BaseModel):
     type: Literal["view"]
     """String representing the object’s type. Always `view` for this object."""
 
-    collection: Optional["Collection"] = None
-    """The `Collection` this view belongs to."""
+    updated_at: datetime
+    """Time at which the object was last updated, as an ISO 8601 timestamp in UTC."""
 
-    view_type: Optional[Literal["table", "board"]] = None
+    view_type: Literal["table", "board"]
     """The type of view, such as `table` or `board`."""
+
+    collection: Optional["Collection"] = None
+    """The `Collection` this view belongs to.
+
+    **Note:** Only present when requested using the `include` query parameter.
+    """
 
 
 from .collection import Collection

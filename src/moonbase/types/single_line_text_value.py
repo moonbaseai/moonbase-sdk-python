@@ -8,6 +8,10 @@ __all__ = ["SingleLineTextValue"]
 
 
 class SingleLineTextValue(BaseModel):
-    text: str
+    data: str
+    """A single line of text, up to 1024 characters long.
+
+    It should not contain line breaks.
+    """
 
     type: Literal["value/text/single_line"]

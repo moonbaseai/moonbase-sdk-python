@@ -8,43 +8,21 @@ from .._models import BaseModel
 from .attendee import Attendee
 from .organizer import Organizer
 
-__all__ = ["Meeting", "Links"]
-
-
-class Links(BaseModel):
-    self: str
-    """The canonical URL for this object."""
-
-    note: Optional[str] = None
-    """A link to an associated `Note` object."""
-
-    recording_url: Optional[str] = None
-    """A temporary, signed URL to download the meeting recording.
-
-    The URL expires after one hour.
-    """
-
-    summary: Optional[str] = None
-    """A link to a long-form summary of the meeting."""
-
-    transcript_url: Optional[str] = None
-    """A temporary, signed URL to download the meeting transcript.
-
-    The URL expires after one hour.
-    """
+__all__ = ["Meeting"]
 
 
 class Meeting(BaseModel):
     id: str
     """Unique identifier for the object."""
 
+    created_at: datetime
+    """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
+
     end_at: datetime
-    """The end time of the meeting, as an RFC 3339 timestamp."""
+    """The end time of the meeting, as an ISO 8601 timestamp in UTC."""
 
     i_cal_uid: str
     """The globally unique iCalendar UID for the meeting event."""
-
-    links: Links
 
     provider_id: str
     """
@@ -53,7 +31,7 @@ class Meeting(BaseModel):
     """
 
     start_at: datetime
-    """The start time of the meeting, as an RFC 3339 timestamp."""
+    """The start time of the meeting, as an ISO 8601 timestamp in UTC."""
 
     time_zone: str
     """
@@ -64,11 +42,14 @@ class Meeting(BaseModel):
     type: Literal["meeting"]
     """String representing the object’s type. Always `meeting` for this object."""
 
-    attendees: Optional[List[Attendee]] = None
-    """A list of `Attendee` objects for the meeting."""
+    updated_at: datetime
+    """Time at which the object was last updated, as an ISO 8601 timestamp in UTC."""
 
-    created_at: Optional[datetime] = None
-    """Time at which the object was created, as an RFC 3339 timestamp."""
+    attendees: Optional[List[Attendee]] = None
+    """A list of `Attendee` objects for the meeting.
+
+    **Note:** Only present when requested using the `include` query parameter.
+    """
 
     description: Optional[str] = None
     """A detailed description or agenda for the meeting."""
@@ -80,10 +61,19 @@ class Meeting(BaseModel):
     """The physical or virtual location of the meeting."""
 
     organizer: Optional[Organizer] = None
-    """The `Organizer` of the meeting."""
+    """The `Organizer` of the meeting.
+
+    **Note:** Only present when requested using the `include` query parameter.
+    """
 
     provider_uri: Optional[str] = None
     """A URL to access the meeting in the external provider's system."""
+
+    recording_url: Optional[str] = None
+    """A temporary, signed URL to download the meeting recording.
+
+    The URL expires after one hour.
+    """
 
     summary_ante: Optional[str] = None
     """A summary or notes generated before the meeting."""
@@ -94,5 +84,8 @@ class Meeting(BaseModel):
     title: Optional[str] = None
     """The title or subject of the meeting."""
 
-    updated_at: Optional[datetime] = None
-    """Time at which the object was last updated, as an RFC 3339 timestamp."""
+    transcript_url: Optional[str] = None
+    """A temporary, signed URL to download the meeting transcript.
+
+    The URL expires after one hour.
+    """

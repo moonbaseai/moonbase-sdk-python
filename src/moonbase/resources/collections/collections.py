@@ -7,6 +7,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .items import (
+    ItemsResource,
+    AsyncItemsResource,
+    ItemsResourceWithRawResponse,
+    AsyncItemsResourceWithRawResponse,
+    ItemsResourceWithStreamingResponse,
+    AsyncItemsResourceWithStreamingResponse,
+)
 from .fields import (
     FieldsResource,
     AsyncFieldsResource,
@@ -39,6 +47,10 @@ class CollectionsResource(SyncAPIResource):
         return FieldsResource(self._client)
 
     @cached_property
+    def items(self) -> ItemsResource:
+        return ItemsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> CollectionsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -61,7 +73,7 @@ class CollectionsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        include: List[Literal["fields", "views"]] | NotGiven = NOT_GIVEN,
+        include: List[Literal["views"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -73,8 +85,7 @@ class CollectionsResource(SyncAPIResource):
         Retrieves the details of an existing collection.
 
         Args:
-          include: Specifies which related objects to include in the response. Valid options are
-              `fields` and `views`.
+          include: Specifies which related objects to include in the response.
 
           extra_headers: Send extra headers
 
@@ -161,6 +172,10 @@ class AsyncCollectionsResource(AsyncAPIResource):
         return AsyncFieldsResource(self._client)
 
     @cached_property
+    def items(self) -> AsyncItemsResource:
+        return AsyncItemsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncCollectionsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -183,7 +198,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        include: List[Literal["fields", "views"]] | NotGiven = NOT_GIVEN,
+        include: List[Literal["views"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -195,8 +210,7 @@ class AsyncCollectionsResource(AsyncAPIResource):
         Retrieves the details of an existing collection.
 
         Args:
-          include: Specifies which related objects to include in the response. Valid options are
-              `fields` and `views`.
+          include: Specifies which related objects to include in the response.
 
           extra_headers: Send extra headers
 
@@ -294,6 +308,10 @@ class CollectionsResourceWithRawResponse:
     def fields(self) -> FieldsResourceWithRawResponse:
         return FieldsResourceWithRawResponse(self._collections.fields)
 
+    @cached_property
+    def items(self) -> ItemsResourceWithRawResponse:
+        return ItemsResourceWithRawResponse(self._collections.items)
+
 
 class AsyncCollectionsResourceWithRawResponse:
     def __init__(self, collections: AsyncCollectionsResource) -> None:
@@ -309,6 +327,10 @@ class AsyncCollectionsResourceWithRawResponse:
     @cached_property
     def fields(self) -> AsyncFieldsResourceWithRawResponse:
         return AsyncFieldsResourceWithRawResponse(self._collections.fields)
+
+    @cached_property
+    def items(self) -> AsyncItemsResourceWithRawResponse:
+        return AsyncItemsResourceWithRawResponse(self._collections.items)
 
 
 class CollectionsResourceWithStreamingResponse:
@@ -326,6 +348,10 @@ class CollectionsResourceWithStreamingResponse:
     def fields(self) -> FieldsResourceWithStreamingResponse:
         return FieldsResourceWithStreamingResponse(self._collections.fields)
 
+    @cached_property
+    def items(self) -> ItemsResourceWithStreamingResponse:
+        return ItemsResourceWithStreamingResponse(self._collections.items)
+
 
 class AsyncCollectionsResourceWithStreamingResponse:
     def __init__(self, collections: AsyncCollectionsResource) -> None:
@@ -341,3 +367,7 @@ class AsyncCollectionsResourceWithStreamingResponse:
     @cached_property
     def fields(self) -> AsyncFieldsResourceWithStreamingResponse:
         return AsyncFieldsResourceWithStreamingResponse(self._collections.fields)
+
+    @cached_property
+    def items(self) -> AsyncItemsResourceWithStreamingResponse:
+        return AsyncItemsResourceWithStreamingResponse(self._collections.items)

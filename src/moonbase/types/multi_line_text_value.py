@@ -8,6 +8,10 @@ __all__ = ["MultiLineTextValue"]
 
 
 class MultiLineTextValue(BaseModel):
-    text: str
+    data: str
+    """Text which may contain line breaks, can be up to 65,536 characters long.
+
+    Do not use markdown formatting, just plain text.
+    """
 
     type: Literal["value/text/multi_line"]

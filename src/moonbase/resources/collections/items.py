@@ -7,20 +7,21 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import item_create_params, item_update_params, item_upsert_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..types.item import Item
-from .._base_client import make_request_options
-from ..types.field_value_param import FieldValueParam
+from ...pagination import SyncCursorPage, AsyncCursorPage
+from ...types.item import Item
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.collections import item_list_params, item_create_params, item_update_params, item_upsert_params
+from ...types.field_value_param import FieldValueParam
 
 __all__ = ["ItemsResource", "AsyncItemsResource"]
 
@@ -47,8 +48,8 @@ class ItemsResource(SyncAPIResource):
 
     def create(
         self,
-        *,
         collection_id: str,
+        *,
         values: Dict[str, Optional[FieldValueParam]],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -61,8 +62,6 @@ class ItemsResource(SyncAPIResource):
         Creates a new item in a collection.
 
         Args:
-          collection_id: The ID of the `Collection` to create the item in.
-
           values: A hash where keys are the `ref` of a `Field` and values are the data to be set.
 
           extra_headers: Send extra headers
@@ -73,15 +72,11 @@ class ItemsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         return self._post(
-            "/items",
-            body=maybe_transform(
-                {
-                    "collection_id": collection_id,
-                    "values": values,
-                },
-                item_create_params.ItemCreateParams,
-            ),
+            f"/collections/{collection_id}/items",
+            body=maybe_transform({"values": values}, item_create_params.ItemCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -92,6 +87,7 @@ class ItemsResource(SyncAPIResource):
         self,
         id: str,
         *,
+        collection_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -111,10 +107,12 @@ class ItemsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/items/{id}",
+            f"/collections/{collection_id}/items/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -125,6 +123,7 @@ class ItemsResource(SyncAPIResource):
         self,
         id: str,
         *,
+        collection_id: str,
         values: Dict[str, Optional[FieldValueParam]],
         update_many_strategy: Literal["replace", "preserve", "merge"] | NotGiven = NOT_GIVEN,
         update_one_strategy: Literal["replace", "preserve"] | NotGiven = NOT_GIVEN,
@@ -150,6 +149,8 @@ class ItemsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {
@@ -162,7 +163,7 @@ class ItemsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._patch(
-            f"/items/{id}",
+            f"/collections/{collection_id}/items/{id}",
             body=maybe_transform({"values": values}, item_update_params.ItemUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -170,17 +171,77 @@ class ItemsResource(SyncAPIResource):
             cast_to=Item,
         )
 
-    def delete(
+    def list(
         self,
-        id: str,
+        collection_id: str,
         *,
+        after: str | NotGiven = NOT_GIVEN,
+        before: str | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Item:
+    ) -> SyncCursorPage[Item]:
+        """
+        Returns a list of items that are part of the collection.
+
+        Args:
+          after: When specified, returns results starting immediately after the item identified
+              by this cursor. Use the cursor value from the previous response's metadata to
+              fetch the next page of results.
+
+          before: When specified, returns results starting immediately before the item identified
+              by this cursor. Use the cursor value from the response's metadata to fetch the
+              previous page of results.
+
+          limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
+              to 20 if not specified.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
+        return self._get_api_list(
+            f"/collections/{collection_id}/items",
+            page=SyncCursorPage[Item],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "limit": limit,
+                    },
+                    item_list_params.ItemListParams,
+                ),
+            ),
+            model=Item,
+        )
+
+    def delete(
+        self,
+        id: str,
+        *,
+        collection_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
         """
         Permanently deletes an item.
 
@@ -193,20 +254,23 @@ class ItemsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/items/{id}",
+            f"/collections/{collection_id}/items/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Item,
+            cast_to=NoneType,
         )
 
     def upsert(
         self,
-        *,
         collection_id: str,
+        *,
         identifiers: Dict[str, Optional[FieldValueParam]],
         values: Dict[str, Optional[FieldValueParam]],
         update_many_strategy: Literal["replace", "preserve", "merge"] | NotGiven = NOT_GIVEN,
@@ -222,8 +286,6 @@ class ItemsResource(SyncAPIResource):
         Find and update an existing item, or create a new one.
 
         Args:
-          collection_id: The ID of the `Collection` to create the item in.
-
           identifiers: A hash where keys are the `ref` of a `Field` and values are used to identify the
               item to update. When multiple identifiers are provided, the update will find
               items that match any of the identifiers.
@@ -238,6 +300,8 @@ class ItemsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         extra_headers = {
             **strip_not_given(
                 {
@@ -248,10 +312,9 @@ class ItemsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._post(
-            "/items/upsert",
+            f"/collections/{collection_id}/items/upsert",
             body=maybe_transform(
                 {
-                    "collection_id": collection_id,
                     "identifiers": identifiers,
                     "values": values,
                 },
@@ -286,8 +349,8 @@ class AsyncItemsResource(AsyncAPIResource):
 
     async def create(
         self,
-        *,
         collection_id: str,
+        *,
         values: Dict[str, Optional[FieldValueParam]],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -300,8 +363,6 @@ class AsyncItemsResource(AsyncAPIResource):
         Creates a new item in a collection.
 
         Args:
-          collection_id: The ID of the `Collection` to create the item in.
-
           values: A hash where keys are the `ref` of a `Field` and values are the data to be set.
 
           extra_headers: Send extra headers
@@ -312,15 +373,11 @@ class AsyncItemsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         return await self._post(
-            "/items",
-            body=await async_maybe_transform(
-                {
-                    "collection_id": collection_id,
-                    "values": values,
-                },
-                item_create_params.ItemCreateParams,
-            ),
+            f"/collections/{collection_id}/items",
+            body=await async_maybe_transform({"values": values}, item_create_params.ItemCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -331,6 +388,7 @@ class AsyncItemsResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        collection_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -350,10 +408,12 @@ class AsyncItemsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/items/{id}",
+            f"/collections/{collection_id}/items/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -364,6 +424,7 @@ class AsyncItemsResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        collection_id: str,
         values: Dict[str, Optional[FieldValueParam]],
         update_many_strategy: Literal["replace", "preserve", "merge"] | NotGiven = NOT_GIVEN,
         update_one_strategy: Literal["replace", "preserve"] | NotGiven = NOT_GIVEN,
@@ -389,6 +450,8 @@ class AsyncItemsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {
@@ -401,7 +464,7 @@ class AsyncItemsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._patch(
-            f"/items/{id}",
+            f"/collections/{collection_id}/items/{id}",
             body=await async_maybe_transform({"values": values}, item_update_params.ItemUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -409,17 +472,77 @@ class AsyncItemsResource(AsyncAPIResource):
             cast_to=Item,
         )
 
-    async def delete(
+    def list(
         self,
-        id: str,
+        collection_id: str,
         *,
+        after: str | NotGiven = NOT_GIVEN,
+        before: str | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Item:
+    ) -> AsyncPaginator[Item, AsyncCursorPage[Item]]:
+        """
+        Returns a list of items that are part of the collection.
+
+        Args:
+          after: When specified, returns results starting immediately after the item identified
+              by this cursor. Use the cursor value from the previous response's metadata to
+              fetch the next page of results.
+
+          before: When specified, returns results starting immediately before the item identified
+              by this cursor. Use the cursor value from the response's metadata to fetch the
+              previous page of results.
+
+          limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
+              to 20 if not specified.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
+        return self._get_api_list(
+            f"/collections/{collection_id}/items",
+            page=AsyncCursorPage[Item],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "limit": limit,
+                    },
+                    item_list_params.ItemListParams,
+                ),
+            ),
+            model=Item,
+        )
+
+    async def delete(
+        self,
+        id: str,
+        *,
+        collection_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
         """
         Permanently deletes an item.
 
@@ -432,20 +555,23 @@ class AsyncItemsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/items/{id}",
+            f"/collections/{collection_id}/items/{id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=Item,
+            cast_to=NoneType,
         )
 
     async def upsert(
         self,
-        *,
         collection_id: str,
+        *,
         identifiers: Dict[str, Optional[FieldValueParam]],
         values: Dict[str, Optional[FieldValueParam]],
         update_many_strategy: Literal["replace", "preserve", "merge"] | NotGiven = NOT_GIVEN,
@@ -461,8 +587,6 @@ class AsyncItemsResource(AsyncAPIResource):
         Find and update an existing item, or create a new one.
 
         Args:
-          collection_id: The ID of the `Collection` to create the item in.
-
           identifiers: A hash where keys are the `ref` of a `Field` and values are used to identify the
               item to update. When multiple identifiers are provided, the update will find
               items that match any of the identifiers.
@@ -477,6 +601,8 @@ class AsyncItemsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         extra_headers = {
             **strip_not_given(
                 {
@@ -487,10 +613,9 @@ class AsyncItemsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._post(
-            "/items/upsert",
+            f"/collections/{collection_id}/items/upsert",
             body=await async_maybe_transform(
                 {
-                    "collection_id": collection_id,
                     "identifiers": identifiers,
                     "values": values,
                 },
@@ -516,6 +641,9 @@ class ItemsResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             items.update,
         )
+        self.list = to_raw_response_wrapper(
+            items.list,
+        )
         self.delete = to_raw_response_wrapper(
             items.delete,
         )
@@ -536,6 +664,9 @@ class AsyncItemsResourceWithRawResponse:
         )
         self.update = async_to_raw_response_wrapper(
             items.update,
+        )
+        self.list = async_to_raw_response_wrapper(
+            items.list,
         )
         self.delete = async_to_raw_response_wrapper(
             items.delete,
@@ -558,6 +689,9 @@ class ItemsResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             items.update,
         )
+        self.list = to_streamed_response_wrapper(
+            items.list,
+        )
         self.delete = to_streamed_response_wrapper(
             items.delete,
         )
@@ -578,6 +712,9 @@ class AsyncItemsResourceWithStreamingResponse:
         )
         self.update = async_to_streamed_response_wrapper(
             items.update,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            items.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             items.delete,

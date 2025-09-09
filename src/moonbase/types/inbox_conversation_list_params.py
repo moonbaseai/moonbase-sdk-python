@@ -5,9 +5,7 @@ from __future__ import annotations
 from typing import List
 from typing_extensions import Literal, TypedDict
 
-from .._types import SequenceNotStr
-
-__all__ = ["InboxConversationListParams"]
+__all__ = ["InboxConversationListParams", "Filter", "FilterConversationID", "FilterInboxID"]
 
 
 class InboxConversationListParams(TypedDict, total=False):
@@ -25,13 +23,12 @@ class InboxConversationListParams(TypedDict, total=False):
     previous page of results.
     """
 
-    inbox: SequenceNotStr[str]
-    """Filter conversations by one or more inbox IDs."""
+    filter: Filter
 
-    include: List[Literal["addresses", "tags"]]
+    include: List[Literal["inbox", "messages", "messages.addresses"]]
     """Specifies which related objects to include in the response.
 
-    Valid options are `addresses` and `tags`.
+    Valid options are `inbox`, `messages`, and `messages.addresses`.
     """
 
     limit: int
@@ -39,3 +36,17 @@ class InboxConversationListParams(TypedDict, total=False):
 
     Must be between 1 and 100. Defaults to 20 if not specified.
     """
+
+
+class FilterConversationID(TypedDict, total=False):
+    eq: str
+
+
+class FilterInboxID(TypedDict, total=False):
+    eq: str
+
+
+class Filter(TypedDict, total=False):
+    conversation_id: FilterConversationID
+
+    inbox_id: FilterInboxID

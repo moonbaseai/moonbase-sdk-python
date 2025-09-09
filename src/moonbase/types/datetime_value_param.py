@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-import datetime as _datetime
 from typing import Union
+from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
@@ -12,6 +12,6 @@ __all__ = ["DatetimeValueParam"]
 
 
 class DatetimeValueParam(TypedDict, total=False):
-    datetime: Required[Annotated[Union[str, _datetime.datetime], PropertyInfo(format="iso8601")]]
+    data: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
     type: Required[Literal["value/datetime"]]

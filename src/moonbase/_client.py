@@ -25,7 +25,6 @@ from .resources import (
     calls,
     files,
     forms,
-    items,
     notes,
     inboxes,
     tagsets,
@@ -35,6 +34,7 @@ from .resources import (
     inbox_messages,
     program_messages,
     program_templates,
+    webhook_endpoints,
     inbox_conversations,
 )
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
@@ -60,22 +60,22 @@ __all__ = [
 
 
 class Moonbase(SyncAPIClient):
-    activities: activities.ActivitiesResource
-    calls: calls.CallsResource
     collections: collections.CollectionsResource
-    files: files.FilesResource
-    forms: forms.FormsResource
+    views: views.ViewsResource
+    inboxes: inboxes.InboxesResource
     inbox_conversations: inbox_conversations.InboxConversationsResource
     inbox_messages: inbox_messages.InboxMessagesResource
-    inboxes: inboxes.InboxesResource
-    items: items.ItemsResource
+    tagsets: tagsets.TagsetsResource
+    programs: programs.ProgramsResource
+    program_templates: program_templates.ProgramTemplatesResource
+    program_messages: program_messages.ProgramMessagesResource
+    forms: forms.FormsResource
+    activities: activities.ActivitiesResource
+    calls: calls.CallsResource
+    files: files.FilesResource
     meetings: meetings.MeetingsResource
     notes: notes.NotesResource
-    program_messages: program_messages.ProgramMessagesResource
-    program_templates: program_templates.ProgramTemplatesResource
-    programs: programs.ProgramsResource
-    tagsets: tagsets.TagsetsResource
-    views: views.ViewsResource
+    webhook_endpoints: webhook_endpoints.WebhookEndpointsResource
     with_raw_response: MoonbaseWithRawResponse
     with_streaming_response: MoonbaseWithStreamedResponse
 
@@ -133,22 +133,22 @@ class Moonbase(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.activities = activities.ActivitiesResource(self)
-        self.calls = calls.CallsResource(self)
         self.collections = collections.CollectionsResource(self)
-        self.files = files.FilesResource(self)
-        self.forms = forms.FormsResource(self)
+        self.views = views.ViewsResource(self)
+        self.inboxes = inboxes.InboxesResource(self)
         self.inbox_conversations = inbox_conversations.InboxConversationsResource(self)
         self.inbox_messages = inbox_messages.InboxMessagesResource(self)
-        self.inboxes = inboxes.InboxesResource(self)
-        self.items = items.ItemsResource(self)
+        self.tagsets = tagsets.TagsetsResource(self)
+        self.programs = programs.ProgramsResource(self)
+        self.program_templates = program_templates.ProgramTemplatesResource(self)
+        self.program_messages = program_messages.ProgramMessagesResource(self)
+        self.forms = forms.FormsResource(self)
+        self.activities = activities.ActivitiesResource(self)
+        self.calls = calls.CallsResource(self)
+        self.files = files.FilesResource(self)
         self.meetings = meetings.MeetingsResource(self)
         self.notes = notes.NotesResource(self)
-        self.program_messages = program_messages.ProgramMessagesResource(self)
-        self.program_templates = program_templates.ProgramTemplatesResource(self)
-        self.programs = programs.ProgramsResource(self)
-        self.tagsets = tagsets.TagsetsResource(self)
-        self.views = views.ViewsResource(self)
+        self.webhook_endpoints = webhook_endpoints.WebhookEndpointsResource(self)
         self.with_raw_response = MoonbaseWithRawResponse(self)
         self.with_streaming_response = MoonbaseWithStreamedResponse(self)
 
@@ -258,22 +258,22 @@ class Moonbase(SyncAPIClient):
 
 
 class AsyncMoonbase(AsyncAPIClient):
-    activities: activities.AsyncActivitiesResource
-    calls: calls.AsyncCallsResource
     collections: collections.AsyncCollectionsResource
-    files: files.AsyncFilesResource
-    forms: forms.AsyncFormsResource
+    views: views.AsyncViewsResource
+    inboxes: inboxes.AsyncInboxesResource
     inbox_conversations: inbox_conversations.AsyncInboxConversationsResource
     inbox_messages: inbox_messages.AsyncInboxMessagesResource
-    inboxes: inboxes.AsyncInboxesResource
-    items: items.AsyncItemsResource
+    tagsets: tagsets.AsyncTagsetsResource
+    programs: programs.AsyncProgramsResource
+    program_templates: program_templates.AsyncProgramTemplatesResource
+    program_messages: program_messages.AsyncProgramMessagesResource
+    forms: forms.AsyncFormsResource
+    activities: activities.AsyncActivitiesResource
+    calls: calls.AsyncCallsResource
+    files: files.AsyncFilesResource
     meetings: meetings.AsyncMeetingsResource
     notes: notes.AsyncNotesResource
-    program_messages: program_messages.AsyncProgramMessagesResource
-    program_templates: program_templates.AsyncProgramTemplatesResource
-    programs: programs.AsyncProgramsResource
-    tagsets: tagsets.AsyncTagsetsResource
-    views: views.AsyncViewsResource
+    webhook_endpoints: webhook_endpoints.AsyncWebhookEndpointsResource
     with_raw_response: AsyncMoonbaseWithRawResponse
     with_streaming_response: AsyncMoonbaseWithStreamedResponse
 
@@ -331,22 +331,22 @@ class AsyncMoonbase(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.activities = activities.AsyncActivitiesResource(self)
-        self.calls = calls.AsyncCallsResource(self)
         self.collections = collections.AsyncCollectionsResource(self)
-        self.files = files.AsyncFilesResource(self)
-        self.forms = forms.AsyncFormsResource(self)
+        self.views = views.AsyncViewsResource(self)
+        self.inboxes = inboxes.AsyncInboxesResource(self)
         self.inbox_conversations = inbox_conversations.AsyncInboxConversationsResource(self)
         self.inbox_messages = inbox_messages.AsyncInboxMessagesResource(self)
-        self.inboxes = inboxes.AsyncInboxesResource(self)
-        self.items = items.AsyncItemsResource(self)
+        self.tagsets = tagsets.AsyncTagsetsResource(self)
+        self.programs = programs.AsyncProgramsResource(self)
+        self.program_templates = program_templates.AsyncProgramTemplatesResource(self)
+        self.program_messages = program_messages.AsyncProgramMessagesResource(self)
+        self.forms = forms.AsyncFormsResource(self)
+        self.activities = activities.AsyncActivitiesResource(self)
+        self.calls = calls.AsyncCallsResource(self)
+        self.files = files.AsyncFilesResource(self)
         self.meetings = meetings.AsyncMeetingsResource(self)
         self.notes = notes.AsyncNotesResource(self)
-        self.program_messages = program_messages.AsyncProgramMessagesResource(self)
-        self.program_templates = program_templates.AsyncProgramTemplatesResource(self)
-        self.programs = programs.AsyncProgramsResource(self)
-        self.tagsets = tagsets.AsyncTagsetsResource(self)
-        self.views = views.AsyncViewsResource(self)
+        self.webhook_endpoints = webhook_endpoints.AsyncWebhookEndpointsResource(self)
         self.with_raw_response = AsyncMoonbaseWithRawResponse(self)
         self.with_streaming_response = AsyncMoonbaseWithStreamedResponse(self)
 
@@ -457,98 +457,104 @@ class AsyncMoonbase(AsyncAPIClient):
 
 class MoonbaseWithRawResponse:
     def __init__(self, client: Moonbase) -> None:
-        self.activities = activities.ActivitiesResourceWithRawResponse(client.activities)
-        self.calls = calls.CallsResourceWithRawResponse(client.calls)
         self.collections = collections.CollectionsResourceWithRawResponse(client.collections)
-        self.files = files.FilesResourceWithRawResponse(client.files)
-        self.forms = forms.FormsResourceWithRawResponse(client.forms)
+        self.views = views.ViewsResourceWithRawResponse(client.views)
+        self.inboxes = inboxes.InboxesResourceWithRawResponse(client.inboxes)
         self.inbox_conversations = inbox_conversations.InboxConversationsResourceWithRawResponse(
             client.inbox_conversations
         )
         self.inbox_messages = inbox_messages.InboxMessagesResourceWithRawResponse(client.inbox_messages)
-        self.inboxes = inboxes.InboxesResourceWithRawResponse(client.inboxes)
-        self.items = items.ItemsResourceWithRawResponse(client.items)
+        self.tagsets = tagsets.TagsetsResourceWithRawResponse(client.tagsets)
+        self.programs = programs.ProgramsResourceWithRawResponse(client.programs)
+        self.program_templates = program_templates.ProgramTemplatesResourceWithRawResponse(client.program_templates)
+        self.program_messages = program_messages.ProgramMessagesResourceWithRawResponse(client.program_messages)
+        self.forms = forms.FormsResourceWithRawResponse(client.forms)
+        self.activities = activities.ActivitiesResourceWithRawResponse(client.activities)
+        self.calls = calls.CallsResourceWithRawResponse(client.calls)
+        self.files = files.FilesResourceWithRawResponse(client.files)
         self.meetings = meetings.MeetingsResourceWithRawResponse(client.meetings)
         self.notes = notes.NotesResourceWithRawResponse(client.notes)
-        self.program_messages = program_messages.ProgramMessagesResourceWithRawResponse(client.program_messages)
-        self.program_templates = program_templates.ProgramTemplatesResourceWithRawResponse(client.program_templates)
-        self.programs = programs.ProgramsResourceWithRawResponse(client.programs)
-        self.tagsets = tagsets.TagsetsResourceWithRawResponse(client.tagsets)
-        self.views = views.ViewsResourceWithRawResponse(client.views)
+        self.webhook_endpoints = webhook_endpoints.WebhookEndpointsResourceWithRawResponse(client.webhook_endpoints)
 
 
 class AsyncMoonbaseWithRawResponse:
     def __init__(self, client: AsyncMoonbase) -> None:
-        self.activities = activities.AsyncActivitiesResourceWithRawResponse(client.activities)
-        self.calls = calls.AsyncCallsResourceWithRawResponse(client.calls)
         self.collections = collections.AsyncCollectionsResourceWithRawResponse(client.collections)
-        self.files = files.AsyncFilesResourceWithRawResponse(client.files)
-        self.forms = forms.AsyncFormsResourceWithRawResponse(client.forms)
+        self.views = views.AsyncViewsResourceWithRawResponse(client.views)
+        self.inboxes = inboxes.AsyncInboxesResourceWithRawResponse(client.inboxes)
         self.inbox_conversations = inbox_conversations.AsyncInboxConversationsResourceWithRawResponse(
             client.inbox_conversations
         )
         self.inbox_messages = inbox_messages.AsyncInboxMessagesResourceWithRawResponse(client.inbox_messages)
-        self.inboxes = inboxes.AsyncInboxesResourceWithRawResponse(client.inboxes)
-        self.items = items.AsyncItemsResourceWithRawResponse(client.items)
-        self.meetings = meetings.AsyncMeetingsResourceWithRawResponse(client.meetings)
-        self.notes = notes.AsyncNotesResourceWithRawResponse(client.notes)
-        self.program_messages = program_messages.AsyncProgramMessagesResourceWithRawResponse(client.program_messages)
+        self.tagsets = tagsets.AsyncTagsetsResourceWithRawResponse(client.tagsets)
+        self.programs = programs.AsyncProgramsResourceWithRawResponse(client.programs)
         self.program_templates = program_templates.AsyncProgramTemplatesResourceWithRawResponse(
             client.program_templates
         )
-        self.programs = programs.AsyncProgramsResourceWithRawResponse(client.programs)
-        self.tagsets = tagsets.AsyncTagsetsResourceWithRawResponse(client.tagsets)
-        self.views = views.AsyncViewsResourceWithRawResponse(client.views)
+        self.program_messages = program_messages.AsyncProgramMessagesResourceWithRawResponse(client.program_messages)
+        self.forms = forms.AsyncFormsResourceWithRawResponse(client.forms)
+        self.activities = activities.AsyncActivitiesResourceWithRawResponse(client.activities)
+        self.calls = calls.AsyncCallsResourceWithRawResponse(client.calls)
+        self.files = files.AsyncFilesResourceWithRawResponse(client.files)
+        self.meetings = meetings.AsyncMeetingsResourceWithRawResponse(client.meetings)
+        self.notes = notes.AsyncNotesResourceWithRawResponse(client.notes)
+        self.webhook_endpoints = webhook_endpoints.AsyncWebhookEndpointsResourceWithRawResponse(
+            client.webhook_endpoints
+        )
 
 
 class MoonbaseWithStreamedResponse:
     def __init__(self, client: Moonbase) -> None:
-        self.activities = activities.ActivitiesResourceWithStreamingResponse(client.activities)
-        self.calls = calls.CallsResourceWithStreamingResponse(client.calls)
         self.collections = collections.CollectionsResourceWithStreamingResponse(client.collections)
-        self.files = files.FilesResourceWithStreamingResponse(client.files)
-        self.forms = forms.FormsResourceWithStreamingResponse(client.forms)
+        self.views = views.ViewsResourceWithStreamingResponse(client.views)
+        self.inboxes = inboxes.InboxesResourceWithStreamingResponse(client.inboxes)
         self.inbox_conversations = inbox_conversations.InboxConversationsResourceWithStreamingResponse(
             client.inbox_conversations
         )
         self.inbox_messages = inbox_messages.InboxMessagesResourceWithStreamingResponse(client.inbox_messages)
-        self.inboxes = inboxes.InboxesResourceWithStreamingResponse(client.inboxes)
-        self.items = items.ItemsResourceWithStreamingResponse(client.items)
-        self.meetings = meetings.MeetingsResourceWithStreamingResponse(client.meetings)
-        self.notes = notes.NotesResourceWithStreamingResponse(client.notes)
-        self.program_messages = program_messages.ProgramMessagesResourceWithStreamingResponse(client.program_messages)
+        self.tagsets = tagsets.TagsetsResourceWithStreamingResponse(client.tagsets)
+        self.programs = programs.ProgramsResourceWithStreamingResponse(client.programs)
         self.program_templates = program_templates.ProgramTemplatesResourceWithStreamingResponse(
             client.program_templates
         )
-        self.programs = programs.ProgramsResourceWithStreamingResponse(client.programs)
-        self.tagsets = tagsets.TagsetsResourceWithStreamingResponse(client.tagsets)
-        self.views = views.ViewsResourceWithStreamingResponse(client.views)
+        self.program_messages = program_messages.ProgramMessagesResourceWithStreamingResponse(client.program_messages)
+        self.forms = forms.FormsResourceWithStreamingResponse(client.forms)
+        self.activities = activities.ActivitiesResourceWithStreamingResponse(client.activities)
+        self.calls = calls.CallsResourceWithStreamingResponse(client.calls)
+        self.files = files.FilesResourceWithStreamingResponse(client.files)
+        self.meetings = meetings.MeetingsResourceWithStreamingResponse(client.meetings)
+        self.notes = notes.NotesResourceWithStreamingResponse(client.notes)
+        self.webhook_endpoints = webhook_endpoints.WebhookEndpointsResourceWithStreamingResponse(
+            client.webhook_endpoints
+        )
 
 
 class AsyncMoonbaseWithStreamedResponse:
     def __init__(self, client: AsyncMoonbase) -> None:
-        self.activities = activities.AsyncActivitiesResourceWithStreamingResponse(client.activities)
-        self.calls = calls.AsyncCallsResourceWithStreamingResponse(client.calls)
         self.collections = collections.AsyncCollectionsResourceWithStreamingResponse(client.collections)
-        self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
-        self.forms = forms.AsyncFormsResourceWithStreamingResponse(client.forms)
+        self.views = views.AsyncViewsResourceWithStreamingResponse(client.views)
+        self.inboxes = inboxes.AsyncInboxesResourceWithStreamingResponse(client.inboxes)
         self.inbox_conversations = inbox_conversations.AsyncInboxConversationsResourceWithStreamingResponse(
             client.inbox_conversations
         )
         self.inbox_messages = inbox_messages.AsyncInboxMessagesResourceWithStreamingResponse(client.inbox_messages)
-        self.inboxes = inboxes.AsyncInboxesResourceWithStreamingResponse(client.inboxes)
-        self.items = items.AsyncItemsResourceWithStreamingResponse(client.items)
-        self.meetings = meetings.AsyncMeetingsResourceWithStreamingResponse(client.meetings)
-        self.notes = notes.AsyncNotesResourceWithStreamingResponse(client.notes)
-        self.program_messages = program_messages.AsyncProgramMessagesResourceWithStreamingResponse(
-            client.program_messages
-        )
+        self.tagsets = tagsets.AsyncTagsetsResourceWithStreamingResponse(client.tagsets)
+        self.programs = programs.AsyncProgramsResourceWithStreamingResponse(client.programs)
         self.program_templates = program_templates.AsyncProgramTemplatesResourceWithStreamingResponse(
             client.program_templates
         )
-        self.programs = programs.AsyncProgramsResourceWithStreamingResponse(client.programs)
-        self.tagsets = tagsets.AsyncTagsetsResourceWithStreamingResponse(client.tagsets)
-        self.views = views.AsyncViewsResourceWithStreamingResponse(client.views)
+        self.program_messages = program_messages.AsyncProgramMessagesResourceWithStreamingResponse(
+            client.program_messages
+        )
+        self.forms = forms.AsyncFormsResourceWithStreamingResponse(client.forms)
+        self.activities = activities.AsyncActivitiesResourceWithStreamingResponse(client.activities)
+        self.calls = calls.AsyncCallsResourceWithStreamingResponse(client.calls)
+        self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
+        self.meetings = meetings.AsyncMeetingsResourceWithStreamingResponse(client.meetings)
+        self.notes = notes.AsyncNotesResourceWithStreamingResponse(client.notes)
+        self.webhook_endpoints = webhook_endpoints.AsyncWebhookEndpointsResourceWithStreamingResponse(
+            client.webhook_endpoints
+        )
 
 
 Client = Moonbase

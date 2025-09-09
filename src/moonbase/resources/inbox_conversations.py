@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import inbox_conversation_list_params, inbox_conversation_retrieve_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,7 +49,7 @@ class InboxConversationsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        include: List[Literal["addresses", "tags"]] | NotGiven = NOT_GIVEN,
+        include: List[Literal["inbox", "messages", "messages.addresses"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -62,7 +62,7 @@ class InboxConversationsResource(SyncAPIResource):
 
         Args:
           include: Specifies which related objects to include in the response. Valid options are
-              `addresses` and `tags`.
+              `inbox`, `messages`, and `messages.addresses`.
 
           extra_headers: Send extra headers
 
@@ -93,8 +93,8 @@ class InboxConversationsResource(SyncAPIResource):
         *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
-        inbox: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        include: List[Literal["addresses", "tags"]] | NotGiven = NOT_GIVEN,
+        filter: inbox_conversation_list_params.Filter | NotGiven = NOT_GIVEN,
+        include: List[Literal["inbox", "messages", "messages.addresses"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -115,10 +115,8 @@ class InboxConversationsResource(SyncAPIResource):
               by this cursor. Use the cursor value from the response's metadata to fetch the
               previous page of results.
 
-          inbox: Filter conversations by one or more inbox IDs.
-
           include: Specifies which related objects to include in the response. Valid options are
-              `addresses` and `tags`.
+              `inbox`, `messages`, and `messages.addresses`.
 
           limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
               to 20 if not specified.
@@ -143,7 +141,7 @@ class InboxConversationsResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "inbox": inbox,
+                        "filter": filter,
                         "include": include,
                         "limit": limit,
                     },
@@ -178,7 +176,7 @@ class AsyncInboxConversationsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        include: List[Literal["addresses", "tags"]] | NotGiven = NOT_GIVEN,
+        include: List[Literal["inbox", "messages", "messages.addresses"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -191,7 +189,7 @@ class AsyncInboxConversationsResource(AsyncAPIResource):
 
         Args:
           include: Specifies which related objects to include in the response. Valid options are
-              `addresses` and `tags`.
+              `inbox`, `messages`, and `messages.addresses`.
 
           extra_headers: Send extra headers
 
@@ -222,8 +220,8 @@ class AsyncInboxConversationsResource(AsyncAPIResource):
         *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
-        inbox: SequenceNotStr[str] | NotGiven = NOT_GIVEN,
-        include: List[Literal["addresses", "tags"]] | NotGiven = NOT_GIVEN,
+        filter: inbox_conversation_list_params.Filter | NotGiven = NOT_GIVEN,
+        include: List[Literal["inbox", "messages", "messages.addresses"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -244,10 +242,8 @@ class AsyncInboxConversationsResource(AsyncAPIResource):
               by this cursor. Use the cursor value from the response's metadata to fetch the
               previous page of results.
 
-          inbox: Filter conversations by one or more inbox IDs.
-
           include: Specifies which related objects to include in the response. Valid options are
-              `addresses` and `tags`.
+              `inbox`, `messages`, and `messages.addresses`.
 
           limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
               to 20 if not specified.
@@ -272,7 +268,7 @@ class AsyncInboxConversationsResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "inbox": inbox,
+                        "filter": filter,
                         "include": include,
                         "limit": limit,
                     },

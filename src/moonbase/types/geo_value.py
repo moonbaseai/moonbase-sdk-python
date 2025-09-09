@@ -8,6 +8,10 @@ __all__ = ["GeoValue"]
 
 
 class GeoValue(BaseModel):
-    geo: str
+    data: str
+    """A string that represents some geographic location.
+
+    The exact format may vary based on context.
+    """
 
     type: Literal["value/geo"]

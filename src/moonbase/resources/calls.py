@@ -52,22 +52,8 @@ class CallsResource(SyncAPIResource):
         participants: Iterable[call_create_params.Participant],
         provider: str,
         provider_id: str,
+        provider_status: str,
         start_at: Union[str, datetime],
-        status: Literal[
-            "queued",
-            "initiated",
-            "ringing",
-            "in_progress",
-            "completed",
-            "busy",
-            "failed",
-            "no_answer",
-            "canceled",
-            "missed",
-            "answered",
-            "forwarded",
-            "abandoned",
-        ],
         answered_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         end_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         provider_metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
@@ -92,13 +78,13 @@ class CallsResource(SyncAPIResource):
 
           provider_id: The unique identifier for the call from the provider's system.
 
-          start_at: The time the call started, as an RFC 3339 timestamp.
+          provider_status: The status of the call.
 
-          status: The status of the call.
+          start_at: The time the call started, as an ISO 8601 timestamp in UTC.
 
-          answered_at: The time the call was answered, as an RFC 3339 timestamp.
+          answered_at: The time the call was answered, as an ISO 8601 timestamp in UTC.
 
-          end_at: The time the call ended, as an RFC 3339 timestamp.
+          end_at: The time the call ended, as an ISO 8601 timestamp in UTC.
 
           provider_metadata: A hash of additional metadata from the provider.
 
@@ -122,8 +108,8 @@ class CallsResource(SyncAPIResource):
                     "participants": participants,
                     "provider": provider,
                     "provider_id": provider_id,
+                    "provider_status": provider_status,
                     "start_at": start_at,
-                    "status": status,
                     "answered_at": answered_at,
                     "end_at": end_at,
                     "provider_metadata": provider_metadata,
@@ -145,22 +131,8 @@ class CallsResource(SyncAPIResource):
         participants: Iterable[call_upsert_params.Participant],
         provider: str,
         provider_id: str,
+        provider_status: str,
         start_at: Union[str, datetime],
-        status: Literal[
-            "queued",
-            "initiated",
-            "ringing",
-            "in_progress",
-            "completed",
-            "busy",
-            "failed",
-            "no_answer",
-            "canceled",
-            "missed",
-            "answered",
-            "forwarded",
-            "abandoned",
-        ],
         answered_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         end_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         provider_metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
@@ -185,13 +157,13 @@ class CallsResource(SyncAPIResource):
 
           provider_id: The unique identifier for the call from the provider's system.
 
-          start_at: The time the call started, as an RFC 3339 timestamp.
+          provider_status: The status of the call.
 
-          status: The status of the call.
+          start_at: The time the call started, as an ISO 8601 timestamp in UTC.
 
-          answered_at: The time the call was answered, as an RFC 3339 timestamp.
+          answered_at: The time the call was answered, as an ISO 8601 timestamp in UTC.
 
-          end_at: The time the call ended, as an RFC 3339 timestamp.
+          end_at: The time the call ended, as an ISO 8601 timestamp in UTC.
 
           provider_metadata: A hash of additional metadata from the provider.
 
@@ -215,8 +187,8 @@ class CallsResource(SyncAPIResource):
                     "participants": participants,
                     "provider": provider,
                     "provider_id": provider_id,
+                    "provider_status": provider_status,
                     "start_at": start_at,
-                    "status": status,
                     "answered_at": answered_at,
                     "end_at": end_at,
                     "provider_metadata": provider_metadata,
@@ -259,22 +231,8 @@ class AsyncCallsResource(AsyncAPIResource):
         participants: Iterable[call_create_params.Participant],
         provider: str,
         provider_id: str,
+        provider_status: str,
         start_at: Union[str, datetime],
-        status: Literal[
-            "queued",
-            "initiated",
-            "ringing",
-            "in_progress",
-            "completed",
-            "busy",
-            "failed",
-            "no_answer",
-            "canceled",
-            "missed",
-            "answered",
-            "forwarded",
-            "abandoned",
-        ],
         answered_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         end_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         provider_metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
@@ -299,13 +257,13 @@ class AsyncCallsResource(AsyncAPIResource):
 
           provider_id: The unique identifier for the call from the provider's system.
 
-          start_at: The time the call started, as an RFC 3339 timestamp.
+          provider_status: The status of the call.
 
-          status: The status of the call.
+          start_at: The time the call started, as an ISO 8601 timestamp in UTC.
 
-          answered_at: The time the call was answered, as an RFC 3339 timestamp.
+          answered_at: The time the call was answered, as an ISO 8601 timestamp in UTC.
 
-          end_at: The time the call ended, as an RFC 3339 timestamp.
+          end_at: The time the call ended, as an ISO 8601 timestamp in UTC.
 
           provider_metadata: A hash of additional metadata from the provider.
 
@@ -329,8 +287,8 @@ class AsyncCallsResource(AsyncAPIResource):
                     "participants": participants,
                     "provider": provider,
                     "provider_id": provider_id,
+                    "provider_status": provider_status,
                     "start_at": start_at,
-                    "status": status,
                     "answered_at": answered_at,
                     "end_at": end_at,
                     "provider_metadata": provider_metadata,
@@ -352,22 +310,8 @@ class AsyncCallsResource(AsyncAPIResource):
         participants: Iterable[call_upsert_params.Participant],
         provider: str,
         provider_id: str,
+        provider_status: str,
         start_at: Union[str, datetime],
-        status: Literal[
-            "queued",
-            "initiated",
-            "ringing",
-            "in_progress",
-            "completed",
-            "busy",
-            "failed",
-            "no_answer",
-            "canceled",
-            "missed",
-            "answered",
-            "forwarded",
-            "abandoned",
-        ],
         answered_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         end_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         provider_metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
@@ -392,13 +336,13 @@ class AsyncCallsResource(AsyncAPIResource):
 
           provider_id: The unique identifier for the call from the provider's system.
 
-          start_at: The time the call started, as an RFC 3339 timestamp.
+          provider_status: The status of the call.
 
-          status: The status of the call.
+          start_at: The time the call started, as an ISO 8601 timestamp in UTC.
 
-          answered_at: The time the call was answered, as an RFC 3339 timestamp.
+          answered_at: The time the call was answered, as an ISO 8601 timestamp in UTC.
 
-          end_at: The time the call ended, as an RFC 3339 timestamp.
+          end_at: The time the call ended, as an ISO 8601 timestamp in UTC.
 
           provider_metadata: A hash of additional metadata from the provider.
 
@@ -422,8 +366,8 @@ class AsyncCallsResource(AsyncAPIResource):
                     "participants": participants,
                     "provider": provider,
                     "provider_id": provider_id,
+                    "provider_status": provider_status,
                     "start_at": start_at,
-                    "status": status,
                     "answered_at": answered_at,
                     "end_at": end_at,
                     "provider_metadata": provider_metadata,

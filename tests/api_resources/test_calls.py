@@ -33,9 +33,9 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
-            start_at=parse_datetime("2025-08-18T18:32:13.332Z"),
-            status="completed",
+            provider_id="openphone_id_000000000007",
+            provider_status="completed",
+            start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         )
         assert_matches_type(Call, call, path=["response"])
 
@@ -54,11 +54,11 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
-            start_at=parse_datetime("2025-08-18T18:32:13.332Z"),
-            status="completed",
-            answered_at=parse_datetime("2025-08-18T18:33:13Z"),
-            end_at=parse_datetime("2025-08-18T19:02:13.332Z"),
+            provider_id="openphone_id_000000000007",
+            provider_status="completed",
+            start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
+            answered_at=parse_datetime("2025-02-17T15:01:00Z"),
+            end_at=parse_datetime("2025-02-17T15:30:00.000Z"),
             provider_metadata={
                 "answered_by": "bar",
                 "user_id": "bar",
@@ -100,9 +100,9 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
-            start_at=parse_datetime("2025-08-18T18:32:13.332Z"),
-            status="completed",
+            provider_id="openphone_id_000000000007",
+            provider_status="completed",
+            start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         )
 
         assert response.is_closed is True
@@ -125,9 +125,9 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
-            start_at=parse_datetime("2025-08-18T18:32:13.332Z"),
-            status="completed",
+            provider_id="openphone_id_000000000007",
+            provider_status="completed",
+            start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -152,9 +152,9 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-08-18T18:32:24.545Z"),
-            status="completed",
+            provider_id="openphone_id_000000000006",
+            provider_status="completed",
+            start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         )
         assert_matches_type(Call, call, path=["response"])
 
@@ -173,11 +173,11 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-08-18T18:32:24.545Z"),
-            status="completed",
-            answered_at=parse_datetime("2025-08-18T18:33:24Z"),
-            end_at=parse_datetime("2025-08-18T19:02:24.545Z"),
+            provider_id="openphone_id_000000000006",
+            provider_status="completed",
+            start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
+            answered_at=parse_datetime("2025-02-17T15:01:00Z"),
+            end_at=parse_datetime("2025-02-17T15:30:00.000Z"),
             provider_metadata={
                 "answered_by": "bar",
                 "user_id": "bar",
@@ -219,9 +219,9 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-08-18T18:32:24.545Z"),
-            status="completed",
+            provider_id="openphone_id_000000000006",
+            provider_status="completed",
+            start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         )
 
         assert response.is_closed is True
@@ -244,9 +244,9 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-08-18T18:32:24.545Z"),
-            status="completed",
+            provider_id="openphone_id_000000000006",
+            provider_status="completed",
+            start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -277,9 +277,9 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
-            start_at=parse_datetime("2025-08-18T18:32:13.332Z"),
-            status="completed",
+            provider_id="openphone_id_000000000007",
+            provider_status="completed",
+            start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         )
         assert_matches_type(Call, call, path=["response"])
 
@@ -298,11 +298,11 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
-            start_at=parse_datetime("2025-08-18T18:32:13.332Z"),
-            status="completed",
-            answered_at=parse_datetime("2025-08-18T18:33:13Z"),
-            end_at=parse_datetime("2025-08-18T19:02:13.332Z"),
+            provider_id="openphone_id_000000000007",
+            provider_status="completed",
+            start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
+            answered_at=parse_datetime("2025-02-17T15:01:00Z"),
+            end_at=parse_datetime("2025-02-17T15:30:00.000Z"),
             provider_metadata={
                 "answered_by": "bar",
                 "user_id": "bar",
@@ -344,9 +344,9 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
-            start_at=parse_datetime("2025-08-18T18:32:13.332Z"),
-            status="completed",
+            provider_id="openphone_id_000000000007",
+            provider_status="completed",
+            start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         )
 
         assert response.is_closed is True
@@ -369,9 +369,9 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
-            start_at=parse_datetime("2025-08-18T18:32:13.332Z"),
-            status="completed",
+            provider_id="openphone_id_000000000007",
+            provider_status="completed",
+            start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -396,9 +396,9 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-08-18T18:32:24.545Z"),
-            status="completed",
+            provider_id="openphone_id_000000000006",
+            provider_status="completed",
+            start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         )
         assert_matches_type(Call, call, path=["response"])
 
@@ -417,11 +417,11 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-08-18T18:32:24.545Z"),
-            status="completed",
-            answered_at=parse_datetime("2025-08-18T18:33:24Z"),
-            end_at=parse_datetime("2025-08-18T19:02:24.545Z"),
+            provider_id="openphone_id_000000000006",
+            provider_status="completed",
+            start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
+            answered_at=parse_datetime("2025-02-17T15:01:00Z"),
+            end_at=parse_datetime("2025-02-17T15:30:00.000Z"),
             provider_metadata={
                 "answered_by": "bar",
                 "user_id": "bar",
@@ -463,9 +463,9 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-08-18T18:32:24.545Z"),
-            status="completed",
+            provider_id="openphone_id_000000000006",
+            provider_status="completed",
+            start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         )
 
         assert response.is_closed is True
@@ -488,9 +488,9 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000002",
-            start_at=parse_datetime("2025-08-18T18:32:24.545Z"),
-            status="completed",
+            provider_id="openphone_id_000000000006",
+            provider_status="completed",
+            start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

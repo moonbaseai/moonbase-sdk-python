@@ -33,7 +33,7 @@ client = Moonbase(
 )
 
 collection = client.collections.retrieve(
-    id="organizations",
+    id="people",
 )
 print(collection.id)
 ```
@@ -59,7 +59,7 @@ client = AsyncMoonbase(
 
 async def main() -> None:
     collection = await client.collections.retrieve(
-        id="organizations",
+        id="people",
     )
     print(collection.id)
 
@@ -94,7 +94,7 @@ async def main() -> None:
         http_client=DefaultAioHttpClient(),
     ) as client:
         collection = await client.collections.retrieve(
-            id="organizations",
+            id="people",
         )
         print(collection.id)
 
@@ -122,14 +122,15 @@ from moonbase import Moonbase
 
 client = Moonbase()
 
-all_collections = []
+all_items = []
 # Automatically fetches more pages as needed.
-for collection in client.collections.list(
-    limit=10,
+for item in client.collections.items.list(
+    collection_id="people",
+    limit=5,
 ):
-    # Do something with collection here
-    all_collections.append(collection)
-print(all_collections)
+    # Do something with item here
+    all_items.append(item)
+print(all_items)
 ```
 
 Or, asynchronously:
@@ -142,13 +143,14 @@ client = AsyncMoonbase()
 
 
 async def main() -> None:
-    all_collections = []
+    all_items = []
     # Iterate through items across all pages, issuing requests as needed.
-    async for collection in client.collections.list(
-        limit=10,
+    async for item in client.collections.items.list(
+        collection_id="people",
+        limit=5,
     ):
-        all_collections.append(collection)
-    print(all_collections)
+        all_items.append(item)
+    print(all_items)
 
 
 asyncio.run(main())
@@ -157,8 +159,9 @@ asyncio.run(main())
 Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
 
 ```python
-first_page = await client.collections.list(
-    limit=10,
+first_page = await client.collections.items.list(
+    collection_id="people",
+    limit=5,
 )
 if first_page.has_next_page():
     print(f"will fetch next page using these details: {first_page.next_page_info()}")
@@ -171,18 +174,17 @@ if first_page.has_next_page():
 Or just work directly with the returned data:
 
 ```python
-first_page = await client.collections.list(
-    limit=10,
+first_page = await client.collections.items.list(
+    collection_id="people",
+    limit=5,
 )
 
 print(f"next page cursor: {first_page.meta.cursors.next}")  # => "next page cursor: ..."
-for collection in first_page.data:
-    print(collection.id)
+for item in first_page.data:
+    print(item.id)
 
 # Remove `await` for non-async usage.
 ```
-
-from datetime import datetime
 
 ## Nested params
 
@@ -193,34 +195,10 @@ from moonbase import Moonbase
 
 client = Moonbase()
 
-call = client.calls.create(
-    direction="incoming",
-    participants=[
-        {
-            "phone": "+14155551212",
-            "role": "caller",
-        },
-        {
-            "phone": "+16505551212",
-            "role": "callee",
-        },
-    ],
-    provider="openphone",
-    provider_id="openphone_id_000000000001",
-    start_at=datetime.fromisoformat("2025-08-18T18:32:13.332"),
-    status="completed",
-    transcript={
-        "cues": [
-            {
-                "from": 0,
-                "speaker": "speaker",
-                "text": "text",
-                "to": 0,
-            }
-        ]
-    },
+page = client.inbox_conversations.list(
+    filter={},
 )
-print(call.transcript)
+print(page.data)
 ```
 
 ## Handling errors
@@ -240,7 +218,7 @@ client = Moonbase()
 
 try:
     client.collections.retrieve(
-        id="organizations",
+        id="people",
     )
 except moonbase.APIConnectionError as e:
     print("The server could not be reached")
@@ -285,7 +263,7 @@ client = Moonbase(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).collections.retrieve(
-    id="organizations",
+    id="people",
 )
 ```
 
@@ -310,7 +288,7 @@ client = Moonbase(
 
 # Override per-request:
 client.with_options(timeout=5.0).collections.retrieve(
-    id="organizations",
+    id="people",
 )
 ```
 
@@ -353,7 +331,7 @@ from moonbase import Moonbase
 
 client = Moonbase()
 response = client.collections.with_raw_response.retrieve(
-    id="organizations",
+    id="people",
 )
 print(response.headers.get('X-My-Header'))
 
@@ -373,7 +351,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.collections.with_streaming_response.retrieve(
-    id="organizations",
+    id="people",
 ) as response:
     print(response.headers.get("X-My-Header"))
 

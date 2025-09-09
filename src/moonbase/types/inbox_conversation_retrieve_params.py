@@ -9,8 +9,8 @@ __all__ = ["InboxConversationRetrieveParams"]
 
 
 class InboxConversationRetrieveParams(TypedDict, total=False):
-    include: List[Literal["addresses", "tags"]]
+    include: List[Literal["inbox", "messages", "messages.addresses"]]
     """Specifies which related objects to include in the response.
 
-    Valid options are `addresses` and `tags`.
+    Valid options are `inbox`, `messages`, and `messages.addresses`.
     """
