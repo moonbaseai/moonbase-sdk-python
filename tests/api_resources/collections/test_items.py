@@ -28,7 +28,7 @@ class TestItems:
                     "type": "value/text/single_line",
                 },
                 "ceo": {
-                    "item": {
+                    "data": {
                         "id": "1CLJt2v2rARKGD4MLziBCw",
                         "type": "item",
                     },
@@ -48,7 +48,7 @@ class TestItems:
                     "type": "value/text/single_line",
                 },
                 "ceo": {
-                    "item": {
+                    "data": {
                         "id": "1CLJt2v2rARKGD4MLziBCw",
                         "type": "item",
                     },
@@ -72,7 +72,7 @@ class TestItems:
                     "type": "value/text/single_line",
                 },
                 "ceo": {
-                    "item": {
+                    "data": {
                         "id": "1CLJt2v2rARKGD4MLziBCw",
                         "type": "item",
                     },
@@ -99,7 +99,7 @@ class TestItems:
                         "type": "value/text/single_line",
                     },
                     "ceo": {
-                        "item": {
+                        "data": {
                             "id": "1CLJt2v2rARKGD4MLziBCw",
                             "type": "item",
                         },
@@ -532,7 +532,7 @@ class TestAsyncItems:
                     "type": "value/text/single_line",
                 },
                 "ceo": {
-                    "item": {
+                    "data": {
                         "id": "1CLJt2v2rARKGD4MLziBCw",
                         "type": "item",
                     },
@@ -552,7 +552,7 @@ class TestAsyncItems:
                     "type": "value/text/single_line",
                 },
                 "ceo": {
-                    "item": {
+                    "data": {
                         "id": "1CLJt2v2rARKGD4MLziBCw",
                         "type": "item",
                     },
@@ -576,7 +576,7 @@ class TestAsyncItems:
                     "type": "value/text/single_line",
                 },
                 "ceo": {
-                    "item": {
+                    "data": {
                         "id": "1CLJt2v2rARKGD4MLziBCw",
                         "type": "item",
                     },
@@ -603,7 +603,7 @@ class TestAsyncItems:
                         "type": "value/text/single_line",
                     },
                     "ceo": {
-                        "item": {
+                        "data": {
                             "id": "1CLJt2v2rARKGD4MLziBCw",
                             "type": "item",
                         },
