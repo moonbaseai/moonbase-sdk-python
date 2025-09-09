@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = ["InboxListParams"]
 
@@ -21,6 +23,8 @@ class InboxListParams(TypedDict, total=False):
     by this cursor. Use the cursor value from the response's metadata to fetch the
     previous page of results.
     """
+
+    include: Annotated[Literal["tagset"], PropertyInfo(alias="include[]")]
 
     limit: int
     """Maximum number of items to return per page.

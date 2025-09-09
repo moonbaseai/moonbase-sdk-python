@@ -5,6 +5,7 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.pointer import Pointer
 
 __all__ = ["Call", "Participant"]
 
@@ -19,19 +20,25 @@ class Participant(BaseModel):
     role: Literal["caller", "callee", "other"]
     """The role of the participant in the call. Can be `caller`, `callee`, or `other`."""
 
-    type: Literal["participant"]
-    """String representing the object’s type. Always `participant` for this object."""
+    type: Literal["call_participant"]
+    """String representing the object’s type.
 
-    created_at: Optional[datetime] = None
-    """Time at which the object was created, as an RFC 3339 timestamp."""
+    Always `call_participant` for this object.
+    """
 
-    updated_at: Optional[datetime] = None
-    """Time at which the object was last updated, as an RFC 3339 timestamp."""
+    organization: Optional[Pointer] = None
+    """A lightweight reference to another resource."""
+
+    person: Optional[Pointer] = None
+    """A lightweight reference to another resource."""
 
 
 class Call(BaseModel):
     id: str
     """Unique identifier for the object."""
+
+    created_at: datetime
+    """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
 
     direction: Literal["incoming", "outgoing"]
     """The direction of the call, either `incoming` or `outgoing`."""
@@ -45,40 +52,23 @@ class Call(BaseModel):
     provider_id: str
     """The unique identifier for the call from the provider's system."""
 
-    start_at: datetime
-    """The time the call started, as an RFC 3339 timestamp."""
-
-    status: Literal[
-        "queued",
-        "initiated",
-        "ringing",
-        "in_progress",
-        "completed",
-        "busy",
-        "failed",
-        "no_answer",
-        "canceled",
-        "missed",
-        "answered",
-        "forwarded",
-        "abandoned",
-    ]
+    provider_status: str
     """The current status of the call."""
+
+    start_at: datetime
+    """The time the call started, as an ISO 8601 timestamp in UTC."""
 
     type: Literal["call"]
     """String representing the object’s type. Always `call` for this object."""
 
-    answered_at: Optional[datetime] = None
-    """The time the call was answered, if available, as an RFC 3339 timestamp."""
+    updated_at: datetime
+    """Time at which the object was last updated, as an ISO 8601 timestamp in UTC."""
 
-    created_at: Optional[datetime] = None
-    """Time at which the object was created, as an RFC 3339 timestamp."""
+    answered_at: Optional[datetime] = None
+    """The time the call was answered, if available, as an ISO 8601 timestamp in UTC."""
 
     end_at: Optional[datetime] = None
-    """The time the call ended, if available, as an RFC 3339 timestamp."""
+    """The time the call ended, if available, as an ISO 8601 timestamp in UTC."""
 
     provider_metadata: Optional[Dict[str, object]] = None
     """A hash of additional metadata from the provider."""
-
-    updated_at: Optional[datetime] = None
-    """Time at which the object was last updated, as an RFC 3339 timestamp."""

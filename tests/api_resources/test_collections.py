@@ -29,7 +29,7 @@ class TestCollections:
     def test_method_retrieve_with_all_params(self, client: Moonbase) -> None:
         collection = client.collections.retrieve(
             id="id",
-            include=["fields"],
+            include=["views"],
         )
         assert_matches_type(Collection, collection, path=["response"])
 
@@ -115,7 +115,7 @@ class TestAsyncCollections:
     async def test_method_retrieve_with_all_params(self, async_client: AsyncMoonbase) -> None:
         collection = await async_client.collections.retrieve(
             id="id",
-            include=["fields"],
+            include=["views"],
         )
         assert_matches_type(Collection, collection, path=["response"])
 

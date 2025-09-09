@@ -8,6 +8,10 @@ __all__ = ["TelephoneNumber"]
 
 
 class TelephoneNumber(BaseModel):
-    telephone_number: str
+    data: str
+    """A telephone number in strictly formatted E.164 format.
+
+    Do not include spaces, dashes, or parentheses etc.
+    """
 
     type: Literal["value/telephone_number"]

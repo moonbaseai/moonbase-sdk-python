@@ -8,6 +8,6 @@ __all__ = ["FloatValue"]
 
 
 class FloatValue(BaseModel):
-    number: float
+    data: float
 
     type: Literal["value/number/unitless_float"]

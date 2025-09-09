@@ -7,25 +7,18 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["ProgramMessageCreateResponse", "Links"]
+__all__ = ["ProgramMessage"]
 
 
-class Links(BaseModel):
-    program_template: str
-    """A link to the `ProgramTemplate` used."""
-
-
-class ProgramMessageCreateResponse(BaseModel):
+class ProgramMessage(BaseModel):
     id: str
     """Unique identifier for the object."""
 
     created_at: datetime
     """
-    Time at which the message was created and enqueued for sending, as an RFC 3339
-    timestamp.
+    Time at which the message was created and enqueued for sending, as an ISO 8601
+    timestamp in UTC.
     """
-
-    links: Links
 
     program_template: "ProgramTemplate"
     """The `ProgramTemplate` used to generate this message."""
@@ -37,7 +30,7 @@ class ProgramMessageCreateResponse(BaseModel):
     """
 
     updated_at: datetime
-    """Time at which the object was last updated, as an RFC 3339 timestamp."""
+    """Time at which the object was last updated, as an ISO 8601 timestamp in UTC."""
 
 
 from .program_template import ProgramTemplate

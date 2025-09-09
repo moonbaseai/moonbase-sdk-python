@@ -74,6 +74,7 @@ class TestInboxes:
         inbox = client.inboxes.list(
             after="after",
             before="before",
+            include="tagset",
             limit=1,
         )
         assert_matches_type(SyncCursorPage[Inbox], inbox, path=["response"])
@@ -160,6 +161,7 @@ class TestAsyncInboxes:
         inbox = await async_client.inboxes.list(
             after="after",
             before="before",
+            include="tagset",
             limit=1,
         )
         assert_matches_type(AsyncCursorPage[Inbox], inbox, path=["response"])

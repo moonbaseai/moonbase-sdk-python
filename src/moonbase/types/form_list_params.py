@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["FormListParams"]
 
@@ -21,12 +20,6 @@ class FormListParams(TypedDict, total=False):
     When specified, returns results starting immediately before the item identified
     by this cursor. Use the cursor value from the response's metadata to fetch the
     previous page of results.
-    """
-
-    include: List[Literal["collection.fields"]]
-    """Specifies which related objects to include in the response.
-
-    Valid option is `collection.fields`.
     """
 
     limit: int

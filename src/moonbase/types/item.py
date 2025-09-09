@@ -1,21 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
-
-from typing import Dict, Optional
+from typing import Dict
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .field_value import FieldValue
 
-__all__ = ["Item", "Links"]
-
-
-class Links(BaseModel):
-    collection: Optional[str] = None
-    """A link to the `Collection` the item belongs to."""
-
-    self: Optional[str] = None
-    """The canonical URL for this object."""
+__all__ = ["Item"]
 
 
 class Item(BaseModel):
@@ -25,13 +16,8 @@ class Item(BaseModel):
     type: Literal["item"]
     """String representing the object’s type. Always `item` for this object."""
 
-    links: Optional[Links] = None
-
-    values: Optional[Dict[str, Optional["FieldValue"]]] = None
+    values: Dict[str, FieldValue]
     """
     A hash where keys are the `ref` of a `Field` and values are the data stored for
     that field.
     """
-
-
-from .field_value import FieldValue

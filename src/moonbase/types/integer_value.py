@@ -8,6 +8,6 @@ __all__ = ["IntegerValue"]
 
 
 class IntegerValue(BaseModel):
-    number: int
+    data: int
 
     type: Literal["value/number/unitless_integer"]

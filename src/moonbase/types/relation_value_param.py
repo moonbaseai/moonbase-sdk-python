@@ -2,19 +2,22 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing import Union
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-__all__ = ["RelationValueParam"]
+from .item_pointer_param import ItemPointerParam
+from .shared_params.pointer import Pointer
+
+__all__ = ["RelationValueParam", "Item"]
+
+Item: TypeAlias = Union[ItemPointerParam, Pointer]
 
 
 class RelationValueParam(TypedDict, total=False):
-    item: Required["ItemParam"]
-    """An Item represents a single record or row within a Collection.
-
-    It holds a set of `values` corresponding to the Collection's `fields`.
+    item: Required[Item]
+    """
+    A reference to an `Item` within a specific `Collection`, providing the context
+    needed to locate the item.
     """
 
     type: Required[Literal["value/relation"]]
-
-
-from .item_param import ItemParam

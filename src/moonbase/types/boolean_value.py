@@ -8,6 +8,6 @@ __all__ = ["BooleanValue"]
 
 
 class BooleanValue(BaseModel):
-    boolean: bool
+    data: bool
 
     type: Literal["value/boolean"]

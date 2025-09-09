@@ -1,20 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
-from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.pointer import Pointer
 
-__all__ = ["Address", "Links"]
-
-
-class Links(BaseModel):
-    organization: Optional[str] = None
-    """A link to the associated `Organization` item."""
-
-    person: Optional[str] = None
-    """A link to the associated `Person` item."""
+__all__ = ["Address"]
 
 
 class Address(BaseModel):
@@ -24,20 +16,20 @@ class Address(BaseModel):
     email: str
     """The email address."""
 
-    type: Literal["address"]
-    """String representing the object’s type. Always `address` for this object."""
-
-    created_at: Optional[datetime] = None
-    """Time at which the object was created, as an RFC 3339 timestamp."""
-
-    links: Optional[Links] = None
-    """A hash of related links."""
-
-    role: Optional[Literal["from", "reply_to", "to", "cc", "bcc"]] = None
+    role: Literal["from", "reply_to", "to", "cc", "bcc"]
     """The role of the address in the message.
 
     Can be `from`, `reply_to`, `to`, `cc`, or `bcc`.
     """
 
-    updated_at: Optional[datetime] = None
-    """Time at which the object was last updated, as an RFC 3339 timestamp."""
+    type: Literal["message_address"]
+    """String representing the object’s type.
+
+    Always `message_address` for this object.
+    """
+
+    organization: Optional[Pointer] = None
+    """A lightweight reference to another resource."""
+
+    person: Optional[Pointer] = None
+    """A lightweight reference to another resource."""

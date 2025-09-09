@@ -1,20 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
-from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.pointer import Pointer
 
-__all__ = ["Attendee", "Links"]
-
-
-class Links(BaseModel):
-    organization: str
-    """A link to the associated `Organization` item."""
-
-    person: str
-    """A link to the associated `Person` item."""
+__all__ = ["Attendee"]
 
 
 class Attendee(BaseModel):
@@ -24,14 +16,14 @@ class Attendee(BaseModel):
     email: str
     """The email address of the attendee."""
 
-    links: Links
-    """A hash of related links."""
+    type: Literal["meeting_attendee"]
+    """String representing the object’s type.
 
-    type: Literal["attendee"]
-    """String representing the object’s type. Always `attendee` for this object."""
+    Always `meeting_attendee` for this object.
+    """
 
-    created_at: Optional[datetime] = None
-    """Time at which the object was created, as an RFC 3339 timestamp."""
+    organization: Optional[Pointer] = None
+    """A lightweight reference to another resource."""
 
-    updated_at: Optional[datetime] = None
-    """Time at which the object was last updated, as an RFC 3339 timestamp."""
+    person: Optional[Pointer] = None
+    """A lightweight reference to another resource."""

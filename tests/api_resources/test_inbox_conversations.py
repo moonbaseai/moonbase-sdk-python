@@ -29,7 +29,7 @@ class TestInboxConversations:
     def test_method_retrieve_with_all_params(self, client: Moonbase) -> None:
         inbox_conversation = client.inbox_conversations.retrieve(
             id="id",
-            include=["addresses"],
+            include=["inbox"],
         )
         assert_matches_type(InboxConversation, inbox_conversation, path=["response"])
 
@@ -74,8 +74,11 @@ class TestInboxConversations:
         inbox_conversation = client.inbox_conversations.list(
             after="after",
             before="before",
-            inbox=["string"],
-            include=["addresses"],
+            filter={
+                "conversation_id": {"eq": "eq"},
+                "inbox_id": {"eq": "eq"},
+            },
+            include=["inbox"],
             limit=1,
         )
         assert_matches_type(SyncCursorPage[InboxConversation], inbox_conversation, path=["response"])
@@ -117,7 +120,7 @@ class TestAsyncInboxConversations:
     async def test_method_retrieve_with_all_params(self, async_client: AsyncMoonbase) -> None:
         inbox_conversation = await async_client.inbox_conversations.retrieve(
             id="id",
-            include=["addresses"],
+            include=["inbox"],
         )
         assert_matches_type(InboxConversation, inbox_conversation, path=["response"])
 
@@ -162,8 +165,11 @@ class TestAsyncInboxConversations:
         inbox_conversation = await async_client.inbox_conversations.list(
             after="after",
             before="before",
-            inbox=["string"],
-            include=["addresses"],
+            filter={
+                "conversation_id": {"eq": "eq"},
+                "inbox_id": {"eq": "eq"},
+            },
+            include=["inbox"],
             limit=1,
         )
         assert_matches_type(AsyncCursorPage[InboxConversation], inbox_conversation, path=["response"])

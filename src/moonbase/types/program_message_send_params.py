@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Dict
 from typing_extensions import Required, TypedDict
 
-__all__ = ["ProgramMessageCreateParams", "Person"]
+__all__ = ["ProgramMessageSendParams", "Person"]
 
 
-class ProgramMessageCreateParams(TypedDict, total=False):
+class ProgramMessageSendParams(TypedDict, total=False):
     person: Required[Person]
     """The person to send the message to."""
 

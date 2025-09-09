@@ -2,14 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Literal
-
 import httpx
 
-from ..types import form_list_params, form_retrieve_params
+from ..types import form_list_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -49,7 +46,6 @@ class FormsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        include: List[Literal["collection.fields"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -61,9 +57,6 @@ class FormsResource(SyncAPIResource):
         Retrieves the details of an existing form.
 
         Args:
-          include: Specifies which related objects to include in the response. Valid option is
-              `collection.fields`.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -77,11 +70,7 @@ class FormsResource(SyncAPIResource):
         return self._get(
             f"/forms/{id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"include": include}, form_retrieve_params.FormRetrieveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Form,
         )
@@ -91,7 +80,6 @@ class FormsResource(SyncAPIResource):
         *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
-        include: List[Literal["collection.fields"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -111,9 +99,6 @@ class FormsResource(SyncAPIResource):
           before: When specified, returns results starting immediately before the item identified
               by this cursor. Use the cursor value from the response's metadata to fetch the
               previous page of results.
-
-          include: Specifies which related objects to include in the response. Valid option is
-              `collection.fields`.
 
           limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
               to 20 if not specified.
@@ -138,7 +123,6 @@ class FormsResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "include": include,
                         "limit": limit,
                     },
                     form_list_params.FormListParams,
@@ -172,7 +156,6 @@ class AsyncFormsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        include: List[Literal["collection.fields"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -184,9 +167,6 @@ class AsyncFormsResource(AsyncAPIResource):
         Retrieves the details of an existing form.
 
         Args:
-          include: Specifies which related objects to include in the response. Valid option is
-              `collection.fields`.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -200,11 +180,7 @@ class AsyncFormsResource(AsyncAPIResource):
         return await self._get(
             f"/forms/{id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"include": include}, form_retrieve_params.FormRetrieveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Form,
         )
@@ -214,7 +190,6 @@ class AsyncFormsResource(AsyncAPIResource):
         *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
-        include: List[Literal["collection.fields"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -234,9 +209,6 @@ class AsyncFormsResource(AsyncAPIResource):
           before: When specified, returns results starting immediately before the item identified
               by this cursor. Use the cursor value from the response's metadata to fetch the
               previous page of results.
-
-          include: Specifies which related objects to include in the response. Valid option is
-              `collection.fields`.
 
           limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
               to 20 if not specified.
@@ -261,7 +233,6 @@ class AsyncFormsResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "include": include,
                         "limit": limit,
                     },
                     form_list_params.FormListParams,

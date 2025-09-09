@@ -21,22 +21,14 @@ class TestForms:
     @parametrize
     def test_method_retrieve(self, client: Moonbase) -> None:
         form = client.forms.retrieve(
-            id="id",
-        )
-        assert_matches_type(Form, form, path=["response"])
-
-    @parametrize
-    def test_method_retrieve_with_all_params(self, client: Moonbase) -> None:
-        form = client.forms.retrieve(
-            id="id",
-            include=["collection.fields"],
+            "id",
         )
         assert_matches_type(Form, form, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Moonbase) -> None:
         response = client.forms.with_raw_response.retrieve(
-            id="id",
+            "id",
         )
 
         assert response.is_closed is True
@@ -47,7 +39,7 @@ class TestForms:
     @parametrize
     def test_streaming_response_retrieve(self, client: Moonbase) -> None:
         with client.forms.with_streaming_response.retrieve(
-            id="id",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,7 +53,7 @@ class TestForms:
     def test_path_params_retrieve(self, client: Moonbase) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.forms.with_raw_response.retrieve(
-                id="",
+                "",
             )
 
     @parametrize
@@ -74,7 +66,6 @@ class TestForms:
         form = client.forms.list(
             after="after",
             before="before",
-            include=["collection.fields"],
             limit=1,
         )
         assert_matches_type(SyncCursorPage[Form], form, path=["response"])
@@ -108,22 +99,14 @@ class TestAsyncForms:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncMoonbase) -> None:
         form = await async_client.forms.retrieve(
-            id="id",
-        )
-        assert_matches_type(Form, form, path=["response"])
-
-    @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncMoonbase) -> None:
-        form = await async_client.forms.retrieve(
-            id="id",
-            include=["collection.fields"],
+            "id",
         )
         assert_matches_type(Form, form, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncMoonbase) -> None:
         response = await async_client.forms.with_raw_response.retrieve(
-            id="id",
+            "id",
         )
 
         assert response.is_closed is True
@@ -134,7 +117,7 @@ class TestAsyncForms:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncMoonbase) -> None:
         async with async_client.forms.with_streaming_response.retrieve(
-            id="id",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -148,7 +131,7 @@ class TestAsyncForms:
     async def test_path_params_retrieve(self, async_client: AsyncMoonbase) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.forms.with_raw_response.retrieve(
-                id="",
+                "",
             )
 
     @parametrize
@@ -161,7 +144,6 @@ class TestAsyncForms:
         form = await async_client.forms.list(
             after="after",
             before="before",
-            include=["collection.fields"],
             limit=1,
         )
         assert_matches_type(AsyncCursorPage[Form], form, path=["response"])

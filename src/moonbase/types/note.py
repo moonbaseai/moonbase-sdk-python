@@ -5,35 +5,29 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.formatted_text import FormattedText
 
-__all__ = ["Note", "Links"]
-
-
-class Links(BaseModel):
-    self: str
-    """The canonical URL for this object."""
+__all__ = ["Note"]
 
 
 class Note(BaseModel):
     id: str
     """Unique identifier for the object."""
 
-    links: Links
+    body: FormattedText
+    """The main content of the note."""
+
+    created_at: datetime
+    """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
 
     type: Literal["note"]
     """String representing the object’s type. Always `note` for this object."""
 
-    body: Optional[str] = None
-    """The main content of the note."""
-
-    created_at: Optional[datetime] = None
-    """Time at which the object was created, as an RFC 3339 timestamp."""
+    updated_at: datetime
+    """Time at which the object was last updated, as an ISO 8601 timestamp in UTC."""
 
     summary: Optional[str] = None
     """A short, system-generated summary of the note's content."""
 
     title: Optional[str] = None
     """An optional title for the note."""
-
-    updated_at: Optional[datetime] = None
-    """Time at which the object was last updated, as an RFC 3339 timestamp."""
