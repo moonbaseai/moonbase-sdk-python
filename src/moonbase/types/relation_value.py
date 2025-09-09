@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Literal
 
+from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 
 __all__ = ["RelationValue"]
@@ -20,3 +21,8 @@ class RelationValue(BaseModel):
 
 
 from .item import Item
+
+if PYDANTIC_V2:
+    RelationValue.model_rebuild()
+else:
+    RelationValue.update_forward_refs()  # type: ignore

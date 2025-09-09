@@ -77,59 +77,5 @@ else:
         Iterable["ValueParam"],
     ]
 
-# Import these after defining the type alias to avoid circular imports
 from .value_param import ValueParam
 from .relation_value_param import RelationValueParam
-
-# Manually resolve the forward references for both Pydantic v1 and v2
-if TYPE_CHECKING or PYDANTIC_V2:
-    # We need to update the TypeAliasType to have the resolved class instead of string
-    FieldValueParam = TypeAliasType(  # type: ignore[misc]
-        "FieldValueParam",
-        Union[
-            SingleLineTextValueParam,
-            MultiLineTextValueParam,
-            IntegerValueParam,
-            FloatValueParam,
-            MonetaryValueParam,
-            PercentageValueParam,
-            BooleanValueParam,
-            EmailValueParam,
-            URLValueParam,
-            DomainValueParam,
-            SocialXValueParam,
-            SocialLinkedInValueParam,
-            TelephoneNumberParam,
-            GeoValueParam,
-            DateValueParam,
-            DatetimeValueParam,
-            ChoiceParam,
-            FunnelStepParam,
-            RelationValueParam,  # Now resolved to the actual class
-            Iterable[ValueParam],  # Now resolved to the actual class
-        ],
-    )
-else:
-    # For Pydantic v1, we need to keep the TypeAlias version but with resolved classes
-    FieldValueParam: TypeAlias = Union[
-        SingleLineTextValueParam,
-        MultiLineTextValueParam,
-        IntegerValueParam,
-        FloatValueParam,
-        MonetaryValueParam,
-        PercentageValueParam,
-        BooleanValueParam,
-        EmailValueParam,
-        URLValueParam,
-        DomainValueParam,
-        SocialXValueParam,
-        SocialLinkedInValueParam,
-        TelephoneNumberParam,
-        GeoValueParam,
-        DateValueParam,
-        DatetimeValueParam,
-        ChoiceParam,
-        FunnelStepParam,
-        RelationValueParam,  # Now resolved to the actual class
-        Iterable[ValueParam],  # Now resolved to the actual class
-    ]
