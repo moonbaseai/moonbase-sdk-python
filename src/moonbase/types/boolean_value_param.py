@@ -8,6 +8,6 @@ __all__ = ["BooleanValueParam"]
 
 
 class BooleanValueParam(TypedDict, total=False):
-    boolean: Required[bool]
+    data: Required[bool]
 
     type: Required[Literal["value/boolean"]]

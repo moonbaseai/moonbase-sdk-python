@@ -91,8 +91,7 @@ class InboxMessagesResource(SyncAPIResource):
         *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
-        conversation: List[str] | NotGiven = NOT_GIVEN,
-        inbox: List[str] | NotGiven = NOT_GIVEN,
+        filter: inbox_message_list_params.Filter | NotGiven = NOT_GIVEN,
         include: List[Literal["addresses", "attachments", "conversation"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -113,10 +112,6 @@ class InboxMessagesResource(SyncAPIResource):
           before: When specified, returns results starting immediately before the item identified
               by this cursor. Use the cursor value from the response's metadata to fetch the
               previous page of results.
-
-          conversation: Filter messages by one or more conversation IDs.
-
-          inbox: Filter messages by one or more inbox IDs.
 
           include: Specifies which related objects to include in the response. Valid options are
               `addresses`, `attachments`, and `conversation`.
@@ -144,8 +139,7 @@ class InboxMessagesResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "conversation": conversation,
-                        "inbox": inbox,
+                        "filter": filter,
                         "include": include,
                         "limit": limit,
                     },
@@ -224,8 +218,7 @@ class AsyncInboxMessagesResource(AsyncAPIResource):
         *,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
-        conversation: List[str] | NotGiven = NOT_GIVEN,
-        inbox: List[str] | NotGiven = NOT_GIVEN,
+        filter: inbox_message_list_params.Filter | NotGiven = NOT_GIVEN,
         include: List[Literal["addresses", "attachments", "conversation"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -246,10 +239,6 @@ class AsyncInboxMessagesResource(AsyncAPIResource):
           before: When specified, returns results starting immediately before the item identified
               by this cursor. Use the cursor value from the response's metadata to fetch the
               previous page of results.
-
-          conversation: Filter messages by one or more conversation IDs.
-
-          inbox: Filter messages by one or more inbox IDs.
 
           include: Specifies which related objects to include in the response. Valid options are
               `addresses`, `attachments`, and `conversation`.
@@ -277,8 +266,7 @@ class AsyncInboxMessagesResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "conversation": conversation,
-                        "inbox": inbox,
+                        "filter": filter,
                         "include": include,
                         "limit": limit,
                     },

@@ -8,6 +8,7 @@ __all__ = ["DomainValue"]
 
 
 class DomainValue(BaseModel):
-    domain: str
+    data: str
+    """A valid internet domain name, without protocol (e.g., 'https://') or path."""
 
     type: Literal["value/uri/domain"]

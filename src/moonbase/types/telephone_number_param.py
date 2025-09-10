@@ -8,6 +8,10 @@ __all__ = ["TelephoneNumberParam"]
 
 
 class TelephoneNumberParam(TypedDict, total=False):
-    telephone_number: Required[str]
+    data: Required[str]
+    """A telephone number in strictly formatted E.164 format.
+
+    Do not include spaces, dashes, or parentheses etc.
+    """
 
     type: Required[Literal["value/telephone_number"]]

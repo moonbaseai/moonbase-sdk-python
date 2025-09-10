@@ -8,7 +8,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..types import call_create_params
+from ..types import call_create_params, call_upsert_params
 from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -52,25 +52,13 @@ class CallsResource(SyncAPIResource):
         participants: Iterable[call_create_params.Participant],
         provider: str,
         provider_id: str,
+        provider_status: str,
         start_at: Union[str, datetime],
-        status: Literal[
-            "queued",
-            "initiated",
-            "ringing",
-            "in_progress",
-            "completed",
-            "busy",
-            "failed",
-            "no_answer",
-            "canceled",
-            "missed",
-            "answered",
-            "forwarded",
-            "abandoned",
-        ],
         answered_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         end_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         provider_metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
+        recordings: Iterable[call_create_params.Recording] | NotGiven = NOT_GIVEN,
+        transcript: call_create_params.Transcript | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -90,15 +78,19 @@ class CallsResource(SyncAPIResource):
 
           provider_id: The unique identifier for the call from the provider's system.
 
-          start_at: The time the call started, as an RFC 3339 timestamp.
+          provider_status: The status of the call.
 
-          status: The status of the call.
+          start_at: The time the call started, as an ISO 8601 timestamp in UTC.
 
-          answered_at: The time the call was answered, as an RFC 3339 timestamp.
+          answered_at: The time the call was answered, as an ISO 8601 timestamp in UTC.
 
-          end_at: The time the call ended, as an RFC 3339 timestamp.
+          end_at: The time the call ended, as an ISO 8601 timestamp in UTC.
 
           provider_metadata: A hash of additional metadata from the provider.
+
+          recordings: Any recordings associated with the call.
+
+          transcript: A transcript of the call.
 
           extra_headers: Send extra headers
 
@@ -116,13 +108,94 @@ class CallsResource(SyncAPIResource):
                     "participants": participants,
                     "provider": provider,
                     "provider_id": provider_id,
+                    "provider_status": provider_status,
                     "start_at": start_at,
-                    "status": status,
                     "answered_at": answered_at,
                     "end_at": end_at,
                     "provider_metadata": provider_metadata,
+                    "recordings": recordings,
+                    "transcript": transcript,
                 },
                 call_create_params.CallCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Call,
+        )
+
+    def upsert(
+        self,
+        *,
+        direction: Literal["incoming", "outgoing"],
+        participants: Iterable[call_upsert_params.Participant],
+        provider: str,
+        provider_id: str,
+        provider_status: str,
+        start_at: Union[str, datetime],
+        answered_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        end_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        provider_metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
+        recordings: Iterable[call_upsert_params.Recording] | NotGiven = NOT_GIVEN,
+        transcript: call_upsert_params.Transcript | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Call:
+        """
+        Find and update an existing phone call, or create a new one.
+
+        Args:
+          direction: The direction of the call, either `incoming` or `outgoing`.
+
+          participants: An array of participants involved in the call.
+
+          provider: The name of the phone provider that handled the call (e.g., `openphone`).
+
+          provider_id: The unique identifier for the call from the provider's system.
+
+          provider_status: The status of the call.
+
+          start_at: The time the call started, as an ISO 8601 timestamp in UTC.
+
+          answered_at: The time the call was answered, as an ISO 8601 timestamp in UTC.
+
+          end_at: The time the call ended, as an ISO 8601 timestamp in UTC.
+
+          provider_metadata: A hash of additional metadata from the provider.
+
+          recordings: Any recordings associated with the call.
+
+          transcript: A transcript of the call.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/calls/upsert",
+            body=maybe_transform(
+                {
+                    "direction": direction,
+                    "participants": participants,
+                    "provider": provider,
+                    "provider_id": provider_id,
+                    "provider_status": provider_status,
+                    "start_at": start_at,
+                    "answered_at": answered_at,
+                    "end_at": end_at,
+                    "provider_metadata": provider_metadata,
+                    "recordings": recordings,
+                    "transcript": transcript,
+                },
+                call_upsert_params.CallUpsertParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -158,25 +231,13 @@ class AsyncCallsResource(AsyncAPIResource):
         participants: Iterable[call_create_params.Participant],
         provider: str,
         provider_id: str,
+        provider_status: str,
         start_at: Union[str, datetime],
-        status: Literal[
-            "queued",
-            "initiated",
-            "ringing",
-            "in_progress",
-            "completed",
-            "busy",
-            "failed",
-            "no_answer",
-            "canceled",
-            "missed",
-            "answered",
-            "forwarded",
-            "abandoned",
-        ],
         answered_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         end_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         provider_metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
+        recordings: Iterable[call_create_params.Recording] | NotGiven = NOT_GIVEN,
+        transcript: call_create_params.Transcript | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -196,15 +257,19 @@ class AsyncCallsResource(AsyncAPIResource):
 
           provider_id: The unique identifier for the call from the provider's system.
 
-          start_at: The time the call started, as an RFC 3339 timestamp.
+          provider_status: The status of the call.
 
-          status: The status of the call.
+          start_at: The time the call started, as an ISO 8601 timestamp in UTC.
 
-          answered_at: The time the call was answered, as an RFC 3339 timestamp.
+          answered_at: The time the call was answered, as an ISO 8601 timestamp in UTC.
 
-          end_at: The time the call ended, as an RFC 3339 timestamp.
+          end_at: The time the call ended, as an ISO 8601 timestamp in UTC.
 
           provider_metadata: A hash of additional metadata from the provider.
+
+          recordings: Any recordings associated with the call.
+
+          transcript: A transcript of the call.
 
           extra_headers: Send extra headers
 
@@ -222,13 +287,94 @@ class AsyncCallsResource(AsyncAPIResource):
                     "participants": participants,
                     "provider": provider,
                     "provider_id": provider_id,
+                    "provider_status": provider_status,
                     "start_at": start_at,
-                    "status": status,
                     "answered_at": answered_at,
                     "end_at": end_at,
                     "provider_metadata": provider_metadata,
+                    "recordings": recordings,
+                    "transcript": transcript,
                 },
                 call_create_params.CallCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Call,
+        )
+
+    async def upsert(
+        self,
+        *,
+        direction: Literal["incoming", "outgoing"],
+        participants: Iterable[call_upsert_params.Participant],
+        provider: str,
+        provider_id: str,
+        provider_status: str,
+        start_at: Union[str, datetime],
+        answered_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        end_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        provider_metadata: Dict[str, object] | NotGiven = NOT_GIVEN,
+        recordings: Iterable[call_upsert_params.Recording] | NotGiven = NOT_GIVEN,
+        transcript: call_upsert_params.Transcript | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Call:
+        """
+        Find and update an existing phone call, or create a new one.
+
+        Args:
+          direction: The direction of the call, either `incoming` or `outgoing`.
+
+          participants: An array of participants involved in the call.
+
+          provider: The name of the phone provider that handled the call (e.g., `openphone`).
+
+          provider_id: The unique identifier for the call from the provider's system.
+
+          provider_status: The status of the call.
+
+          start_at: The time the call started, as an ISO 8601 timestamp in UTC.
+
+          answered_at: The time the call was answered, as an ISO 8601 timestamp in UTC.
+
+          end_at: The time the call ended, as an ISO 8601 timestamp in UTC.
+
+          provider_metadata: A hash of additional metadata from the provider.
+
+          recordings: Any recordings associated with the call.
+
+          transcript: A transcript of the call.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/calls/upsert",
+            body=await async_maybe_transform(
+                {
+                    "direction": direction,
+                    "participants": participants,
+                    "provider": provider,
+                    "provider_id": provider_id,
+                    "provider_status": provider_status,
+                    "start_at": start_at,
+                    "answered_at": answered_at,
+                    "end_at": end_at,
+                    "provider_metadata": provider_metadata,
+                    "recordings": recordings,
+                    "transcript": transcript,
+                },
+                call_upsert_params.CallUpsertParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -244,6 +390,9 @@ class CallsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             calls.create,
         )
+        self.upsert = to_raw_response_wrapper(
+            calls.upsert,
+        )
 
 
 class AsyncCallsResourceWithRawResponse:
@@ -252,6 +401,9 @@ class AsyncCallsResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             calls.create,
+        )
+        self.upsert = async_to_raw_response_wrapper(
+            calls.upsert,
         )
 
 
@@ -262,6 +414,9 @@ class CallsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             calls.create,
         )
+        self.upsert = to_streamed_response_wrapper(
+            calls.upsert,
+        )
 
 
 class AsyncCallsResourceWithStreamingResponse:
@@ -270,4 +425,7 @@ class AsyncCallsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             calls.create,
+        )
+        self.upsert = async_to_streamed_response_wrapper(
+            calls.upsert,
         )

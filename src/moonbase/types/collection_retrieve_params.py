@@ -9,8 +9,5 @@ __all__ = ["CollectionRetrieveParams"]
 
 
 class CollectionRetrieveParams(TypedDict, total=False):
-    include: List[Literal["fields", "views"]]
-    """Specifies which related objects to include in the response.
-
-    Valid options are `fields` and `views`.
-    """
+    include: List[Literal["views"]]
+    """Specifies which related objects to include in the response."""

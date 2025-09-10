@@ -74,8 +74,10 @@ class TestInboxMessages:
         inbox_message = client.inbox_messages.list(
             after="after",
             before="before",
-            conversation=["string"],
-            inbox=["string"],
+            filter={
+                "conversation_id": {"eq": "eq"},
+                "inbox_id": {"eq": "eq"},
+            },
             include=["addresses"],
             limit=1,
         )
@@ -163,8 +165,10 @@ class TestAsyncInboxMessages:
         inbox_message = await async_client.inbox_messages.list(
             after="after",
             before="before",
-            conversation=["string"],
-            inbox=["string"],
+            filter={
+                "conversation_id": {"eq": "eq"},
+                "inbox_id": {"eq": "eq"},
+            },
             include=["addresses"],
             limit=1,
         )

@@ -7,23 +7,20 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .field import Field
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 
-__all__ = ["Collection", "Links"]
-
-
-class Links(BaseModel):
-    self: str
-    """The canonical URL for this object."""
+__all__ = ["Collection"]
 
 
 class Collection(BaseModel):
     id: str
     """Unique identifier for the object."""
 
-    links: Links
-    """A hash of related links."""
+    created_at: datetime
+    """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
+
+    fields: List[Field]
+    """A list of `Field` objects that define the schema for items in this collection."""
 
     name: str
     """The user-facing name of the collection (e.g., “Organizations”)."""
@@ -38,27 +35,17 @@ class Collection(BaseModel):
     type: Literal["collection"]
     """String representing the object’s type. Always `collection` for this object."""
 
-    created_at: Optional[datetime] = None
-    """Time at which the object was created, as an RFC 3339 timestamp."""
+    updated_at: datetime
+    """Time at which the object was last updated, as an ISO 8601 timestamp in UTC."""
 
     description: Optional[str] = None
     """An optional, longer-form description of the collection's purpose."""
 
-    fields: Optional[List[Field]] = None
-    """A list of `Field` objects that define the schema for items in this collection."""
-
-    updated_at: Optional[datetime] = None
-    """Time at which the object was last updated, as an RFC 3339 timestamp."""
-
     views: Optional[List["View"]] = None
-    """A list of saved `View` objects for presenting the collection's data."""
+    """A list of saved `View` objects for presenting the collection's data.
+
+    **Note:** Only present when requested using the `include` query parameter.
+    """
 
 
 from .view import View
-
-if PYDANTIC_V2:
-    Collection.model_rebuild()
-    Links.model_rebuild()
-else:
-    Collection.update_forward_refs()  # type: ignore
-    Links.update_forward_refs()  # type: ignore

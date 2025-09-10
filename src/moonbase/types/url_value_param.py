@@ -8,6 +8,11 @@ __all__ = ["URLValueParam"]
 
 
 class URLValueParam(TypedDict, total=False):
-    type: Required[Literal["value/uri/url"]]
+    data: Required[str]
+    """A valid URL, conforming to RFC 3986, up to 8,192 characters long.
 
-    url: Required[str]
+    It should include the protocol, for example 'https://' or
+    'mailto:support@moonbase.ai' etc.
+    """
+
+    type: Required[Literal["value/uri/url"]]

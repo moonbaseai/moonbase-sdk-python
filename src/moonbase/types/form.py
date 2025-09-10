@@ -6,18 +6,9 @@ from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 
-__all__ = ["Form", "Links"]
-
-
-class Links(BaseModel):
-    self: str
-    """The canonical URL for this object."""
-
-    collection: Optional[str] = None
-    """A link to the `Collection` where form submissions are saved."""
+__all__ = ["Form"]
 
 
 class Form(BaseModel):
@@ -27,19 +18,20 @@ class Form(BaseModel):
     collection: "Collection"
     """The `Collection` that submissions to this form are saved to."""
 
-    links: Links
+    created_at: datetime
+    """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
 
     name: str
     """The name of the form, used as the title on its public page."""
 
+    pages_enabled: bool
+    """`true` if the form is available at a public URL."""
+
     type: Literal["form"]
     """String representing the object’s type. Always `form` for this object."""
 
-    created_at: Optional[datetime] = None
-    """Time at which the object was created, as an RFC 3339 timestamp."""
-
-    pages_enabled: Optional[bool] = None
-    """`true` if the form is available at a public URL."""
+    updated_at: datetime
+    """Time at which the object was last updated, as an ISO 8601 timestamp in UTC."""
 
     pages_url: Optional[str] = None
     """The public URL for the form, if `pages_enabled` is `true`."""
@@ -47,15 +39,5 @@ class Form(BaseModel):
     redirect_url: Optional[str] = None
     """An optional URL to redirect users to after a successful submission."""
 
-    updated_at: Optional[datetime] = None
-    """Time at which the object was last updated, as an RFC 3339 timestamp."""
-
 
 from .collection import Collection
-
-if PYDANTIC_V2:
-    Form.model_rebuild()
-    Links.model_rebuild()
-else:
-    Form.update_forward_refs()  # type: ignore
-    Links.update_forward_refs()  # type: ignore

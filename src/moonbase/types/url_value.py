@@ -8,6 +8,11 @@ __all__ = ["URLValue"]
 
 
 class URLValue(BaseModel):
-    type: Literal["value/uri/url"]
+    data: str
+    """A valid URL, conforming to RFC 3986, up to 8,192 characters long.
 
-    url: str
+    It should include the protocol, for example 'https://' or
+    'mailto:support@moonbase.ai' etc.
+    """
+
+    type: Literal["value/uri/url"]

@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.1.0-alpha.3 (2025-09-09)
+
+Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
+
+### Features
+
+* **api:** add upsert endpoint for Calls ([cfe135f](https://github.com/moonbaseai/moonbase-sdk-python/commit/cfe135f577c659883bb3a917efaa0f9e5db541b4))
+* **api:** example updates ([dbcec2d](https://github.com/moonbaseai/moonbase-sdk-python/commit/dbcec2d43e777e2e0a7da9ac22a11af50c415041))
+* **api:** manual updates ([257185d](https://github.com/moonbaseai/moonbase-sdk-python/commit/257185d2881b559d50d69157d225846339f11760))
+* **api:** manual updates ([a51c1ae](https://github.com/moonbaseai/moonbase-sdk-python/commit/a51c1ae3fccf19b5a0b03da75b70d8375e85248b))
+* **api:** update api ([294eec3](https://github.com/moonbaseai/moonbase-sdk-python/commit/294eec32d980495e6acbbeeff6c33779422f241d))
+* **api:** update api ([1cfff5b](https://github.com/moonbaseai/moonbase-sdk-python/commit/1cfff5bb8016a9e7db6f46d210eb0dd8ca1e8a06))
+* **api:** update api ([9aeab8e](https://github.com/moonbaseai/moonbase-sdk-python/commit/9aeab8ef430adbad537164a019993630f1831482))
+* **api:** update api ([d036f55](https://github.com/moonbaseai/moonbase-sdk-python/commit/d036f55aaa540fa6096606493cc70bd0c91fd248))
+* **api:** update api ([69dceee](https://github.com/moonbaseai/moonbase-sdk-python/commit/69dceee593bf8e9bd7a650f29c577ab995523349))
+* **api:** update examples ([b3ec887](https://github.com/moonbaseai/moonbase-sdk-python/commit/b3ec8873910e487c347b017d79bf867d25382a37))
+* **client:** support file upload requests ([a76ef62](https://github.com/moonbaseai/moonbase-sdk-python/commit/a76ef62977ebdd6bcc12403b6fd752a7789da32c))
+* improve future compat with pydantic v3 ([aaf7cad](https://github.com/moonbaseai/moonbase-sdk-python/commit/aaf7cad6d8d2011b1aa3f0484ee0b11074e67607))
+* **types:** replace List[str] with SequenceNotStr in params ([bedab45](https://github.com/moonbaseai/moonbase-sdk-python/commit/bedab4535eae69b225140c8270c3b876e9da008d))
+
+
+### Bug Fixes
+
+* avoid newer type syntax ([c93e23e](https://github.com/moonbaseai/moonbase-sdk-python/commit/c93e23e66c175ebd2a0f9c2ef4d6504157ead3e7))
+* **parsing:** ignore empty metadata ([1a7b5af](https://github.com/moonbaseai/moonbase-sdk-python/commit/1a7b5af0794cc97aa7bb8fdea8a1e08f19b2156b))
+* **parsing:** parse extra field types ([711755a](https://github.com/moonbaseai/moonbase-sdk-python/commit/711755ab271e546f2f01c7da2c9d492d33ae00fe))
+
+
+### Chores
+
+* **internal:** add Sequence related utils ([7c8bf60](https://github.com/moonbaseai/moonbase-sdk-python/commit/7c8bf60efeb7a76e94cbbf9f81430dcae55de0c7))
+* **internal:** change ci workflow machines ([f923266](https://github.com/moonbaseai/moonbase-sdk-python/commit/f9232660fc86ff5e52f74a8d5f64eabab9bf7361))
+* **internal:** fix ruff target version ([e326e6c](https://github.com/moonbaseai/moonbase-sdk-python/commit/e326e6ca0c6a4c059ca78fb5f17c11ce4b1a6a5e))
+* **internal:** move mypy configurations to `pyproject.toml` file ([6fd3418](https://github.com/moonbaseai/moonbase-sdk-python/commit/6fd341820e9c0f9389fcb572c36209e7ab011424))
+* **internal:** update comment in script ([d36eb2c](https://github.com/moonbaseai/moonbase-sdk-python/commit/d36eb2ce3c9a14111304eb98db2c435e859afdd3))
+* **internal:** update pyright exclude list ([322ed94](https://github.com/moonbaseai/moonbase-sdk-python/commit/322ed9470e83da325528248aacffe72cc1bcf03e))
+* **project:** add settings file for vscode ([6c3fa0e](https://github.com/moonbaseai/moonbase-sdk-python/commit/6c3fa0e02dc412435b64b4fe38c013f289333b0e))
+* **tests:** simplify `get_platform` test ([c7e1b64](https://github.com/moonbaseai/moonbase-sdk-python/commit/c7e1b642200e2cc979c6bded8fbf1d9202fe37df))
+* **types:** rebuild Pydantic models after all types are defined ([fb31dae](https://github.com/moonbaseai/moonbase-sdk-python/commit/fb31daedfc69560ea949dcb3410c6956da3d55af))
+* update @stainless-api/prism-cli to v5.15.0 ([49bd099](https://github.com/moonbaseai/moonbase-sdk-python/commit/49bd09951475fcd5f75102d66e595bf9a16b9f5a))
+* update github action ([347313e](https://github.com/moonbaseai/moonbase-sdk-python/commit/347313eb73b6c9d506fe329ef72bb0e0af06b460))
+
 ## 0.1.0-alpha.2 (2025-07-20)
 
 Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)

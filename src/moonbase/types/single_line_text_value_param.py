@@ -8,6 +8,10 @@ __all__ = ["SingleLineTextValueParam"]
 
 
 class SingleLineTextValueParam(TypedDict, total=False):
-    text: Required[str]
+    data: Required[str]
+    """A single line of text, up to 1024 characters long.
+
+    It should not contain line breaks.
+    """
 
     type: Required[Literal["value/text/single_line"]]
