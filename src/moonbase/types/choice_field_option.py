@@ -11,7 +11,7 @@ class ChoiceFieldOption(BaseModel):
     id: str
     """Unique identifier for the option."""
 
-    label: str
+    name: str
     """The human-readable text displayed for this option."""
 
     type: Literal["choice_field_option"]
