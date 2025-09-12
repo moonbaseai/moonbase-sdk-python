@@ -11,7 +11,7 @@ class ChoiceFieldOptionParam(TypedDict, total=False):
     id: Required[str]
     """Unique identifier for the option."""
 
-    label: Required[str]
+    name: Required[str]
     """The human-readable text displayed for this option."""
 
     type: Required[Literal["choice_field_option"]]
