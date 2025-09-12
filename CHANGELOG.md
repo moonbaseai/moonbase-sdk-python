@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.4 (2025-09-12)
+
+Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
+
+### Features
+
+* Improve examples of API errors ([d0eb920](https://github.com/moonbaseai/moonbase-sdk-python/commit/d0eb9201e783faf91760efb5bedc3374503775cb))
+
+
+### Documentation
+
+* improve webhook endpoints examples ([869a7e2](https://github.com/moonbaseai/moonbase-sdk-python/commit/869a7e210679ca45baf35a1ee4277cecc9ae8938))
+
 ## 0.1.0-alpha.3 (2025-09-09)
 
 Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
