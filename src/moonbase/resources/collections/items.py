@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from ..._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -56,7 +56,7 @@ class ItemsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Item:
         """
         Creates a new item in a collection.
@@ -93,7 +93,7 @@ class ItemsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Item:
         """
         Retrieves the details of an existing item.
@@ -125,14 +125,14 @@ class ItemsResource(SyncAPIResource):
         *,
         collection_id: str,
         values: Dict[str, Optional[FieldValueParam]],
-        update_many_strategy: Literal["replace", "preserve", "merge"] | NotGiven = NOT_GIVEN,
-        update_one_strategy: Literal["replace", "preserve"] | NotGiven = NOT_GIVEN,
+        update_many_strategy: Literal["replace", "preserve", "merge"] | Omit = omit,
+        update_one_strategy: Literal["replace", "preserve"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Item:
         """
         Updates an item.
@@ -156,8 +156,8 @@ class ItemsResource(SyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "update-many-strategy": str(update_many_strategy) if is_given(update_many_strategy) else NOT_GIVEN,
-                    "update-one-strategy": str(update_one_strategy) if is_given(update_one_strategy) else NOT_GIVEN,
+                    "update-many-strategy": str(update_many_strategy) if is_given(update_many_strategy) else omit,
+                    "update-one-strategy": str(update_one_strategy) if is_given(update_one_strategy) else omit,
                 }
             ),
             **(extra_headers or {}),
@@ -175,15 +175,15 @@ class ItemsResource(SyncAPIResource):
         self,
         collection_id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncCursorPage[Item]:
         """
         Returns a list of items that are part of the collection.
@@ -240,7 +240,7 @@ class ItemsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Permanently deletes an item.
@@ -273,14 +273,14 @@ class ItemsResource(SyncAPIResource):
         *,
         identifiers: Dict[str, Optional[FieldValueParam]],
         values: Dict[str, Optional[FieldValueParam]],
-        update_many_strategy: Literal["replace", "preserve", "merge"] | NotGiven = NOT_GIVEN,
-        update_one_strategy: Literal["replace", "preserve"] | NotGiven = NOT_GIVEN,
+        update_many_strategy: Literal["replace", "preserve", "merge"] | Omit = omit,
+        update_one_strategy: Literal["replace", "preserve"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Item:
         """
         Find and update an existing item, or create a new one.
@@ -305,8 +305,8 @@ class ItemsResource(SyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "update-many-strategy": str(update_many_strategy) if is_given(update_many_strategy) else NOT_GIVEN,
-                    "update-one-strategy": str(update_one_strategy) if is_given(update_one_strategy) else NOT_GIVEN,
+                    "update-many-strategy": str(update_many_strategy) if is_given(update_many_strategy) else omit,
+                    "update-one-strategy": str(update_one_strategy) if is_given(update_one_strategy) else omit,
                 }
             ),
             **(extra_headers or {}),
@@ -357,7 +357,7 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Item:
         """
         Creates a new item in a collection.
@@ -394,7 +394,7 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Item:
         """
         Retrieves the details of an existing item.
@@ -426,14 +426,14 @@ class AsyncItemsResource(AsyncAPIResource):
         *,
         collection_id: str,
         values: Dict[str, Optional[FieldValueParam]],
-        update_many_strategy: Literal["replace", "preserve", "merge"] | NotGiven = NOT_GIVEN,
-        update_one_strategy: Literal["replace", "preserve"] | NotGiven = NOT_GIVEN,
+        update_many_strategy: Literal["replace", "preserve", "merge"] | Omit = omit,
+        update_one_strategy: Literal["replace", "preserve"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Item:
         """
         Updates an item.
@@ -457,8 +457,8 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "update-many-strategy": str(update_many_strategy) if is_given(update_many_strategy) else NOT_GIVEN,
-                    "update-one-strategy": str(update_one_strategy) if is_given(update_one_strategy) else NOT_GIVEN,
+                    "update-many-strategy": str(update_many_strategy) if is_given(update_many_strategy) else omit,
+                    "update-one-strategy": str(update_one_strategy) if is_given(update_one_strategy) else omit,
                 }
             ),
             **(extra_headers or {}),
@@ -476,15 +476,15 @@ class AsyncItemsResource(AsyncAPIResource):
         self,
         collection_id: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Item, AsyncCursorPage[Item]]:
         """
         Returns a list of items that are part of the collection.
@@ -541,7 +541,7 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Permanently deletes an item.
@@ -574,14 +574,14 @@ class AsyncItemsResource(AsyncAPIResource):
         *,
         identifiers: Dict[str, Optional[FieldValueParam]],
         values: Dict[str, Optional[FieldValueParam]],
-        update_many_strategy: Literal["replace", "preserve", "merge"] | NotGiven = NOT_GIVEN,
-        update_one_strategy: Literal["replace", "preserve"] | NotGiven = NOT_GIVEN,
+        update_many_strategy: Literal["replace", "preserve", "merge"] | Omit = omit,
+        update_one_strategy: Literal["replace", "preserve"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Item:
         """
         Find and update an existing item, or create a new one.
@@ -606,8 +606,8 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "update-many-strategy": str(update_many_strategy) if is_given(update_many_strategy) else NOT_GIVEN,
-                    "update-one-strategy": str(update_one_strategy) if is_given(update_one_strategy) else NOT_GIVEN,
+                    "update-many-strategy": str(update_many_strategy) if is_given(update_many_strategy) else omit,
+                    "update-one-strategy": str(update_one_strategy) if is_given(update_one_strategy) else omit,
                 }
             ),
             **(extra_headers or {}),
