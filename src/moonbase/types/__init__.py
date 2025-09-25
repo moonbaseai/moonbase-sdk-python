@@ -97,6 +97,7 @@ from .activity_item_created import ActivityItemCreated as ActivityItemCreated
 from .activity_meeting_held import ActivityMeetingHeld as ActivityMeetingHeld
 from .activity_note_created import ActivityNoteCreated as ActivityNoteCreated
 from .inbox_retrieve_params import InboxRetrieveParams as InboxRetrieveParams
+from .meeting_update_params import MeetingUpdateParams as MeetingUpdateParams
 from .multi_line_text_field import MultiLineTextField as MultiLineTextField
 from .multi_line_text_value import MultiLineTextValue as MultiLineTextValue
 from .activity_call_occurred import ActivityCallOccurred as ActivityCallOccurred
