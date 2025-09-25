@@ -284,6 +284,7 @@ from moonbase.types import Attendee, Meeting, Organizer
 Methods:
 
 - <code title="get /meetings/{id}">client.meetings.<a href="./src/moonbase/resources/meetings.py">retrieve</a>(id, \*\*<a href="src/moonbase/types/meeting_retrieve_params.py">params</a>) -> <a href="./src/moonbase/types/meeting.py">Meeting</a></code>
+- <code title="patch /meetings/{id}">client.meetings.<a href="./src/moonbase/resources/meetings.py">update</a>(id, \*\*<a href="src/moonbase/types/meeting_update_params.py">params</a>) -> <a href="./src/moonbase/types/meeting.py">Meeting</a></code>
 - <code title="get /meetings">client.meetings.<a href="./src/moonbase/resources/meetings.py">list</a>(\*\*<a href="src/moonbase/types/meeting_list_params.py">params</a>) -> <a href="./src/moonbase/types/meeting.py">SyncCursorPage[Meeting]</a></code>
 
 # Notes
