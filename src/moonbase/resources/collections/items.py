@@ -156,8 +156,8 @@ class ItemsResource(SyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "update-many-strategy": str(update_many_strategy) if is_given(update_many_strategy) else omit,
-                    "update-one-strategy": str(update_one_strategy) if is_given(update_one_strategy) else omit,
+                    "update-many-strategy": str(update_many_strategy) if is_given(update_many_strategy) else not_given,
+                    "update-one-strategy": str(update_one_strategy) if is_given(update_one_strategy) else not_given,
                 }
             ),
             **(extra_headers or {}),
@@ -305,8 +305,8 @@ class ItemsResource(SyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "update-many-strategy": str(update_many_strategy) if is_given(update_many_strategy) else omit,
-                    "update-one-strategy": str(update_one_strategy) if is_given(update_one_strategy) else omit,
+                    "update-many-strategy": str(update_many_strategy) if is_given(update_many_strategy) else not_given,
+                    "update-one-strategy": str(update_one_strategy) if is_given(update_one_strategy) else not_given,
                 }
             ),
             **(extra_headers or {}),
@@ -457,8 +457,8 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "update-many-strategy": str(update_many_strategy) if is_given(update_many_strategy) else omit,
-                    "update-one-strategy": str(update_one_strategy) if is_given(update_one_strategy) else omit,
+                    "update-many-strategy": str(update_many_strategy) if is_given(update_many_strategy) else not_given,
+                    "update-one-strategy": str(update_one_strategy) if is_given(update_one_strategy) else not_given,
                 }
             ),
             **(extra_headers or {}),
@@ -606,8 +606,8 @@ class AsyncItemsResource(AsyncAPIResource):
         extra_headers = {
             **strip_not_given(
                 {
-                    "update-many-strategy": str(update_many_strategy) if is_given(update_many_strategy) else omit,
-                    "update-one-strategy": str(update_one_strategy) if is_given(update_one_strategy) else omit,
+                    "update-many-strategy": str(update_many_strategy) if is_given(update_many_strategy) else not_given,
+                    "update-one-strategy": str(update_one_strategy) if is_given(update_one_strategy) else not_given,
                 }
             ),
             **(extra_headers or {}),
