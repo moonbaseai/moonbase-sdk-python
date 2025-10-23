@@ -29,7 +29,7 @@ class TestInboxes:
     def test_method_retrieve_with_all_params(self, client: Moonbase) -> None:
         inbox = client.inboxes.retrieve(
             id="id",
-            include="tagset",
+            include="tagsets",
         )
         assert_matches_type(Inbox, inbox, path=["response"])
 
@@ -74,7 +74,7 @@ class TestInboxes:
         inbox = client.inboxes.list(
             after="after",
             before="before",
-            include="tagset",
+            include="tagsets",
             limit=1,
         )
         assert_matches_type(SyncCursorPage[Inbox], inbox, path=["response"])
@@ -116,7 +116,7 @@ class TestAsyncInboxes:
     async def test_method_retrieve_with_all_params(self, async_client: AsyncMoonbase) -> None:
         inbox = await async_client.inboxes.retrieve(
             id="id",
-            include="tagset",
+            include="tagsets",
         )
         assert_matches_type(Inbox, inbox, path=["response"])
 
@@ -161,7 +161,7 @@ class TestAsyncInboxes:
         inbox = await async_client.inboxes.list(
             after="after",
             before="before",
-            include="tagset",
+            include="tagsets",
             limit=1,
         )
         assert_matches_type(AsyncCursorPage[Inbox], inbox, path=["response"])
