@@ -48,7 +48,7 @@ class InboxesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        include: Literal["tagset"] | Omit = omit,
+        include: Literal["tagsets"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -61,7 +61,7 @@ class InboxesResource(SyncAPIResource):
 
         Args:
           include: Specifies which related objects to include in the response. Valid option is
-              `tagset`.
+              `tagsets`.
 
           extra_headers: Send extra headers
 
@@ -90,7 +90,7 @@ class InboxesResource(SyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
-        include: Literal["tagset"] | Omit = omit,
+        include: Literal["tagsets"] | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -168,7 +168,7 @@ class AsyncInboxesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        include: Literal["tagset"] | Omit = omit,
+        include: Literal["tagsets"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -181,7 +181,7 @@ class AsyncInboxesResource(AsyncAPIResource):
 
         Args:
           include: Specifies which related objects to include in the response. Valid option is
-              `tagset`.
+              `tagsets`.
 
           extra_headers: Send extra headers
 
@@ -210,7 +210,7 @@ class AsyncInboxesResource(AsyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
-        include: Literal["tagset"] | Omit = omit,
+        include: Literal["tagsets"] | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
