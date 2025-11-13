@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.1.0-alpha.5 (2025-11-13)
+
+Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
+
+### Features
+
+* Add PATCH /v0/meetings/{id} ([ee3f368](https://github.com/moonbaseai/moonbase-sdk-python/commit/ee3f368e05dcc28b6531c6df2231cd8a3b4fb38b))
+* **api:** manual updates ([1f601d2](https://github.com/moonbaseai/moonbase-sdk-python/commit/1f601d212f9c2c90ac1ab0b952f15e318441fcb1))
+* **api:** update api ([364a5ce](https://github.com/moonbaseai/moonbase-sdk-python/commit/364a5ceedd79efb77612b1c81d8d994c9c2d43bc))
+
+
+### Bug Fixes
+
+* **client:** close streams without requiring full consumption ([579399c](https://github.com/moonbaseai/moonbase-sdk-python/commit/579399c958fc1c22fdf28c2b71cb3cf5b26248d9))
+* compat with Python 3.14 ([422cfd7](https://github.com/moonbaseai/moonbase-sdk-python/commit/422cfd720174bd8800c89289004f66d86032b9dd))
+* **compat:** update signatures of `model_dump` and `model_dump_json` for Pydantic v1 ([dbe7639](https://github.com/moonbaseai/moonbase-sdk-python/commit/dbe7639611ed15c6ada82bc512d84e3f7bd84a7e))
+* do not set headers with default to omit ([73a838e](https://github.com/moonbaseai/moonbase-sdk-python/commit/73a838e40eccad812d26183a80d4b5a88c61e4f2))
+
+
+### Chores
+
+* bump `httpx-aiohttp` version to 0.1.9 ([58b9594](https://github.com/moonbaseai/moonbase-sdk-python/commit/58b9594caea4c7b5f2aa2a17c43e0baba4434aa1))
+* do not install brew dependencies in ./scripts/bootstrap by default ([cfcfd5d](https://github.com/moonbaseai/moonbase-sdk-python/commit/cfcfd5d44378fd6852046f23a91325cb08e89f8a))
+* **internal/tests:** avoid race condition with implicit client cleanup ([7f8c350](https://github.com/moonbaseai/moonbase-sdk-python/commit/7f8c3507f583f87d7c4419b676ef1c44d2241df4))
+* **internal:** detect missing future annotations with ruff ([0b0d690](https://github.com/moonbaseai/moonbase-sdk-python/commit/0b0d6907fb7a273665ae27d6b20c5a136e77b9af))
+* **internal:** grammar fix (it's -&gt; its) ([476c41b](https://github.com/moonbaseai/moonbase-sdk-python/commit/476c41b69522e9b82ff25e815abd8f277c925fc3))
+* **internal:** update pydantic dependency ([eb8683a](https://github.com/moonbaseai/moonbase-sdk-python/commit/eb8683a10c222f34cf192feda7807a63cbf329f4))
+* **package:** drop Python 3.8 support ([fb44d0e](https://github.com/moonbaseai/moonbase-sdk-python/commit/fb44d0e87dc79a5c07481df873de182068a95cca))
+* **types:** change optional parameter type from NotGiven to Omit ([168e1ab](https://github.com/moonbaseai/moonbase-sdk-python/commit/168e1abfc5e59222ee7372a696655f04b38f6120))
+
 ## 0.1.0-alpha.4 (2025-09-12)
 
 Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
