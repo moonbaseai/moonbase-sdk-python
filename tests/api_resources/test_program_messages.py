@@ -21,7 +21,7 @@ class TestProgramMessages:
     def test_method_send(self, client: Moonbase) -> None:
         program_message = client.program_messages.send(
             person={"email": "person-142@example-142.com"},
-            program_template_id="1CLJt2v1MsDbov8DBEEeWH",
+            program_template_id="1CLJt2v1rdcqdM6vZpPpjq",
         )
         assert_matches_type(ProgramMessage, program_message, path=["response"])
 
@@ -29,7 +29,7 @@ class TestProgramMessages:
     def test_method_send_with_all_params(self, client: Moonbase) -> None:
         program_message = client.program_messages.send(
             person={"email": "person-142@example-142.com"},
-            program_template_id="1CLJt2v1MsDbov8DBEEeWH",
+            program_template_id="1CLJt2v1rdcqdM6vZpPpjq",
             custom_variables={"coupon_code": "bar"},
         )
         assert_matches_type(ProgramMessage, program_message, path=["response"])
@@ -38,7 +38,7 @@ class TestProgramMessages:
     def test_raw_response_send(self, client: Moonbase) -> None:
         response = client.program_messages.with_raw_response.send(
             person={"email": "person-142@example-142.com"},
-            program_template_id="1CLJt2v1MsDbov8DBEEeWH",
+            program_template_id="1CLJt2v1rdcqdM6vZpPpjq",
         )
 
         assert response.is_closed is True
@@ -50,7 +50,7 @@ class TestProgramMessages:
     def test_streaming_response_send(self, client: Moonbase) -> None:
         with client.program_messages.with_streaming_response.send(
             person={"email": "person-142@example-142.com"},
-            program_template_id="1CLJt2v1MsDbov8DBEEeWH",
+            program_template_id="1CLJt2v1rdcqdM6vZpPpjq",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -70,7 +70,7 @@ class TestAsyncProgramMessages:
     async def test_method_send(self, async_client: AsyncMoonbase) -> None:
         program_message = await async_client.program_messages.send(
             person={"email": "person-142@example-142.com"},
-            program_template_id="1CLJt2v1MsDbov8DBEEeWH",
+            program_template_id="1CLJt2v1rdcqdM6vZpPpjq",
         )
         assert_matches_type(ProgramMessage, program_message, path=["response"])
 
@@ -78,7 +78,7 @@ class TestAsyncProgramMessages:
     async def test_method_send_with_all_params(self, async_client: AsyncMoonbase) -> None:
         program_message = await async_client.program_messages.send(
             person={"email": "person-142@example-142.com"},
-            program_template_id="1CLJt2v1MsDbov8DBEEeWH",
+            program_template_id="1CLJt2v1rdcqdM6vZpPpjq",
             custom_variables={"coupon_code": "bar"},
         )
         assert_matches_type(ProgramMessage, program_message, path=["response"])
@@ -87,7 +87,7 @@ class TestAsyncProgramMessages:
     async def test_raw_response_send(self, async_client: AsyncMoonbase) -> None:
         response = await async_client.program_messages.with_raw_response.send(
             person={"email": "person-142@example-142.com"},
-            program_template_id="1CLJt2v1MsDbov8DBEEeWH",
+            program_template_id="1CLJt2v1rdcqdM6vZpPpjq",
         )
 
         assert response.is_closed is True
@@ -99,7 +99,7 @@ class TestAsyncProgramMessages:
     async def test_streaming_response_send(self, async_client: AsyncMoonbase) -> None:
         async with async_client.program_messages.with_streaming_response.send(
             person={"email": "person-142@example-142.com"},
-            program_template_id="1CLJt2v1MsDbov8DBEEeWH",
+            program_template_id="1CLJt2v1rdcqdM6vZpPpjq",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
