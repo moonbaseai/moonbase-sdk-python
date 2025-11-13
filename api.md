@@ -272,6 +272,7 @@ Methods:
 
 - <code title="get /files/{id}">client.files.<a href="./src/moonbase/resources/files.py">retrieve</a>(id) -> <a href="./src/moonbase/types/moonbase_file.py">MoonbaseFile</a></code>
 - <code title="get /files">client.files.<a href="./src/moonbase/resources/files.py">list</a>(\*\*<a href="src/moonbase/types/file_list_params.py">params</a>) -> <a href="./src/moonbase/types/moonbase_file.py">SyncCursorPage[MoonbaseFile]</a></code>
+- <code title="post /files">client.files.<a href="./src/moonbase/resources/files.py">upload</a>(\*\*<a href="src/moonbase/types/file_upload_params.py">params</a>) -> <a href="./src/moonbase/types/moonbase_file.py">MoonbaseFile</a></code>
 
 # Meetings
 
