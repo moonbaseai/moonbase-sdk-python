@@ -100,10 +100,12 @@ class MeetingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Meeting:
         """
-        Args:
-          recording
+        Adds a transcript or recording to an existing meeting.
 
-          transcript
+        Args:
+          recording: A video recording of the meeting.
+
+          transcript: The meeting transcript.
 
           extra_headers: Send extra headers
 
@@ -264,10 +266,12 @@ class AsyncMeetingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Meeting:
         """
-        Args:
-          recording
+        Adds a transcript or recording to an existing meeting.
 
-          transcript
+        Args:
+          recording: A video recording of the meeting.
+
+          transcript: The meeting transcript.
 
           extra_headers: Send extra headers
 
