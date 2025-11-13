@@ -10,8 +10,8 @@ __all__ = ["InboxRetrieveParams"]
 
 
 class InboxRetrieveParams(TypedDict, total=False):
-    include: Annotated[Literal["tagset"], PropertyInfo(alias="include[]")]
+    include: Annotated[Literal["tagsets"], PropertyInfo(alias="include[]")]
     """Specifies which related objects to include in the response.
 
-    Valid option is `tagset`.
+    Valid option is `tagsets`.
     """

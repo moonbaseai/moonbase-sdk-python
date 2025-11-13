@@ -4,11 +4,33 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from pydantic import Field as FieldInfo
+
 from .._models import BaseModel
 from .attendee import Attendee
 from .organizer import Organizer
 
-__all__ = ["Meeting"]
+__all__ = ["Meeting", "Transcript", "TranscriptCue", "TranscriptCueSpeaker"]
+
+
+class TranscriptCueSpeaker(BaseModel):
+    attendee_id: Optional[str] = None
+
+    label: Optional[str] = None
+
+
+class TranscriptCue(BaseModel):
+    from_: float = FieldInfo(alias="from")
+
+    speaker: TranscriptCueSpeaker
+
+    text: str
+
+    to: float
+
+
+class Transcript(BaseModel):
+    cues: List[TranscriptCue]
 
 
 class Meeting(BaseModel):
@@ -84,8 +106,4 @@ class Meeting(BaseModel):
     title: Optional[str] = None
     """The title or subject of the meeting."""
 
-    transcript_url: Optional[str] = None
-    """A temporary, signed URL to download the meeting transcript.
-
-    The URL expires after one hour.
-    """
+    transcript: Optional[Transcript] = None

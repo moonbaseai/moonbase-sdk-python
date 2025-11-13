@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import webhook_endpoint_list_params, webhook_endpoint_create_params, webhook_endpoint_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -50,13 +50,13 @@ class WebhookEndpointsResource(SyncAPIResource):
         *,
         status: Literal["disabled", "enabled"],
         url: str,
-        subscriptions: Iterable[webhook_endpoint_create_params.Subscription] | NotGiven = NOT_GIVEN,
+        subscriptions: Iterable[webhook_endpoint_create_params.Subscription] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Endpoint:
         """
         Create a new endpoint.
@@ -101,7 +101,7 @@ class WebhookEndpointsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Endpoint:
         """
         Retrieves the details of an existing endpoint.
@@ -129,15 +129,15 @@ class WebhookEndpointsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        status: Literal["disabled", "enabled"] | NotGiven = NOT_GIVEN,
-        subscriptions: Iterable[webhook_endpoint_update_params.Subscription] | NotGiven = NOT_GIVEN,
-        url: str | NotGiven = NOT_GIVEN,
+        status: Literal["disabled", "enabled"] | Omit = omit,
+        subscriptions: Iterable[webhook_endpoint_update_params.Subscription] | Omit = omit,
+        url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Endpoint:
         """
         Updates an endpoint.
@@ -178,15 +178,15 @@ class WebhookEndpointsResource(SyncAPIResource):
     def list(
         self,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncCursorPage[Endpoint]:
         """
         Returns a list of endpoints.
@@ -240,7 +240,7 @@ class WebhookEndpointsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Permanently deletes an endpoint.
@@ -291,13 +291,13 @@ class AsyncWebhookEndpointsResource(AsyncAPIResource):
         *,
         status: Literal["disabled", "enabled"],
         url: str,
-        subscriptions: Iterable[webhook_endpoint_create_params.Subscription] | NotGiven = NOT_GIVEN,
+        subscriptions: Iterable[webhook_endpoint_create_params.Subscription] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Endpoint:
         """
         Create a new endpoint.
@@ -342,7 +342,7 @@ class AsyncWebhookEndpointsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Endpoint:
         """
         Retrieves the details of an existing endpoint.
@@ -370,15 +370,15 @@ class AsyncWebhookEndpointsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        status: Literal["disabled", "enabled"] | NotGiven = NOT_GIVEN,
-        subscriptions: Iterable[webhook_endpoint_update_params.Subscription] | NotGiven = NOT_GIVEN,
-        url: str | NotGiven = NOT_GIVEN,
+        status: Literal["disabled", "enabled"] | Omit = omit,
+        subscriptions: Iterable[webhook_endpoint_update_params.Subscription] | Omit = omit,
+        url: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Endpoint:
         """
         Updates an endpoint.
@@ -419,15 +419,15 @@ class AsyncWebhookEndpointsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Endpoint, AsyncCursorPage[Endpoint]]:
         """
         Returns a list of endpoints.
@@ -481,7 +481,7 @@ class AsyncWebhookEndpointsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Permanently deletes an endpoint.

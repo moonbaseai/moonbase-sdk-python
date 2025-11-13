@@ -3,7 +3,7 @@
 <!-- prettier-ignore -->
 [![PyPI version](https://img.shields.io/pypi/v/moonbase-sdk.svg?label=pypi%20(stable))](https://pypi.org/project/moonbase-sdk/)
 
-The Moonbase Python library provides convenient access to the Moonbase REST API from any Python 3.8+
+The Moonbase Python library provides convenient access to the Moonbase REST API from any Python 3.9+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -200,6 +200,23 @@ page = client.inbox_conversations.list(
 )
 print(page.data)
 ```
+
+## File uploads
+
+Request parameters that correspond to file uploads can be passed as `bytes`, or a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance or a tuple of `(filename, contents, media type)`.
+
+```python
+from pathlib import Path
+from moonbase import Moonbase
+
+client = Moonbase()
+
+client.files.upload(
+    file=Path("/path/to/file"),
+)
+```
+
+The async client uses the exact same interface. If you pass a [`PathLike`](https://docs.python.org/3/library/os.html#os.PathLike) instance, the file contents will be read asynchronously automatically.
 
 ## Handling errors
 
@@ -462,7 +479,7 @@ print(moonbase.__version__)
 
 ## Requirements
 
-Python 3.8 or higher.
+Python 3.9 or higher.
 
 ## Contributing
 

@@ -24,7 +24,7 @@ class InboxListParams(TypedDict, total=False):
     previous page of results.
     """
 
-    include: Annotated[Literal["tagset"], PropertyInfo(alias="include[]")]
+    include: Annotated[Literal["tagsets"], PropertyInfo(alias="include[]")]
 
     limit: int
     """Maximum number of items to return per page.

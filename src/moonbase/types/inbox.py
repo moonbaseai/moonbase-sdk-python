@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -26,10 +26,10 @@ class Inbox(BaseModel):
     updated_at: datetime
     """Time at which the object was last updated, as an ISO 8601 timestamp in UTC."""
 
-    tagset: Optional[Tagset] = None
+    tagsets: Optional[List[Tagset]] = None
     """
-    The `Tagset` associated with this inbox, which defines the tags available for
-    its conversations.
+    The list of `Tagset` objects associated with this inbox, which defines the tags
+    available for its conversations.
 
     **Note:** Only present when requested using the `include` query parameter.
     """

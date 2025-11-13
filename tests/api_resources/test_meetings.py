@@ -65,6 +65,74 @@ class TestMeetings:
             )
 
     @parametrize
+    def test_method_update(self, client: Moonbase) -> None:
+        meeting = client.meetings.update(
+            id="id",
+        )
+        assert_matches_type(Meeting, meeting, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Moonbase) -> None:
+        meeting = client.meetings.update(
+            id="id",
+            recording={
+                "content_type": "video/mp4",
+                "provider_id": "abc123",
+                "url": "https://example.com/recording.mp4",
+            },
+            transcript={
+                "cues": [
+                    {
+                        "from": 0.71999997,
+                        "speaker": "Jony Appleseed",
+                        "text": "Hello.",
+                        "to": 1.22,
+                    },
+                    {
+                        "from": 1.52,
+                        "speaker": "Jane Doe",
+                        "text": "Hey! It's been too long.",
+                        "to": 3.22,
+                    },
+                ],
+                "provider": "example",
+                "provider_id": "def456",
+            },
+        )
+        assert_matches_type(Meeting, meeting, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: Moonbase) -> None:
+        response = client.meetings.with_raw_response.update(
+            id="id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        meeting = response.parse()
+        assert_matches_type(Meeting, meeting, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: Moonbase) -> None:
+        with client.meetings.with_streaming_response.update(
+            id="id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            meeting = response.parse()
+            assert_matches_type(Meeting, meeting, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: Moonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.meetings.with_raw_response.update(
+                id="",
+            )
+
+    @parametrize
     def test_method_list(self, client: Moonbase) -> None:
         meeting = client.meetings.list()
         assert_matches_type(SyncCursorPage[Meeting], meeting, path=["response"])
@@ -74,6 +142,7 @@ class TestMeetings:
         meeting = client.meetings.list(
             after="after",
             before="before",
+            filter={"i_cal_uid": {"eq": "eq"}},
             limit=1,
         )
         assert_matches_type(SyncCursorPage[Meeting], meeting, path=["response"])
@@ -151,6 +220,74 @@ class TestAsyncMeetings:
             )
 
     @parametrize
+    async def test_method_update(self, async_client: AsyncMoonbase) -> None:
+        meeting = await async_client.meetings.update(
+            id="id",
+        )
+        assert_matches_type(Meeting, meeting, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncMoonbase) -> None:
+        meeting = await async_client.meetings.update(
+            id="id",
+            recording={
+                "content_type": "video/mp4",
+                "provider_id": "abc123",
+                "url": "https://example.com/recording.mp4",
+            },
+            transcript={
+                "cues": [
+                    {
+                        "from": 0.71999997,
+                        "speaker": "Jony Appleseed",
+                        "text": "Hello.",
+                        "to": 1.22,
+                    },
+                    {
+                        "from": 1.52,
+                        "speaker": "Jane Doe",
+                        "text": "Hey! It's been too long.",
+                        "to": 3.22,
+                    },
+                ],
+                "provider": "example",
+                "provider_id": "def456",
+            },
+        )
+        assert_matches_type(Meeting, meeting, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncMoonbase) -> None:
+        response = await async_client.meetings.with_raw_response.update(
+            id="id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        meeting = await response.parse()
+        assert_matches_type(Meeting, meeting, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncMoonbase) -> None:
+        async with async_client.meetings.with_streaming_response.update(
+            id="id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            meeting = await response.parse()
+            assert_matches_type(Meeting, meeting, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncMoonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.meetings.with_raw_response.update(
+                id="",
+            )
+
+    @parametrize
     async def test_method_list(self, async_client: AsyncMoonbase) -> None:
         meeting = await async_client.meetings.list()
         assert_matches_type(AsyncCursorPage[Meeting], meeting, path=["response"])
@@ -160,6 +297,7 @@ class TestAsyncMeetings:
         meeting = await async_client.meetings.list(
             after="after",
             before="before",
+            filter={"i_cal_uid": {"eq": "eq"}},
             limit=1,
         )
         assert_matches_type(AsyncCursorPage[Meeting], meeting, path=["response"])

@@ -272,6 +272,7 @@ Methods:
 
 - <code title="get /files/{id}">client.files.<a href="./src/moonbase/resources/files.py">retrieve</a>(id) -> <a href="./src/moonbase/types/moonbase_file.py">MoonbaseFile</a></code>
 - <code title="get /files">client.files.<a href="./src/moonbase/resources/files.py">list</a>(\*\*<a href="src/moonbase/types/file_list_params.py">params</a>) -> <a href="./src/moonbase/types/moonbase_file.py">SyncCursorPage[MoonbaseFile]</a></code>
+- <code title="post /files">client.files.<a href="./src/moonbase/resources/files.py">upload</a>(\*\*<a href="src/moonbase/types/file_upload_params.py">params</a>) -> <a href="./src/moonbase/types/moonbase_file.py">MoonbaseFile</a></code>
 
 # Meetings
 
@@ -284,6 +285,7 @@ from moonbase.types import Attendee, Meeting, Organizer
 Methods:
 
 - <code title="get /meetings/{id}">client.meetings.<a href="./src/moonbase/resources/meetings.py">retrieve</a>(id, \*\*<a href="src/moonbase/types/meeting_retrieve_params.py">params</a>) -> <a href="./src/moonbase/types/meeting.py">Meeting</a></code>
+- <code title="patch /meetings/{id}">client.meetings.<a href="./src/moonbase/resources/meetings.py">update</a>(id, \*\*<a href="src/moonbase/types/meeting_update_params.py">params</a>) -> <a href="./src/moonbase/types/meeting.py">Meeting</a></code>
 - <code title="get /meetings">client.meetings.<a href="./src/moonbase/resources/meetings.py">list</a>(\*\*<a href="src/moonbase/types/meeting_list_params.py">params</a>) -> <a href="./src/moonbase/types/meeting.py">SyncCursorPage[Meeting]</a></code>
 
 # Notes

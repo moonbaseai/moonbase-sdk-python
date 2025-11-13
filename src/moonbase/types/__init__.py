@@ -79,6 +79,7 @@ from .call_upsert_params import CallUpsertParams as CallUpsertParams
 from .choice_value_param import ChoiceValueParam as ChoiceValueParam
 from .collection_pointer import CollectionPointer as CollectionPointer
 from .domain_value_param import DomainValueParam as DomainValueParam
+from .file_upload_params import FileUploadParams as FileUploadParams
 from .inbox_conversation import InboxConversation as InboxConversation
 from .item_pointer_param import ItemPointerParam as ItemPointerParam
 from .tagset_list_params import TagsetListParams as TagsetListParams
@@ -97,6 +98,7 @@ from .activity_item_created import ActivityItemCreated as ActivityItemCreated
 from .activity_meeting_held import ActivityMeetingHeld as ActivityMeetingHeld
 from .activity_note_created import ActivityNoteCreated as ActivityNoteCreated
 from .inbox_retrieve_params import InboxRetrieveParams as InboxRetrieveParams
+from .meeting_update_params import MeetingUpdateParams as MeetingUpdateParams
 from .multi_line_text_field import MultiLineTextField as MultiLineTextField
 from .multi_line_text_value import MultiLineTextValue as MultiLineTextValue
 from .activity_call_occurred import ActivityCallOccurred as ActivityCallOccurred
