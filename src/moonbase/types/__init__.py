@@ -79,6 +79,7 @@ from .call_upsert_params import CallUpsertParams as CallUpsertParams
 from .choice_value_param import ChoiceValueParam as ChoiceValueParam
 from .collection_pointer import CollectionPointer as CollectionPointer
 from .domain_value_param import DomainValueParam as DomainValueParam
+from .file_upload_params import FileUploadParams as FileUploadParams
 from .inbox_conversation import InboxConversation as InboxConversation
 from .item_pointer_param import ItemPointerParam as ItemPointerParam
 from .tagset_list_params import TagsetListParams as TagsetListParams

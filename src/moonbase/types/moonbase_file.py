@@ -1,9 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import List
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .item_pointer import ItemPointer
 
 __all__ = ["MoonbaseFile"]
 
@@ -11,6 +13,9 @@ __all__ = ["MoonbaseFile"]
 class MoonbaseFile(BaseModel):
     id: str
     """Unique identifier for the object."""
+
+    associations: List[ItemPointer]
+    """A list of items this file is associated with."""
 
     created_at: datetime
     """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
