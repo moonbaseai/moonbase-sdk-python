@@ -83,6 +83,7 @@ pip install --pre moonbase-sdk[aiohttp]
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
+import os
 import asyncio
 from moonbase import DefaultAioHttpClient
 from moonbase import AsyncMoonbase
@@ -90,7 +91,7 @@ from moonbase import AsyncMoonbase
 
 async def main() -> None:
     async with AsyncMoonbase(
-        api_key="My API Key",
+        api_key=os.environ.get("MOONBASE_API_KEY"),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         collection = await client.collections.retrieve(
