@@ -12,6 +12,10 @@ __all__ = ["ActivityProgramMessageShielded"]
 
 
 class ActivityProgramMessageShielded(BaseModel):
+    """
+    Represents an event that occurs when a `ProgramMessage` is prevented from being sent by a delivery protection rule.
+    """
+
     id: str
     """Unique identifier for the object."""
 

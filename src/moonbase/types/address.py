@@ -10,6 +10,11 @@ __all__ = ["Address"]
 
 
 class Address(BaseModel):
+    """The Address object represents a recipient or sender of a message.
+
+    It contains an email address and can be linked to a person and an organization in your collections.
+    """
+
     id: str
     """Unique identifier for the object."""
 

@@ -9,6 +9,8 @@ __all__ = ["FunnelStepValue"]
 
 
 class FunnelStepValue(BaseModel):
+    """Funnel step value"""
+
     data: FunnelStep
     """A specific funnel step, as configured on the Funnel"""
 

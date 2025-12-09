@@ -14,6 +14,8 @@ Data: TypeAlias = Union[ItemPointerParam, Pointer]
 
 
 class RelationValueParam(TypedDict, total=False):
+    """Related item reference"""
+
     data: Required[Data]
     """A reference to another Moonbase item."""
 

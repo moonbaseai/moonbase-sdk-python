@@ -8,6 +8,8 @@ __all__ = ["SingleLineTextValue"]
 
 
 class SingleLineTextValue(BaseModel):
+    """A single line of text"""
+
     data: str
     """A single line of text, up to 1024 characters long.
 

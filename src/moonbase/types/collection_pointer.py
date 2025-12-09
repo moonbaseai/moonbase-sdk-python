@@ -8,6 +8,10 @@ __all__ = ["CollectionPointer"]
 
 
 class CollectionPointer(BaseModel):
+    """
+    A lightweight reference to a `Collection`, containing the minimal information needed to identify it.
+    """
+
     id: str
     """Unique identifier of the collection."""
 

@@ -8,6 +8,8 @@ __all__ = ["BooleanValue"]
 
 
 class BooleanValue(BaseModel):
+    """True or false value"""
+
     data: bool
 
     type: Literal["value/boolean"]

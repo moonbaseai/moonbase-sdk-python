@@ -8,6 +8,10 @@ __all__ = ["Subscription"]
 
 
 class Subscription(BaseModel):
+    """
+    A Webhook Subscription defines which event type should be sent to a specific webhook endpoint.
+    """
+
     event_type: Literal[
         "activity/call_occurred",
         "activity/form_submitted",

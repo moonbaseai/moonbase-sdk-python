@@ -34,6 +34,10 @@ __all__ = [
 
 
 class SocialXValueParamData(TypedDict, total=False):
+    """
+    Social media profile information including both the full URL and extracted username.
+    """
+
     url: str
     """The full URL to the X profile, starting with 'https://x.com/'"""
 
@@ -46,6 +50,8 @@ class SocialXValueParamData(TypedDict, total=False):
 
 
 class SocialXValueParam(TypedDict, total=False):
+    """The social media profile for the X (formerly Twitter) platform"""
+
     data: Required[SocialXValueParamData]
     """
     Social media profile information including both the full URL and extracted
@@ -56,6 +62,8 @@ class SocialXValueParam(TypedDict, total=False):
 
 
 class SocialLinkedInValueParamData(TypedDict, total=False):
+    """The social media profile for the LinkedIn platform"""
+
     url: str
     """The full URL to the LinkedIn profile."""
 
@@ -67,6 +75,8 @@ class SocialLinkedInValueParamData(TypedDict, total=False):
 
 
 class SocialLinkedInValueParam(TypedDict, total=False):
+    """The social media profile for the LinkedIn platform"""
+
     data: Required[SocialLinkedInValueParamData]
     """The social media profile for the LinkedIn platform"""
 

@@ -12,6 +12,8 @@ __all__ = ["DateValueParam"]
 
 
 class DateValueParam(TypedDict, total=False):
+    """Date without time"""
+
     data: Required[Annotated[Union[str, date], PropertyInfo(format="iso8601")]]
 
     type: Required[Literal["value/date"]]

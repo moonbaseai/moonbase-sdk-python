@@ -8,6 +8,8 @@ __all__ = ["ChoiceFieldOptionParam"]
 
 
 class ChoiceFieldOptionParam(TypedDict, total=False):
+    """Represents a single selectable option within a choice field."""
+
     id: Required[str]
     """Unique identifier for the option."""
 

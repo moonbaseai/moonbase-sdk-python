@@ -11,6 +11,8 @@ __all__ = ["ChoiceField"]
 
 
 class ChoiceField(BaseModel):
+    """A field that stores one or more predefined options from a list of choices."""
+
     id: str
     """Unique identifier for the object."""
 

@@ -8,6 +8,10 @@ __all__ = ["MonetaryValueParam", "Data"]
 
 
 class Data(TypedDict, total=False):
+    """
+    A monetary amount is composed of the amount in the smallest unit of a currency and an ISO currency code.
+    """
+
     currency: Required[str]
     """The 3-letter ISO 4217 currency code"""
 
@@ -20,6 +24,8 @@ class Data(TypedDict, total=False):
 
 
 class MonetaryValueParam(TypedDict, total=False):
+    """Monetary or currency value"""
+
     data: Required[Data]
     """
     A monetary amount is composed of the amount in the smallest unit of a currency

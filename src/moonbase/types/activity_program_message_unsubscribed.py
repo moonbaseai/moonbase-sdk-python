@@ -12,6 +12,10 @@ __all__ = ["ActivityProgramMessageUnsubscribed"]
 
 
 class ActivityProgramMessageUnsubscribed(BaseModel):
+    """
+    Represents an event that occurs when a recipient unsubscribes after receiving a `ProgramMessage`.
+    """
+
     id: str
     """Unique identifier for the object."""
 

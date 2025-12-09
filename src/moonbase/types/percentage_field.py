@@ -10,6 +10,8 @@ __all__ = ["PercentageField"]
 
 
 class PercentageField(BaseModel):
+    """A field that stores percentage values as decimal numbers."""
+
     id: str
     """Unique identifier for the object."""
 

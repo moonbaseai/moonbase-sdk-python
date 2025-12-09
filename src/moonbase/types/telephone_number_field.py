@@ -10,6 +10,8 @@ __all__ = ["TelephoneNumberField"]
 
 
 class TelephoneNumberField(BaseModel):
+    """A field that stores phone numbers in E.164 format."""
+
     id: str
     """Unique identifier for the object."""
 

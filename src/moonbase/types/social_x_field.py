@@ -10,6 +10,8 @@ __all__ = ["SocialXField"]
 
 
 class SocialXField(BaseModel):
+    """A field that stores X (formerly Twitter) profile information."""
+
     id: str
     """Unique identifier for the object."""
 

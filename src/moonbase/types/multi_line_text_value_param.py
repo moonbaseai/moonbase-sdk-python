@@ -8,6 +8,8 @@ __all__ = ["MultiLineTextValueParam"]
 
 
 class MultiLineTextValueParam(TypedDict, total=False):
+    """Multiple lines of text"""
+
     data: Required[str]
     """Text which may contain line breaks, can be up to 65,536 characters long.
 

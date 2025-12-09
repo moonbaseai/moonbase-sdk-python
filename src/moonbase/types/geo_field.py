@@ -10,6 +10,8 @@ __all__ = ["GeoField"]
 
 
 class GeoField(BaseModel):
+    """A field that stores geographic coordinates or location data."""
+
     id: str
     """Unique identifier for the object."""
 

@@ -9,6 +9,10 @@ __all__ = ["Error", "Source"]
 
 
 class Source(BaseModel):
+    """
+    An object containing more specific information about the part of the request that caused the error.
+    """
+
     parameter: Optional[str] = None
     """A string indicating which URI query parameter caused the error."""
 
@@ -17,6 +21,10 @@ class Source(BaseModel):
 
 
 class Error(BaseModel):
+    """
+    The Error object represents a single error that occurred during API request processing. It provides detailed information about what went wrong, including a unique identifier, status code, and human-readable descriptions to help developers understand and resolve the issue.
+    """
+
     type: Literal["error"]
 
     id: Optional[str] = None

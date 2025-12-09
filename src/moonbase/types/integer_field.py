@@ -10,6 +10,8 @@ __all__ = ["IntegerField"]
 
 
 class IntegerField(BaseModel):
+    """A field that stores whole numbers without decimal places."""
+
     id: str
     """Unique identifier for the object."""
 

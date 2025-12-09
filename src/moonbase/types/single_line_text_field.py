@@ -10,6 +10,8 @@ __all__ = ["SingleLineTextField"]
 
 
 class SingleLineTextField(BaseModel):
+    """A field that stores a single line of text without line breaks."""
+
     id: str
     """Unique identifier for the object."""
 

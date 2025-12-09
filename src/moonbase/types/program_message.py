@@ -11,6 +11,8 @@ __all__ = ["ProgramMessage"]
 
 
 class ProgramMessage(BaseModel):
+    """Represents a single message sent as part of a `Program`."""
+
     id: str
     """Unique identifier for the object."""
 

@@ -12,6 +12,8 @@ __all__ = ["ActivityProgramMessageOpened"]
 
 
 class ActivityProgramMessageOpened(BaseModel):
+    """Represents an event that occurs when a recipient opens a `ProgramMessage`."""
+
     id: str
     """Unique identifier for the object."""
 

@@ -10,6 +10,8 @@ __all__ = ["SocialLinkedInField"]
 
 
 class SocialLinkedInField(BaseModel):
+    """A field that stores LinkedIn profile information."""
+
     id: str
     """Unique identifier for the object."""
 

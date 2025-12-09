@@ -10,6 +10,8 @@ __all__ = ["EmailField"]
 
 
 class EmailField(BaseModel):
+    """A field that stores and validates email addresses."""
+
     id: str
     """Unique identifier for the object."""
 

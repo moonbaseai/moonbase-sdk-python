@@ -10,6 +10,8 @@ __all__ = ["MonetaryField"]
 
 
 class MonetaryField(BaseModel):
+    """A field that stores monetary amounts with currency information."""
+
     id: str
     """Unique identifier for the object."""
 

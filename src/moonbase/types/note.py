@@ -11,6 +11,10 @@ __all__ = ["Note"]
 
 
 class Note(BaseModel):
+    """
+    The Note object represents a block of text content, often used for meeting notes or summaries.
+    """
+
     id: str
     """Unique identifier for the object."""
 

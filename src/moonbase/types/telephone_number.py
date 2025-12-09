@@ -8,6 +8,8 @@ __all__ = ["TelephoneNumber"]
 
 
 class TelephoneNumber(BaseModel):
+    """Telephone number value"""
+
     data: str
     """A telephone number in strictly formatted E.164 format.
 

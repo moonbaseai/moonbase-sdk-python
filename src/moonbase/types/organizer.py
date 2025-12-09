@@ -10,6 +10,8 @@ __all__ = ["Organizer"]
 
 
 class Organizer(BaseModel):
+    """Represents the organizer of a meeting."""
+
     id: str
     """Unique identifier for the object."""
 

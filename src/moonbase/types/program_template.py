@@ -13,6 +13,10 @@ __all__ = ["ProgramTemplate"]
 
 
 class ProgramTemplate(BaseModel):
+    """
+    The ProgramTemplate object defines the content of a message sent by a `Program`, including support for Liquid templating.
+    """
+
     id: str
     """Unique identifier for the object."""
 

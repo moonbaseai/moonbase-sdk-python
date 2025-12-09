@@ -13,6 +13,10 @@ __all__ = ["InboxConversation", "Tag"]
 
 
 class Tag(BaseModel):
+    """
+    A Tag is a label that can be applied to `Conversation` objects for organization and filtering.
+    """
+
     id: str
     """Unique identifier for the object."""
 
@@ -24,6 +28,8 @@ class Tag(BaseModel):
 
 
 class InboxConversation(BaseModel):
+    """The Conversation object represents a thread of related messages."""
+
     id: str
     """Unique identifier for the object."""
 

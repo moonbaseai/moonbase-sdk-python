@@ -12,6 +12,10 @@ __all__ = ["ActivityProgramMessageFailed"]
 
 
 class ActivityProgramMessageFailed(BaseModel):
+    """
+    Represents an event that occurs when a `ProgramMessage` fails to be delivered for a technical reason.
+    """
+
     id: str
     """Unique identifier for the object."""
 
