@@ -11,6 +11,8 @@ __all__ = ["Inbox"]
 
 
 class Inbox(BaseModel):
+    """The Inbox object represents a shared inbox for receiving and sending messages."""
+
     id: str
     """Unique identifier for the object."""
 

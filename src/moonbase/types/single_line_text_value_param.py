@@ -8,6 +8,8 @@ __all__ = ["SingleLineTextValueParam"]
 
 
 class SingleLineTextValueParam(TypedDict, total=False):
+    """A single line of text"""
+
     data: Required[str]
     """A single line of text, up to 1024 characters long.
 

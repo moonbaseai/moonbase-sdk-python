@@ -11,6 +11,8 @@ __all__ = ["ActivityCallOccurred"]
 
 
 class ActivityCallOccurred(BaseModel):
+    """Represents an event that occurs when an incoming or outgoing call is logged."""
+
     id: str
     """Unique identifier for the object."""
 

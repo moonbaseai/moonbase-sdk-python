@@ -8,6 +8,10 @@ __all__ = ["CollectionPointerParam"]
 
 
 class CollectionPointerParam(TypedDict, total=False):
+    """
+    A lightweight reference to a `Collection`, containing the minimal information needed to identify it.
+    """
+
     id: Required[str]
     """Unique identifier of the collection."""
 

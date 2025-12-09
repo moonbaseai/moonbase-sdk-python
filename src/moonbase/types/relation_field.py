@@ -10,6 +10,10 @@ __all__ = ["RelationField"]
 
 
 class RelationField(BaseModel):
+    """
+    A field that creates a link between items in different collections, enabling cross-collection relationships.
+    """
+
     id: str
     """Unique identifier for the object."""
 

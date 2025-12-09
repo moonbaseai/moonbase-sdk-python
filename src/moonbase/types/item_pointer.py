@@ -9,6 +9,10 @@ __all__ = ["ItemPointer"]
 
 
 class ItemPointer(BaseModel):
+    """
+    A reference to an `Item` within a specific `Collection`, providing the context needed to locate the item.
+    """
+
     id: str
     """Unique identifier of the item."""
 

@@ -8,6 +8,8 @@ __all__ = ["TelephoneNumberParam"]
 
 
 class TelephoneNumberParam(TypedDict, total=False):
+    """Telephone number value"""
+
     data: Required[str]
     """A telephone number in strictly formatted E.164 format.
 

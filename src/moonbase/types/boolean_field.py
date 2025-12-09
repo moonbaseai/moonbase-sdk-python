@@ -10,6 +10,8 @@ __all__ = ["BooleanField"]
 
 
 class BooleanField(BaseModel):
+    """A field that stores true or false values."""
+
     id: str
     """Unique identifier for the object."""
 

@@ -8,6 +8,8 @@ __all__ = ["Pointer"]
 
 
 class Pointer(TypedDict, total=False):
+    """A lightweight reference to another resource."""
+
     id: Required[str]
     """Unique identifier for the referenced object."""
 

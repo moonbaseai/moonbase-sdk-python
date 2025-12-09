@@ -8,6 +8,8 @@ __all__ = ["FloatValueParam"]
 
 
 class FloatValueParam(TypedDict, total=False):
+    """Floating point number"""
+
     data: Required[float]
 
     type: Required[Literal["value/number/unitless_float"]]

@@ -8,6 +8,8 @@ __all__ = ["FunnelStep"]
 
 
 class FunnelStep(BaseModel):
+    """Represents a single step within a `Funnel`."""
+
     id: str
     """Unique identifier for the object."""
 

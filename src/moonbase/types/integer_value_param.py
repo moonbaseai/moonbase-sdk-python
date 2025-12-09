@@ -8,6 +8,8 @@ __all__ = ["IntegerValueParam"]
 
 
 class IntegerValueParam(TypedDict, total=False):
+    """Integer value without units"""
+
     data: Required[int]
 
     type: Required[Literal["value/number/unitless_integer"]]

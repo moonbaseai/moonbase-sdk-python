@@ -8,6 +8,8 @@ __all__ = ["ChoiceFieldOption"]
 
 
 class ChoiceFieldOption(BaseModel):
+    """Represents a single selectable option within a choice field."""
+
     id: str
     """Unique identifier for the option."""
 

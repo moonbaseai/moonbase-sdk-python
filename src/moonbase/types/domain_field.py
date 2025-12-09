@@ -10,6 +10,8 @@ __all__ = ["DomainField"]
 
 
 class DomainField(BaseModel):
+    """A field that stores internet domain names."""
+
     id: str
     """Unique identifier for the object."""
 

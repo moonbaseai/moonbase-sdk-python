@@ -20,6 +20,8 @@ class WebhookEndpointUpdateParams(TypedDict, total=False):
 
 
 class Subscription(TypedDict, total=False):
+    """Parameters for updating a webhook subscription."""
+
     event_type: Required[
         Literal[
             "activity/call_occurred",

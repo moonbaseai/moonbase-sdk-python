@@ -8,6 +8,8 @@ __all__ = ["PercentageValue"]
 
 
 class PercentageValue(BaseModel):
+    """Percentage numeric value"""
+
     data: float
     """
     A floating-point number representing a percentage value, for example 50.21 for

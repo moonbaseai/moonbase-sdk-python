@@ -8,6 +8,8 @@ __all__ = ["FunnelStepParam"]
 
 
 class FunnelStepParam(TypedDict, total=False):
+    """Represents a single step within a `Funnel`."""
+
     id: Required[str]
     """Unique identifier for the object."""
 

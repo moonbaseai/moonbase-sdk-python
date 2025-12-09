@@ -12,6 +12,10 @@ __all__ = ["ActivityProgramMessageClicked"]
 
 
 class ActivityProgramMessageClicked(BaseModel):
+    """
+    Represents an event that occurs when a recipient clicks a tracked link in a `ProgramMessage`.
+    """
+
     id: str
     """Unique identifier for the object."""
 

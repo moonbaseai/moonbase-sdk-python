@@ -11,6 +11,8 @@ __all__ = ["StageField"]
 
 
 class StageField(BaseModel):
+    """A field that tracks an item's position in a funnel or pipeline workflow."""
+
     id: str
     """Unique identifier for the object."""
 

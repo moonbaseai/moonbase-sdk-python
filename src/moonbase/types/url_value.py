@@ -8,6 +8,8 @@ __all__ = ["URLValue"]
 
 
 class URLValue(BaseModel):
+    """URL or web address"""
+
     data: str
     """A valid URL, conforming to RFC 3986, up to 8,192 characters long.
 

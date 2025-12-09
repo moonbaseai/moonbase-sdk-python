@@ -34,6 +34,11 @@ class Transcript(BaseModel):
 
 
 class Meeting(BaseModel):
+    """The Meeting object represents a calendar event.
+
+    It includes details about the participants, timing, and associated content like summaries and recordings.
+    """
+
     id: str
     """Unique identifier for the object."""
 

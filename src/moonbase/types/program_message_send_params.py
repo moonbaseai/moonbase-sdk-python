@@ -20,4 +20,6 @@ class ProgramMessageSendParams(TypedDict, total=False):
 
 
 class Person(TypedDict, total=False):
+    """The person to send the message to."""
+
     email: Required[str]

@@ -11,6 +11,8 @@ __all__ = ["MoonbaseFile"]
 
 
 class MoonbaseFile(BaseModel):
+    """The File object represents a file that has been uploaded to your library."""
+
     id: str
     """Unique identifier for the object."""
 

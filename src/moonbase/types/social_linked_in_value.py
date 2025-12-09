@@ -8,6 +8,8 @@ __all__ = ["SocialLinkedInValue", "Data"]
 
 
 class Data(BaseModel):
+    """The social media profile for the LinkedIn platform"""
+
     url: str
     """The full URL to the LinkedIn profile."""
 
@@ -19,6 +21,8 @@ class Data(BaseModel):
 
 
 class SocialLinkedInValue(BaseModel):
+    """The social media profile for the LinkedIn platform"""
+
     data: Data
     """The social media profile for the LinkedIn platform"""
 

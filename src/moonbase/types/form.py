@@ -12,6 +12,10 @@ __all__ = ["Form"]
 
 
 class Form(BaseModel):
+    """
+    A Form provides a way to create `Items` in a `Collection`, often via a public URL for external users. Each form submission creates a new item.
+    """
+
     id: str
     """Unique identifier for the object."""
 

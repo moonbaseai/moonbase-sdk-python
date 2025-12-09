@@ -12,6 +12,8 @@ __all__ = ["ActivityProgramMessageBounced"]
 
 
 class ActivityProgramMessageBounced(BaseModel):
+    """Represents an event that occurs when a `ProgramMessage` bounces."""
+
     id: str
     """Unique identifier for the object."""
 

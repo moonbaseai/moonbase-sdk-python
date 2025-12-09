@@ -8,6 +8,8 @@ __all__ = ["GeoValueParam"]
 
 
 class GeoValueParam(TypedDict, total=False):
+    """Geographic coordinate value"""
+
     data: Required[str]
     """A string that represents some geographic location.
 

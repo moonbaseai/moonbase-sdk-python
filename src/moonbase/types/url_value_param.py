@@ -8,6 +8,8 @@ __all__ = ["URLValueParam"]
 
 
 class URLValueParam(TypedDict, total=False):
+    """URL or web address"""
+
     data: Required[str]
     """A valid URL, conforming to RFC 3986, up to 8,192 characters long.
 

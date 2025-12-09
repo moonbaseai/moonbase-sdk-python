@@ -12,6 +12,8 @@ __all__ = ["ActivityProgramMessageSent"]
 
 
 class ActivityProgramMessageSent(BaseModel):
+    """Represents an event that occurs when a `ProgramMessage` is successfully sent."""
+
     id: str
     """Unique identifier for the object."""
 

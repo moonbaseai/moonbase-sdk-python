@@ -10,6 +10,11 @@ __all__ = ["Attendee"]
 
 
 class Attendee(BaseModel):
+    """The Attendee object represents a participant in a meeting.
+
+    It includes their email address and links to associated `Person` and `Organization` items, if they exist in your collections.
+    """
+
     id: str
     """Unique identifier for the object."""
 

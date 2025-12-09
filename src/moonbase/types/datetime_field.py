@@ -10,6 +10,8 @@ __all__ = ["DatetimeField"]
 
 
 class DatetimeField(BaseModel):
+    """A field that stores dates with time information."""
+
     id: str
     """Unique identifier for the object."""
 

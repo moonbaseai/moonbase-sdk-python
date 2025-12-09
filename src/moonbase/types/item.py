@@ -10,6 +10,11 @@ __all__ = ["Item"]
 
 
 class Item(BaseModel):
+    """An Item represents a single record or row within a Collection.
+
+    It holds a set of `values` corresponding to the Collection's `fields`.
+    """
+
     id: str
     """Unique identifier for the object."""
 

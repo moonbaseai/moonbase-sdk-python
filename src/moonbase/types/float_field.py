@@ -10,6 +10,8 @@ __all__ = ["FloatField"]
 
 
 class FloatField(BaseModel):
+    """A field that stores decimal numbers with floating-point precision."""
+
     id: str
     """Unique identifier for the object."""
 

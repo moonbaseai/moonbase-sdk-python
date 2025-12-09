@@ -17,6 +17,8 @@ class MeetingUpdateParams(TypedDict, total=False):
 
 
 class Recording(TypedDict, total=False):
+    """A video recording of the meeting."""
+
     content_type: Required[str]
     """The content type of the recording.
 
@@ -40,6 +42,10 @@ _TranscriptCueReservedKeywords = TypedDict(
 
 
 class TranscriptCue(_TranscriptCueReservedKeywords, total=False):
+    """
+    Parameters for creating a `MeetingTranscriptCue` object to capture the text spoken in a specific time slice.
+    """
+
     speaker: Required[str]
     """The name of the person speaking."""
 
@@ -51,6 +57,8 @@ class TranscriptCue(_TranscriptCueReservedKeywords, total=False):
 
 
 class Transcript(TypedDict, total=False):
+    """The meeting transcript."""
+
     cues: Required[Iterable[TranscriptCue]]
     """
     A list of cues that identify the text spoken in specific time slices of the

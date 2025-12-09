@@ -8,6 +8,8 @@ __all__ = ["EmailValue"]
 
 
 class EmailValue(BaseModel):
+    """Email address value"""
+
     data: str
     """A valid email address."""
 

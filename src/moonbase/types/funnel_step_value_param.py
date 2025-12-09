@@ -14,6 +14,8 @@ Data: TypeAlias = Union[FunnelStepParam, Pointer]
 
 
 class FunnelStepValueParam(TypedDict, total=False):
+    """Funnel step value"""
+
     data: Required[Data]
     """A specific funnel step, as configured on the Funnel"""
 

@@ -10,6 +10,10 @@ __all__ = ["Tagset", "Tag"]
 
 
 class Tag(BaseModel):
+    """
+    A Tag is a label that can be applied to `Conversation` objects for organization and filtering.
+    """
+
     id: str
     """Unique identifier for the object."""
 
@@ -21,6 +25,10 @@ class Tag(BaseModel):
 
 
 class Tagset(BaseModel):
+    """
+    A Tagset is a collection of `Tag` objects that can be applied within a specific `Inbox`.
+    """
+
     id: str
     """Unique identifier for the object."""
 

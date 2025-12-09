@@ -10,6 +10,8 @@ __all__ = ["MultiLineTextField"]
 
 
 class MultiLineTextField(BaseModel):
+    """A field that stores multiple lines of text with line breaks preserved."""
+
     id: str
     """Unique identifier for the object."""
 

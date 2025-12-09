@@ -10,6 +10,8 @@ __all__ = ["Funnel"]
 
 
 class Funnel(BaseModel):
+    """A Funnel represents a series of steps used to track progression."""
+
     id: str
     """Unique identifier for the object."""
 

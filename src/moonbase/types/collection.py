@@ -13,6 +13,10 @@ __all__ = ["Collection"]
 
 
 class Collection(BaseModel):
+    """
+    A Collection is a container for structured data, similar to a database table or spreadsheet. It defines a schema using a set of `Fields` and holds the data as a list of `Items`.
+    """
+
     id: str
     """Unique identifier for the object."""
 

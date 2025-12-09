@@ -10,6 +10,8 @@ __all__ = ["URLField"]
 
 
 class URLField(BaseModel):
+    """A field that stores and validates web URLs."""
+
     id: str
     """Unique identifier for the object."""
 

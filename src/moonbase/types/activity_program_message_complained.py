@@ -12,6 +12,10 @@ __all__ = ["ActivityProgramMessageComplained"]
 
 
 class ActivityProgramMessageComplained(BaseModel):
+    """
+    Represents an event that occurs when a recipient marks a `ProgramMessage` as spam.
+    """
+
     id: str
     """Unique identifier for the object."""
 

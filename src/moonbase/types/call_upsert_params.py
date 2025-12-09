@@ -47,6 +47,8 @@ class CallUpsertParams(TypedDict, total=False):
 
 
 class Participant(TypedDict, total=False):
+    """Parameters for creating a `Participant` object."""
+
     phone: Required[str]
     """The E.164 formatted phone number of the participant."""
 
@@ -55,6 +57,8 @@ class Participant(TypedDict, total=False):
 
 
 class Recording(TypedDict, total=False):
+    """Parameters for creating a `CallRecording` object."""
+
     content_type: Required[str]
     """The content type of the recording.
 
@@ -78,6 +82,10 @@ _TranscriptCueReservedKeywords = TypedDict(
 
 
 class TranscriptCue(_TranscriptCueReservedKeywords, total=False):
+    """
+    Parameters for creating a `CallTranscriptCue` object to capture the text spoken in a specific time slice.
+    """
+
     speaker: Required[str]
     """The E.164 formatted phone number of the speaker."""
 
@@ -89,6 +97,8 @@ class TranscriptCue(_TranscriptCueReservedKeywords, total=False):
 
 
 class Transcript(TypedDict, total=False):
+    """A transcript of the call."""
+
     cues: Required[Iterable[TranscriptCue]]
     """
     A list of cues that identify the text spoken in specific time slices of the

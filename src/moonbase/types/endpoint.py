@@ -11,6 +11,11 @@ __all__ = ["Endpoint"]
 
 
 class Endpoint(BaseModel):
+    """A Webhook Endpoint is an HTTP endpoint that receives webhooks.
+
+    You can configure which events are sent to each endpoint by creating `WebhookSubscription` objects.
+    """
+
     id: str
     """Unique identifier for the object."""
 
