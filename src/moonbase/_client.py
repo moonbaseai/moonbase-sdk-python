@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -20,23 +20,8 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import (
-    calls,
-    files,
-    forms,
-    notes,
-    inboxes,
-    tagsets,
-    meetings,
-    programs,
-    activities,
-    inbox_messages,
-    program_messages,
-    program_templates,
-    webhook_endpoints,
-    inbox_conversations,
-)
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import MoonbaseError, APIStatusError
 from ._base_client import (
@@ -44,8 +29,42 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.views import views
-from .resources.collections import collections
+
+if TYPE_CHECKING:
+    from .resources import (
+        calls,
+        files,
+        forms,
+        notes,
+        views,
+        inboxes,
+        tagsets,
+        meetings,
+        programs,
+        activities,
+        collections,
+        inbox_messages,
+        program_messages,
+        program_templates,
+        webhook_endpoints,
+        inbox_conversations,
+    )
+    from .resources.calls import CallsResource, AsyncCallsResource
+    from .resources.files import FilesResource, AsyncFilesResource
+    from .resources.forms import FormsResource, AsyncFormsResource
+    from .resources.notes import NotesResource, AsyncNotesResource
+    from .resources.inboxes import InboxesResource, AsyncInboxesResource
+    from .resources.tagsets import TagsetsResource, AsyncTagsetsResource
+    from .resources.meetings import MeetingsResource, AsyncMeetingsResource
+    from .resources.programs import ProgramsResource, AsyncProgramsResource
+    from .resources.activities import ActivitiesResource, AsyncActivitiesResource
+    from .resources.views.views import ViewsResource, AsyncViewsResource
+    from .resources.inbox_messages import InboxMessagesResource, AsyncInboxMessagesResource
+    from .resources.program_messages import ProgramMessagesResource, AsyncProgramMessagesResource
+    from .resources.program_templates import ProgramTemplatesResource, AsyncProgramTemplatesResource
+    from .resources.webhook_endpoints import WebhookEndpointsResource, AsyncWebhookEndpointsResource
+    from .resources.inbox_conversations import InboxConversationsResource, AsyncInboxConversationsResource
+    from .resources.collections.collections import CollectionsResource, AsyncCollectionsResource
 
 __all__ = [
     "Timeout",
@@ -60,25 +79,6 @@ __all__ = [
 
 
 class Moonbase(SyncAPIClient):
-    collections: collections.CollectionsResource
-    views: views.ViewsResource
-    inboxes: inboxes.InboxesResource
-    inbox_conversations: inbox_conversations.InboxConversationsResource
-    inbox_messages: inbox_messages.InboxMessagesResource
-    tagsets: tagsets.TagsetsResource
-    programs: programs.ProgramsResource
-    program_templates: program_templates.ProgramTemplatesResource
-    program_messages: program_messages.ProgramMessagesResource
-    forms: forms.FormsResource
-    activities: activities.ActivitiesResource
-    calls: calls.CallsResource
-    files: files.FilesResource
-    meetings: meetings.MeetingsResource
-    notes: notes.NotesResource
-    webhook_endpoints: webhook_endpoints.WebhookEndpointsResource
-    with_raw_response: MoonbaseWithRawResponse
-    with_streaming_response: MoonbaseWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -133,24 +133,109 @@ class Moonbase(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.collections = collections.CollectionsResource(self)
-        self.views = views.ViewsResource(self)
-        self.inboxes = inboxes.InboxesResource(self)
-        self.inbox_conversations = inbox_conversations.InboxConversationsResource(self)
-        self.inbox_messages = inbox_messages.InboxMessagesResource(self)
-        self.tagsets = tagsets.TagsetsResource(self)
-        self.programs = programs.ProgramsResource(self)
-        self.program_templates = program_templates.ProgramTemplatesResource(self)
-        self.program_messages = program_messages.ProgramMessagesResource(self)
-        self.forms = forms.FormsResource(self)
-        self.activities = activities.ActivitiesResource(self)
-        self.calls = calls.CallsResource(self)
-        self.files = files.FilesResource(self)
-        self.meetings = meetings.MeetingsResource(self)
-        self.notes = notes.NotesResource(self)
-        self.webhook_endpoints = webhook_endpoints.WebhookEndpointsResource(self)
-        self.with_raw_response = MoonbaseWithRawResponse(self)
-        self.with_streaming_response = MoonbaseWithStreamedResponse(self)
+    @cached_property
+    def collections(self) -> CollectionsResource:
+        from .resources.collections import CollectionsResource
+
+        return CollectionsResource(self)
+
+    @cached_property
+    def views(self) -> ViewsResource:
+        from .resources.views import ViewsResource
+
+        return ViewsResource(self)
+
+    @cached_property
+    def inboxes(self) -> InboxesResource:
+        from .resources.inboxes import InboxesResource
+
+        return InboxesResource(self)
+
+    @cached_property
+    def inbox_conversations(self) -> InboxConversationsResource:
+        from .resources.inbox_conversations import InboxConversationsResource
+
+        return InboxConversationsResource(self)
+
+    @cached_property
+    def inbox_messages(self) -> InboxMessagesResource:
+        from .resources.inbox_messages import InboxMessagesResource
+
+        return InboxMessagesResource(self)
+
+    @cached_property
+    def tagsets(self) -> TagsetsResource:
+        from .resources.tagsets import TagsetsResource
+
+        return TagsetsResource(self)
+
+    @cached_property
+    def programs(self) -> ProgramsResource:
+        from .resources.programs import ProgramsResource
+
+        return ProgramsResource(self)
+
+    @cached_property
+    def program_templates(self) -> ProgramTemplatesResource:
+        from .resources.program_templates import ProgramTemplatesResource
+
+        return ProgramTemplatesResource(self)
+
+    @cached_property
+    def program_messages(self) -> ProgramMessagesResource:
+        from .resources.program_messages import ProgramMessagesResource
+
+        return ProgramMessagesResource(self)
+
+    @cached_property
+    def forms(self) -> FormsResource:
+        from .resources.forms import FormsResource
+
+        return FormsResource(self)
+
+    @cached_property
+    def activities(self) -> ActivitiesResource:
+        from .resources.activities import ActivitiesResource
+
+        return ActivitiesResource(self)
+
+    @cached_property
+    def calls(self) -> CallsResource:
+        from .resources.calls import CallsResource
+
+        return CallsResource(self)
+
+    @cached_property
+    def files(self) -> FilesResource:
+        from .resources.files import FilesResource
+
+        return FilesResource(self)
+
+    @cached_property
+    def meetings(self) -> MeetingsResource:
+        from .resources.meetings import MeetingsResource
+
+        return MeetingsResource(self)
+
+    @cached_property
+    def notes(self) -> NotesResource:
+        from .resources.notes import NotesResource
+
+        return NotesResource(self)
+
+    @cached_property
+    def webhook_endpoints(self) -> WebhookEndpointsResource:
+        from .resources.webhook_endpoints import WebhookEndpointsResource
+
+        return WebhookEndpointsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> MoonbaseWithRawResponse:
+        return MoonbaseWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> MoonbaseWithStreamedResponse:
+        return MoonbaseWithStreamedResponse(self)
 
     @property
     @override
@@ -258,25 +343,6 @@ class Moonbase(SyncAPIClient):
 
 
 class AsyncMoonbase(AsyncAPIClient):
-    collections: collections.AsyncCollectionsResource
-    views: views.AsyncViewsResource
-    inboxes: inboxes.AsyncInboxesResource
-    inbox_conversations: inbox_conversations.AsyncInboxConversationsResource
-    inbox_messages: inbox_messages.AsyncInboxMessagesResource
-    tagsets: tagsets.AsyncTagsetsResource
-    programs: programs.AsyncProgramsResource
-    program_templates: program_templates.AsyncProgramTemplatesResource
-    program_messages: program_messages.AsyncProgramMessagesResource
-    forms: forms.AsyncFormsResource
-    activities: activities.AsyncActivitiesResource
-    calls: calls.AsyncCallsResource
-    files: files.AsyncFilesResource
-    meetings: meetings.AsyncMeetingsResource
-    notes: notes.AsyncNotesResource
-    webhook_endpoints: webhook_endpoints.AsyncWebhookEndpointsResource
-    with_raw_response: AsyncMoonbaseWithRawResponse
-    with_streaming_response: AsyncMoonbaseWithStreamedResponse
-
     # client options
     api_key: str
 
@@ -331,24 +397,109 @@ class AsyncMoonbase(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.collections = collections.AsyncCollectionsResource(self)
-        self.views = views.AsyncViewsResource(self)
-        self.inboxes = inboxes.AsyncInboxesResource(self)
-        self.inbox_conversations = inbox_conversations.AsyncInboxConversationsResource(self)
-        self.inbox_messages = inbox_messages.AsyncInboxMessagesResource(self)
-        self.tagsets = tagsets.AsyncTagsetsResource(self)
-        self.programs = programs.AsyncProgramsResource(self)
-        self.program_templates = program_templates.AsyncProgramTemplatesResource(self)
-        self.program_messages = program_messages.AsyncProgramMessagesResource(self)
-        self.forms = forms.AsyncFormsResource(self)
-        self.activities = activities.AsyncActivitiesResource(self)
-        self.calls = calls.AsyncCallsResource(self)
-        self.files = files.AsyncFilesResource(self)
-        self.meetings = meetings.AsyncMeetingsResource(self)
-        self.notes = notes.AsyncNotesResource(self)
-        self.webhook_endpoints = webhook_endpoints.AsyncWebhookEndpointsResource(self)
-        self.with_raw_response = AsyncMoonbaseWithRawResponse(self)
-        self.with_streaming_response = AsyncMoonbaseWithStreamedResponse(self)
+    @cached_property
+    def collections(self) -> AsyncCollectionsResource:
+        from .resources.collections import AsyncCollectionsResource
+
+        return AsyncCollectionsResource(self)
+
+    @cached_property
+    def views(self) -> AsyncViewsResource:
+        from .resources.views import AsyncViewsResource
+
+        return AsyncViewsResource(self)
+
+    @cached_property
+    def inboxes(self) -> AsyncInboxesResource:
+        from .resources.inboxes import AsyncInboxesResource
+
+        return AsyncInboxesResource(self)
+
+    @cached_property
+    def inbox_conversations(self) -> AsyncInboxConversationsResource:
+        from .resources.inbox_conversations import AsyncInboxConversationsResource
+
+        return AsyncInboxConversationsResource(self)
+
+    @cached_property
+    def inbox_messages(self) -> AsyncInboxMessagesResource:
+        from .resources.inbox_messages import AsyncInboxMessagesResource
+
+        return AsyncInboxMessagesResource(self)
+
+    @cached_property
+    def tagsets(self) -> AsyncTagsetsResource:
+        from .resources.tagsets import AsyncTagsetsResource
+
+        return AsyncTagsetsResource(self)
+
+    @cached_property
+    def programs(self) -> AsyncProgramsResource:
+        from .resources.programs import AsyncProgramsResource
+
+        return AsyncProgramsResource(self)
+
+    @cached_property
+    def program_templates(self) -> AsyncProgramTemplatesResource:
+        from .resources.program_templates import AsyncProgramTemplatesResource
+
+        return AsyncProgramTemplatesResource(self)
+
+    @cached_property
+    def program_messages(self) -> AsyncProgramMessagesResource:
+        from .resources.program_messages import AsyncProgramMessagesResource
+
+        return AsyncProgramMessagesResource(self)
+
+    @cached_property
+    def forms(self) -> AsyncFormsResource:
+        from .resources.forms import AsyncFormsResource
+
+        return AsyncFormsResource(self)
+
+    @cached_property
+    def activities(self) -> AsyncActivitiesResource:
+        from .resources.activities import AsyncActivitiesResource
+
+        return AsyncActivitiesResource(self)
+
+    @cached_property
+    def calls(self) -> AsyncCallsResource:
+        from .resources.calls import AsyncCallsResource
+
+        return AsyncCallsResource(self)
+
+    @cached_property
+    def files(self) -> AsyncFilesResource:
+        from .resources.files import AsyncFilesResource
+
+        return AsyncFilesResource(self)
+
+    @cached_property
+    def meetings(self) -> AsyncMeetingsResource:
+        from .resources.meetings import AsyncMeetingsResource
+
+        return AsyncMeetingsResource(self)
+
+    @cached_property
+    def notes(self) -> AsyncNotesResource:
+        from .resources.notes import AsyncNotesResource
+
+        return AsyncNotesResource(self)
+
+    @cached_property
+    def webhook_endpoints(self) -> AsyncWebhookEndpointsResource:
+        from .resources.webhook_endpoints import AsyncWebhookEndpointsResource
+
+        return AsyncWebhookEndpointsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncMoonbaseWithRawResponse:
+        return AsyncMoonbaseWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncMoonbaseWithStreamedResponse:
+        return AsyncMoonbaseWithStreamedResponse(self)
 
     @property
     @override
@@ -456,105 +607,415 @@ class AsyncMoonbase(AsyncAPIClient):
 
 
 class MoonbaseWithRawResponse:
+    _client: Moonbase
+
     def __init__(self, client: Moonbase) -> None:
-        self.collections = collections.CollectionsResourceWithRawResponse(client.collections)
-        self.views = views.ViewsResourceWithRawResponse(client.views)
-        self.inboxes = inboxes.InboxesResourceWithRawResponse(client.inboxes)
-        self.inbox_conversations = inbox_conversations.InboxConversationsResourceWithRawResponse(
-            client.inbox_conversations
-        )
-        self.inbox_messages = inbox_messages.InboxMessagesResourceWithRawResponse(client.inbox_messages)
-        self.tagsets = tagsets.TagsetsResourceWithRawResponse(client.tagsets)
-        self.programs = programs.ProgramsResourceWithRawResponse(client.programs)
-        self.program_templates = program_templates.ProgramTemplatesResourceWithRawResponse(client.program_templates)
-        self.program_messages = program_messages.ProgramMessagesResourceWithRawResponse(client.program_messages)
-        self.forms = forms.FormsResourceWithRawResponse(client.forms)
-        self.activities = activities.ActivitiesResourceWithRawResponse(client.activities)
-        self.calls = calls.CallsResourceWithRawResponse(client.calls)
-        self.files = files.FilesResourceWithRawResponse(client.files)
-        self.meetings = meetings.MeetingsResourceWithRawResponse(client.meetings)
-        self.notes = notes.NotesResourceWithRawResponse(client.notes)
-        self.webhook_endpoints = webhook_endpoints.WebhookEndpointsResourceWithRawResponse(client.webhook_endpoints)
+        self._client = client
+
+    @cached_property
+    def collections(self) -> collections.CollectionsResourceWithRawResponse:
+        from .resources.collections import CollectionsResourceWithRawResponse
+
+        return CollectionsResourceWithRawResponse(self._client.collections)
+
+    @cached_property
+    def views(self) -> views.ViewsResourceWithRawResponse:
+        from .resources.views import ViewsResourceWithRawResponse
+
+        return ViewsResourceWithRawResponse(self._client.views)
+
+    @cached_property
+    def inboxes(self) -> inboxes.InboxesResourceWithRawResponse:
+        from .resources.inboxes import InboxesResourceWithRawResponse
+
+        return InboxesResourceWithRawResponse(self._client.inboxes)
+
+    @cached_property
+    def inbox_conversations(self) -> inbox_conversations.InboxConversationsResourceWithRawResponse:
+        from .resources.inbox_conversations import InboxConversationsResourceWithRawResponse
+
+        return InboxConversationsResourceWithRawResponse(self._client.inbox_conversations)
+
+    @cached_property
+    def inbox_messages(self) -> inbox_messages.InboxMessagesResourceWithRawResponse:
+        from .resources.inbox_messages import InboxMessagesResourceWithRawResponse
+
+        return InboxMessagesResourceWithRawResponse(self._client.inbox_messages)
+
+    @cached_property
+    def tagsets(self) -> tagsets.TagsetsResourceWithRawResponse:
+        from .resources.tagsets import TagsetsResourceWithRawResponse
+
+        return TagsetsResourceWithRawResponse(self._client.tagsets)
+
+    @cached_property
+    def programs(self) -> programs.ProgramsResourceWithRawResponse:
+        from .resources.programs import ProgramsResourceWithRawResponse
+
+        return ProgramsResourceWithRawResponse(self._client.programs)
+
+    @cached_property
+    def program_templates(self) -> program_templates.ProgramTemplatesResourceWithRawResponse:
+        from .resources.program_templates import ProgramTemplatesResourceWithRawResponse
+
+        return ProgramTemplatesResourceWithRawResponse(self._client.program_templates)
+
+    @cached_property
+    def program_messages(self) -> program_messages.ProgramMessagesResourceWithRawResponse:
+        from .resources.program_messages import ProgramMessagesResourceWithRawResponse
+
+        return ProgramMessagesResourceWithRawResponse(self._client.program_messages)
+
+    @cached_property
+    def forms(self) -> forms.FormsResourceWithRawResponse:
+        from .resources.forms import FormsResourceWithRawResponse
+
+        return FormsResourceWithRawResponse(self._client.forms)
+
+    @cached_property
+    def activities(self) -> activities.ActivitiesResourceWithRawResponse:
+        from .resources.activities import ActivitiesResourceWithRawResponse
+
+        return ActivitiesResourceWithRawResponse(self._client.activities)
+
+    @cached_property
+    def calls(self) -> calls.CallsResourceWithRawResponse:
+        from .resources.calls import CallsResourceWithRawResponse
+
+        return CallsResourceWithRawResponse(self._client.calls)
+
+    @cached_property
+    def files(self) -> files.FilesResourceWithRawResponse:
+        from .resources.files import FilesResourceWithRawResponse
+
+        return FilesResourceWithRawResponse(self._client.files)
+
+    @cached_property
+    def meetings(self) -> meetings.MeetingsResourceWithRawResponse:
+        from .resources.meetings import MeetingsResourceWithRawResponse
+
+        return MeetingsResourceWithRawResponse(self._client.meetings)
+
+    @cached_property
+    def notes(self) -> notes.NotesResourceWithRawResponse:
+        from .resources.notes import NotesResourceWithRawResponse
+
+        return NotesResourceWithRawResponse(self._client.notes)
+
+    @cached_property
+    def webhook_endpoints(self) -> webhook_endpoints.WebhookEndpointsResourceWithRawResponse:
+        from .resources.webhook_endpoints import WebhookEndpointsResourceWithRawResponse
+
+        return WebhookEndpointsResourceWithRawResponse(self._client.webhook_endpoints)
 
 
 class AsyncMoonbaseWithRawResponse:
+    _client: AsyncMoonbase
+
     def __init__(self, client: AsyncMoonbase) -> None:
-        self.collections = collections.AsyncCollectionsResourceWithRawResponse(client.collections)
-        self.views = views.AsyncViewsResourceWithRawResponse(client.views)
-        self.inboxes = inboxes.AsyncInboxesResourceWithRawResponse(client.inboxes)
-        self.inbox_conversations = inbox_conversations.AsyncInboxConversationsResourceWithRawResponse(
-            client.inbox_conversations
-        )
-        self.inbox_messages = inbox_messages.AsyncInboxMessagesResourceWithRawResponse(client.inbox_messages)
-        self.tagsets = tagsets.AsyncTagsetsResourceWithRawResponse(client.tagsets)
-        self.programs = programs.AsyncProgramsResourceWithRawResponse(client.programs)
-        self.program_templates = program_templates.AsyncProgramTemplatesResourceWithRawResponse(
-            client.program_templates
-        )
-        self.program_messages = program_messages.AsyncProgramMessagesResourceWithRawResponse(client.program_messages)
-        self.forms = forms.AsyncFormsResourceWithRawResponse(client.forms)
-        self.activities = activities.AsyncActivitiesResourceWithRawResponse(client.activities)
-        self.calls = calls.AsyncCallsResourceWithRawResponse(client.calls)
-        self.files = files.AsyncFilesResourceWithRawResponse(client.files)
-        self.meetings = meetings.AsyncMeetingsResourceWithRawResponse(client.meetings)
-        self.notes = notes.AsyncNotesResourceWithRawResponse(client.notes)
-        self.webhook_endpoints = webhook_endpoints.AsyncWebhookEndpointsResourceWithRawResponse(
-            client.webhook_endpoints
-        )
+        self._client = client
+
+    @cached_property
+    def collections(self) -> collections.AsyncCollectionsResourceWithRawResponse:
+        from .resources.collections import AsyncCollectionsResourceWithRawResponse
+
+        return AsyncCollectionsResourceWithRawResponse(self._client.collections)
+
+    @cached_property
+    def views(self) -> views.AsyncViewsResourceWithRawResponse:
+        from .resources.views import AsyncViewsResourceWithRawResponse
+
+        return AsyncViewsResourceWithRawResponse(self._client.views)
+
+    @cached_property
+    def inboxes(self) -> inboxes.AsyncInboxesResourceWithRawResponse:
+        from .resources.inboxes import AsyncInboxesResourceWithRawResponse
+
+        return AsyncInboxesResourceWithRawResponse(self._client.inboxes)
+
+    @cached_property
+    def inbox_conversations(self) -> inbox_conversations.AsyncInboxConversationsResourceWithRawResponse:
+        from .resources.inbox_conversations import AsyncInboxConversationsResourceWithRawResponse
+
+        return AsyncInboxConversationsResourceWithRawResponse(self._client.inbox_conversations)
+
+    @cached_property
+    def inbox_messages(self) -> inbox_messages.AsyncInboxMessagesResourceWithRawResponse:
+        from .resources.inbox_messages import AsyncInboxMessagesResourceWithRawResponse
+
+        return AsyncInboxMessagesResourceWithRawResponse(self._client.inbox_messages)
+
+    @cached_property
+    def tagsets(self) -> tagsets.AsyncTagsetsResourceWithRawResponse:
+        from .resources.tagsets import AsyncTagsetsResourceWithRawResponse
+
+        return AsyncTagsetsResourceWithRawResponse(self._client.tagsets)
+
+    @cached_property
+    def programs(self) -> programs.AsyncProgramsResourceWithRawResponse:
+        from .resources.programs import AsyncProgramsResourceWithRawResponse
+
+        return AsyncProgramsResourceWithRawResponse(self._client.programs)
+
+    @cached_property
+    def program_templates(self) -> program_templates.AsyncProgramTemplatesResourceWithRawResponse:
+        from .resources.program_templates import AsyncProgramTemplatesResourceWithRawResponse
+
+        return AsyncProgramTemplatesResourceWithRawResponse(self._client.program_templates)
+
+    @cached_property
+    def program_messages(self) -> program_messages.AsyncProgramMessagesResourceWithRawResponse:
+        from .resources.program_messages import AsyncProgramMessagesResourceWithRawResponse
+
+        return AsyncProgramMessagesResourceWithRawResponse(self._client.program_messages)
+
+    @cached_property
+    def forms(self) -> forms.AsyncFormsResourceWithRawResponse:
+        from .resources.forms import AsyncFormsResourceWithRawResponse
+
+        return AsyncFormsResourceWithRawResponse(self._client.forms)
+
+    @cached_property
+    def activities(self) -> activities.AsyncActivitiesResourceWithRawResponse:
+        from .resources.activities import AsyncActivitiesResourceWithRawResponse
+
+        return AsyncActivitiesResourceWithRawResponse(self._client.activities)
+
+    @cached_property
+    def calls(self) -> calls.AsyncCallsResourceWithRawResponse:
+        from .resources.calls import AsyncCallsResourceWithRawResponse
+
+        return AsyncCallsResourceWithRawResponse(self._client.calls)
+
+    @cached_property
+    def files(self) -> files.AsyncFilesResourceWithRawResponse:
+        from .resources.files import AsyncFilesResourceWithRawResponse
+
+        return AsyncFilesResourceWithRawResponse(self._client.files)
+
+    @cached_property
+    def meetings(self) -> meetings.AsyncMeetingsResourceWithRawResponse:
+        from .resources.meetings import AsyncMeetingsResourceWithRawResponse
+
+        return AsyncMeetingsResourceWithRawResponse(self._client.meetings)
+
+    @cached_property
+    def notes(self) -> notes.AsyncNotesResourceWithRawResponse:
+        from .resources.notes import AsyncNotesResourceWithRawResponse
+
+        return AsyncNotesResourceWithRawResponse(self._client.notes)
+
+    @cached_property
+    def webhook_endpoints(self) -> webhook_endpoints.AsyncWebhookEndpointsResourceWithRawResponse:
+        from .resources.webhook_endpoints import AsyncWebhookEndpointsResourceWithRawResponse
+
+        return AsyncWebhookEndpointsResourceWithRawResponse(self._client.webhook_endpoints)
 
 
 class MoonbaseWithStreamedResponse:
+    _client: Moonbase
+
     def __init__(self, client: Moonbase) -> None:
-        self.collections = collections.CollectionsResourceWithStreamingResponse(client.collections)
-        self.views = views.ViewsResourceWithStreamingResponse(client.views)
-        self.inboxes = inboxes.InboxesResourceWithStreamingResponse(client.inboxes)
-        self.inbox_conversations = inbox_conversations.InboxConversationsResourceWithStreamingResponse(
-            client.inbox_conversations
-        )
-        self.inbox_messages = inbox_messages.InboxMessagesResourceWithStreamingResponse(client.inbox_messages)
-        self.tagsets = tagsets.TagsetsResourceWithStreamingResponse(client.tagsets)
-        self.programs = programs.ProgramsResourceWithStreamingResponse(client.programs)
-        self.program_templates = program_templates.ProgramTemplatesResourceWithStreamingResponse(
-            client.program_templates
-        )
-        self.program_messages = program_messages.ProgramMessagesResourceWithStreamingResponse(client.program_messages)
-        self.forms = forms.FormsResourceWithStreamingResponse(client.forms)
-        self.activities = activities.ActivitiesResourceWithStreamingResponse(client.activities)
-        self.calls = calls.CallsResourceWithStreamingResponse(client.calls)
-        self.files = files.FilesResourceWithStreamingResponse(client.files)
-        self.meetings = meetings.MeetingsResourceWithStreamingResponse(client.meetings)
-        self.notes = notes.NotesResourceWithStreamingResponse(client.notes)
-        self.webhook_endpoints = webhook_endpoints.WebhookEndpointsResourceWithStreamingResponse(
-            client.webhook_endpoints
-        )
+        self._client = client
+
+    @cached_property
+    def collections(self) -> collections.CollectionsResourceWithStreamingResponse:
+        from .resources.collections import CollectionsResourceWithStreamingResponse
+
+        return CollectionsResourceWithStreamingResponse(self._client.collections)
+
+    @cached_property
+    def views(self) -> views.ViewsResourceWithStreamingResponse:
+        from .resources.views import ViewsResourceWithStreamingResponse
+
+        return ViewsResourceWithStreamingResponse(self._client.views)
+
+    @cached_property
+    def inboxes(self) -> inboxes.InboxesResourceWithStreamingResponse:
+        from .resources.inboxes import InboxesResourceWithStreamingResponse
+
+        return InboxesResourceWithStreamingResponse(self._client.inboxes)
+
+    @cached_property
+    def inbox_conversations(self) -> inbox_conversations.InboxConversationsResourceWithStreamingResponse:
+        from .resources.inbox_conversations import InboxConversationsResourceWithStreamingResponse
+
+        return InboxConversationsResourceWithStreamingResponse(self._client.inbox_conversations)
+
+    @cached_property
+    def inbox_messages(self) -> inbox_messages.InboxMessagesResourceWithStreamingResponse:
+        from .resources.inbox_messages import InboxMessagesResourceWithStreamingResponse
+
+        return InboxMessagesResourceWithStreamingResponse(self._client.inbox_messages)
+
+    @cached_property
+    def tagsets(self) -> tagsets.TagsetsResourceWithStreamingResponse:
+        from .resources.tagsets import TagsetsResourceWithStreamingResponse
+
+        return TagsetsResourceWithStreamingResponse(self._client.tagsets)
+
+    @cached_property
+    def programs(self) -> programs.ProgramsResourceWithStreamingResponse:
+        from .resources.programs import ProgramsResourceWithStreamingResponse
+
+        return ProgramsResourceWithStreamingResponse(self._client.programs)
+
+    @cached_property
+    def program_templates(self) -> program_templates.ProgramTemplatesResourceWithStreamingResponse:
+        from .resources.program_templates import ProgramTemplatesResourceWithStreamingResponse
+
+        return ProgramTemplatesResourceWithStreamingResponse(self._client.program_templates)
+
+    @cached_property
+    def program_messages(self) -> program_messages.ProgramMessagesResourceWithStreamingResponse:
+        from .resources.program_messages import ProgramMessagesResourceWithStreamingResponse
+
+        return ProgramMessagesResourceWithStreamingResponse(self._client.program_messages)
+
+    @cached_property
+    def forms(self) -> forms.FormsResourceWithStreamingResponse:
+        from .resources.forms import FormsResourceWithStreamingResponse
+
+        return FormsResourceWithStreamingResponse(self._client.forms)
+
+    @cached_property
+    def activities(self) -> activities.ActivitiesResourceWithStreamingResponse:
+        from .resources.activities import ActivitiesResourceWithStreamingResponse
+
+        return ActivitiesResourceWithStreamingResponse(self._client.activities)
+
+    @cached_property
+    def calls(self) -> calls.CallsResourceWithStreamingResponse:
+        from .resources.calls import CallsResourceWithStreamingResponse
+
+        return CallsResourceWithStreamingResponse(self._client.calls)
+
+    @cached_property
+    def files(self) -> files.FilesResourceWithStreamingResponse:
+        from .resources.files import FilesResourceWithStreamingResponse
+
+        return FilesResourceWithStreamingResponse(self._client.files)
+
+    @cached_property
+    def meetings(self) -> meetings.MeetingsResourceWithStreamingResponse:
+        from .resources.meetings import MeetingsResourceWithStreamingResponse
+
+        return MeetingsResourceWithStreamingResponse(self._client.meetings)
+
+    @cached_property
+    def notes(self) -> notes.NotesResourceWithStreamingResponse:
+        from .resources.notes import NotesResourceWithStreamingResponse
+
+        return NotesResourceWithStreamingResponse(self._client.notes)
+
+    @cached_property
+    def webhook_endpoints(self) -> webhook_endpoints.WebhookEndpointsResourceWithStreamingResponse:
+        from .resources.webhook_endpoints import WebhookEndpointsResourceWithStreamingResponse
+
+        return WebhookEndpointsResourceWithStreamingResponse(self._client.webhook_endpoints)
 
 
 class AsyncMoonbaseWithStreamedResponse:
+    _client: AsyncMoonbase
+
     def __init__(self, client: AsyncMoonbase) -> None:
-        self.collections = collections.AsyncCollectionsResourceWithStreamingResponse(client.collections)
-        self.views = views.AsyncViewsResourceWithStreamingResponse(client.views)
-        self.inboxes = inboxes.AsyncInboxesResourceWithStreamingResponse(client.inboxes)
-        self.inbox_conversations = inbox_conversations.AsyncInboxConversationsResourceWithStreamingResponse(
-            client.inbox_conversations
-        )
-        self.inbox_messages = inbox_messages.AsyncInboxMessagesResourceWithStreamingResponse(client.inbox_messages)
-        self.tagsets = tagsets.AsyncTagsetsResourceWithStreamingResponse(client.tagsets)
-        self.programs = programs.AsyncProgramsResourceWithStreamingResponse(client.programs)
-        self.program_templates = program_templates.AsyncProgramTemplatesResourceWithStreamingResponse(
-            client.program_templates
-        )
-        self.program_messages = program_messages.AsyncProgramMessagesResourceWithStreamingResponse(
-            client.program_messages
-        )
-        self.forms = forms.AsyncFormsResourceWithStreamingResponse(client.forms)
-        self.activities = activities.AsyncActivitiesResourceWithStreamingResponse(client.activities)
-        self.calls = calls.AsyncCallsResourceWithStreamingResponse(client.calls)
-        self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
-        self.meetings = meetings.AsyncMeetingsResourceWithStreamingResponse(client.meetings)
-        self.notes = notes.AsyncNotesResourceWithStreamingResponse(client.notes)
-        self.webhook_endpoints = webhook_endpoints.AsyncWebhookEndpointsResourceWithStreamingResponse(
-            client.webhook_endpoints
-        )
+        self._client = client
+
+    @cached_property
+    def collections(self) -> collections.AsyncCollectionsResourceWithStreamingResponse:
+        from .resources.collections import AsyncCollectionsResourceWithStreamingResponse
+
+        return AsyncCollectionsResourceWithStreamingResponse(self._client.collections)
+
+    @cached_property
+    def views(self) -> views.AsyncViewsResourceWithStreamingResponse:
+        from .resources.views import AsyncViewsResourceWithStreamingResponse
+
+        return AsyncViewsResourceWithStreamingResponse(self._client.views)
+
+    @cached_property
+    def inboxes(self) -> inboxes.AsyncInboxesResourceWithStreamingResponse:
+        from .resources.inboxes import AsyncInboxesResourceWithStreamingResponse
+
+        return AsyncInboxesResourceWithStreamingResponse(self._client.inboxes)
+
+    @cached_property
+    def inbox_conversations(self) -> inbox_conversations.AsyncInboxConversationsResourceWithStreamingResponse:
+        from .resources.inbox_conversations import AsyncInboxConversationsResourceWithStreamingResponse
+
+        return AsyncInboxConversationsResourceWithStreamingResponse(self._client.inbox_conversations)
+
+    @cached_property
+    def inbox_messages(self) -> inbox_messages.AsyncInboxMessagesResourceWithStreamingResponse:
+        from .resources.inbox_messages import AsyncInboxMessagesResourceWithStreamingResponse
+
+        return AsyncInboxMessagesResourceWithStreamingResponse(self._client.inbox_messages)
+
+    @cached_property
+    def tagsets(self) -> tagsets.AsyncTagsetsResourceWithStreamingResponse:
+        from .resources.tagsets import AsyncTagsetsResourceWithStreamingResponse
+
+        return AsyncTagsetsResourceWithStreamingResponse(self._client.tagsets)
+
+    @cached_property
+    def programs(self) -> programs.AsyncProgramsResourceWithStreamingResponse:
+        from .resources.programs import AsyncProgramsResourceWithStreamingResponse
+
+        return AsyncProgramsResourceWithStreamingResponse(self._client.programs)
+
+    @cached_property
+    def program_templates(self) -> program_templates.AsyncProgramTemplatesResourceWithStreamingResponse:
+        from .resources.program_templates import AsyncProgramTemplatesResourceWithStreamingResponse
+
+        return AsyncProgramTemplatesResourceWithStreamingResponse(self._client.program_templates)
+
+    @cached_property
+    def program_messages(self) -> program_messages.AsyncProgramMessagesResourceWithStreamingResponse:
+        from .resources.program_messages import AsyncProgramMessagesResourceWithStreamingResponse
+
+        return AsyncProgramMessagesResourceWithStreamingResponse(self._client.program_messages)
+
+    @cached_property
+    def forms(self) -> forms.AsyncFormsResourceWithStreamingResponse:
+        from .resources.forms import AsyncFormsResourceWithStreamingResponse
+
+        return AsyncFormsResourceWithStreamingResponse(self._client.forms)
+
+    @cached_property
+    def activities(self) -> activities.AsyncActivitiesResourceWithStreamingResponse:
+        from .resources.activities import AsyncActivitiesResourceWithStreamingResponse
+
+        return AsyncActivitiesResourceWithStreamingResponse(self._client.activities)
+
+    @cached_property
+    def calls(self) -> calls.AsyncCallsResourceWithStreamingResponse:
+        from .resources.calls import AsyncCallsResourceWithStreamingResponse
+
+        return AsyncCallsResourceWithStreamingResponse(self._client.calls)
+
+    @cached_property
+    def files(self) -> files.AsyncFilesResourceWithStreamingResponse:
+        from .resources.files import AsyncFilesResourceWithStreamingResponse
+
+        return AsyncFilesResourceWithStreamingResponse(self._client.files)
+
+    @cached_property
+    def meetings(self) -> meetings.AsyncMeetingsResourceWithStreamingResponse:
+        from .resources.meetings import AsyncMeetingsResourceWithStreamingResponse
+
+        return AsyncMeetingsResourceWithStreamingResponse(self._client.meetings)
+
+    @cached_property
+    def notes(self) -> notes.AsyncNotesResourceWithStreamingResponse:
+        from .resources.notes import AsyncNotesResourceWithStreamingResponse
+
+        return AsyncNotesResourceWithStreamingResponse(self._client.notes)
+
+    @cached_property
+    def webhook_endpoints(self) -> webhook_endpoints.AsyncWebhookEndpointsResourceWithStreamingResponse:
+        from .resources.webhook_endpoints import AsyncWebhookEndpointsResourceWithStreamingResponse
+
+        return AsyncWebhookEndpointsResourceWithStreamingResponse(self._client.webhook_endpoints)
 
 
 Client = Moonbase
