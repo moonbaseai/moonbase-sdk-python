@@ -2,15 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Annotated, TypedDict
-
-from .._utils import PropertyInfo
+from typing import List
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["InboxRetrieveParams"]
 
 
 class InboxRetrieveParams(TypedDict, total=False):
-    include: Annotated[Literal["tagsets"], PropertyInfo(alias="include[]")]
+    include: List[Literal["tagsets"]]
     """Specifies which related objects to include in the response.
 
     Valid option is `tagsets`.

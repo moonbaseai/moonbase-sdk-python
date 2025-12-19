@@ -49,7 +49,7 @@ class MeetingsResource(SyncAPIResource):
         self,
         id: str,
         *,
-        include: List[Literal["organizer", "attendees", "transcript"]] | Omit = omit,
+        include: List[Literal["organizer", "attendees", "transcript", "note", "summary"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -62,7 +62,7 @@ class MeetingsResource(SyncAPIResource):
 
         Args:
           include: Specifies which related objects to include in the response. Valid options are
-              `organizer` and `attendees`.
+              `organizer`, `attendees`, `transcript`, `note`, and `summary`.
 
           extra_headers: Send extra headers
 
@@ -215,7 +215,7 @@ class AsyncMeetingsResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        include: List[Literal["organizer", "attendees", "transcript"]] | Omit = omit,
+        include: List[Literal["organizer", "attendees", "transcript", "note", "summary"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -228,7 +228,7 @@ class AsyncMeetingsResource(AsyncAPIResource):
 
         Args:
           include: Specifies which related objects to include in the response. Valid options are
-              `organizer` and `attendees`.
+              `organizer`, `attendees`, `transcript`, `note`, and `summary`.
 
           extra_headers: Send extra headers
 

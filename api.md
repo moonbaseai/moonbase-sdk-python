@@ -148,6 +148,7 @@ from moonbase.types import Address, EmailMessage
 
 Methods:
 
+- <code title="post /inbox_messages">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages.py">create</a>(\*\*<a href="src/moonbase/types/inbox_message_create_params.py">params</a>) -> <a href="./src/moonbase/types/email_message.py">EmailMessage</a></code>
 - <code title="get /inbox_messages/{id}">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages.py">retrieve</a>(id, \*\*<a href="src/moonbase/types/inbox_message_retrieve_params.py">params</a>) -> <a href="./src/moonbase/types/email_message.py">EmailMessage</a></code>
 - <code title="get /inbox_messages">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages.py">list</a>(\*\*<a href="src/moonbase/types/inbox_message_list_params.py">params</a>) -> <a href="./src/moonbase/types/email_message.py">SyncCursorPage[EmailMessage]</a></code>
 

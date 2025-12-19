@@ -5,6 +5,7 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .item_pointer import ItemPointer
 from .shared.formatted_text import FormattedText
 
 __all__ = ["Note"]
@@ -29,6 +30,12 @@ class Note(BaseModel):
 
     updated_at: datetime
     """Time at which the object was last updated, as an ISO 8601 timestamp in UTC."""
+
+    creator: Optional[ItemPointer] = None
+    """
+    A reference to an `Item` within a specific `Collection`, providing the context
+    needed to locate the item.
+    """
 
     summary: Optional[str] = None
     """A short, system-generated summary of the note's content."""

@@ -9,7 +9,9 @@ import pytest
 
 from moonbase import Moonbase, AsyncMoonbase
 from tests.utils import assert_matches_type
-from moonbase.types import EmailMessage
+from moonbase.types import (
+    EmailMessage,
+)
 from moonbase.pagination import SyncCursorPage, AsyncCursorPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -17,6 +19,72 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 class TestInboxMessages:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @parametrize
+    def test_method_create(self, client: Moonbase) -> None:
+        inbox_message = client.inbox_messages.create(
+            body="This is the body of the message. It supports [markdown](https://en.wikipedia.org/wiki/Markdown).",
+            inbox_id="1CLJt2v1rdcqdM6vZpPpjq",
+        )
+        assert_matches_type(EmailMessage, inbox_message, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Moonbase) -> None:
+        inbox_message = client.inbox_messages.create(
+            body="This is the body of the message. It supports [markdown](https://en.wikipedia.org/wiki/Markdown).",
+            inbox_id="1CLJt2v1rdcqdM6vZpPpjq",
+            bcc=[
+                {
+                    "email": "steve@example.com",
+                    "name": "Steve",
+                }
+            ],
+            cc=[
+                {
+                    "email": "joe@example.com",
+                    "name": "Joe",
+                }
+            ],
+            conversation_id="conversation_id",
+            subject="Test Subject",
+            to=[
+                {
+                    "email": "bob@example.com",
+                    "name": "Bob",
+                },
+                {
+                    "email": "jack@example.com",
+                    "name": "name",
+                },
+            ],
+        )
+        assert_matches_type(EmailMessage, inbox_message, path=["response"])
+
+    @parametrize
+    def test_raw_response_create(self, client: Moonbase) -> None:
+        response = client.inbox_messages.with_raw_response.create(
+            body="This is the body of the message. It supports [markdown](https://en.wikipedia.org/wiki/Markdown).",
+            inbox_id="1CLJt2v1rdcqdM6vZpPpjq",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        inbox_message = response.parse()
+        assert_matches_type(EmailMessage, inbox_message, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: Moonbase) -> None:
+        with client.inbox_messages.with_streaming_response.create(
+            body="This is the body of the message. It supports [markdown](https://en.wikipedia.org/wiki/Markdown).",
+            inbox_id="1CLJt2v1rdcqdM6vZpPpjq",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            inbox_message = response.parse()
+            assert_matches_type(EmailMessage, inbox_message, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_retrieve(self, client: Moonbase) -> None:
@@ -108,6 +176,72 @@ class TestAsyncInboxMessages:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
+
+    @parametrize
+    async def test_method_create(self, async_client: AsyncMoonbase) -> None:
+        inbox_message = await async_client.inbox_messages.create(
+            body="This is the body of the message. It supports [markdown](https://en.wikipedia.org/wiki/Markdown).",
+            inbox_id="1CLJt2v1rdcqdM6vZpPpjq",
+        )
+        assert_matches_type(EmailMessage, inbox_message, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncMoonbase) -> None:
+        inbox_message = await async_client.inbox_messages.create(
+            body="This is the body of the message. It supports [markdown](https://en.wikipedia.org/wiki/Markdown).",
+            inbox_id="1CLJt2v1rdcqdM6vZpPpjq",
+            bcc=[
+                {
+                    "email": "steve@example.com",
+                    "name": "Steve",
+                }
+            ],
+            cc=[
+                {
+                    "email": "joe@example.com",
+                    "name": "Joe",
+                }
+            ],
+            conversation_id="conversation_id",
+            subject="Test Subject",
+            to=[
+                {
+                    "email": "bob@example.com",
+                    "name": "Bob",
+                },
+                {
+                    "email": "jack@example.com",
+                    "name": "name",
+                },
+            ],
+        )
+        assert_matches_type(EmailMessage, inbox_message, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncMoonbase) -> None:
+        response = await async_client.inbox_messages.with_raw_response.create(
+            body="This is the body of the message. It supports [markdown](https://en.wikipedia.org/wiki/Markdown).",
+            inbox_id="1CLJt2v1rdcqdM6vZpPpjq",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        inbox_message = await response.parse()
+        assert_matches_type(EmailMessage, inbox_message, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncMoonbase) -> None:
+        async with async_client.inbox_messages.with_streaming_response.create(
+            body="This is the body of the message. It supports [markdown](https://en.wikipedia.org/wiki/Markdown).",
+            inbox_id="1CLJt2v1rdcqdM6vZpPpjq",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            inbox_message = await response.parse()
+            assert_matches_type(EmailMessage, inbox_message, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncMoonbase) -> None:
