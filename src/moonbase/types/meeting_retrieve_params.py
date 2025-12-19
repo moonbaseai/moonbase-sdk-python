@@ -9,8 +9,8 @@ __all__ = ["MeetingRetrieveParams"]
 
 
 class MeetingRetrieveParams(TypedDict, total=False):
-    include: List[Literal["organizer", "attendees", "transcript"]]
+    include: List[Literal["organizer", "attendees", "transcript", "note", "summary"]]
     """Specifies which related objects to include in the response.
 
-    Valid options are `organizer` and `attendees`.
+    Valid options are `organizer`, `attendees`, `transcript`, `note`, and `summary`.
     """
