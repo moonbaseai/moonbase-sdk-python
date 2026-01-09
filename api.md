@@ -317,3 +317,15 @@ Methods:
 - <code title="patch /webhook_endpoints/{id}">client.webhook_endpoints.<a href="./src/moonbase/resources/webhook_endpoints.py">update</a>(id, \*\*<a href="src/moonbase/types/webhook_endpoint_update_params.py">params</a>) -> <a href="./src/moonbase/types/endpoint.py">Endpoint</a></code>
 - <code title="get /webhook_endpoints">client.webhook_endpoints.<a href="./src/moonbase/resources/webhook_endpoints.py">list</a>(\*\*<a href="src/moonbase/types/webhook_endpoint_list_params.py">params</a>) -> <a href="./src/moonbase/types/endpoint.py">SyncCursorPage[Endpoint]</a></code>
 - <code title="delete /webhook_endpoints/{id}">client.webhook_endpoints.<a href="./src/moonbase/resources/webhook_endpoints.py">delete</a>(id) -> None</code>
+
+# Items
+
+Types:
+
+```python
+from moonbase.types import ItemSearchResponse
+```
+
+Methods:
+
+- <code title="get /items/search">client.items.<a href="./src/moonbase/resources/items.py">search</a>(\*\*<a href="src/moonbase/types/item_search_params.py">params</a>) -> <a href="./src/moonbase/types/item_search_response.py">ItemSearchResponse</a></code>

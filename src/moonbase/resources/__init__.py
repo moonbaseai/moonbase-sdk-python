@@ -24,6 +24,14 @@ from .forms import (
     FormsResourceWithStreamingResponse,
     AsyncFormsResourceWithStreamingResponse,
 )
+from .items import (
+    ItemsResource,
+    AsyncItemsResource,
+    ItemsResourceWithRawResponse,
+    AsyncItemsResourceWithRawResponse,
+    ItemsResourceWithStreamingResponse,
+    AsyncItemsResourceWithStreamingResponse,
+)
 from .notes import (
     NotesResource,
     AsyncNotesResource,
@@ -226,4 +234,10 @@ __all__ = [
     "AsyncWebhookEndpointsResourceWithRawResponse",
     "WebhookEndpointsResourceWithStreamingResponse",
     "AsyncWebhookEndpointsResourceWithStreamingResponse",
+    "ItemsResource",
+    "AsyncItemsResource",
+    "ItemsResourceWithRawResponse",
+    "AsyncItemsResourceWithRawResponse",
+    "ItemsResourceWithStreamingResponse",
+    "AsyncItemsResourceWithStreamingResponse",
 ]

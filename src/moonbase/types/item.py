@@ -5,6 +5,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 from .field_value import FieldValue
+from .collection_pointer import CollectionPointer
 
 __all__ = ["Item"]
 
@@ -17,6 +18,12 @@ class Item(BaseModel):
 
     id: str
     """Unique identifier for the object."""
+
+    collection: CollectionPointer
+    """
+    A lightweight reference to a `Collection`, containing the minimal information
+    needed to identify it.
+    """
 
     type: Literal["item"]
     """String representing the object’s type. Always `item` for this object."""

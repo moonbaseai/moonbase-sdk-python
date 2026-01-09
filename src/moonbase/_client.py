@@ -35,6 +35,7 @@ if TYPE_CHECKING:
         calls,
         files,
         forms,
+        items,
         notes,
         views,
         inboxes,
@@ -52,6 +53,7 @@ if TYPE_CHECKING:
     from .resources.calls import CallsResource, AsyncCallsResource
     from .resources.files import FilesResource, AsyncFilesResource
     from .resources.forms import FormsResource, AsyncFormsResource
+    from .resources.items import ItemsResource, AsyncItemsResource
     from .resources.notes import NotesResource, AsyncNotesResource
     from .resources.inboxes import InboxesResource, AsyncInboxesResource
     from .resources.tagsets import TagsetsResource, AsyncTagsetsResource
@@ -228,6 +230,12 @@ class Moonbase(SyncAPIClient):
         from .resources.webhook_endpoints import WebhookEndpointsResource
 
         return WebhookEndpointsResource(self)
+
+    @cached_property
+    def items(self) -> ItemsResource:
+        from .resources.items import ItemsResource
+
+        return ItemsResource(self)
 
     @cached_property
     def with_raw_response(self) -> MoonbaseWithRawResponse:
@@ -494,6 +502,12 @@ class AsyncMoonbase(AsyncAPIClient):
         return AsyncWebhookEndpointsResource(self)
 
     @cached_property
+    def items(self) -> AsyncItemsResource:
+        from .resources.items import AsyncItemsResource
+
+        return AsyncItemsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncMoonbaseWithRawResponse:
         return AsyncMoonbaseWithRawResponse(self)
 
@@ -708,6 +722,12 @@ class MoonbaseWithRawResponse:
 
         return WebhookEndpointsResourceWithRawResponse(self._client.webhook_endpoints)
 
+    @cached_property
+    def items(self) -> items.ItemsResourceWithRawResponse:
+        from .resources.items import ItemsResourceWithRawResponse
+
+        return ItemsResourceWithRawResponse(self._client.items)
+
 
 class AsyncMoonbaseWithRawResponse:
     _client: AsyncMoonbase
@@ -810,6 +830,12 @@ class AsyncMoonbaseWithRawResponse:
         from .resources.webhook_endpoints import AsyncWebhookEndpointsResourceWithRawResponse
 
         return AsyncWebhookEndpointsResourceWithRawResponse(self._client.webhook_endpoints)
+
+    @cached_property
+    def items(self) -> items.AsyncItemsResourceWithRawResponse:
+        from .resources.items import AsyncItemsResourceWithRawResponse
+
+        return AsyncItemsResourceWithRawResponse(self._client.items)
 
 
 class MoonbaseWithStreamedResponse:
@@ -914,6 +940,12 @@ class MoonbaseWithStreamedResponse:
 
         return WebhookEndpointsResourceWithStreamingResponse(self._client.webhook_endpoints)
 
+    @cached_property
+    def items(self) -> items.ItemsResourceWithStreamingResponse:
+        from .resources.items import ItemsResourceWithStreamingResponse
+
+        return ItemsResourceWithStreamingResponse(self._client.items)
+
 
 class AsyncMoonbaseWithStreamedResponse:
     _client: AsyncMoonbase
@@ -1016,6 +1048,12 @@ class AsyncMoonbaseWithStreamedResponse:
         from .resources.webhook_endpoints import AsyncWebhookEndpointsResourceWithStreamingResponse
 
         return AsyncWebhookEndpointsResourceWithStreamingResponse(self._client.webhook_endpoints)
+
+    @cached_property
+    def items(self) -> items.AsyncItemsResourceWithStreamingResponse:
+        from .resources.items import AsyncItemsResourceWithStreamingResponse
+
+        return AsyncItemsResourceWithStreamingResponse(self._client.items)
 
 
 Client = Moonbase

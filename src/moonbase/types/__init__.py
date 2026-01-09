@@ -82,6 +82,7 @@ from .domain_value_param import DomainValueParam as DomainValueParam
 from .file_upload_params import FileUploadParams as FileUploadParams
 from .inbox_conversation import InboxConversation as InboxConversation
 from .item_pointer_param import ItemPointerParam as ItemPointerParam
+from .item_search_params import ItemSearchParams as ItemSearchParams
 from .tagset_list_params import TagsetListParams as TagsetListParams
 from .boolean_value_param import BooleanValueParam as BooleanValueParam
 from .choice_field_option import ChoiceFieldOption as ChoiceFieldOption
@@ -91,6 +92,7 @@ from .program_list_params import ProgramListParams as ProgramListParams
 from .activity_item_merged import ActivityItemMerged as ActivityItemMerged
 from .activity_list_params import ActivityListParams as ActivityListParams
 from .datetime_value_param import DatetimeValueParam as DatetimeValueParam
+from .item_search_response import ItemSearchResponse as ItemSearchResponse
 from .monetary_value_param import MonetaryValueParam as MonetaryValueParam
 from .relation_value_param import RelationValueParam as RelationValueParam
 from .view_retrieve_params import ViewRetrieveParams as ViewRetrieveParams
