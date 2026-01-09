@@ -142,6 +142,12 @@ class Moonbase(SyncAPIClient):
         return CollectionsResource(self)
 
     @cached_property
+    def items(self) -> ItemsResource:
+        from .resources.items import ItemsResource
+
+        return ItemsResource(self)
+
+    @cached_property
     def views(self) -> ViewsResource:
         from .resources.views import ViewsResource
 
@@ -230,12 +236,6 @@ class Moonbase(SyncAPIClient):
         from .resources.webhook_endpoints import WebhookEndpointsResource
 
         return WebhookEndpointsResource(self)
-
-    @cached_property
-    def items(self) -> ItemsResource:
-        from .resources.items import ItemsResource
-
-        return ItemsResource(self)
 
     @cached_property
     def with_raw_response(self) -> MoonbaseWithRawResponse:
@@ -412,6 +412,12 @@ class AsyncMoonbase(AsyncAPIClient):
         return AsyncCollectionsResource(self)
 
     @cached_property
+    def items(self) -> AsyncItemsResource:
+        from .resources.items import AsyncItemsResource
+
+        return AsyncItemsResource(self)
+
+    @cached_property
     def views(self) -> AsyncViewsResource:
         from .resources.views import AsyncViewsResource
 
@@ -500,12 +506,6 @@ class AsyncMoonbase(AsyncAPIClient):
         from .resources.webhook_endpoints import AsyncWebhookEndpointsResource
 
         return AsyncWebhookEndpointsResource(self)
-
-    @cached_property
-    def items(self) -> AsyncItemsResource:
-        from .resources.items import AsyncItemsResource
-
-        return AsyncItemsResource(self)
 
     @cached_property
     def with_raw_response(self) -> AsyncMoonbaseWithRawResponse:
@@ -633,6 +633,12 @@ class MoonbaseWithRawResponse:
         return CollectionsResourceWithRawResponse(self._client.collections)
 
     @cached_property
+    def items(self) -> items.ItemsResourceWithRawResponse:
+        from .resources.items import ItemsResourceWithRawResponse
+
+        return ItemsResourceWithRawResponse(self._client.items)
+
+    @cached_property
     def views(self) -> views.ViewsResourceWithRawResponse:
         from .resources.views import ViewsResourceWithRawResponse
 
@@ -722,12 +728,6 @@ class MoonbaseWithRawResponse:
 
         return WebhookEndpointsResourceWithRawResponse(self._client.webhook_endpoints)
 
-    @cached_property
-    def items(self) -> items.ItemsResourceWithRawResponse:
-        from .resources.items import ItemsResourceWithRawResponse
-
-        return ItemsResourceWithRawResponse(self._client.items)
-
 
 class AsyncMoonbaseWithRawResponse:
     _client: AsyncMoonbase
@@ -740,6 +740,12 @@ class AsyncMoonbaseWithRawResponse:
         from .resources.collections import AsyncCollectionsResourceWithRawResponse
 
         return AsyncCollectionsResourceWithRawResponse(self._client.collections)
+
+    @cached_property
+    def items(self) -> items.AsyncItemsResourceWithRawResponse:
+        from .resources.items import AsyncItemsResourceWithRawResponse
+
+        return AsyncItemsResourceWithRawResponse(self._client.items)
 
     @cached_property
     def views(self) -> views.AsyncViewsResourceWithRawResponse:
@@ -831,12 +837,6 @@ class AsyncMoonbaseWithRawResponse:
 
         return AsyncWebhookEndpointsResourceWithRawResponse(self._client.webhook_endpoints)
 
-    @cached_property
-    def items(self) -> items.AsyncItemsResourceWithRawResponse:
-        from .resources.items import AsyncItemsResourceWithRawResponse
-
-        return AsyncItemsResourceWithRawResponse(self._client.items)
-
 
 class MoonbaseWithStreamedResponse:
     _client: Moonbase
@@ -849,6 +849,12 @@ class MoonbaseWithStreamedResponse:
         from .resources.collections import CollectionsResourceWithStreamingResponse
 
         return CollectionsResourceWithStreamingResponse(self._client.collections)
+
+    @cached_property
+    def items(self) -> items.ItemsResourceWithStreamingResponse:
+        from .resources.items import ItemsResourceWithStreamingResponse
+
+        return ItemsResourceWithStreamingResponse(self._client.items)
 
     @cached_property
     def views(self) -> views.ViewsResourceWithStreamingResponse:
@@ -940,12 +946,6 @@ class MoonbaseWithStreamedResponse:
 
         return WebhookEndpointsResourceWithStreamingResponse(self._client.webhook_endpoints)
 
-    @cached_property
-    def items(self) -> items.ItemsResourceWithStreamingResponse:
-        from .resources.items import ItemsResourceWithStreamingResponse
-
-        return ItemsResourceWithStreamingResponse(self._client.items)
-
 
 class AsyncMoonbaseWithStreamedResponse:
     _client: AsyncMoonbase
@@ -958,6 +958,12 @@ class AsyncMoonbaseWithStreamedResponse:
         from .resources.collections import AsyncCollectionsResourceWithStreamingResponse
 
         return AsyncCollectionsResourceWithStreamingResponse(self._client.collections)
+
+    @cached_property
+    def items(self) -> items.AsyncItemsResourceWithStreamingResponse:
+        from .resources.items import AsyncItemsResourceWithStreamingResponse
+
+        return AsyncItemsResourceWithStreamingResponse(self._client.items)
 
     @cached_property
     def views(self) -> views.AsyncViewsResourceWithStreamingResponse:
@@ -1048,12 +1054,6 @@ class AsyncMoonbaseWithStreamedResponse:
         from .resources.webhook_endpoints import AsyncWebhookEndpointsResourceWithStreamingResponse
 
         return AsyncWebhookEndpointsResourceWithStreamingResponse(self._client.webhook_endpoints)
-
-    @cached_property
-    def items(self) -> items.AsyncItemsResourceWithStreamingResponse:
-        from .resources.items import AsyncItemsResourceWithStreamingResponse
-
-        return AsyncItemsResourceWithStreamingResponse(self._client.items)
 
 
 Client = Moonbase
