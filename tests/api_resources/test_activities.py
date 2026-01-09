@@ -10,6 +10,7 @@ import pytest
 from moonbase import Moonbase, AsyncMoonbase
 from tests.utils import assert_matches_type
 from moonbase.types import Activity
+from moonbase._utils import parse_datetime
 from moonbase.pagination import SyncCursorPage, AsyncCursorPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -66,6 +67,14 @@ class TestActivities:
         activity = client.activities.list(
             after="after",
             before="before",
+            filter={
+                "item_id": {"eq": "eq"},
+                "occurred_at": {
+                    "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
+                },
+                "type": {"in": ["activity/call_occurred"]},
+            },
             limit=1,
         )
         assert_matches_type(SyncCursorPage[Activity], activity, path=["response"])
@@ -144,6 +153,14 @@ class TestAsyncActivities:
         activity = await async_client.activities.list(
             after="after",
             before="before",
+            filter={
+                "item_id": {"eq": "eq"},
+                "occurred_at": {
+                    "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
+                    "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
+                },
+                "type": {"in": ["activity/call_occurred"]},
+            },
             limit=1,
         )
         assert_matches_type(AsyncCursorPage[Activity], activity, path=["response"])

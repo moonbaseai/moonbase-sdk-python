@@ -85,6 +85,7 @@ class ActivitiesResource(SyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        filter: activity_list_params.Filter | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -104,6 +105,8 @@ class ActivitiesResource(SyncAPIResource):
           before: When specified, returns results starting immediately before the item identified
               by this cursor. Use the cursor value from the response's metadata to fetch the
               previous page of results.
+
+          filter: Filter activities by type, date, or item.
 
           limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
               to 20 if not specified.
@@ -128,6 +131,7 @@ class ActivitiesResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "filter": filter,
                         "limit": limit,
                     },
                     activity_list_params.ActivityListParams,
@@ -198,6 +202,7 @@ class AsyncActivitiesResource(AsyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        filter: activity_list_params.Filter | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -217,6 +222,8 @@ class AsyncActivitiesResource(AsyncAPIResource):
           before: When specified, returns results starting immediately before the item identified
               by this cursor. Use the cursor value from the response's metadata to fetch the
               previous page of results.
+
+          filter: Filter activities by type, date, or item.
 
           limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
               to 20 if not specified.
@@ -241,6 +248,7 @@ class AsyncActivitiesResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "filter": filter,
                         "limit": limit,
                     },
                     activity_list_params.ActivityListParams,
