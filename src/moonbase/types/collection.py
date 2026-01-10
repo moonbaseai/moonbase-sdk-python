@@ -20,6 +20,12 @@ class Collection(BaseModel):
     id: str
     """Unique identifier for the object."""
 
+    core: bool
+    """
+    If `true`, this is one of the foundational collections (People, Organizations,
+    Deals, or Tasks).
+    """
+
     created_at: datetime
     """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
 

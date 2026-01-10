@@ -21,6 +21,9 @@ class IntegerField(BaseModel):
     (`many`).
     """
 
+    core: bool
+    """If `true`, this is a built-in field included by default."""
+
     created_at: datetime
     """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
 
