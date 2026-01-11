@@ -44,6 +44,7 @@ if TYPE_CHECKING:
         programs,
         activities,
         collections,
+        agent_settings,
         inbox_messages,
         program_messages,
         program_templates,
@@ -61,6 +62,7 @@ if TYPE_CHECKING:
     from .resources.programs import ProgramsResource, AsyncProgramsResource
     from .resources.activities import ActivitiesResource, AsyncActivitiesResource
     from .resources.views.views import ViewsResource, AsyncViewsResource
+    from .resources.agent_settings import AgentSettingsResource, AsyncAgentSettingsResource
     from .resources.inbox_messages import InboxMessagesResource, AsyncInboxMessagesResource
     from .resources.program_messages import ProgramMessagesResource, AsyncProgramMessagesResource
     from .resources.program_templates import ProgramTemplatesResource, AsyncProgramTemplatesResource
@@ -236,6 +238,12 @@ class Moonbase(SyncAPIClient):
         from .resources.webhook_endpoints import WebhookEndpointsResource
 
         return WebhookEndpointsResource(self)
+
+    @cached_property
+    def agent_settings(self) -> AgentSettingsResource:
+        from .resources.agent_settings import AgentSettingsResource
+
+        return AgentSettingsResource(self)
 
     @cached_property
     def with_raw_response(self) -> MoonbaseWithRawResponse:
@@ -508,6 +516,12 @@ class AsyncMoonbase(AsyncAPIClient):
         return AsyncWebhookEndpointsResource(self)
 
     @cached_property
+    def agent_settings(self) -> AsyncAgentSettingsResource:
+        from .resources.agent_settings import AsyncAgentSettingsResource
+
+        return AsyncAgentSettingsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncMoonbaseWithRawResponse:
         return AsyncMoonbaseWithRawResponse(self)
 
@@ -728,6 +742,12 @@ class MoonbaseWithRawResponse:
 
         return WebhookEndpointsResourceWithRawResponse(self._client.webhook_endpoints)
 
+    @cached_property
+    def agent_settings(self) -> agent_settings.AgentSettingsResourceWithRawResponse:
+        from .resources.agent_settings import AgentSettingsResourceWithRawResponse
+
+        return AgentSettingsResourceWithRawResponse(self._client.agent_settings)
+
 
 class AsyncMoonbaseWithRawResponse:
     _client: AsyncMoonbase
@@ -836,6 +856,12 @@ class AsyncMoonbaseWithRawResponse:
         from .resources.webhook_endpoints import AsyncWebhookEndpointsResourceWithRawResponse
 
         return AsyncWebhookEndpointsResourceWithRawResponse(self._client.webhook_endpoints)
+
+    @cached_property
+    def agent_settings(self) -> agent_settings.AsyncAgentSettingsResourceWithRawResponse:
+        from .resources.agent_settings import AsyncAgentSettingsResourceWithRawResponse
+
+        return AsyncAgentSettingsResourceWithRawResponse(self._client.agent_settings)
 
 
 class MoonbaseWithStreamedResponse:
@@ -946,6 +972,12 @@ class MoonbaseWithStreamedResponse:
 
         return WebhookEndpointsResourceWithStreamingResponse(self._client.webhook_endpoints)
 
+    @cached_property
+    def agent_settings(self) -> agent_settings.AgentSettingsResourceWithStreamingResponse:
+        from .resources.agent_settings import AgentSettingsResourceWithStreamingResponse
+
+        return AgentSettingsResourceWithStreamingResponse(self._client.agent_settings)
+
 
 class AsyncMoonbaseWithStreamedResponse:
     _client: AsyncMoonbase
@@ -1054,6 +1086,12 @@ class AsyncMoonbaseWithStreamedResponse:
         from .resources.webhook_endpoints import AsyncWebhookEndpointsResourceWithStreamingResponse
 
         return AsyncWebhookEndpointsResourceWithStreamingResponse(self._client.webhook_endpoints)
+
+    @cached_property
+    def agent_settings(self) -> agent_settings.AsyncAgentSettingsResourceWithStreamingResponse:
+        from .resources.agent_settings import AsyncAgentSettingsResourceWithStreamingResponse
+
+        return AsyncAgentSettingsResourceWithStreamingResponse(self._client.agent_settings)
 
 
 Client = Moonbase

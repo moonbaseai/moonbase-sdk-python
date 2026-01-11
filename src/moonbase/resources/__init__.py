@@ -96,6 +96,14 @@ from .collections import (
     CollectionsResourceWithStreamingResponse,
     AsyncCollectionsResourceWithStreamingResponse,
 )
+from .agent_settings import (
+    AgentSettingsResource,
+    AsyncAgentSettingsResource,
+    AgentSettingsResourceWithRawResponse,
+    AsyncAgentSettingsResourceWithRawResponse,
+    AgentSettingsResourceWithStreamingResponse,
+    AsyncAgentSettingsResourceWithStreamingResponse,
+)
 from .inbox_messages import (
     InboxMessagesResource,
     AsyncInboxMessagesResource,
@@ -240,4 +248,10 @@ __all__ = [
     "AsyncWebhookEndpointsResourceWithRawResponse",
     "WebhookEndpointsResourceWithStreamingResponse",
     "AsyncWebhookEndpointsResourceWithStreamingResponse",
+    "AgentSettingsResource",
+    "AsyncAgentSettingsResource",
+    "AgentSettingsResourceWithRawResponse",
+    "AsyncAgentSettingsResourceWithRawResponse",
+    "AgentSettingsResourceWithStreamingResponse",
+    "AsyncAgentSettingsResourceWithStreamingResponse",
 ]
