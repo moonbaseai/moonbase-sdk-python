@@ -26,7 +26,7 @@ The full API of this library can be found in [api.md](api.md).
 
 ```sh
 # install from PyPI
-pip install --pre moonbase-sdk
+pip install '--pre moonbase-sdk'
 ```
 
 ## Usage
@@ -86,7 +86,7 @@ You can enable this by installing `aiohttp`:
 
 ```sh
 # install from PyPI
-pip install --pre moonbase-sdk[aiohttp]
+pip install '--pre moonbase-sdk[aiohttp]'
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
