@@ -30,6 +30,7 @@ class Subscription(TypedDict, total=False):
             "activity/item_created",
             "activity/item_mentioned",
             "activity/item_merged",
+            "activity/file_created",
             "activity/meeting_held",
             "activity/meeting_scheduled",
             "activity/note_created",
