@@ -28,6 +28,8 @@ class Inbox(BaseModel):
     updated_at: datetime
     """Time at which the object was last updated, as an ISO 8601 timestamp in UTC."""
 
+    can_read: Optional[bool] = None
+
     tagsets: Optional[List[Tagset]] = None
     """
     The list of `Tagset` objects associated with this inbox, which defines the tags
