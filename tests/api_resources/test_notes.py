@@ -19,6 +19,44 @@ class TestNotes:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
+    def test_method_create(self, client: Moonbase) -> None:
+        note = client.notes.create(
+            body={},
+        )
+        assert_matches_type(Note, note, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Moonbase) -> None:
+        note = client.notes.create(
+            body={"markdown": "# A note title\n\nHere's a note for me! Yay!"},
+        )
+        assert_matches_type(Note, note, path=["response"])
+
+    @parametrize
+    def test_raw_response_create(self, client: Moonbase) -> None:
+        response = client.notes.with_raw_response.create(
+            body={},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        note = response.parse()
+        assert_matches_type(Note, note, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: Moonbase) -> None:
+        with client.notes.with_streaming_response.create(
+            body={},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            note = response.parse()
+            assert_matches_type(Note, note, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     def test_method_retrieve(self, client: Moonbase) -> None:
         note = client.notes.retrieve(
             "id",
@@ -54,6 +92,61 @@ class TestNotes:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.notes.with_raw_response.retrieve(
                 "",
+            )
+
+    @parametrize
+    def test_method_update(self, client: Moonbase) -> None:
+        note = client.notes.update(
+            id="id",
+            body={},
+            lock_version=0,
+        )
+        assert_matches_type(Note, note, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Moonbase) -> None:
+        note = client.notes.update(
+            id="id",
+            body={"markdown": "# A note title\n\nHere's a note for me! Yay!"},
+            lock_version=0,
+        )
+        assert_matches_type(Note, note, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: Moonbase) -> None:
+        response = client.notes.with_raw_response.update(
+            id="id",
+            body={},
+            lock_version=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        note = response.parse()
+        assert_matches_type(Note, note, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: Moonbase) -> None:
+        with client.notes.with_streaming_response.update(
+            id="id",
+            body={},
+            lock_version=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            note = response.parse()
+            assert_matches_type(Note, note, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: Moonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.notes.with_raw_response.update(
+                id="",
+                body={},
+                lock_version=0,
             )
 
     @parametrize
@@ -97,6 +190,44 @@ class TestAsyncNotes:
     )
 
     @parametrize
+    async def test_method_create(self, async_client: AsyncMoonbase) -> None:
+        note = await async_client.notes.create(
+            body={},
+        )
+        assert_matches_type(Note, note, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncMoonbase) -> None:
+        note = await async_client.notes.create(
+            body={"markdown": "# A note title\n\nHere's a note for me! Yay!"},
+        )
+        assert_matches_type(Note, note, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncMoonbase) -> None:
+        response = await async_client.notes.with_raw_response.create(
+            body={},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        note = await response.parse()
+        assert_matches_type(Note, note, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncMoonbase) -> None:
+        async with async_client.notes.with_streaming_response.create(
+            body={},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            note = await response.parse()
+            assert_matches_type(Note, note, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     async def test_method_retrieve(self, async_client: AsyncMoonbase) -> None:
         note = await async_client.notes.retrieve(
             "id",
@@ -132,6 +263,61 @@ class TestAsyncNotes:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.notes.with_raw_response.retrieve(
                 "",
+            )
+
+    @parametrize
+    async def test_method_update(self, async_client: AsyncMoonbase) -> None:
+        note = await async_client.notes.update(
+            id="id",
+            body={},
+            lock_version=0,
+        )
+        assert_matches_type(Note, note, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncMoonbase) -> None:
+        note = await async_client.notes.update(
+            id="id",
+            body={"markdown": "# A note title\n\nHere's a note for me! Yay!"},
+            lock_version=0,
+        )
+        assert_matches_type(Note, note, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncMoonbase) -> None:
+        response = await async_client.notes.with_raw_response.update(
+            id="id",
+            body={},
+            lock_version=0,
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        note = await response.parse()
+        assert_matches_type(Note, note, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncMoonbase) -> None:
+        async with async_client.notes.with_streaming_response.update(
+            id="id",
+            body={},
+            lock_version=0,
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            note = await response.parse()
+            assert_matches_type(Note, note, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncMoonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.notes.with_raw_response.update(
+                id="",
+                body={},
+                lock_version=0,
             )
 
     @parametrize

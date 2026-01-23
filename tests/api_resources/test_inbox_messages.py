@@ -24,7 +24,7 @@ class TestInboxMessages:
     def test_method_create(self, client: Moonbase) -> None:
         inbox_message = client.inbox_messages.create(
             body="This is the body of the message. It supports [markdown](https://en.wikipedia.org/wiki/Markdown).",
-            inbox_id="1CLJt2v1rdcqdM6vZpPpjq",
+            inbox_id="1CLJt2v6KXDyzDuM57pQqo",
         )
         assert_matches_type(EmailMessage, inbox_message, path=["response"])
 
@@ -32,7 +32,7 @@ class TestInboxMessages:
     def test_method_create_with_all_params(self, client: Moonbase) -> None:
         inbox_message = client.inbox_messages.create(
             body="This is the body of the message. It supports [markdown](https://en.wikipedia.org/wiki/Markdown).",
-            inbox_id="1CLJt2v1rdcqdM6vZpPpjq",
+            inbox_id="1CLJt2v6KXDyzDuM57pQqo",
             bcc=[
                 {
                     "email": "steve@example.com",
@@ -64,7 +64,7 @@ class TestInboxMessages:
     def test_raw_response_create(self, client: Moonbase) -> None:
         response = client.inbox_messages.with_raw_response.create(
             body="This is the body of the message. It supports [markdown](https://en.wikipedia.org/wiki/Markdown).",
-            inbox_id="1CLJt2v1rdcqdM6vZpPpjq",
+            inbox_id="1CLJt2v6KXDyzDuM57pQqo",
         )
 
         assert response.is_closed is True
@@ -76,7 +76,7 @@ class TestInboxMessages:
     def test_streaming_response_create(self, client: Moonbase) -> None:
         with client.inbox_messages.with_streaming_response.create(
             body="This is the body of the message. It supports [markdown](https://en.wikipedia.org/wiki/Markdown).",
-            inbox_id="1CLJt2v1rdcqdM6vZpPpjq",
+            inbox_id="1CLJt2v6KXDyzDuM57pQqo",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -181,7 +181,7 @@ class TestAsyncInboxMessages:
     async def test_method_create(self, async_client: AsyncMoonbase) -> None:
         inbox_message = await async_client.inbox_messages.create(
             body="This is the body of the message. It supports [markdown](https://en.wikipedia.org/wiki/Markdown).",
-            inbox_id="1CLJt2v1rdcqdM6vZpPpjq",
+            inbox_id="1CLJt2v6KXDyzDuM57pQqo",
         )
         assert_matches_type(EmailMessage, inbox_message, path=["response"])
 
@@ -189,7 +189,7 @@ class TestAsyncInboxMessages:
     async def test_method_create_with_all_params(self, async_client: AsyncMoonbase) -> None:
         inbox_message = await async_client.inbox_messages.create(
             body="This is the body of the message. It supports [markdown](https://en.wikipedia.org/wiki/Markdown).",
-            inbox_id="1CLJt2v1rdcqdM6vZpPpjq",
+            inbox_id="1CLJt2v6KXDyzDuM57pQqo",
             bcc=[
                 {
                     "email": "steve@example.com",
@@ -221,7 +221,7 @@ class TestAsyncInboxMessages:
     async def test_raw_response_create(self, async_client: AsyncMoonbase) -> None:
         response = await async_client.inbox_messages.with_raw_response.create(
             body="This is the body of the message. It supports [markdown](https://en.wikipedia.org/wiki/Markdown).",
-            inbox_id="1CLJt2v1rdcqdM6vZpPpjq",
+            inbox_id="1CLJt2v6KXDyzDuM57pQqo",
         )
 
         assert response.is_closed is True
@@ -233,7 +233,7 @@ class TestAsyncInboxMessages:
     async def test_streaming_response_create(self, async_client: AsyncMoonbase) -> None:
         async with async_client.inbox_messages.with_streaming_response.create(
             body="This is the body of the message. It supports [markdown](https://en.wikipedia.org/wiki/Markdown).",
-            inbox_id="1CLJt2v1rdcqdM6vZpPpjq",
+            inbox_id="1CLJt2v6KXDyzDuM57pQqo",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

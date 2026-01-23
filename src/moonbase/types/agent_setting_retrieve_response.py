@@ -20,9 +20,11 @@ class AgentSettingRetrieveResponse(BaseModel):
 
     deal_summary_prompt: Optional[str] = None
 
-    meeting_prebrief_model: Optional[str] = None
+    meeting_agent_model: Optional[str] = None
 
     meeting_prebrief_prompt: Optional[str] = None
+
+    meeting_summary_prompt: Optional[str] = None
 
     meeting_web_search: Optional[bool] = None
 
