@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import httpx
 
-from ..types import note_list_params
+from ..types import note_list_params, note_create_params, note_update_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -18,6 +18,7 @@ from .._response import (
 from ..pagination import SyncCursorPage, AsyncCursorPage
 from ..types.note import Note
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.shared_params.formatted_text import FormattedText
 
 __all__ = ["NotesResource", "AsyncNotesResource"]
 
@@ -41,6 +42,40 @@ class NotesResource(SyncAPIResource):
         For more information, see https://www.github.com/moonbaseai/moonbase-sdk-python#with_streaming_response
         """
         return NotesResourceWithStreamingResponse(self)
+
+    def create(
+        self,
+        *,
+        body: FormattedText,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Note:
+        """
+        Create a new note.
+
+        Args:
+          body: The main content of the note.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/notes",
+            body=maybe_transform({"body": body}, note_create_params.NoteCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Note,
+        )
 
     def retrieve(
         self,
@@ -69,6 +104,52 @@ class NotesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/notes/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Note,
+        )
+
+    def update(
+        self,
+        id: str,
+        *,
+        body: FormattedText,
+        lock_version: int,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Note:
+        """
+        Update an existing note.
+
+        Args:
+          body: The main content of the note.
+
+          lock_version: The current lock version of the note for optimistic concurrency control.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._patch(
+            f"/notes/{id}",
+            body=maybe_transform(
+                {
+                    "body": body,
+                    "lock_version": lock_version,
+                },
+                note_update_params.NoteUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -152,6 +233,40 @@ class AsyncNotesResource(AsyncAPIResource):
         """
         return AsyncNotesResourceWithStreamingResponse(self)
 
+    async def create(
+        self,
+        *,
+        body: FormattedText,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Note:
+        """
+        Create a new note.
+
+        Args:
+          body: The main content of the note.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/notes",
+            body=await async_maybe_transform({"body": body}, note_create_params.NoteCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Note,
+        )
+
     async def retrieve(
         self,
         id: str,
@@ -179,6 +294,52 @@ class AsyncNotesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/notes/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Note,
+        )
+
+    async def update(
+        self,
+        id: str,
+        *,
+        body: FormattedText,
+        lock_version: int,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Note:
+        """
+        Update an existing note.
+
+        Args:
+          body: The main content of the note.
+
+          lock_version: The current lock version of the note for optimistic concurrency control.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._patch(
+            f"/notes/{id}",
+            body=await async_maybe_transform(
+                {
+                    "body": body,
+                    "lock_version": lock_version,
+                },
+                note_update_params.NoteUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -246,8 +407,14 @@ class NotesResourceWithRawResponse:
     def __init__(self, notes: NotesResource) -> None:
         self._notes = notes
 
+        self.create = to_raw_response_wrapper(
+            notes.create,
+        )
         self.retrieve = to_raw_response_wrapper(
             notes.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            notes.update,
         )
         self.list = to_raw_response_wrapper(
             notes.list,
@@ -258,8 +425,14 @@ class AsyncNotesResourceWithRawResponse:
     def __init__(self, notes: AsyncNotesResource) -> None:
         self._notes = notes
 
+        self.create = async_to_raw_response_wrapper(
+            notes.create,
+        )
         self.retrieve = async_to_raw_response_wrapper(
             notes.retrieve,
+        )
+        self.update = async_to_raw_response_wrapper(
+            notes.update,
         )
         self.list = async_to_raw_response_wrapper(
             notes.list,
@@ -270,8 +443,14 @@ class NotesResourceWithStreamingResponse:
     def __init__(self, notes: NotesResource) -> None:
         self._notes = notes
 
+        self.create = to_streamed_response_wrapper(
+            notes.create,
+        )
         self.retrieve = to_streamed_response_wrapper(
             notes.retrieve,
+        )
+        self.update = to_streamed_response_wrapper(
+            notes.update,
         )
         self.list = to_streamed_response_wrapper(
             notes.list,
@@ -282,8 +461,14 @@ class AsyncNotesResourceWithStreamingResponse:
     def __init__(self, notes: AsyncNotesResource) -> None:
         self._notes = notes
 
+        self.create = async_to_streamed_response_wrapper(
+            notes.create,
+        )
         self.retrieve = async_to_streamed_response_wrapper(
             notes.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            notes.update,
         )
         self.list = async_to_streamed_response_wrapper(
             notes.list,

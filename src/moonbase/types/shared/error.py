@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -35,6 +35,8 @@ class Error(BaseModel):
 
     detail: Optional[str] = None
     """A human-readable explanation of this specific error."""
+
+    meta: Optional[Dict[str, object]] = None
 
     source: Optional[Source] = None
     """

@@ -25,6 +25,9 @@ class Note(BaseModel):
     created_at: datetime
     """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
 
+    lock_version: int
+    """The current lock version of the note for optimistic concurrency control."""
+
     type: Literal["note"]
     """String representing the object’s type. Always `note` for this object."""
 

@@ -311,7 +311,9 @@ from moonbase.types import Note
 
 Methods:
 
+- <code title="post /notes">client.notes.<a href="./src/moonbase/resources/notes.py">create</a>(\*\*<a href="src/moonbase/types/note_create_params.py">params</a>) -> <a href="./src/moonbase/types/note.py">Note</a></code>
 - <code title="get /notes/{id}">client.notes.<a href="./src/moonbase/resources/notes.py">retrieve</a>(id) -> <a href="./src/moonbase/types/note.py">Note</a></code>
+- <code title="patch /notes/{id}">client.notes.<a href="./src/moonbase/resources/notes.py">update</a>(id, \*\*<a href="src/moonbase/types/note_update_params.py">params</a>) -> <a href="./src/moonbase/types/note.py">Note</a></code>
 - <code title="get /notes">client.notes.<a href="./src/moonbase/resources/notes.py">list</a>(\*\*<a href="src/moonbase/types/note_list_params.py">params</a>) -> <a href="./src/moonbase/types/note.py">SyncCursorPage[Note]</a></code>
 
 # WebhookEndpoints

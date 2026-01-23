@@ -83,6 +83,8 @@ from .file_upload_params import FileUploadParams as FileUploadParams
 from .inbox_conversation import InboxConversation as InboxConversation
 from .item_pointer_param import ItemPointerParam as ItemPointerParam
 from .item_search_params import ItemSearchParams as ItemSearchParams
+from .note_create_params import NoteCreateParams as NoteCreateParams
+from .note_update_params import NoteUpdateParams as NoteUpdateParams
 from .tagset_list_params import TagsetListParams as TagsetListParams
 from .boolean_value_param import BooleanValueParam as BooleanValueParam
 from .choice_field_option import ChoiceFieldOption as ChoiceFieldOption
