@@ -65,6 +65,9 @@ class EmailMessage(BaseModel):
     draft: bool
     """`true` if the message is a draft that has not been sent."""
 
+    lock_version: int
+    """The current lock version of the message for optimistic concurrency control."""
+
     spam: bool
     """`true` if the message is classified as spam."""
 

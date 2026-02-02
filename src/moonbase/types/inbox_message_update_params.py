@@ -7,30 +7,27 @@ from typing_extensions import Required, TypedDict
 
 from .shared_params.formatted_text import FormattedText
 
-__all__ = ["InboxMessageCreateParams", "Bcc", "Cc", "To"]
+__all__ = ["InboxMessageUpdateParams", "Bcc", "Cc", "To"]
 
 
-class InboxMessageCreateParams(TypedDict, total=False):
-    body: Required[FormattedText]
-    """The email body."""
-
-    inbox_id: Required[str]
-    """The inbox to use for sending the email."""
+class InboxMessageUpdateParams(TypedDict, total=False):
+    lock_version: Required[int]
+    """The current lock version of the draft for optimistic concurrency control."""
 
     bcc: Iterable[Bcc]
     """A list of the BCC recipients."""
 
+    body: FormattedText
+    """The email body."""
+
     cc: Iterable[Cc]
     """A list of the CC recipients."""
-
-    conversation_id: str
-    """The ID of the conversation, if responding to an existing conversation."""
 
     subject: str
     """The subject line of the email."""
 
     to: Iterable[To]
-    """A list of recipients."""
+    """A list of the recipients."""
 
 
 class Bcc(TypedDict, total=False):
