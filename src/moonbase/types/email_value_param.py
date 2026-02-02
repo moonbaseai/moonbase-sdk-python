@@ -8,6 +8,8 @@ __all__ = ["EmailValueParam"]
 
 
 class EmailValueParam(TypedDict, total=False):
+    """Email address value"""
+
     data: Required[str]
     """A valid email address."""
 

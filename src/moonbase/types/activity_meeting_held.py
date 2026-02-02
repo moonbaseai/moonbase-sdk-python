@@ -11,6 +11,8 @@ __all__ = ["ActivityMeetingHeld"]
 
 
 class ActivityMeetingHeld(BaseModel):
+    """Represents an event that occurs when a `Meeting` has concluded."""
+
     id: str
     """Unique identifier for the object."""
 

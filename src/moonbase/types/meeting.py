@@ -6,6 +6,7 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
+from .note import Note
 from .._models import BaseModel
 from .attendee import Attendee
 from .organizer import Organizer
@@ -34,6 +35,11 @@ class Transcript(BaseModel):
 
 
 class Meeting(BaseModel):
+    """The Meeting object represents a calendar event.
+
+    It includes details about the participants, timing, and associated content like summaries and recordings.
+    """
+
     id: str
     """Unique identifier for the object."""
 
@@ -82,6 +88,14 @@ class Meeting(BaseModel):
     location: Optional[str] = None
     """The physical or virtual location of the meeting."""
 
+    note: Optional[Note] = None
+    """Any personal notes taken during the meeting.
+
+    It also includes the AI-generated pre-meeting briefing.
+
+    **Note:** Only present when requested using the `include` query parameter.
+    """
+
     organizer: Optional[Organizer] = None
     """The `Organizer` of the meeting.
 
@@ -97,11 +111,11 @@ class Meeting(BaseModel):
     The URL expires after one hour.
     """
 
-    summary_ante: Optional[str] = None
-    """A summary or notes generated before the meeting."""
+    summary: Optional[Note] = None
+    """A summary of the meeting.
 
-    summary_post: Optional[str] = None
-    """A summary or notes generated after the meeting."""
+    **Note:** Only present when requested using the `include` query parameter.
+    """
 
     title: Optional[str] = None
     """The title or subject of the meeting."""

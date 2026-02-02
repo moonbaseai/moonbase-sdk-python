@@ -8,6 +8,10 @@ __all__ = ["SocialXValue", "Data"]
 
 
 class Data(BaseModel):
+    """
+    Social media profile information including both the full URL and extracted username.
+    """
+
     url: str
     """The full URL to the X profile, starting with 'https://x.com/'"""
 
@@ -20,6 +24,8 @@ class Data(BaseModel):
 
 
 class SocialXValue(BaseModel):
+    """The social media profile for the X (formerly Twitter) platform"""
+
     data: Data
     """
     Social media profile information including both the full URL and extracted

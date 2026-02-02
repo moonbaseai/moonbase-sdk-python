@@ -24,6 +24,14 @@ from .forms import (
     FormsResourceWithStreamingResponse,
     AsyncFormsResourceWithStreamingResponse,
 )
+from .items import (
+    ItemsResource,
+    AsyncItemsResource,
+    ItemsResourceWithRawResponse,
+    AsyncItemsResourceWithRawResponse,
+    ItemsResourceWithStreamingResponse,
+    AsyncItemsResourceWithStreamingResponse,
+)
 from .notes import (
     NotesResource,
     AsyncNotesResource,
@@ -88,6 +96,14 @@ from .collections import (
     CollectionsResourceWithStreamingResponse,
     AsyncCollectionsResourceWithStreamingResponse,
 )
+from .agent_settings import (
+    AgentSettingsResource,
+    AsyncAgentSettingsResource,
+    AgentSettingsResourceWithRawResponse,
+    AsyncAgentSettingsResourceWithRawResponse,
+    AgentSettingsResourceWithStreamingResponse,
+    AsyncAgentSettingsResourceWithStreamingResponse,
+)
 from .inbox_messages import (
     InboxMessagesResource,
     AsyncInboxMessagesResource,
@@ -136,6 +152,12 @@ __all__ = [
     "AsyncCollectionsResourceWithRawResponse",
     "CollectionsResourceWithStreamingResponse",
     "AsyncCollectionsResourceWithStreamingResponse",
+    "ItemsResource",
+    "AsyncItemsResource",
+    "ItemsResourceWithRawResponse",
+    "AsyncItemsResourceWithRawResponse",
+    "ItemsResourceWithStreamingResponse",
+    "AsyncItemsResourceWithStreamingResponse",
     "ViewsResource",
     "AsyncViewsResource",
     "ViewsResourceWithRawResponse",
@@ -226,4 +248,10 @@ __all__ = [
     "AsyncWebhookEndpointsResourceWithRawResponse",
     "WebhookEndpointsResourceWithStreamingResponse",
     "AsyncWebhookEndpointsResourceWithStreamingResponse",
+    "AgentSettingsResource",
+    "AsyncAgentSettingsResource",
+    "AgentSettingsResourceWithRawResponse",
+    "AsyncAgentSettingsResourceWithRawResponse",
+    "AgentSettingsResourceWithStreamingResponse",
+    "AsyncAgentSettingsResourceWithStreamingResponse",
 ]

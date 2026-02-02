@@ -94,6 +94,18 @@ Methods:
 - <code title="delete /collections/{collection_id}/items/{id}">client.collections.items.<a href="./src/moonbase/resources/collections/items.py">delete</a>(id, \*, collection_id) -> None</code>
 - <code title="post /collections/{collection_id}/items/upsert">client.collections.items.<a href="./src/moonbase/resources/collections/items.py">upsert</a>(collection_id, \*\*<a href="src/moonbase/types/collections/item_upsert_params.py">params</a>) -> <a href="./src/moonbase/types/item.py">Item</a></code>
 
+# Items
+
+Types:
+
+```python
+from moonbase.types import ItemSearchResponse
+```
+
+Methods:
+
+- <code title="get /items/search">client.items.<a href="./src/moonbase/resources/items.py">search</a>(\*\*<a href="src/moonbase/types/item_search_params.py">params</a>) -> <a href="./src/moonbase/types/item_search_response.py">ItemSearchResponse</a></code>
+
 # Views
 
 Types:
@@ -148,8 +160,11 @@ from moonbase.types import Address, EmailMessage
 
 Methods:
 
+- <code title="post /inbox_messages">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages.py">create</a>(\*\*<a href="src/moonbase/types/inbox_message_create_params.py">params</a>) -> <a href="./src/moonbase/types/email_message.py">EmailMessage</a></code>
 - <code title="get /inbox_messages/{id}">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages.py">retrieve</a>(id, \*\*<a href="src/moonbase/types/inbox_message_retrieve_params.py">params</a>) -> <a href="./src/moonbase/types/email_message.py">EmailMessage</a></code>
+- <code title="patch /inbox_messages/{id}">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages.py">update</a>(id, \*\*<a href="src/moonbase/types/inbox_message_update_params.py">params</a>) -> <a href="./src/moonbase/types/email_message.py">EmailMessage</a></code>
 - <code title="get /inbox_messages">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages.py">list</a>(\*\*<a href="src/moonbase/types/inbox_message_list_params.py">params</a>) -> <a href="./src/moonbase/types/email_message.py">SyncCursorPage[EmailMessage]</a></code>
+- <code title="delete /inbox_messages/{id}">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages.py">delete</a>(id) -> None</code>
 
 # Tagsets
 
@@ -298,7 +313,9 @@ from moonbase.types import Note
 
 Methods:
 
+- <code title="post /notes">client.notes.<a href="./src/moonbase/resources/notes.py">create</a>(\*\*<a href="src/moonbase/types/note_create_params.py">params</a>) -> <a href="./src/moonbase/types/note.py">Note</a></code>
 - <code title="get /notes/{id}">client.notes.<a href="./src/moonbase/resources/notes.py">retrieve</a>(id) -> <a href="./src/moonbase/types/note.py">Note</a></code>
+- <code title="patch /notes/{id}">client.notes.<a href="./src/moonbase/resources/notes.py">update</a>(id, \*\*<a href="src/moonbase/types/note_update_params.py">params</a>) -> <a href="./src/moonbase/types/note.py">Note</a></code>
 - <code title="get /notes">client.notes.<a href="./src/moonbase/resources/notes.py">list</a>(\*\*<a href="src/moonbase/types/note_list_params.py">params</a>) -> <a href="./src/moonbase/types/note.py">SyncCursorPage[Note]</a></code>
 
 # WebhookEndpoints
@@ -316,3 +333,15 @@ Methods:
 - <code title="patch /webhook_endpoints/{id}">client.webhook_endpoints.<a href="./src/moonbase/resources/webhook_endpoints.py">update</a>(id, \*\*<a href="src/moonbase/types/webhook_endpoint_update_params.py">params</a>) -> <a href="./src/moonbase/types/endpoint.py">Endpoint</a></code>
 - <code title="get /webhook_endpoints">client.webhook_endpoints.<a href="./src/moonbase/resources/webhook_endpoints.py">list</a>(\*\*<a href="src/moonbase/types/webhook_endpoint_list_params.py">params</a>) -> <a href="./src/moonbase/types/endpoint.py">SyncCursorPage[Endpoint]</a></code>
 - <code title="delete /webhook_endpoints/{id}">client.webhook_endpoints.<a href="./src/moonbase/resources/webhook_endpoints.py">delete</a>(id) -> None</code>
+
+# AgentSettings
+
+Types:
+
+```python
+from moonbase.types import AgentSettingRetrieveResponse
+```
+
+Methods:
+
+- <code title="get /agent_settings">client.agent_settings.<a href="./src/moonbase/resources/agent_settings.py">retrieve</a>() -> <a href="./src/moonbase/types/agent_setting_retrieve_response.py">AgentSettingRetrieveResponse</a></code>

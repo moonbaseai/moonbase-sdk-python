@@ -11,6 +11,8 @@ __all__ = ["StageField"]
 
 
 class StageField(BaseModel):
+    """A field that tracks an item's position in a funnel or pipeline workflow."""
+
     id: str
     """Unique identifier for the object."""
 
@@ -19,6 +21,9 @@ class StageField(BaseModel):
     Specifies whether the field can hold a single value (`one`) or multiple values
     (`many`).
     """
+
+    core: bool
+    """If `true`, this is a built-in field included by default."""
 
     created_at: datetime
     """Time at which the object was created, as an ISO 8601 timestamp in UTC."""

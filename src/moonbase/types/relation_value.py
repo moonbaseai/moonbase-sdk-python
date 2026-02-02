@@ -9,6 +9,8 @@ __all__ = ["RelationValue"]
 
 
 class RelationValue(BaseModel):
+    """Related item reference"""
+
     data: ItemPointer
     """A reference to another Moonbase item."""
 

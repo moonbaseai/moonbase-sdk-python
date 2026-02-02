@@ -10,6 +10,8 @@ __all__ = ["MonetaryField"]
 
 
 class MonetaryField(BaseModel):
+    """A field that stores monetary amounts with currency information."""
+
     id: str
     """Unique identifier for the object."""
 
@@ -18,6 +20,9 @@ class MonetaryField(BaseModel):
     Specifies whether the field can hold a single value (`one`) or multiple values
     (`many`).
     """
+
+    core: bool
+    """If `true`, this is a built-in field included by default."""
 
     created_at: datetime
     """Time at which the object was created, as an ISO 8601 timestamp in UTC."""

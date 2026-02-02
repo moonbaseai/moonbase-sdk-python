@@ -6,6 +6,8 @@ __all__ = ["Pointer"]
 
 
 class Pointer(BaseModel):
+    """A lightweight reference to another resource."""
+
     id: str
     """Unique identifier for the referenced object."""
 

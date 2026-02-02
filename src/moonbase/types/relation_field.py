@@ -1,23 +1,34 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .collection_pointer import CollectionPointer
 
 __all__ = ["RelationField"]
 
 
 class RelationField(BaseModel):
+    """
+    A field that creates a link between items in different collections, enabling cross-collection relationships.
+    """
+
     id: str
     """Unique identifier for the object."""
+
+    allowed_collections: List[CollectionPointer]
+    """The set of collections that are valid targets for this relation."""
 
     cardinality: Literal["one", "many"]
     """
     Specifies whether the field can hold a single value (`one`) or multiple values
     (`many`).
     """
+
+    core: bool
+    """If `true`, this is a built-in field included by default."""
 
     created_at: datetime
     """Time at which the object was created, as an ISO 8601 timestamp in UTC."""

@@ -11,6 +11,8 @@ __all__ = ["ActivityItemCreated"]
 
 
 class ActivityItemCreated(BaseModel):
+    """Represents an event that occurs when an `Item` is created."""
+
     id: str
     """Unique identifier for the object."""
 

@@ -8,6 +8,8 @@ __all__ = ["PercentageValueParam"]
 
 
 class PercentageValueParam(TypedDict, total=False):
+    """Percentage numeric value"""
+
     data: Required[float]
     """
     A floating-point number representing a percentage value, for example 50.21 for

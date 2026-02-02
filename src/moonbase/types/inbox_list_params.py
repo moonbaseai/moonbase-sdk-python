@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Annotated, TypedDict
-
-from .._utils import PropertyInfo
+from typing import List
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["InboxListParams"]
 
@@ -24,7 +23,7 @@ class InboxListParams(TypedDict, total=False):
     previous page of results.
     """
 
-    include: Annotated[Literal["tagsets"], PropertyInfo(alias="include[]")]
+    include: List[Literal["tagsets"]]
 
     limit: int
     """Maximum number of items to return per page.

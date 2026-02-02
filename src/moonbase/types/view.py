@@ -12,6 +12,10 @@ __all__ = ["View"]
 
 
 class View(BaseModel):
+    """
+    A View represents a saved configuration for displaying items in a collection, including filters and sorting rules.
+    """
+
     id: str
     """Unique identifier for the object."""
 

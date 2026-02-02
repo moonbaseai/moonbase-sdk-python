@@ -14,6 +14,8 @@ Data: TypeAlias = Union[ChoiceFieldOptionParam, Pointer]
 
 
 class ChoiceValueParam(TypedDict, total=False):
+    """Selected choice option"""
+
     data: Required[Data]
     """An option that must match one of the predefined options for the field."""
 

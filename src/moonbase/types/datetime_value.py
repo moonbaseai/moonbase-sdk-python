@@ -9,6 +9,8 @@ __all__ = ["DatetimeValue"]
 
 
 class DatetimeValue(BaseModel):
+    """Date and time value"""
+
     data: datetime
 
     type: Literal["value/datetime"]

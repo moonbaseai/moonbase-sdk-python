@@ -11,6 +11,8 @@ __all__ = ["ActivityFormSubmitted"]
 
 
 class ActivityFormSubmitted(BaseModel):
+    """Represents an event that occurs when a `Form` is submitted."""
+
     id: str
     """Unique identifier for the object."""
 

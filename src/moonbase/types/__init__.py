@@ -82,6 +82,9 @@ from .domain_value_param import DomainValueParam as DomainValueParam
 from .file_upload_params import FileUploadParams as FileUploadParams
 from .inbox_conversation import InboxConversation as InboxConversation
 from .item_pointer_param import ItemPointerParam as ItemPointerParam
+from .item_search_params import ItemSearchParams as ItemSearchParams
+from .note_create_params import NoteCreateParams as NoteCreateParams
+from .note_update_params import NoteUpdateParams as NoteUpdateParams
 from .tagset_list_params import TagsetListParams as TagsetListParams
 from .boolean_value_param import BooleanValueParam as BooleanValueParam
 from .choice_field_option import ChoiceFieldOption as ChoiceFieldOption
@@ -91,6 +94,7 @@ from .program_list_params import ProgramListParams as ProgramListParams
 from .activity_item_merged import ActivityItemMerged as ActivityItemMerged
 from .activity_list_params import ActivityListParams as ActivityListParams
 from .datetime_value_param import DatetimeValueParam as DatetimeValueParam
+from .item_search_response import ItemSearchResponse as ItemSearchResponse
 from .monetary_value_param import MonetaryValueParam as MonetaryValueParam
 from .relation_value_param import RelationValueParam as RelationValueParam
 from .view_retrieve_params import ViewRetrieveParams as ViewRetrieveParams
@@ -121,6 +125,8 @@ from .inbox_message_list_params import InboxMessageListParams as InboxMessageLis
 from .activity_meeting_scheduled import ActivityMeetingScheduled as ActivityMeetingScheduled
 from .collection_retrieve_params import CollectionRetrieveParams as CollectionRetrieveParams
 from .activity_inbox_message_sent import ActivityInboxMessageSent as ActivityInboxMessageSent
+from .inbox_message_create_params import InboxMessageCreateParams as InboxMessageCreateParams
+from .inbox_message_update_params import InboxMessageUpdateParams as InboxMessageUpdateParams
 from .multi_line_text_value_param import MultiLineTextValueParam as MultiLineTextValueParam
 from .program_message_send_params import ProgramMessageSendParams as ProgramMessageSendParams
 from .program_template_list_params import ProgramTemplateListParams as ProgramTemplateListParams
@@ -133,6 +139,7 @@ from .webhook_endpoint_create_params import WebhookEndpointCreateParams as Webho
 from .webhook_endpoint_update_params import WebhookEndpointUpdateParams as WebhookEndpointUpdateParams
 from .activity_program_message_failed import ActivityProgramMessageFailed as ActivityProgramMessageFailed
 from .activity_program_message_opened import ActivityProgramMessageOpened as ActivityProgramMessageOpened
+from .agent_setting_retrieve_response import AgentSettingRetrieveResponse as AgentSettingRetrieveResponse
 from .activity_program_message_bounced import ActivityProgramMessageBounced as ActivityProgramMessageBounced
 from .activity_program_message_clicked import ActivityProgramMessageClicked as ActivityProgramMessageClicked
 from .program_template_retrieve_params import ProgramTemplateRetrieveParams as ProgramTemplateRetrieveParams

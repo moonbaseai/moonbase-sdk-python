@@ -9,6 +9,8 @@ __all__ = ["ChoiceValue"]
 
 
 class ChoiceValue(BaseModel):
+    """Selected choice option"""
+
     data: ChoiceFieldOption
     """An option that must match one of the predefined options for the field."""
 

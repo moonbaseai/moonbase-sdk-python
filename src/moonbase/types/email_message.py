@@ -14,6 +14,11 @@ __all__ = ["EmailMessage", "Attachment"]
 
 
 class Attachment(BaseModel):
+    """The Attachment object represents a file attached to a message.
+
+    You can download the file content via the `download_url`.
+    """
+
     id: str
     """Unique identifier for the object."""
 
@@ -40,6 +45,8 @@ class Attachment(BaseModel):
 
 
 class EmailMessage(BaseModel):
+    """The Email Message object represents a single email within a `Conversation`."""
+
     id: str
     """Unique identifier for the object."""
 
@@ -57,6 +64,9 @@ class EmailMessage(BaseModel):
 
     draft: bool
     """`true` if the message is a draft that has not been sent."""
+
+    lock_version: int
+    """The current lock version of the message for optimistic concurrency control."""
 
     spam: bool
     """`true` if the message is classified as spam."""

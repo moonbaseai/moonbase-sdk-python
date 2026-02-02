@@ -11,6 +11,8 @@ __all__ = ["Inbox"]
 
 
 class Inbox(BaseModel):
+    """The Inbox object represents a shared inbox for receiving and sending messages."""
+
     id: str
     """Unique identifier for the object."""
 
@@ -25,6 +27,8 @@ class Inbox(BaseModel):
 
     updated_at: datetime
     """Time at which the object was last updated, as an ISO 8601 timestamp in UTC."""
+
+    can_read: Optional[bool] = None
 
     tagsets: Optional[List[Tagset]] = None
     """

@@ -12,6 +12,11 @@ __all__ = ["Program", "ActivityMetrics"]
 
 
 class ActivityMetrics(BaseModel):
+    """A `ProgramActivityMetrics` object summarizing engagement for this program.
+
+    **Note:** Only present when requested using the `include` query parameter.
+    """
+
     bounced: int
     """The number of emails that could not be delivered."""
 
@@ -38,6 +43,11 @@ class ActivityMetrics(BaseModel):
 
 
 class Program(BaseModel):
+    """The Program object represents an email campaign.
+
+    It defines the sending behavior and tracks engagement metrics.
+    """
+
     id: str
     """Unique identifier for the object."""
 

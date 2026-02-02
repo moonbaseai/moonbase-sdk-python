@@ -11,6 +11,8 @@ __all__ = ["Call", "Participant"]
 
 
 class Participant(BaseModel):
+    """Represents a participant in a call."""
+
     id: str
     """Unique identifier for the object."""
 
@@ -34,6 +36,11 @@ class Participant(BaseModel):
 
 
 class Call(BaseModel):
+    """The Call object represents a phone call that has been logged in the system.
+
+    It contains details about the participants, timing, and outcome of the call.
+    """
+
     id: str
     """Unique identifier for the object."""
 

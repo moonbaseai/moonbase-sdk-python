@@ -10,6 +10,10 @@ __all__ = ["ItemPointerParam"]
 
 
 class ItemPointerParam(TypedDict, total=False):
+    """
+    A reference to an `Item` within a specific `Collection`, providing the context needed to locate the item.
+    """
+
     id: Required[str]
     """Unique identifier of the item."""
 

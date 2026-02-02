@@ -11,6 +11,8 @@ __all__ = ["ActivityItemMerged"]
 
 
 class ActivityItemMerged(BaseModel):
+    """Represents an event that occurs when an `Item` is merged into another item."""
+
     id: str
     """Unique identifier for the object."""
 

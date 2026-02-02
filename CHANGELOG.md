@@ -1,5 +1,54 @@
 # Changelog
 
+## 0.1.0-alpha.6 (2026-02-02)
+
+Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
+
+### Features
+
+* **api:** manual updates ([16d4158](https://github.com/moonbaseai/moonbase-sdk-python/commit/16d4158009e76e95458a5de834055c209fb138e7))
+* **api:** update api ([7476916](https://github.com/moonbaseai/moonbase-sdk-python/commit/7476916e64d8d5a993fab021d49b18dcb6c2edcb))
+* **api:** update api ([3d37815](https://github.com/moonbaseai/moonbase-sdk-python/commit/3d378157f7450bc10910bd085da72f269c1a979c))
+* **api:** update api ([1cf0314](https://github.com/moonbaseai/moonbase-sdk-python/commit/1cf03146e4b912031635e3f5a5745c469edbd21b))
+* **api:** update api ([5772d25](https://github.com/moonbaseai/moonbase-sdk-python/commit/5772d253e660be2016759a74f0b62a9b767a62d3))
+* **api:** update api ([829a178](https://github.com/moonbaseai/moonbase-sdk-python/commit/829a17846262818c341e4f4584261f5ada26a2b5))
+* **api:** update api ([781bf86](https://github.com/moonbaseai/moonbase-sdk-python/commit/781bf86d0d733868b634e0bfc74afdb472d9b5e6))
+* **api:** update api ([0857bf8](https://github.com/moonbaseai/moonbase-sdk-python/commit/0857bf877ebd969474697aa1cf1926320af5273f))
+* **api:** update api ([4d2d21d](https://github.com/moonbaseai/moonbase-sdk-python/commit/4d2d21da1a50f2b253a46873a31e3299927b84be))
+* **api:** update api ([9937aca](https://github.com/moonbaseai/moonbase-sdk-python/commit/9937aca1f8c6c09f359503dad50c80c1bd85fde9))
+* **client:** add custom JSON encoder for extended type support ([46485bb](https://github.com/moonbaseai/moonbase-sdk-python/commit/46485bb4fcb95b42e3dc2ea5996e31250df9f9db))
+* **client:** add support for binary request streaming ([d46eeca](https://github.com/moonbaseai/moonbase-sdk-python/commit/d46eecac391e35b96a7e53fc4d1f973a3e274d71))
+
+
+### Bug Fixes
+
+* **docs:** fix mcp installation instructions for remote servers ([b98f14c](https://github.com/moonbaseai/moonbase-sdk-python/commit/b98f14c610bfb6374457adc44b4198ca0bb22ffe))
+* ensure streams are always closed ([9761fa6](https://github.com/moonbaseai/moonbase-sdk-python/commit/9761fa64304117e566a7c57ad3c9aaa83c4fc8fd))
+* **types:** allow pyright to infer TypedDict types within SequenceNotStr ([5b1d3c4](https://github.com/moonbaseai/moonbase-sdk-python/commit/5b1d3c48defb753739991ecfce13e8711ddb019b))
+* use async_to_httpx_files in patch method ([39f226e](https://github.com/moonbaseai/moonbase-sdk-python/commit/39f226ea8e8d62d49c572462067d36a3d0950852))
+
+
+### Chores
+
+* add missing docstrings ([9c4f911](https://github.com/moonbaseai/moonbase-sdk-python/commit/9c4f911ea460c05c1a6224d1136208c98023e5d5))
+* add Python 3.14 classifier and testing ([49b2496](https://github.com/moonbaseai/moonbase-sdk-python/commit/49b2496c2abbea81c75ec9431d851b3d3e08a85f))
+* **ci:** upgrade `actions/github-script` ([985f36f](https://github.com/moonbaseai/moonbase-sdk-python/commit/985f36f5e30e92f81e8cfe3575bca73ef8b57762))
+* **deps:** mypy 1.18.1 has a regression, pin to 1.17 ([aba5a90](https://github.com/moonbaseai/moonbase-sdk-python/commit/aba5a90392abce2fbf9c2eb50aa45f41a342cda3))
+* **docs:** use environment variables for authentication in code snippets ([4b937fd](https://github.com/moonbaseai/moonbase-sdk-python/commit/4b937fd12e00d28f2ec8162b56f049bcca30e317))
+* **internal:** add `--fix` argument to lint script ([ce93da0](https://github.com/moonbaseai/moonbase-sdk-python/commit/ce93da0001ff88abe06bb5ad5d4b8ee8710b19cd))
+* **internal:** add missing files argument to base client ([3bd3310](https://github.com/moonbaseai/moonbase-sdk-python/commit/3bd331064fd02a5519a60e3657cbf25775afefb5))
+* **internal:** codegen related update ([0a56f57](https://github.com/moonbaseai/moonbase-sdk-python/commit/0a56f57ca9ba56525e5c8dc578e92b4d643059af))
+* **internal:** codegen related update ([a51346b](https://github.com/moonbaseai/moonbase-sdk-python/commit/a51346be1ab748f07634fe7f48d9a387030b8683))
+* **internal:** update `actions/checkout` version ([a15f39a](https://github.com/moonbaseai/moonbase-sdk-python/commit/a15f39a97bb47a74f19ab067c4ba9bd26b52fdfc))
+* speedup initial import ([cb16381](https://github.com/moonbaseai/moonbase-sdk-python/commit/cb1638174f8639cc6a63f14020d40e5af6035696))
+* update lockfile ([1918794](https://github.com/moonbaseai/moonbase-sdk-python/commit/1918794c3eb7c32e309cfabc76cc45d577622d40))
+
+
+### Documentation
+
+* **api:** update meeting params ([6c85912](https://github.com/moonbaseai/moonbase-sdk-python/commit/6c85912f589cbf0e6fbd79dcc4a7d6e744762be8))
+* prominently feature MCP server setup in root SDK readmes ([3a7ecee](https://github.com/moonbaseai/moonbase-sdk-python/commit/3a7ecee9be2fc2846964e37abe2cd74493df2f11))
+
 ## 0.1.0-alpha.5 (2025-11-13)
 
 Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)

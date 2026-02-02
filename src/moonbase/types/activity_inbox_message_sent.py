@@ -11,6 +11,8 @@ __all__ = ["ActivityInboxMessageSent"]
 
 
 class ActivityInboxMessageSent(BaseModel):
+    """Represents an event that occurs when a message is sent from an `Inbox`."""
+
     id: str
     """Unique identifier for the object."""
 
