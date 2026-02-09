@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Iterable
+
 import httpx
 
 from ..types import note_list_params, note_create_params, note_update_params
@@ -18,6 +20,7 @@ from .._response import (
 from ..pagination import SyncCursorPage, AsyncCursorPage
 from ..types.note import Note
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.shared_params.pointer import Pointer
 from ..types.shared_params.formatted_text import FormattedText
 
 __all__ = ["NotesResource", "AsyncNotesResource"]
@@ -47,6 +50,7 @@ class NotesResource(SyncAPIResource):
         self,
         *,
         body: FormattedText,
+        associations: Iterable[Pointer] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -60,6 +64,9 @@ class NotesResource(SyncAPIResource):
         Args:
           body: The main content of the note.
 
+          associations: Link the Note to Moonbase items (person, organization, deal, task, or an item in
+              a custom collection), meetings, or calls.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -70,7 +77,13 @@ class NotesResource(SyncAPIResource):
         """
         return self._post(
             "/notes",
-            body=maybe_transform({"body": body}, note_create_params.NoteCreateParams),
+            body=maybe_transform(
+                {
+                    "body": body,
+                    "associations": associations,
+                },
+                note_create_params.NoteCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -237,6 +250,7 @@ class AsyncNotesResource(AsyncAPIResource):
         self,
         *,
         body: FormattedText,
+        associations: Iterable[Pointer] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -250,6 +264,9 @@ class AsyncNotesResource(AsyncAPIResource):
         Args:
           body: The main content of the note.
 
+          associations: Link the Note to Moonbase items (person, organization, deal, task, or an item in
+              a custom collection), meetings, or calls.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -260,7 +277,13 @@ class AsyncNotesResource(AsyncAPIResource):
         """
         return await self._post(
             "/notes",
-            body=await async_maybe_transform({"body": body}, note_create_params.NoteCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "body": body,
+                    "associations": associations,
+                },
+                note_create_params.NoteCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
