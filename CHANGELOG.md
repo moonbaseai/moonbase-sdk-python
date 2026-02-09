@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.7 (2026-02-09)
+
+Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
+
+### Features
+
+* **api:** update api ([49a1545](https://github.com/moonbaseai/moonbase-sdk-python/commit/49a154534ffbb3c5f0f0ad186ad404be7049e4c7))
+
 ## 0.1.0-alpha.6 (2026-02-02)
 
 Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
