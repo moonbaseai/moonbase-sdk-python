@@ -1,11 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
 from .item_pointer import ItemPointer
+from .shared.pointer import Pointer
 from .shared.formatted_text import FormattedText
 
 __all__ = ["Note"]
@@ -18,6 +19,9 @@ class Note(BaseModel):
 
     id: str
     """Unique identifier for the object."""
+
+    associations: List[Pointer]
+    """A list of items, meetings or calls this note is associated with."""
 
     body: FormattedText
     """The main content of the note."""

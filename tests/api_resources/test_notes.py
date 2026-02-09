@@ -29,6 +29,12 @@ class TestNotes:
     def test_method_create_with_all_params(self, client: Moonbase) -> None:
         note = client.notes.create(
             body={"markdown": "# A note title\n\nHere's a note for me! Yay!"},
+            associations=[
+                {
+                    "id": "id",
+                    "type": "type",
+                }
+            ],
         )
         assert_matches_type(Note, note, path=["response"])
 
@@ -200,6 +206,12 @@ class TestAsyncNotes:
     async def test_method_create_with_all_params(self, async_client: AsyncMoonbase) -> None:
         note = await async_client.notes.create(
             body={"markdown": "# A note title\n\nHere's a note for me! Yay!"},
+            associations=[
+                {
+                    "id": "id",
+                    "type": "type",
+                }
+            ],
         )
         assert_matches_type(Note, note, path=["response"])
 
