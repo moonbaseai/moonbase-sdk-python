@@ -52,3 +52,6 @@ class ItemSearchParams(TypedDict, total=False):
 
 
 from ..items_filter_param import ItemsFilterParam
+from ..items_filter_or_group_param import ItemsFilterOrGroupParam
+from ..items_filter_and_group_param import ItemsFilterAndGroupParam
+from ..items_filter_not_group_param import ItemsFilterNotGroupParam
