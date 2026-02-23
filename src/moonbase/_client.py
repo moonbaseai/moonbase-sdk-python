@@ -10,8 +10,12 @@ import httpx
 
 from . import _exceptions
 from ._qs import Querystring
+from .types import client_search_params
 from ._types import (
+    Body,
     Omit,
+    Query,
+    Headers,
     Timeout,
     NotGiven,
     Transport,
@@ -19,23 +23,35 @@ from ._types import (
     RequestOptions,
     not_given,
 )
-from ._utils import is_given, get_async_library
+from ._utils import (
+    is_given,
+    maybe_transform,
+    get_async_library,
+    async_maybe_transform,
+)
 from ._compat import cached_property
 from ._version import __version__
+from ._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import MoonbaseError, APIStatusError
 from ._base_client import (
     DEFAULT_MAX_RETRIES,
     SyncAPIClient,
     AsyncAPIClient,
+    make_request_options,
 )
+from .types.search_response import SearchResponse
 
 if TYPE_CHECKING:
     from .resources import (
         calls,
         files,
         forms,
-        items,
         notes,
         views,
         inboxes,
@@ -54,7 +70,6 @@ if TYPE_CHECKING:
     from .resources.calls import CallsResource, AsyncCallsResource
     from .resources.files import FilesResource, AsyncFilesResource
     from .resources.forms import FormsResource, AsyncFormsResource
-    from .resources.items import ItemsResource, AsyncItemsResource
     from .resources.notes import NotesResource, AsyncNotesResource
     from .resources.inboxes import InboxesResource, AsyncInboxesResource
     from .resources.tagsets import TagsetsResource, AsyncTagsetsResource
@@ -142,12 +157,6 @@ class Moonbase(SyncAPIClient):
         from .resources.collections import CollectionsResource
 
         return CollectionsResource(self)
-
-    @cached_property
-    def items(self) -> ItemsResource:
-        from .resources.items import ItemsResource
-
-        return ItemsResource(self)
 
     @cached_property
     def views(self) -> ViewsResource:
@@ -324,6 +333,39 @@ class Moonbase(SyncAPIClient):
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
 
+    def search(
+        self,
+        *,
+        query: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SearchResponse:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self.post(
+            "/search",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"query": query}, client_search_params.ClientSearchParams),
+            ),
+            cast_to=SearchResponse,
+        )
+
     @override
     def _make_status_error(
         self,
@@ -418,12 +460,6 @@ class AsyncMoonbase(AsyncAPIClient):
         from .resources.collections import AsyncCollectionsResource
 
         return AsyncCollectionsResource(self)
-
-    @cached_property
-    def items(self) -> AsyncItemsResource:
-        from .resources.items import AsyncItemsResource
-
-        return AsyncItemsResource(self)
 
     @cached_property
     def views(self) -> AsyncViewsResource:
@@ -600,6 +636,39 @@ class AsyncMoonbase(AsyncAPIClient):
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
 
+    async def search(
+        self,
+        *,
+        query: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SearchResponse:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self.post(
+            "/search",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"query": query}, client_search_params.ClientSearchParams),
+            ),
+            cast_to=SearchResponse,
+        )
+
     @override
     def _make_status_error(
         self,
@@ -640,17 +709,15 @@ class MoonbaseWithRawResponse:
     def __init__(self, client: Moonbase) -> None:
         self._client = client
 
+        self.search = to_raw_response_wrapper(
+            client.search,
+        )
+
     @cached_property
     def collections(self) -> collections.CollectionsResourceWithRawResponse:
         from .resources.collections import CollectionsResourceWithRawResponse
 
         return CollectionsResourceWithRawResponse(self._client.collections)
-
-    @cached_property
-    def items(self) -> items.ItemsResourceWithRawResponse:
-        from .resources.items import ItemsResourceWithRawResponse
-
-        return ItemsResourceWithRawResponse(self._client.items)
 
     @cached_property
     def views(self) -> views.ViewsResourceWithRawResponse:
@@ -755,17 +822,15 @@ class AsyncMoonbaseWithRawResponse:
     def __init__(self, client: AsyncMoonbase) -> None:
         self._client = client
 
+        self.search = async_to_raw_response_wrapper(
+            client.search,
+        )
+
     @cached_property
     def collections(self) -> collections.AsyncCollectionsResourceWithRawResponse:
         from .resources.collections import AsyncCollectionsResourceWithRawResponse
 
         return AsyncCollectionsResourceWithRawResponse(self._client.collections)
-
-    @cached_property
-    def items(self) -> items.AsyncItemsResourceWithRawResponse:
-        from .resources.items import AsyncItemsResourceWithRawResponse
-
-        return AsyncItemsResourceWithRawResponse(self._client.items)
 
     @cached_property
     def views(self) -> views.AsyncViewsResourceWithRawResponse:
@@ -870,17 +935,15 @@ class MoonbaseWithStreamedResponse:
     def __init__(self, client: Moonbase) -> None:
         self._client = client
 
+        self.search = to_streamed_response_wrapper(
+            client.search,
+        )
+
     @cached_property
     def collections(self) -> collections.CollectionsResourceWithStreamingResponse:
         from .resources.collections import CollectionsResourceWithStreamingResponse
 
         return CollectionsResourceWithStreamingResponse(self._client.collections)
-
-    @cached_property
-    def items(self) -> items.ItemsResourceWithStreamingResponse:
-        from .resources.items import ItemsResourceWithStreamingResponse
-
-        return ItemsResourceWithStreamingResponse(self._client.items)
 
     @cached_property
     def views(self) -> views.ViewsResourceWithStreamingResponse:
@@ -985,17 +1048,15 @@ class AsyncMoonbaseWithStreamedResponse:
     def __init__(self, client: AsyncMoonbase) -> None:
         self._client = client
 
+        self.search = async_to_streamed_response_wrapper(
+            client.search,
+        )
+
     @cached_property
     def collections(self) -> collections.AsyncCollectionsResourceWithStreamingResponse:
         from .resources.collections import AsyncCollectionsResourceWithStreamingResponse
 
         return AsyncCollectionsResourceWithStreamingResponse(self._client.collections)
-
-    @cached_property
-    def items(self) -> items.AsyncItemsResourceWithStreamingResponse:
-        from .resources.items import AsyncItemsResourceWithStreamingResponse
-
-        return AsyncItemsResourceWithStreamingResponse(self._client.items)
 
     @cached_property
     def views(self) -> views.AsyncViewsResourceWithStreamingResponse:

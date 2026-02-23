@@ -11,6 +11,7 @@ from moonbase import Moonbase, AsyncMoonbase
 from tests.utils import assert_matches_type
 from moonbase.types import Call
 from moonbase._utils import parse_datetime
+from moonbase.pagination import SyncCursorPage, AsyncCursorPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -33,7 +34,7 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000006",
+            provider_id="openphone_id_000000000002",
             provider_status="completed",
             start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         )
@@ -54,7 +55,7 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000006",
+            provider_id="openphone_id_000000000002",
             provider_status="completed",
             start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
             answered_at=parse_datetime("2025-02-17T15:01:00Z"),
@@ -100,7 +101,7 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000006",
+            provider_id="openphone_id_000000000002",
             provider_status="completed",
             start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         )
@@ -125,7 +126,7 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000006",
+            provider_id="openphone_id_000000000002",
             provider_status="completed",
             start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         ) as response:
@@ -134,6 +135,86 @@ class TestCalls:
 
             call = response.parse()
             assert_matches_type(Call, call, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_method_retrieve(self, client: Moonbase) -> None:
+        call = client.calls.retrieve(
+            id="id",
+        )
+        assert_matches_type(Call, call, path=["response"])
+
+    @parametrize
+    def test_method_retrieve_with_all_params(self, client: Moonbase) -> None:
+        call = client.calls.retrieve(
+            id="id",
+            include=["transcript"],
+        )
+        assert_matches_type(Call, call, path=["response"])
+
+    @parametrize
+    def test_raw_response_retrieve(self, client: Moonbase) -> None:
+        response = client.calls.with_raw_response.retrieve(
+            id="id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        call = response.parse()
+        assert_matches_type(Call, call, path=["response"])
+
+    @parametrize
+    def test_streaming_response_retrieve(self, client: Moonbase) -> None:
+        with client.calls.with_streaming_response.retrieve(
+            id="id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            call = response.parse()
+            assert_matches_type(Call, call, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_retrieve(self, client: Moonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.calls.with_raw_response.retrieve(
+                id="",
+            )
+
+    @parametrize
+    def test_method_list(self, client: Moonbase) -> None:
+        call = client.calls.list()
+        assert_matches_type(SyncCursorPage[Call], call, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: Moonbase) -> None:
+        call = client.calls.list(
+            after="after",
+            before="before",
+            limit=1,
+        )
+        assert_matches_type(SyncCursorPage[Call], call, path=["response"])
+
+    @parametrize
+    def test_raw_response_list(self, client: Moonbase) -> None:
+        response = client.calls.with_raw_response.list()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        call = response.parse()
+        assert_matches_type(SyncCursorPage[Call], call, path=["response"])
+
+    @parametrize
+    def test_streaming_response_list(self, client: Moonbase) -> None:
+        with client.calls.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            call = response.parse()
+            assert_matches_type(SyncCursorPage[Call], call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -152,7 +233,7 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
+            provider_id="openphone_id_000000000009",
             provider_status="completed",
             start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         )
@@ -173,7 +254,7 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
+            provider_id="openphone_id_000000000009",
             provider_status="completed",
             start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
             answered_at=parse_datetime("2025-02-17T15:01:00Z"),
@@ -219,7 +300,7 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
+            provider_id="openphone_id_000000000009",
             provider_status="completed",
             start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         )
@@ -244,7 +325,7 @@ class TestCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
+            provider_id="openphone_id_000000000009",
             provider_status="completed",
             start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         ) as response:
@@ -277,7 +358,7 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000006",
+            provider_id="openphone_id_000000000002",
             provider_status="completed",
             start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         )
@@ -298,7 +379,7 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000006",
+            provider_id="openphone_id_000000000002",
             provider_status="completed",
             start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
             answered_at=parse_datetime("2025-02-17T15:01:00Z"),
@@ -344,7 +425,7 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000006",
+            provider_id="openphone_id_000000000002",
             provider_status="completed",
             start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         )
@@ -369,7 +450,7 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000006",
+            provider_id="openphone_id_000000000002",
             provider_status="completed",
             start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         ) as response:
@@ -378,6 +459,86 @@ class TestAsyncCalls:
 
             call = await response.parse()
             assert_matches_type(Call, call, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_retrieve(self, async_client: AsyncMoonbase) -> None:
+        call = await async_client.calls.retrieve(
+            id="id",
+        )
+        assert_matches_type(Call, call, path=["response"])
+
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncMoonbase) -> None:
+        call = await async_client.calls.retrieve(
+            id="id",
+            include=["transcript"],
+        )
+        assert_matches_type(Call, call, path=["response"])
+
+    @parametrize
+    async def test_raw_response_retrieve(self, async_client: AsyncMoonbase) -> None:
+        response = await async_client.calls.with_raw_response.retrieve(
+            id="id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        call = await response.parse()
+        assert_matches_type(Call, call, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_retrieve(self, async_client: AsyncMoonbase) -> None:
+        async with async_client.calls.with_streaming_response.retrieve(
+            id="id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            call = await response.parse()
+            assert_matches_type(Call, call, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_retrieve(self, async_client: AsyncMoonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.calls.with_raw_response.retrieve(
+                id="",
+            )
+
+    @parametrize
+    async def test_method_list(self, async_client: AsyncMoonbase) -> None:
+        call = await async_client.calls.list()
+        assert_matches_type(AsyncCursorPage[Call], call, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncMoonbase) -> None:
+        call = await async_client.calls.list(
+            after="after",
+            before="before",
+            limit=1,
+        )
+        assert_matches_type(AsyncCursorPage[Call], call, path=["response"])
+
+    @parametrize
+    async def test_raw_response_list(self, async_client: AsyncMoonbase) -> None:
+        response = await async_client.calls.with_raw_response.list()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        call = await response.parse()
+        assert_matches_type(AsyncCursorPage[Call], call, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_list(self, async_client: AsyncMoonbase) -> None:
+        async with async_client.calls.with_streaming_response.list() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            call = await response.parse()
+            assert_matches_type(AsyncCursorPage[Call], call, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -396,7 +557,7 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
+            provider_id="openphone_id_000000000009",
             provider_status="completed",
             start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         )
@@ -417,7 +578,7 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
+            provider_id="openphone_id_000000000009",
             provider_status="completed",
             start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
             answered_at=parse_datetime("2025-02-17T15:01:00Z"),
@@ -463,7 +624,7 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
+            provider_id="openphone_id_000000000009",
             provider_status="completed",
             start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         )
@@ -488,7 +649,7 @@ class TestAsyncCalls:
                 },
             ],
             provider="openphone",
-            provider_id="openphone_id_000000000001",
+            provider_id="openphone_id_000000000009",
             provider_status="completed",
             start_at=parse_datetime("2025-02-17T15:00:00.000Z"),
         ) as response:

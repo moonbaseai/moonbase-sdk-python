@@ -4,6 +4,18 @@
 from moonbase.types import Error, FormattedText, Pointer
 ```
 
+# Moonbase
+
+Types:
+
+```python
+from moonbase.types import SearchResponse
+```
+
+Methods:
+
+- <code title="post /search">client.<a href="./src/moonbase/_client.py">search</a>(\*\*<a href="src/moonbase/types/client_search_params.py">params</a>) -> <a href="./src/moonbase/types/search_response.py">SearchResponse</a></code>
+
 # Funnels
 
 Types:
@@ -47,6 +59,12 @@ from moonbase.types import (
     IntegerValue,
     Item,
     ItemPointer,
+    ItemsFilter,
+    ItemsFilterAndGroup,
+    ItemsFilterNotGroup,
+    ItemsFilterOrGroup,
+    ItemsFilterValueExists,
+    ItemsFilterValueMatches,
     MonetaryField,
     MonetaryValue,
     MultiLineTextField,
@@ -85,6 +103,12 @@ Methods:
 
 ## Items
 
+Types:
+
+```python
+from moonbase.types.collections import ItemSearchResponse
+```
+
 Methods:
 
 - <code title="post /collections/{collection_id}/items">client.collections.items.<a href="./src/moonbase/resources/collections/items.py">create</a>(collection_id, \*\*<a href="src/moonbase/types/collections/item_create_params.py">params</a>) -> <a href="./src/moonbase/types/item.py">Item</a></code>
@@ -92,19 +116,8 @@ Methods:
 - <code title="patch /collections/{collection_id}/items/{id}">client.collections.items.<a href="./src/moonbase/resources/collections/items.py">update</a>(id, \*, collection_id, \*\*<a href="src/moonbase/types/collections/item_update_params.py">params</a>) -> <a href="./src/moonbase/types/item.py">Item</a></code>
 - <code title="get /collections/{collection_id}/items">client.collections.items.<a href="./src/moonbase/resources/collections/items.py">list</a>(collection_id, \*\*<a href="src/moonbase/types/collections/item_list_params.py">params</a>) -> <a href="./src/moonbase/types/item.py">SyncCursorPage[Item]</a></code>
 - <code title="delete /collections/{collection_id}/items/{id}">client.collections.items.<a href="./src/moonbase/resources/collections/items.py">delete</a>(id, \*, collection_id) -> None</code>
+- <code title="post /collections/{collection_id}/items/search">client.collections.items.<a href="./src/moonbase/resources/collections/items.py">search</a>(collection_id, \*\*<a href="src/moonbase/types/collections/item_search_params.py">params</a>) -> <a href="./src/moonbase/types/collections/item_search_response.py">SyncCursorPage[ItemSearchResponse]</a></code>
 - <code title="post /collections/{collection_id}/items/upsert">client.collections.items.<a href="./src/moonbase/resources/collections/items.py">upsert</a>(collection_id, \*\*<a href="src/moonbase/types/collections/item_upsert_params.py">params</a>) -> <a href="./src/moonbase/types/item.py">Item</a></code>
-
-# Items
-
-Types:
-
-```python
-from moonbase.types import ItemSearchResponse
-```
-
-Methods:
-
-- <code title="get /items/search">client.items.<a href="./src/moonbase/resources/items.py">search</a>(\*\*<a href="src/moonbase/types/item_search_params.py">params</a>) -> <a href="./src/moonbase/types/item_search_response.py">ItemSearchResponse</a></code>
 
 # Views
 
@@ -273,6 +286,8 @@ from moonbase.types import Call
 Methods:
 
 - <code title="post /calls">client.calls.<a href="./src/moonbase/resources/calls.py">create</a>(\*\*<a href="src/moonbase/types/call_create_params.py">params</a>) -> <a href="./src/moonbase/types/call.py">Call</a></code>
+- <code title="get /calls/{id}">client.calls.<a href="./src/moonbase/resources/calls.py">retrieve</a>(id, \*\*<a href="src/moonbase/types/call_retrieve_params.py">params</a>) -> <a href="./src/moonbase/types/call.py">Call</a></code>
+- <code title="get /calls">client.calls.<a href="./src/moonbase/resources/calls.py">list</a>(\*\*<a href="src/moonbase/types/call_list_params.py">params</a>) -> <a href="./src/moonbase/types/call.py">SyncCursorPage[Call]</a></code>
 - <code title="post /calls/upsert">client.calls.<a href="./src/moonbase/resources/calls.py">upsert</a>(\*\*<a href="src/moonbase/types/call_upsert_params.py">params</a>) -> <a href="./src/moonbase/types/call.py">Call</a></code>
 
 # Files
@@ -287,6 +302,7 @@ Methods:
 
 - <code title="get /files/{id}">client.files.<a href="./src/moonbase/resources/files.py">retrieve</a>(id) -> <a href="./src/moonbase/types/moonbase_file.py">MoonbaseFile</a></code>
 - <code title="get /files">client.files.<a href="./src/moonbase/resources/files.py">list</a>(\*\*<a href="src/moonbase/types/file_list_params.py">params</a>) -> <a href="./src/moonbase/types/moonbase_file.py">SyncCursorPage[MoonbaseFile]</a></code>
+- <code title="delete /files/{id}">client.files.<a href="./src/moonbase/resources/files.py">delete</a>(id) -> None</code>
 - <code title="post /files">client.files.<a href="./src/moonbase/resources/files.py">upload</a>(\*\*<a href="src/moonbase/types/file_upload_params.py">params</a>) -> <a href="./src/moonbase/types/moonbase_file.py">MoonbaseFile</a></code>
 
 # Meetings
@@ -317,6 +333,7 @@ Methods:
 - <code title="get /notes/{id}">client.notes.<a href="./src/moonbase/resources/notes.py">retrieve</a>(id) -> <a href="./src/moonbase/types/note.py">Note</a></code>
 - <code title="patch /notes/{id}">client.notes.<a href="./src/moonbase/resources/notes.py">update</a>(id, \*\*<a href="src/moonbase/types/note_update_params.py">params</a>) -> <a href="./src/moonbase/types/note.py">Note</a></code>
 - <code title="get /notes">client.notes.<a href="./src/moonbase/resources/notes.py">list</a>(\*\*<a href="src/moonbase/types/note_list_params.py">params</a>) -> <a href="./src/moonbase/types/note.py">SyncCursorPage[Note]</a></code>
+- <code title="delete /notes/{id}">client.notes.<a href="./src/moonbase/resources/notes.py">delete</a>(id) -> None</code>
 
 # WebhookEndpoints
 
