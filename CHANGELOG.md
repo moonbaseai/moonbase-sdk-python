@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.1.0-alpha.8 (2026-02-23)
+
+Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
+
+### Features
+
+* **api:** add search resource, remove items, add search/params to collections items ([bed519e](https://github.com/moonbaseai/moonbase-sdk-python/commit/bed519e9d3c5082e127e4fb578fe37ccf68503b0))
+
+
+### Bug Fixes
+
+* add missing imports for nested recursive filters ([b72bd4f](https://github.com/moonbaseai/moonbase-sdk-python/commit/b72bd4fdbca565d87786a84ccc9bfe79c92f5a4a))
+* Suppress linter warnings about imports ([7392a04](https://github.com/moonbaseai/moonbase-sdk-python/commit/7392a04df024d923ad92c7ad8a0065e3e8ab907a))
+
+
+### Chores
+
+* format all `api.md` files ([b1e6fa0](https://github.com/moonbaseai/moonbase-sdk-python/commit/b1e6fa09f877f4bde6e223a3166be9ebed285b5b))
+* **internal:** bump dependencies ([bcfd859](https://github.com/moonbaseai/moonbase-sdk-python/commit/bcfd8598aac0a990a38c07d8a03ac8766ad23f02))
+* **internal:** fix lint error on Python 3.14 ([f5371f0](https://github.com/moonbaseai/moonbase-sdk-python/commit/f5371f00db0aeceb5b18ddac7180d2a66b80d70e))
+* update mock server docs ([67efafe](https://github.com/moonbaseai/moonbase-sdk-python/commit/67efafed75235972f38212e45be41f7f8a60bbbe))
+
 ## 0.1.0-alpha.7 (2026-02-09)
 
 Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
