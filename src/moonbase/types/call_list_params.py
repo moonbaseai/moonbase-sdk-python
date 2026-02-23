@@ -4,12 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-from ..._types import SequenceNotStr
-
-__all__ = ["ItemListParams"]
+__all__ = ["CallListParams"]
 
 
-class ItemListParams(TypedDict, total=False):
+class CallListParams(TypedDict, total=False):
     after: str
     """
     When specified, returns results starting immediately after the item identified
@@ -24,21 +22,8 @@ class ItemListParams(TypedDict, total=False):
     previous page of results.
     """
 
-    include: SequenceNotStr[str]
-    """Include only specific fields in the returned items.
-
-    Specify fields by id or key.
-    """
-
     limit: int
     """Maximum number of items to return per page.
 
     Must be between 1 and 100. Defaults to 20 if not specified.
-    """
-
-    sort: SequenceNotStr[str]
-    """Sort items by the specified field ids or keys.
-
-    Prefix a field with a hyphen/minus (`-`) to sort in descending order by that
-    field.
     """

@@ -205,11 +205,10 @@ from moonbase import Moonbase
 
 client = Moonbase()
 
-response = client.items.search(
-    query="query",
+page = client.inbox_conversations.list(
     filter={},
 )
-print(response.filter)
+print(page.data)
 ```
 
 ## File uploads

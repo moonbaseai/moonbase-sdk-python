@@ -4,10 +4,13 @@ from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
+from pydantic import Field as FieldInfo
+
+from .note import Note
 from .._models import BaseModel
 from .shared.pointer import Pointer
 
-__all__ = ["Call", "Participant"]
+__all__ = ["Call", "Participant", "Transcript", "TranscriptCue", "TranscriptCueSpeaker"]
 
 
 class Participant(BaseModel):
@@ -33,6 +36,26 @@ class Participant(BaseModel):
 
     person: Optional[Pointer] = None
     """A lightweight reference to another resource."""
+
+
+class TranscriptCueSpeaker(BaseModel):
+    attendee_id: Optional[str] = None
+
+    label: Optional[str] = None
+
+
+class TranscriptCue(BaseModel):
+    from_: float = FieldInfo(alias="from")
+
+    speaker: TranscriptCueSpeaker
+
+    text: str
+
+    to: float
+
+
+class Transcript(BaseModel):
+    cues: List[TranscriptCue]
 
 
 class Call(BaseModel):
@@ -77,5 +100,19 @@ class Call(BaseModel):
     end_at: Optional[datetime] = None
     """The time the call ended, if available, as an ISO 8601 timestamp in UTC."""
 
+    note: Optional[Note] = None
+    """
+    The Note object represents a block of text content, often used for meeting notes
+    or summaries.
+    """
+
     provider_metadata: Optional[Dict[str, object]] = None
     """A hash of additional metadata from the provider."""
+
+    summary: Optional[Note] = None
+    """
+    The Note object represents a block of text content, often used for meeting notes
+    or summaries.
+    """
+
+    transcript: Optional[Transcript] = None

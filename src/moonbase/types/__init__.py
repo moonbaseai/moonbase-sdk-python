@@ -59,7 +59,9 @@ from .social_x_field import SocialXField as SocialXField
 from .social_x_value import SocialXValue as SocialXValue
 from .geo_value_param import GeoValueParam as GeoValueParam
 from .program_message import ProgramMessage as ProgramMessage
+from .search_response import SearchResponse as SearchResponse
 from .url_value_param import URLValueParam as URLValueParam
+from .call_list_params import CallListParams as CallListParams
 from .date_value_param import DateValueParam as DateValueParam
 from .file_list_params import FileListParams as FileListParams
 from .form_list_params import FormListParams as FormListParams
@@ -82,7 +84,7 @@ from .domain_value_param import DomainValueParam as DomainValueParam
 from .file_upload_params import FileUploadParams as FileUploadParams
 from .inbox_conversation import InboxConversation as InboxConversation
 from .item_pointer_param import ItemPointerParam as ItemPointerParam
-from .item_search_params import ItemSearchParams as ItemSearchParams
+from .items_filter_param import ItemsFilterParam as ItemsFilterParam
 from .note_create_params import NoteCreateParams as NoteCreateParams
 from .note_update_params import NoteUpdateParams as NoteUpdateParams
 from .tagset_list_params import TagsetListParams as TagsetListParams
@@ -93,8 +95,9 @@ from .meeting_list_params import MeetingListParams as MeetingListParams
 from .program_list_params import ProgramListParams as ProgramListParams
 from .activity_item_merged import ActivityItemMerged as ActivityItemMerged
 from .activity_list_params import ActivityListParams as ActivityListParams
+from .call_retrieve_params import CallRetrieveParams as CallRetrieveParams
+from .client_search_params import ClientSearchParams as ClientSearchParams
 from .datetime_value_param import DatetimeValueParam as DatetimeValueParam
-from .item_search_response import ItemSearchResponse as ItemSearchResponse
 from .monetary_value_param import MonetaryValueParam as MonetaryValueParam
 from .relation_value_param import RelationValueParam as RelationValueParam
 from .view_retrieve_params import ViewRetrieveParams as ViewRetrieveParams
@@ -127,8 +130,11 @@ from .collection_retrieve_params import CollectionRetrieveParams as CollectionRe
 from .activity_inbox_message_sent import ActivityInboxMessageSent as ActivityInboxMessageSent
 from .inbox_message_create_params import InboxMessageCreateParams as InboxMessageCreateParams
 from .inbox_message_update_params import InboxMessageUpdateParams as InboxMessageUpdateParams
+from .items_filter_or_group_param import ItemsFilterOrGroupParam as ItemsFilterOrGroupParam
 from .multi_line_text_value_param import MultiLineTextValueParam as MultiLineTextValueParam
 from .program_message_send_params import ProgramMessageSendParams as ProgramMessageSendParams
+from .items_filter_and_group_param import ItemsFilterAndGroupParam as ItemsFilterAndGroupParam
+from .items_filter_not_group_param import ItemsFilterNotGroupParam as ItemsFilterNotGroupParam
 from .program_template_list_params import ProgramTemplateListParams as ProgramTemplateListParams
 from .single_line_text_value_param import SingleLineTextValueParam as SingleLineTextValueParam
 from .webhook_endpoint_list_params import WebhookEndpointListParams as WebhookEndpointListParams
@@ -140,8 +146,10 @@ from .webhook_endpoint_update_params import WebhookEndpointUpdateParams as Webho
 from .activity_program_message_failed import ActivityProgramMessageFailed as ActivityProgramMessageFailed
 from .activity_program_message_opened import ActivityProgramMessageOpened as ActivityProgramMessageOpened
 from .agent_setting_retrieve_response import AgentSettingRetrieveResponse as AgentSettingRetrieveResponse
+from .items_filter_value_exists_param import ItemsFilterValueExistsParam as ItemsFilterValueExistsParam
 from .activity_program_message_bounced import ActivityProgramMessageBounced as ActivityProgramMessageBounced
 from .activity_program_message_clicked import ActivityProgramMessageClicked as ActivityProgramMessageClicked
+from .items_filter_value_matches_param import ItemsFilterValueMatchesParam as ItemsFilterValueMatchesParam
 from .program_template_retrieve_params import ProgramTemplateRetrieveParams as ProgramTemplateRetrieveParams
 from .activity_program_message_shielded import ActivityProgramMessageShielded as ActivityProgramMessageShielded
 from .inbox_conversation_retrieve_params import InboxConversationRetrieveParams as InboxConversationRetrieveParams
