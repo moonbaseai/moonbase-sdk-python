@@ -91,6 +91,44 @@ class TestFiles:
         assert cast(Any, response.is_closed) is True
 
     @parametrize
+    def test_method_delete(self, client: Moonbase) -> None:
+        file = client.files.delete(
+            "id",
+        )
+        assert file is None
+
+    @parametrize
+    def test_raw_response_delete(self, client: Moonbase) -> None:
+        response = client.files.with_raw_response.delete(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        file = response.parse()
+        assert file is None
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Moonbase) -> None:
+        with client.files.with_streaming_response.delete(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            file = response.parse()
+            assert file is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: Moonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.files.with_raw_response.delete(
+                "",
+            )
+
+    @parametrize
     def test_method_upload(self, client: Moonbase) -> None:
         file = client.files.upload(
             file=b"raw file contents",
@@ -212,6 +250,44 @@ class TestAsyncFiles:
             assert_matches_type(AsyncCursorPage[MoonbaseFile], file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncMoonbase) -> None:
+        file = await async_client.files.delete(
+            "id",
+        )
+        assert file is None
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncMoonbase) -> None:
+        response = await async_client.files.with_raw_response.delete(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        file = await response.parse()
+        assert file is None
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncMoonbase) -> None:
+        async with async_client.files.with_streaming_response.delete(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            file = await response.parse()
+            assert file is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncMoonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.files.with_raw_response.delete(
+                "",
+            )
 
     @parametrize
     async def test_method_upload(self, async_client: AsyncMoonbase) -> None:

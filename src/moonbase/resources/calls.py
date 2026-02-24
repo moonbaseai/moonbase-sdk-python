@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Dict, List, Union, Iterable
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
-from ..types import call_create_params, call_upsert_params
+from ..types import call_list_params, call_create_params, call_upsert_params, call_retrieve_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -19,8 +19,9 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..pagination import SyncCursorPage, AsyncCursorPage
 from ..types.call import Call
-from .._base_client import make_request_options
+from .._base_client import AsyncPaginator, make_request_options
 
 __all__ = ["CallsResource", "AsyncCallsResource"]
 
@@ -122,6 +123,103 @@ class CallsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Call,
+        )
+
+    def retrieve(
+        self,
+        id: str,
+        *,
+        include: List[Literal["transcript", "note", "summary"]] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Call:
+        """
+        Retrieves the details of an existing call.
+
+        Args:
+          include: Specifies which related objects to include in the response. Valid options are
+              `transcript`, `note`, and `summary`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return self._get(
+            f"/calls/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"include": include}, call_retrieve_params.CallRetrieveParams),
+            ),
+            cast_to=Call,
+        )
+
+    def list(
+        self,
+        *,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncCursorPage[Call]:
+        """
+        Returns a list of calls.
+
+        Args:
+          after: When specified, returns results starting immediately after the item identified
+              by this cursor. Use the cursor value from the previous response's metadata to
+              fetch the next page of results.
+
+          before: When specified, returns results starting immediately before the item identified
+              by this cursor. Use the cursor value from the response's metadata to fetch the
+              previous page of results.
+
+          limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
+              to 20 if not specified.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/calls",
+            page=SyncCursorPage[Call],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "limit": limit,
+                    },
+                    call_list_params.CallListParams,
+                ),
+            ),
+            model=Call,
         )
 
     def upsert(
@@ -303,6 +401,103 @@ class AsyncCallsResource(AsyncAPIResource):
             cast_to=Call,
         )
 
+    async def retrieve(
+        self,
+        id: str,
+        *,
+        include: List[Literal["transcript", "note", "summary"]] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Call:
+        """
+        Retrieves the details of an existing call.
+
+        Args:
+          include: Specifies which related objects to include in the response. Valid options are
+              `transcript`, `note`, and `summary`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        return await self._get(
+            f"/calls/{id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"include": include}, call_retrieve_params.CallRetrieveParams),
+            ),
+            cast_to=Call,
+        )
+
+    def list(
+        self,
+        *,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[Call, AsyncCursorPage[Call]]:
+        """
+        Returns a list of calls.
+
+        Args:
+          after: When specified, returns results starting immediately after the item identified
+              by this cursor. Use the cursor value from the previous response's metadata to
+              fetch the next page of results.
+
+          before: When specified, returns results starting immediately before the item identified
+              by this cursor. Use the cursor value from the response's metadata to fetch the
+              previous page of results.
+
+          limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
+              to 20 if not specified.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/calls",
+            page=AsyncCursorPage[Call],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "limit": limit,
+                    },
+                    call_list_params.CallListParams,
+                ),
+            ),
+            model=Call,
+        )
+
     async def upsert(
         self,
         *,
@@ -390,6 +585,12 @@ class CallsResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             calls.create,
         )
+        self.retrieve = to_raw_response_wrapper(
+            calls.retrieve,
+        )
+        self.list = to_raw_response_wrapper(
+            calls.list,
+        )
         self.upsert = to_raw_response_wrapper(
             calls.upsert,
         )
@@ -401,6 +602,12 @@ class AsyncCallsResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             calls.create,
+        )
+        self.retrieve = async_to_raw_response_wrapper(
+            calls.retrieve,
+        )
+        self.list = async_to_raw_response_wrapper(
+            calls.list,
         )
         self.upsert = async_to_raw_response_wrapper(
             calls.upsert,
@@ -414,6 +621,12 @@ class CallsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             calls.create,
         )
+        self.retrieve = to_streamed_response_wrapper(
+            calls.retrieve,
+        )
+        self.list = to_streamed_response_wrapper(
+            calls.list,
+        )
         self.upsert = to_streamed_response_wrapper(
             calls.upsert,
         )
@@ -425,6 +638,12 @@ class AsyncCallsResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             calls.create,
+        )
+        self.retrieve = async_to_streamed_response_wrapper(
+            calls.retrieve,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            calls.list,
         )
         self.upsert = async_to_streamed_response_wrapper(
             calls.upsert,

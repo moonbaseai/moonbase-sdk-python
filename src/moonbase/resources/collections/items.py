@@ -7,7 +7,7 @@ from typing_extensions import Literal
 
 import httpx
 
-from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -20,8 +20,16 @@ from ..._response import (
 from ...pagination import SyncCursorPage, AsyncCursorPage
 from ...types.item import Item
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.collections import item_list_params, item_create_params, item_update_params, item_upsert_params
+from ...types.collections import (
+    item_list_params,
+    item_create_params,
+    item_search_params,
+    item_update_params,
+    item_upsert_params,
+)
 from ...types.field_value_param import FieldValueParam
+from ...types.items_filter_param import ItemsFilterParam
+from ...types.collections.item_search_response import ItemSearchResponse
 
 __all__ = ["ItemsResource", "AsyncItemsResource"]
 
@@ -177,7 +185,9 @@ class ItemsResource(SyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        include: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
+        sort: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -197,8 +207,13 @@ class ItemsResource(SyncAPIResource):
               by this cursor. Use the cursor value from the response's metadata to fetch the
               previous page of results.
 
+          include: Include only specific fields in the returned items. Specify fields by id or key.
+
           limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
               to 20 if not specified.
+
+          sort: Sort items by the specified field ids or keys. Prefix a field with a
+              hyphen/minus (`-`) to sort in descending order by that field.
 
           extra_headers: Send extra headers
 
@@ -222,7 +237,9 @@ class ItemsResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "include": include,
                         "limit": limit,
+                        "sort": sort,
                     },
                     item_list_params.ItemListParams,
                 ),
@@ -265,6 +282,85 @@ class ItemsResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    def search(
+        self,
+        collection_id: str,
+        *,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        filter: ItemsFilterParam | Omit = omit,
+        include: SequenceNotStr[str] | Omit = omit,
+        sort: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncCursorPage[ItemSearchResponse]:
+        """
+        Returns a list of items in the collection that match the given filters.
+
+        Args:
+          after: When specified, returns results starting immediately after the item identified
+              by this cursor. Use the cursor value from the previous response's metadata to
+              fetch the next page of results.
+
+          before: When specified, returns results starting immediately before the item identified
+              by this cursor. Use the cursor value from the response's metadata to fetch the
+              previous page of results.
+
+          limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
+              to 20 if not specified.
+
+          filter: Return only items that match the filter conditions. Complex filters can be
+              created by nesting filters inside of `AND`, `OR`, and `NOT` filters.
+
+          include: Include only specific fields in the returned items. Specify fields by id or key.
+
+          sort: Sort items by the specified field ids or keys. Prefix a field with a
+              hyphen/minus (`-`) to sort in descending order by that field.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
+        return self._get_api_list(
+            f"/collections/{collection_id}/items/search",
+            page=SyncCursorPage[ItemSearchResponse],
+            body=maybe_transform(
+                {
+                    "filter": filter,
+                    "include": include,
+                    "sort": sort,
+                },
+                item_search_params.ItemSearchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "limit": limit,
+                    },
+                    item_search_params.ItemSearchParams,
+                ),
+            ),
+            model=ItemSearchResponse,
+            method="post",
         )
 
     def upsert(
@@ -478,7 +574,9 @@ class AsyncItemsResource(AsyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        include: SequenceNotStr[str] | Omit = omit,
         limit: int | Omit = omit,
+        sort: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -498,8 +596,13 @@ class AsyncItemsResource(AsyncAPIResource):
               by this cursor. Use the cursor value from the response's metadata to fetch the
               previous page of results.
 
+          include: Include only specific fields in the returned items. Specify fields by id or key.
+
           limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
               to 20 if not specified.
+
+          sort: Sort items by the specified field ids or keys. Prefix a field with a
+              hyphen/minus (`-`) to sort in descending order by that field.
 
           extra_headers: Send extra headers
 
@@ -523,7 +626,9 @@ class AsyncItemsResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
+                        "include": include,
                         "limit": limit,
+                        "sort": sort,
                     },
                     item_list_params.ItemListParams,
                 ),
@@ -566,6 +671,85 @@ class AsyncItemsResource(AsyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=NoneType,
+        )
+
+    def search(
+        self,
+        collection_id: str,
+        *,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        filter: ItemsFilterParam | Omit = omit,
+        include: SequenceNotStr[str] | Omit = omit,
+        sort: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[ItemSearchResponse, AsyncCursorPage[ItemSearchResponse]]:
+        """
+        Returns a list of items in the collection that match the given filters.
+
+        Args:
+          after: When specified, returns results starting immediately after the item identified
+              by this cursor. Use the cursor value from the previous response's metadata to
+              fetch the next page of results.
+
+          before: When specified, returns results starting immediately before the item identified
+              by this cursor. Use the cursor value from the response's metadata to fetch the
+              previous page of results.
+
+          limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
+              to 20 if not specified.
+
+          filter: Return only items that match the filter conditions. Complex filters can be
+              created by nesting filters inside of `AND`, `OR`, and `NOT` filters.
+
+          include: Include only specific fields in the returned items. Specify fields by id or key.
+
+          sort: Sort items by the specified field ids or keys. Prefix a field with a
+              hyphen/minus (`-`) to sort in descending order by that field.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not collection_id:
+            raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
+        return self._get_api_list(
+            f"/collections/{collection_id}/items/search",
+            page=AsyncCursorPage[ItemSearchResponse],
+            body=maybe_transform(
+                {
+                    "filter": filter,
+                    "include": include,
+                    "sort": sort,
+                },
+                item_search_params.ItemSearchParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "before": before,
+                        "limit": limit,
+                    },
+                    item_search_params.ItemSearchParams,
+                ),
+            ),
+            model=ItemSearchResponse,
+            method="post",
         )
 
     async def upsert(
@@ -647,6 +831,9 @@ class ItemsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             items.delete,
         )
+        self.search = to_raw_response_wrapper(
+            items.search,
+        )
         self.upsert = to_raw_response_wrapper(
             items.upsert,
         )
@@ -670,6 +857,9 @@ class AsyncItemsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             items.delete,
+        )
+        self.search = async_to_raw_response_wrapper(
+            items.search,
         )
         self.upsert = async_to_raw_response_wrapper(
             items.upsert,
@@ -695,6 +885,9 @@ class ItemsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             items.delete,
         )
+        self.search = to_streamed_response_wrapper(
+            items.search,
+        )
         self.upsert = to_streamed_response_wrapper(
             items.upsert,
         )
@@ -718,6 +911,9 @@ class AsyncItemsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             items.delete,
+        )
+        self.search = async_to_streamed_response_wrapper(
+            items.search,
         )
         self.upsert = async_to_streamed_response_wrapper(
             items.upsert,

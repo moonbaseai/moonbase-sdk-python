@@ -6,10 +6,10 @@ from typing_extensions import TypedDict
 
 from ..._types import SequenceNotStr
 
-__all__ = ["ItemListParams"]
+__all__ = ["ItemSearchParams"]
 
 
-class ItemListParams(TypedDict, total=False):
+class ItemSearchParams(TypedDict, total=False):
     after: str
     """
     When specified, returns results starting immediately after the item identified
@@ -24,16 +24,23 @@ class ItemListParams(TypedDict, total=False):
     previous page of results.
     """
 
-    include: SequenceNotStr[str]
-    """Include only specific fields in the returned items.
-
-    Specify fields by id or key.
-    """
-
     limit: int
     """Maximum number of items to return per page.
 
     Must be between 1 and 100. Defaults to 20 if not specified.
+    """
+
+    filter: "ItemsFilterParam"
+    """Return only items that match the filter conditions.
+
+    Complex filters can be created by nesting filters inside of `AND`, `OR`, and
+    `NOT` filters.
+    """
+
+    include: SequenceNotStr[str]
+    """Include only specific fields in the returned items.
+
+    Specify fields by id or key.
     """
 
     sort: SequenceNotStr[str]
@@ -42,3 +49,9 @@ class ItemListParams(TypedDict, total=False):
     Prefix a field with a hyphen/minus (`-`) to sort in descending order by that
     field.
     """
+
+
+from ..items_filter_param import ItemsFilterParam  # noqa: I001
+from ..items_filter_and_group_param import ItemsFilterAndGroupParam  # noqa: F401 # pyright: ignore [reportUnusedImport]
+from ..items_filter_not_group_param import ItemsFilterNotGroupParam  # noqa: F401 # pyright: ignore [reportUnusedImport]
+from ..items_filter_or_group_param import ItemsFilterOrGroupParam  # noqa: F401 # pyright: ignore [reportUnusedImport]

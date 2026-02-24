@@ -11,6 +11,9 @@ from moonbase import Moonbase, AsyncMoonbase
 from tests.utils import assert_matches_type
 from moonbase.types import Item
 from moonbase.pagination import SyncCursorPage, AsyncCursorPage
+from moonbase.types.collections import (
+    ItemSearchResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -263,7 +266,9 @@ class TestItems:
             collection_id="collection_id",
             after="after",
             before="before",
+            include=["string"],
             limit=1,
+            sort=["string"],
         )
         assert_matches_type(SyncCursorPage[Item], item, path=["response"])
 
@@ -344,6 +349,60 @@ class TestItems:
             client.collections.items.with_raw_response.delete(
                 id="",
                 collection_id="collection_id",
+            )
+
+    @parametrize
+    def test_method_search(self, client: Moonbase) -> None:
+        item = client.collections.items.search(
+            collection_id="collection_id",
+        )
+        assert_matches_type(SyncCursorPage[ItemSearchResponse], item, path=["response"])
+
+    @parametrize
+    def test_method_search_with_all_params(self, client: Moonbase) -> None:
+        item = client.collections.items.search(
+            collection_id="collection_id",
+            after="after",
+            before="before",
+            limit=1,
+            filter={
+                "filters": [],
+                "op": "and",
+            },
+            include=["string"],
+            sort=["string"],
+        )
+        assert_matches_type(SyncCursorPage[ItemSearchResponse], item, path=["response"])
+
+    @parametrize
+    def test_raw_response_search(self, client: Moonbase) -> None:
+        response = client.collections.items.with_raw_response.search(
+            collection_id="collection_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        item = response.parse()
+        assert_matches_type(SyncCursorPage[ItemSearchResponse], item, path=["response"])
+
+    @parametrize
+    def test_streaming_response_search(self, client: Moonbase) -> None:
+        with client.collections.items.with_streaming_response.search(
+            collection_id="collection_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            item = response.parse()
+            assert_matches_type(SyncCursorPage[ItemSearchResponse], item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_search(self, client: Moonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection_id` but received ''"):
+            client.collections.items.with_raw_response.search(
+                collection_id="",
             )
 
     @parametrize
@@ -767,7 +826,9 @@ class TestAsyncItems:
             collection_id="collection_id",
             after="after",
             before="before",
+            include=["string"],
             limit=1,
+            sort=["string"],
         )
         assert_matches_type(AsyncCursorPage[Item], item, path=["response"])
 
@@ -848,6 +909,60 @@ class TestAsyncItems:
             await async_client.collections.items.with_raw_response.delete(
                 id="",
                 collection_id="collection_id",
+            )
+
+    @parametrize
+    async def test_method_search(self, async_client: AsyncMoonbase) -> None:
+        item = await async_client.collections.items.search(
+            collection_id="collection_id",
+        )
+        assert_matches_type(AsyncCursorPage[ItemSearchResponse], item, path=["response"])
+
+    @parametrize
+    async def test_method_search_with_all_params(self, async_client: AsyncMoonbase) -> None:
+        item = await async_client.collections.items.search(
+            collection_id="collection_id",
+            after="after",
+            before="before",
+            limit=1,
+            filter={
+                "filters": [],
+                "op": "and",
+            },
+            include=["string"],
+            sort=["string"],
+        )
+        assert_matches_type(AsyncCursorPage[ItemSearchResponse], item, path=["response"])
+
+    @parametrize
+    async def test_raw_response_search(self, async_client: AsyncMoonbase) -> None:
+        response = await async_client.collections.items.with_raw_response.search(
+            collection_id="collection_id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        item = await response.parse()
+        assert_matches_type(AsyncCursorPage[ItemSearchResponse], item, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_search(self, async_client: AsyncMoonbase) -> None:
+        async with async_client.collections.items.with_streaming_response.search(
+            collection_id="collection_id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            item = await response.parse()
+            assert_matches_type(AsyncCursorPage[ItemSearchResponse], item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_search(self, async_client: AsyncMoonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection_id` but received ''"):
+            await async_client.collections.items.with_raw_response.search(
+                collection_id="",
             )
 
     @parametrize

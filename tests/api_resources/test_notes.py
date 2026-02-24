@@ -189,6 +189,44 @@ class TestNotes:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_method_delete(self, client: Moonbase) -> None:
+        note = client.notes.delete(
+            "id",
+        )
+        assert note is None
+
+    @parametrize
+    def test_raw_response_delete(self, client: Moonbase) -> None:
+        response = client.notes.with_raw_response.delete(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        note = response.parse()
+        assert note is None
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Moonbase) -> None:
+        with client.notes.with_streaming_response.delete(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            note = response.parse()
+            assert note is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: Moonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.notes.with_raw_response.delete(
+                "",
+            )
+
 
 class TestAsyncNotes:
     parametrize = pytest.mark.parametrize(
@@ -365,3 +403,41 @@ class TestAsyncNotes:
             assert_matches_type(AsyncCursorPage[Note], note, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncMoonbase) -> None:
+        note = await async_client.notes.delete(
+            "id",
+        )
+        assert note is None
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncMoonbase) -> None:
+        response = await async_client.notes.with_raw_response.delete(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        note = await response.parse()
+        assert note is None
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncMoonbase) -> None:
+        async with async_client.notes.with_streaming_response.delete(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            note = await response.parse()
+            assert note is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncMoonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.notes.with_raw_response.delete(
+                "",
+            )
