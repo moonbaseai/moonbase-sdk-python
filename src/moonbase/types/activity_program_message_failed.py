@@ -34,5 +34,5 @@ class ActivityProgramMessageFailed(BaseModel):
     type: Literal["activity/program_message_failed"]
     """The type of activity. Always `activity/program_message_failed`."""
 
-    reason_code: Optional[str] = None
+    reason_code: Optional[Literal["liquid_error", "person_missing_email", "message_contained_virus"]] = None
     """A code indicating the reason for the failure (e.g., `message_contained_virus`)."""

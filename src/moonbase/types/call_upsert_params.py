@@ -18,7 +18,7 @@ class CallUpsertParams(TypedDict, total=False):
     participants: Required[Iterable[Participant]]
     """An array of participants involved in the call."""
 
-    provider: Required[str]
+    provider: Required[Literal["openphone", "user", "zoom_phone"]]
     """The name of the phone provider that handled the call (e.g., `openphone`)."""
 
     provider_id: Required[str]
@@ -59,7 +59,7 @@ class Participant(TypedDict, total=False):
 class Recording(TypedDict, total=False):
     """Parameters for creating a `CallRecording` object."""
 
-    content_type: Required[str]
+    content_type: Required[Literal["audio/mpeg"]]
     """The content type of the recording.
 
     Note that only `audio/mpeg` is supported at this time.
