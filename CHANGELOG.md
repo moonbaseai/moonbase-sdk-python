@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.0-alpha.9 (2026-02-26)
+
+Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
+
+### Bug Fixes
+
+* **types:** correct provider/reason_code/content_type to Literal in calls/activities/meetings ([668887b](https://github.com/moonbaseai/moonbase-sdk-python/commit/668887baf1b1379fc956eb6e8dee8242e4ad78dd))
+
+
+### Chores
+
+* **api:** update SDK settings ([d97968b](https://github.com/moonbaseai/moonbase-sdk-python/commit/d97968be8d19555a09519030d48e31bc604d4156))
+* **internal:** add request options to SSE classes ([e955de0](https://github.com/moonbaseai/moonbase-sdk-python/commit/e955de0f856f9d972a66aa9c7ac04bf783c55477))
+* **internal:** make `test_proxy_environment_variables` more resilient ([d917d44](https://github.com/moonbaseai/moonbase-sdk-python/commit/d917d44707f0e743fb58028cb1b1d427c2eebc38))
+* **internal:** make `test_proxy_environment_variables` more resilient to env ([892e386](https://github.com/moonbaseai/moonbase-sdk-python/commit/892e3868837c2cd53792de2b2d320c46b8d2e2f5))
+* update SDK settings ([4c30fc9](https://github.com/moonbaseai/moonbase-sdk-python/commit/4c30fc9d82fa346c187c65cefad4679a98226cda))
+
 ## 0.1.0-alpha.8 (2026-02-23)
 
 Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
