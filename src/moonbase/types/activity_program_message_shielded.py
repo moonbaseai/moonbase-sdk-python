@@ -34,7 +34,7 @@ class ActivityProgramMessageShielded(BaseModel):
     type: Literal["activity/program_message_shielded"]
     """The type of activity. Always `activity/program_message_shielded`."""
 
-    reason_code: Optional[str] = None
+    reason_code: Optional[Literal["person_previously_unsubscribed", "email_on_unsubscribe_list"]] = None
     """
     A code indicating why the message was shielded (e.g.,
     `person_previously_unsubscribed`).

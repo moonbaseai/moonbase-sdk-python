@@ -76,7 +76,7 @@ class Call(BaseModel):
     participants: List[Participant]
     """The participants involved in the call."""
 
-    provider: str
+    provider: Literal["openphone", "user", "zoom_phone"]
     """The name of the phone provider that handled the call."""
 
     provider_id: str
