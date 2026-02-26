@@ -68,7 +68,7 @@ class TestCalls:
             },
             recordings=[
                 {
-                    "content_type": "content_type",
+                    "content_type": "audio/mpeg",
                     "provider_id": "provider_id",
                     "url": "https://example.com",
                 }
@@ -267,7 +267,7 @@ class TestCalls:
             },
             recordings=[
                 {
-                    "content_type": "content_type",
+                    "content_type": "audio/mpeg",
                     "provider_id": "provider_id",
                     "url": "https://example.com",
                 }
@@ -392,7 +392,7 @@ class TestAsyncCalls:
             },
             recordings=[
                 {
-                    "content_type": "content_type",
+                    "content_type": "audio/mpeg",
                     "provider_id": "provider_id",
                     "url": "https://example.com",
                 }
@@ -591,7 +591,7 @@ class TestAsyncCalls:
             },
             recordings=[
                 {
-                    "content_type": "content_type",
+                    "content_type": "audio/mpeg",
                     "provider_id": "provider_id",
                     "url": "https://example.com",
                 }

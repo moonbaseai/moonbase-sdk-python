@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["MeetingUpdateParams", "Recording", "Transcript", "TranscriptCue"]
 
@@ -19,7 +19,7 @@ class MeetingUpdateParams(TypedDict, total=False):
 class Recording(TypedDict, total=False):
     """A video recording of the meeting."""
 
-    content_type: Required[str]
+    content_type: Required[Literal["video/mp4"]]
     """The content type of the recording.
 
     Note that only `video/mp4` is supported at this time.
