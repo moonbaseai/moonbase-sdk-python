@@ -42,12 +42,16 @@ __all__ = ["CollectionsResource", "AsyncCollectionsResource"]
 
 
 class CollectionsResource(SyncAPIResource):
+    """Manage your collections and items"""
+
     @cached_property
     def fields(self) -> FieldsResource:
+        """Manage your collections and items"""
         return FieldsResource(self._client)
 
     @cached_property
     def items(self) -> ItemsResource:
+        """Manage your collections and items"""
         return ItemsResource(self._client)
 
     @cached_property
@@ -167,12 +171,16 @@ class CollectionsResource(SyncAPIResource):
 
 
 class AsyncCollectionsResource(AsyncAPIResource):
+    """Manage your collections and items"""
+
     @cached_property
     def fields(self) -> AsyncFieldsResource:
+        """Manage your collections and items"""
         return AsyncFieldsResource(self._client)
 
     @cached_property
     def items(self) -> AsyncItemsResource:
+        """Manage your collections and items"""
         return AsyncItemsResource(self._client)
 
     @cached_property
@@ -306,10 +314,12 @@ class CollectionsResourceWithRawResponse:
 
     @cached_property
     def fields(self) -> FieldsResourceWithRawResponse:
+        """Manage your collections and items"""
         return FieldsResourceWithRawResponse(self._collections.fields)
 
     @cached_property
     def items(self) -> ItemsResourceWithRawResponse:
+        """Manage your collections and items"""
         return ItemsResourceWithRawResponse(self._collections.items)
 
 
@@ -326,10 +336,12 @@ class AsyncCollectionsResourceWithRawResponse:
 
     @cached_property
     def fields(self) -> AsyncFieldsResourceWithRawResponse:
+        """Manage your collections and items"""
         return AsyncFieldsResourceWithRawResponse(self._collections.fields)
 
     @cached_property
     def items(self) -> AsyncItemsResourceWithRawResponse:
+        """Manage your collections and items"""
         return AsyncItemsResourceWithRawResponse(self._collections.items)
 
 
@@ -346,10 +358,12 @@ class CollectionsResourceWithStreamingResponse:
 
     @cached_property
     def fields(self) -> FieldsResourceWithStreamingResponse:
+        """Manage your collections and items"""
         return FieldsResourceWithStreamingResponse(self._collections.fields)
 
     @cached_property
     def items(self) -> ItemsResourceWithStreamingResponse:
+        """Manage your collections and items"""
         return ItemsResourceWithStreamingResponse(self._collections.items)
 
 
@@ -366,8 +380,10 @@ class AsyncCollectionsResourceWithStreamingResponse:
 
     @cached_property
     def fields(self) -> AsyncFieldsResourceWithStreamingResponse:
+        """Manage your collections and items"""
         return AsyncFieldsResourceWithStreamingResponse(self._collections.fields)
 
     @cached_property
     def items(self) -> AsyncItemsResourceWithStreamingResponse:
+        """Manage your collections and items"""
         return AsyncItemsResourceWithStreamingResponse(self._collections.items)

@@ -33,8 +33,11 @@ __all__ = ["ViewsResource", "AsyncViewsResource"]
 
 
 class ViewsResource(SyncAPIResource):
+    """Manage your collections and items"""
+
     @cached_property
     def items(self) -> ItemsResource:
+        """Manage your collections and items"""
         return ItemsResource(self._client)
 
     @cached_property
@@ -99,8 +102,11 @@ class ViewsResource(SyncAPIResource):
 
 
 class AsyncViewsResource(AsyncAPIResource):
+    """Manage your collections and items"""
+
     @cached_property
     def items(self) -> AsyncItemsResource:
+        """Manage your collections and items"""
         return AsyncItemsResource(self._client)
 
     @cached_property
@@ -174,6 +180,7 @@ class ViewsResourceWithRawResponse:
 
     @cached_property
     def items(self) -> ItemsResourceWithRawResponse:
+        """Manage your collections and items"""
         return ItemsResourceWithRawResponse(self._views.items)
 
 
@@ -187,6 +194,7 @@ class AsyncViewsResourceWithRawResponse:
 
     @cached_property
     def items(self) -> AsyncItemsResourceWithRawResponse:
+        """Manage your collections and items"""
         return AsyncItemsResourceWithRawResponse(self._views.items)
 
 
@@ -200,6 +208,7 @@ class ViewsResourceWithStreamingResponse:
 
     @cached_property
     def items(self) -> ItemsResourceWithStreamingResponse:
+        """Manage your collections and items"""
         return ItemsResourceWithStreamingResponse(self._views.items)
 
 
@@ -213,4 +222,5 @@ class AsyncViewsResourceWithStreamingResponse:
 
     @cached_property
     def items(self) -> AsyncItemsResourceWithStreamingResponse:
+        """Manage your collections and items"""
         return AsyncItemsResourceWithStreamingResponse(self._views.items)

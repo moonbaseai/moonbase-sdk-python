@@ -27,6 +27,8 @@ __all__ = ["NotesResource", "AsyncNotesResource"]
 
 
 class NotesResource(SyncAPIResource):
+    """Manage your meetings, files, and notes"""
+
     @cached_property
     def with_raw_response(self) -> NotesResourceWithRawResponse:
         """
@@ -261,6 +263,8 @@ class NotesResource(SyncAPIResource):
 
 
 class AsyncNotesResource(AsyncAPIResource):
+    """Manage your meetings, files, and notes"""
+
     @cached_property
     def with_raw_response(self) -> AsyncNotesResourceWithRawResponse:
         """

@@ -154,90 +154,105 @@ class Moonbase(SyncAPIClient):
 
     @cached_property
     def collections(self) -> CollectionsResource:
+        """Manage your collections and items"""
         from .resources.collections import CollectionsResource
 
         return CollectionsResource(self)
 
     @cached_property
     def views(self) -> ViewsResource:
+        """Manage your collections and items"""
         from .resources.views import ViewsResource
 
         return ViewsResource(self)
 
     @cached_property
     def inboxes(self) -> InboxesResource:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inboxes import InboxesResource
 
         return InboxesResource(self)
 
     @cached_property
     def inbox_conversations(self) -> InboxConversationsResource:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inbox_conversations import InboxConversationsResource
 
         return InboxConversationsResource(self)
 
     @cached_property
     def inbox_messages(self) -> InboxMessagesResource:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inbox_messages import InboxMessagesResource
 
         return InboxMessagesResource(self)
 
     @cached_property
     def tagsets(self) -> TagsetsResource:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.tagsets import TagsetsResource
 
         return TagsetsResource(self)
 
     @cached_property
     def programs(self) -> ProgramsResource:
+        """Manage your marketing campaigns and forms"""
         from .resources.programs import ProgramsResource
 
         return ProgramsResource(self)
 
     @cached_property
     def program_templates(self) -> ProgramTemplatesResource:
+        """Manage your marketing campaigns and forms"""
         from .resources.program_templates import ProgramTemplatesResource
 
         return ProgramTemplatesResource(self)
 
     @cached_property
     def program_messages(self) -> ProgramMessagesResource:
+        """Manage your marketing campaigns and forms"""
         from .resources.program_messages import ProgramMessagesResource
 
         return ProgramMessagesResource(self)
 
     @cached_property
     def forms(self) -> FormsResource:
+        """Manage your marketing campaigns and forms"""
         from .resources.forms import FormsResource
 
         return FormsResource(self)
 
     @cached_property
     def activities(self) -> ActivitiesResource:
+        """View activities and capture calls"""
         from .resources.activities import ActivitiesResource
 
         return ActivitiesResource(self)
 
     @cached_property
     def calls(self) -> CallsResource:
+        """View activities and capture calls"""
         from .resources.calls import CallsResource
 
         return CallsResource(self)
 
     @cached_property
     def files(self) -> FilesResource:
+        """Manage your meetings, files, and notes"""
         from .resources.files import FilesResource
 
         return FilesResource(self)
 
     @cached_property
     def meetings(self) -> MeetingsResource:
+        """Manage your meetings, files, and notes"""
         from .resources.meetings import MeetingsResource
 
         return MeetingsResource(self)
 
     @cached_property
     def notes(self) -> NotesResource:
+        """Manage your meetings, files, and notes"""
         from .resources.notes import NotesResource
 
         return NotesResource(self)
@@ -457,90 +472,105 @@ class AsyncMoonbase(AsyncAPIClient):
 
     @cached_property
     def collections(self) -> AsyncCollectionsResource:
+        """Manage your collections and items"""
         from .resources.collections import AsyncCollectionsResource
 
         return AsyncCollectionsResource(self)
 
     @cached_property
     def views(self) -> AsyncViewsResource:
+        """Manage your collections and items"""
         from .resources.views import AsyncViewsResource
 
         return AsyncViewsResource(self)
 
     @cached_property
     def inboxes(self) -> AsyncInboxesResource:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inboxes import AsyncInboxesResource
 
         return AsyncInboxesResource(self)
 
     @cached_property
     def inbox_conversations(self) -> AsyncInboxConversationsResource:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inbox_conversations import AsyncInboxConversationsResource
 
         return AsyncInboxConversationsResource(self)
 
     @cached_property
     def inbox_messages(self) -> AsyncInboxMessagesResource:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inbox_messages import AsyncInboxMessagesResource
 
         return AsyncInboxMessagesResource(self)
 
     @cached_property
     def tagsets(self) -> AsyncTagsetsResource:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.tagsets import AsyncTagsetsResource
 
         return AsyncTagsetsResource(self)
 
     @cached_property
     def programs(self) -> AsyncProgramsResource:
+        """Manage your marketing campaigns and forms"""
         from .resources.programs import AsyncProgramsResource
 
         return AsyncProgramsResource(self)
 
     @cached_property
     def program_templates(self) -> AsyncProgramTemplatesResource:
+        """Manage your marketing campaigns and forms"""
         from .resources.program_templates import AsyncProgramTemplatesResource
 
         return AsyncProgramTemplatesResource(self)
 
     @cached_property
     def program_messages(self) -> AsyncProgramMessagesResource:
+        """Manage your marketing campaigns and forms"""
         from .resources.program_messages import AsyncProgramMessagesResource
 
         return AsyncProgramMessagesResource(self)
 
     @cached_property
     def forms(self) -> AsyncFormsResource:
+        """Manage your marketing campaigns and forms"""
         from .resources.forms import AsyncFormsResource
 
         return AsyncFormsResource(self)
 
     @cached_property
     def activities(self) -> AsyncActivitiesResource:
+        """View activities and capture calls"""
         from .resources.activities import AsyncActivitiesResource
 
         return AsyncActivitiesResource(self)
 
     @cached_property
     def calls(self) -> AsyncCallsResource:
+        """View activities and capture calls"""
         from .resources.calls import AsyncCallsResource
 
         return AsyncCallsResource(self)
 
     @cached_property
     def files(self) -> AsyncFilesResource:
+        """Manage your meetings, files, and notes"""
         from .resources.files import AsyncFilesResource
 
         return AsyncFilesResource(self)
 
     @cached_property
     def meetings(self) -> AsyncMeetingsResource:
+        """Manage your meetings, files, and notes"""
         from .resources.meetings import AsyncMeetingsResource
 
         return AsyncMeetingsResource(self)
 
     @cached_property
     def notes(self) -> AsyncNotesResource:
+        """Manage your meetings, files, and notes"""
         from .resources.notes import AsyncNotesResource
 
         return AsyncNotesResource(self)
@@ -715,90 +745,105 @@ class MoonbaseWithRawResponse:
 
     @cached_property
     def collections(self) -> collections.CollectionsResourceWithRawResponse:
+        """Manage your collections and items"""
         from .resources.collections import CollectionsResourceWithRawResponse
 
         return CollectionsResourceWithRawResponse(self._client.collections)
 
     @cached_property
     def views(self) -> views.ViewsResourceWithRawResponse:
+        """Manage your collections and items"""
         from .resources.views import ViewsResourceWithRawResponse
 
         return ViewsResourceWithRawResponse(self._client.views)
 
     @cached_property
     def inboxes(self) -> inboxes.InboxesResourceWithRawResponse:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inboxes import InboxesResourceWithRawResponse
 
         return InboxesResourceWithRawResponse(self._client.inboxes)
 
     @cached_property
     def inbox_conversations(self) -> inbox_conversations.InboxConversationsResourceWithRawResponse:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inbox_conversations import InboxConversationsResourceWithRawResponse
 
         return InboxConversationsResourceWithRawResponse(self._client.inbox_conversations)
 
     @cached_property
     def inbox_messages(self) -> inbox_messages.InboxMessagesResourceWithRawResponse:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inbox_messages import InboxMessagesResourceWithRawResponse
 
         return InboxMessagesResourceWithRawResponse(self._client.inbox_messages)
 
     @cached_property
     def tagsets(self) -> tagsets.TagsetsResourceWithRawResponse:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.tagsets import TagsetsResourceWithRawResponse
 
         return TagsetsResourceWithRawResponse(self._client.tagsets)
 
     @cached_property
     def programs(self) -> programs.ProgramsResourceWithRawResponse:
+        """Manage your marketing campaigns and forms"""
         from .resources.programs import ProgramsResourceWithRawResponse
 
         return ProgramsResourceWithRawResponse(self._client.programs)
 
     @cached_property
     def program_templates(self) -> program_templates.ProgramTemplatesResourceWithRawResponse:
+        """Manage your marketing campaigns and forms"""
         from .resources.program_templates import ProgramTemplatesResourceWithRawResponse
 
         return ProgramTemplatesResourceWithRawResponse(self._client.program_templates)
 
     @cached_property
     def program_messages(self) -> program_messages.ProgramMessagesResourceWithRawResponse:
+        """Manage your marketing campaigns and forms"""
         from .resources.program_messages import ProgramMessagesResourceWithRawResponse
 
         return ProgramMessagesResourceWithRawResponse(self._client.program_messages)
 
     @cached_property
     def forms(self) -> forms.FormsResourceWithRawResponse:
+        """Manage your marketing campaigns and forms"""
         from .resources.forms import FormsResourceWithRawResponse
 
         return FormsResourceWithRawResponse(self._client.forms)
 
     @cached_property
     def activities(self) -> activities.ActivitiesResourceWithRawResponse:
+        """View activities and capture calls"""
         from .resources.activities import ActivitiesResourceWithRawResponse
 
         return ActivitiesResourceWithRawResponse(self._client.activities)
 
     @cached_property
     def calls(self) -> calls.CallsResourceWithRawResponse:
+        """View activities and capture calls"""
         from .resources.calls import CallsResourceWithRawResponse
 
         return CallsResourceWithRawResponse(self._client.calls)
 
     @cached_property
     def files(self) -> files.FilesResourceWithRawResponse:
+        """Manage your meetings, files, and notes"""
         from .resources.files import FilesResourceWithRawResponse
 
         return FilesResourceWithRawResponse(self._client.files)
 
     @cached_property
     def meetings(self) -> meetings.MeetingsResourceWithRawResponse:
+        """Manage your meetings, files, and notes"""
         from .resources.meetings import MeetingsResourceWithRawResponse
 
         return MeetingsResourceWithRawResponse(self._client.meetings)
 
     @cached_property
     def notes(self) -> notes.NotesResourceWithRawResponse:
+        """Manage your meetings, files, and notes"""
         from .resources.notes import NotesResourceWithRawResponse
 
         return NotesResourceWithRawResponse(self._client.notes)
@@ -828,90 +873,105 @@ class AsyncMoonbaseWithRawResponse:
 
     @cached_property
     def collections(self) -> collections.AsyncCollectionsResourceWithRawResponse:
+        """Manage your collections and items"""
         from .resources.collections import AsyncCollectionsResourceWithRawResponse
 
         return AsyncCollectionsResourceWithRawResponse(self._client.collections)
 
     @cached_property
     def views(self) -> views.AsyncViewsResourceWithRawResponse:
+        """Manage your collections and items"""
         from .resources.views import AsyncViewsResourceWithRawResponse
 
         return AsyncViewsResourceWithRawResponse(self._client.views)
 
     @cached_property
     def inboxes(self) -> inboxes.AsyncInboxesResourceWithRawResponse:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inboxes import AsyncInboxesResourceWithRawResponse
 
         return AsyncInboxesResourceWithRawResponse(self._client.inboxes)
 
     @cached_property
     def inbox_conversations(self) -> inbox_conversations.AsyncInboxConversationsResourceWithRawResponse:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inbox_conversations import AsyncInboxConversationsResourceWithRawResponse
 
         return AsyncInboxConversationsResourceWithRawResponse(self._client.inbox_conversations)
 
     @cached_property
     def inbox_messages(self) -> inbox_messages.AsyncInboxMessagesResourceWithRawResponse:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inbox_messages import AsyncInboxMessagesResourceWithRawResponse
 
         return AsyncInboxMessagesResourceWithRawResponse(self._client.inbox_messages)
 
     @cached_property
     def tagsets(self) -> tagsets.AsyncTagsetsResourceWithRawResponse:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.tagsets import AsyncTagsetsResourceWithRawResponse
 
         return AsyncTagsetsResourceWithRawResponse(self._client.tagsets)
 
     @cached_property
     def programs(self) -> programs.AsyncProgramsResourceWithRawResponse:
+        """Manage your marketing campaigns and forms"""
         from .resources.programs import AsyncProgramsResourceWithRawResponse
 
         return AsyncProgramsResourceWithRawResponse(self._client.programs)
 
     @cached_property
     def program_templates(self) -> program_templates.AsyncProgramTemplatesResourceWithRawResponse:
+        """Manage your marketing campaigns and forms"""
         from .resources.program_templates import AsyncProgramTemplatesResourceWithRawResponse
 
         return AsyncProgramTemplatesResourceWithRawResponse(self._client.program_templates)
 
     @cached_property
     def program_messages(self) -> program_messages.AsyncProgramMessagesResourceWithRawResponse:
+        """Manage your marketing campaigns and forms"""
         from .resources.program_messages import AsyncProgramMessagesResourceWithRawResponse
 
         return AsyncProgramMessagesResourceWithRawResponse(self._client.program_messages)
 
     @cached_property
     def forms(self) -> forms.AsyncFormsResourceWithRawResponse:
+        """Manage your marketing campaigns and forms"""
         from .resources.forms import AsyncFormsResourceWithRawResponse
 
         return AsyncFormsResourceWithRawResponse(self._client.forms)
 
     @cached_property
     def activities(self) -> activities.AsyncActivitiesResourceWithRawResponse:
+        """View activities and capture calls"""
         from .resources.activities import AsyncActivitiesResourceWithRawResponse
 
         return AsyncActivitiesResourceWithRawResponse(self._client.activities)
 
     @cached_property
     def calls(self) -> calls.AsyncCallsResourceWithRawResponse:
+        """View activities and capture calls"""
         from .resources.calls import AsyncCallsResourceWithRawResponse
 
         return AsyncCallsResourceWithRawResponse(self._client.calls)
 
     @cached_property
     def files(self) -> files.AsyncFilesResourceWithRawResponse:
+        """Manage your meetings, files, and notes"""
         from .resources.files import AsyncFilesResourceWithRawResponse
 
         return AsyncFilesResourceWithRawResponse(self._client.files)
 
     @cached_property
     def meetings(self) -> meetings.AsyncMeetingsResourceWithRawResponse:
+        """Manage your meetings, files, and notes"""
         from .resources.meetings import AsyncMeetingsResourceWithRawResponse
 
         return AsyncMeetingsResourceWithRawResponse(self._client.meetings)
 
     @cached_property
     def notes(self) -> notes.AsyncNotesResourceWithRawResponse:
+        """Manage your meetings, files, and notes"""
         from .resources.notes import AsyncNotesResourceWithRawResponse
 
         return AsyncNotesResourceWithRawResponse(self._client.notes)
@@ -941,90 +1001,105 @@ class MoonbaseWithStreamedResponse:
 
     @cached_property
     def collections(self) -> collections.CollectionsResourceWithStreamingResponse:
+        """Manage your collections and items"""
         from .resources.collections import CollectionsResourceWithStreamingResponse
 
         return CollectionsResourceWithStreamingResponse(self._client.collections)
 
     @cached_property
     def views(self) -> views.ViewsResourceWithStreamingResponse:
+        """Manage your collections and items"""
         from .resources.views import ViewsResourceWithStreamingResponse
 
         return ViewsResourceWithStreamingResponse(self._client.views)
 
     @cached_property
     def inboxes(self) -> inboxes.InboxesResourceWithStreamingResponse:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inboxes import InboxesResourceWithStreamingResponse
 
         return InboxesResourceWithStreamingResponse(self._client.inboxes)
 
     @cached_property
     def inbox_conversations(self) -> inbox_conversations.InboxConversationsResourceWithStreamingResponse:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inbox_conversations import InboxConversationsResourceWithStreamingResponse
 
         return InboxConversationsResourceWithStreamingResponse(self._client.inbox_conversations)
 
     @cached_property
     def inbox_messages(self) -> inbox_messages.InboxMessagesResourceWithStreamingResponse:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inbox_messages import InboxMessagesResourceWithStreamingResponse
 
         return InboxMessagesResourceWithStreamingResponse(self._client.inbox_messages)
 
     @cached_property
     def tagsets(self) -> tagsets.TagsetsResourceWithStreamingResponse:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.tagsets import TagsetsResourceWithStreamingResponse
 
         return TagsetsResourceWithStreamingResponse(self._client.tagsets)
 
     @cached_property
     def programs(self) -> programs.ProgramsResourceWithStreamingResponse:
+        """Manage your marketing campaigns and forms"""
         from .resources.programs import ProgramsResourceWithStreamingResponse
 
         return ProgramsResourceWithStreamingResponse(self._client.programs)
 
     @cached_property
     def program_templates(self) -> program_templates.ProgramTemplatesResourceWithStreamingResponse:
+        """Manage your marketing campaigns and forms"""
         from .resources.program_templates import ProgramTemplatesResourceWithStreamingResponse
 
         return ProgramTemplatesResourceWithStreamingResponse(self._client.program_templates)
 
     @cached_property
     def program_messages(self) -> program_messages.ProgramMessagesResourceWithStreamingResponse:
+        """Manage your marketing campaigns and forms"""
         from .resources.program_messages import ProgramMessagesResourceWithStreamingResponse
 
         return ProgramMessagesResourceWithStreamingResponse(self._client.program_messages)
 
     @cached_property
     def forms(self) -> forms.FormsResourceWithStreamingResponse:
+        """Manage your marketing campaigns and forms"""
         from .resources.forms import FormsResourceWithStreamingResponse
 
         return FormsResourceWithStreamingResponse(self._client.forms)
 
     @cached_property
     def activities(self) -> activities.ActivitiesResourceWithStreamingResponse:
+        """View activities and capture calls"""
         from .resources.activities import ActivitiesResourceWithStreamingResponse
 
         return ActivitiesResourceWithStreamingResponse(self._client.activities)
 
     @cached_property
     def calls(self) -> calls.CallsResourceWithStreamingResponse:
+        """View activities and capture calls"""
         from .resources.calls import CallsResourceWithStreamingResponse
 
         return CallsResourceWithStreamingResponse(self._client.calls)
 
     @cached_property
     def files(self) -> files.FilesResourceWithStreamingResponse:
+        """Manage your meetings, files, and notes"""
         from .resources.files import FilesResourceWithStreamingResponse
 
         return FilesResourceWithStreamingResponse(self._client.files)
 
     @cached_property
     def meetings(self) -> meetings.MeetingsResourceWithStreamingResponse:
+        """Manage your meetings, files, and notes"""
         from .resources.meetings import MeetingsResourceWithStreamingResponse
 
         return MeetingsResourceWithStreamingResponse(self._client.meetings)
 
     @cached_property
     def notes(self) -> notes.NotesResourceWithStreamingResponse:
+        """Manage your meetings, files, and notes"""
         from .resources.notes import NotesResourceWithStreamingResponse
 
         return NotesResourceWithStreamingResponse(self._client.notes)
@@ -1054,90 +1129,105 @@ class AsyncMoonbaseWithStreamedResponse:
 
     @cached_property
     def collections(self) -> collections.AsyncCollectionsResourceWithStreamingResponse:
+        """Manage your collections and items"""
         from .resources.collections import AsyncCollectionsResourceWithStreamingResponse
 
         return AsyncCollectionsResourceWithStreamingResponse(self._client.collections)
 
     @cached_property
     def views(self) -> views.AsyncViewsResourceWithStreamingResponse:
+        """Manage your collections and items"""
         from .resources.views import AsyncViewsResourceWithStreamingResponse
 
         return AsyncViewsResourceWithStreamingResponse(self._client.views)
 
     @cached_property
     def inboxes(self) -> inboxes.AsyncInboxesResourceWithStreamingResponse:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inboxes import AsyncInboxesResourceWithStreamingResponse
 
         return AsyncInboxesResourceWithStreamingResponse(self._client.inboxes)
 
     @cached_property
     def inbox_conversations(self) -> inbox_conversations.AsyncInboxConversationsResourceWithStreamingResponse:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inbox_conversations import AsyncInboxConversationsResourceWithStreamingResponse
 
         return AsyncInboxConversationsResourceWithStreamingResponse(self._client.inbox_conversations)
 
     @cached_property
     def inbox_messages(self) -> inbox_messages.AsyncInboxMessagesResourceWithStreamingResponse:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.inbox_messages import AsyncInboxMessagesResourceWithStreamingResponse
 
         return AsyncInboxMessagesResourceWithStreamingResponse(self._client.inbox_messages)
 
     @cached_property
     def tagsets(self) -> tagsets.AsyncTagsetsResourceWithStreamingResponse:
+        """Manage your inboxes, conversations, and messages"""
         from .resources.tagsets import AsyncTagsetsResourceWithStreamingResponse
 
         return AsyncTagsetsResourceWithStreamingResponse(self._client.tagsets)
 
     @cached_property
     def programs(self) -> programs.AsyncProgramsResourceWithStreamingResponse:
+        """Manage your marketing campaigns and forms"""
         from .resources.programs import AsyncProgramsResourceWithStreamingResponse
 
         return AsyncProgramsResourceWithStreamingResponse(self._client.programs)
 
     @cached_property
     def program_templates(self) -> program_templates.AsyncProgramTemplatesResourceWithStreamingResponse:
+        """Manage your marketing campaigns and forms"""
         from .resources.program_templates import AsyncProgramTemplatesResourceWithStreamingResponse
 
         return AsyncProgramTemplatesResourceWithStreamingResponse(self._client.program_templates)
 
     @cached_property
     def program_messages(self) -> program_messages.AsyncProgramMessagesResourceWithStreamingResponse:
+        """Manage your marketing campaigns and forms"""
         from .resources.program_messages import AsyncProgramMessagesResourceWithStreamingResponse
 
         return AsyncProgramMessagesResourceWithStreamingResponse(self._client.program_messages)
 
     @cached_property
     def forms(self) -> forms.AsyncFormsResourceWithStreamingResponse:
+        """Manage your marketing campaigns and forms"""
         from .resources.forms import AsyncFormsResourceWithStreamingResponse
 
         return AsyncFormsResourceWithStreamingResponse(self._client.forms)
 
     @cached_property
     def activities(self) -> activities.AsyncActivitiesResourceWithStreamingResponse:
+        """View activities and capture calls"""
         from .resources.activities import AsyncActivitiesResourceWithStreamingResponse
 
         return AsyncActivitiesResourceWithStreamingResponse(self._client.activities)
 
     @cached_property
     def calls(self) -> calls.AsyncCallsResourceWithStreamingResponse:
+        """View activities and capture calls"""
         from .resources.calls import AsyncCallsResourceWithStreamingResponse
 
         return AsyncCallsResourceWithStreamingResponse(self._client.calls)
 
     @cached_property
     def files(self) -> files.AsyncFilesResourceWithStreamingResponse:
+        """Manage your meetings, files, and notes"""
         from .resources.files import AsyncFilesResourceWithStreamingResponse
 
         return AsyncFilesResourceWithStreamingResponse(self._client.files)
 
     @cached_property
     def meetings(self) -> meetings.AsyncMeetingsResourceWithStreamingResponse:
+        """Manage your meetings, files, and notes"""
         from .resources.meetings import AsyncMeetingsResourceWithStreamingResponse
 
         return AsyncMeetingsResourceWithStreamingResponse(self._client.meetings)
 
     @cached_property
     def notes(self) -> notes.AsyncNotesResourceWithStreamingResponse:
+        """Manage your meetings, files, and notes"""
         from .resources.notes import AsyncNotesResourceWithStreamingResponse
 
         return AsyncNotesResourceWithStreamingResponse(self._client.notes)

@@ -26,6 +26,8 @@ __all__ = ["InboxesResource", "AsyncInboxesResource"]
 
 
 class InboxesResource(SyncAPIResource):
+    """Manage your inboxes, conversations, and messages"""
+
     @cached_property
     def with_raw_response(self) -> InboxesResourceWithRawResponse:
         """
@@ -146,6 +148,8 @@ class InboxesResource(SyncAPIResource):
 
 
 class AsyncInboxesResource(AsyncAPIResource):
+    """Manage your inboxes, conversations, and messages"""
+
     @cached_property
     def with_raw_response(self) -> AsyncInboxesResourceWithRawResponse:
         """

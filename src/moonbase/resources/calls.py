@@ -27,6 +27,8 @@ __all__ = ["CallsResource", "AsyncCallsResource"]
 
 
 class CallsResource(SyncAPIResource):
+    """View activities and capture calls"""
+
     @cached_property
     def with_raw_response(self) -> CallsResourceWithRawResponse:
         """
@@ -303,6 +305,8 @@ class CallsResource(SyncAPIResource):
 
 
 class AsyncCallsResource(AsyncAPIResource):
+    """View activities and capture calls"""
+
     @cached_property
     def with_raw_response(self) -> AsyncCallsResourceWithRawResponse:
         """
