@@ -22,6 +22,8 @@ __all__ = ["FieldsResource", "AsyncFieldsResource"]
 
 
 class FieldsResource(SyncAPIResource):
+    """Manage your collections and items"""
+
     @cached_property
     def with_raw_response(self) -> FieldsResourceWithRawResponse:
         """
@@ -82,6 +84,8 @@ class FieldsResource(SyncAPIResource):
 
 
 class AsyncFieldsResource(AsyncAPIResource):
+    """Manage your collections and items"""
+
     @cached_property
     def with_raw_response(self) -> AsyncFieldsResourceWithRawResponse:
         """

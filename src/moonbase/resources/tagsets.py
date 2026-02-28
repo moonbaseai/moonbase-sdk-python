@@ -23,6 +23,8 @@ __all__ = ["TagsetsResource", "AsyncTagsetsResource"]
 
 
 class TagsetsResource(SyncAPIResource):
+    """Manage your inboxes, conversations, and messages"""
+
     @cached_property
     def with_raw_response(self) -> TagsetsResourceWithRawResponse:
         """
@@ -133,6 +135,8 @@ class TagsetsResource(SyncAPIResource):
 
 
 class AsyncTagsetsResource(AsyncAPIResource):
+    """Manage your inboxes, conversations, and messages"""
+
     @cached_property
     def with_raw_response(self) -> AsyncTagsetsResourceWithRawResponse:
         """
