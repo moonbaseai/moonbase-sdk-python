@@ -60,6 +60,7 @@ if TYPE_CHECKING:
         programs,
         activities,
         collections,
+        unsubscribes,
         agent_settings,
         inbox_messages,
         program_messages,
@@ -77,6 +78,7 @@ if TYPE_CHECKING:
     from .resources.programs import ProgramsResource, AsyncProgramsResource
     from .resources.activities import ActivitiesResource, AsyncActivitiesResource
     from .resources.views.views import ViewsResource, AsyncViewsResource
+    from .resources.unsubscribes import UnsubscribesResource, AsyncUnsubscribesResource
     from .resources.agent_settings import AgentSettingsResource, AsyncAgentSettingsResource
     from .resources.inbox_messages import InboxMessagesResource, AsyncInboxMessagesResource
     from .resources.program_messages import ProgramMessagesResource, AsyncProgramMessagesResource
@@ -221,6 +223,13 @@ class Moonbase(SyncAPIClient):
         from .resources.forms import FormsResource
 
         return FormsResource(self)
+
+    @cached_property
+    def unsubscribes(self) -> UnsubscribesResource:
+        """Manage your marketing campaigns and forms"""
+        from .resources.unsubscribes import UnsubscribesResource
+
+        return UnsubscribesResource(self)
 
     @cached_property
     def activities(self) -> ActivitiesResource:
@@ -541,6 +550,13 @@ class AsyncMoonbase(AsyncAPIClient):
         return AsyncFormsResource(self)
 
     @cached_property
+    def unsubscribes(self) -> AsyncUnsubscribesResource:
+        """Manage your marketing campaigns and forms"""
+        from .resources.unsubscribes import AsyncUnsubscribesResource
+
+        return AsyncUnsubscribesResource(self)
+
+    @cached_property
     def activities(self) -> AsyncActivitiesResource:
         """View activities and capture calls"""
         from .resources.activities import AsyncActivitiesResource
@@ -814,6 +830,13 @@ class MoonbaseWithRawResponse:
         return FormsResourceWithRawResponse(self._client.forms)
 
     @cached_property
+    def unsubscribes(self) -> unsubscribes.UnsubscribesResourceWithRawResponse:
+        """Manage your marketing campaigns and forms"""
+        from .resources.unsubscribes import UnsubscribesResourceWithRawResponse
+
+        return UnsubscribesResourceWithRawResponse(self._client.unsubscribes)
+
+    @cached_property
     def activities(self) -> activities.ActivitiesResourceWithRawResponse:
         """View activities and capture calls"""
         from .resources.activities import ActivitiesResourceWithRawResponse
@@ -940,6 +963,13 @@ class AsyncMoonbaseWithRawResponse:
         from .resources.forms import AsyncFormsResourceWithRawResponse
 
         return AsyncFormsResourceWithRawResponse(self._client.forms)
+
+    @cached_property
+    def unsubscribes(self) -> unsubscribes.AsyncUnsubscribesResourceWithRawResponse:
+        """Manage your marketing campaigns and forms"""
+        from .resources.unsubscribes import AsyncUnsubscribesResourceWithRawResponse
+
+        return AsyncUnsubscribesResourceWithRawResponse(self._client.unsubscribes)
 
     @cached_property
     def activities(self) -> activities.AsyncActivitiesResourceWithRawResponse:
@@ -1070,6 +1100,13 @@ class MoonbaseWithStreamedResponse:
         return FormsResourceWithStreamingResponse(self._client.forms)
 
     @cached_property
+    def unsubscribes(self) -> unsubscribes.UnsubscribesResourceWithStreamingResponse:
+        """Manage your marketing campaigns and forms"""
+        from .resources.unsubscribes import UnsubscribesResourceWithStreamingResponse
+
+        return UnsubscribesResourceWithStreamingResponse(self._client.unsubscribes)
+
+    @cached_property
     def activities(self) -> activities.ActivitiesResourceWithStreamingResponse:
         """View activities and capture calls"""
         from .resources.activities import ActivitiesResourceWithStreamingResponse
@@ -1196,6 +1233,13 @@ class AsyncMoonbaseWithStreamedResponse:
         from .resources.forms import AsyncFormsResourceWithStreamingResponse
 
         return AsyncFormsResourceWithStreamingResponse(self._client.forms)
+
+    @cached_property
+    def unsubscribes(self) -> unsubscribes.AsyncUnsubscribesResourceWithStreamingResponse:
+        """Manage your marketing campaigns and forms"""
+        from .resources.unsubscribes import AsyncUnsubscribesResourceWithStreamingResponse
+
+        return AsyncUnsubscribesResourceWithStreamingResponse(self._client.unsubscribes)
 
     @cached_property
     def activities(self) -> activities.AsyncActivitiesResourceWithStreamingResponse:
