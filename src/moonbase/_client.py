@@ -369,7 +369,11 @@ class Moonbase(SyncAPIClient):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SearchResponse:
         """
+        Returns items that match the search query.
+
         Args:
+          query: The search text to match against items.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -694,7 +698,11 @@ class AsyncMoonbase(AsyncAPIClient):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SearchResponse:
         """
+        Returns items that match the search query.
+
         Args:
+          query: The search text to match against items.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

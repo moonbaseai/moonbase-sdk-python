@@ -20,7 +20,7 @@ class Data(BaseModel):
 
 
 class SearchResponse(BaseModel):
-    """A field in a search result"""
+    """A list of search results."""
 
     data: List[Data]
 

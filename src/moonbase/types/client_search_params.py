@@ -9,3 +9,4 @@ __all__ = ["ClientSearchParams"]
 
 class ClientSearchParams(TypedDict, total=False):
     query: Required[str]
+    """The search text to match against items."""
