@@ -243,6 +243,20 @@ Methods:
 - <code title="get /forms/{id}">client.forms.<a href="./src/moonbase/resources/forms.py">retrieve</a>(id) -> <a href="./src/moonbase/types/form.py">Form</a></code>
 - <code title="get /forms">client.forms.<a href="./src/moonbase/resources/forms.py">list</a>(\*\*<a href="src/moonbase/types/form_list_params.py">params</a>) -> <a href="./src/moonbase/types/form.py">SyncCursorPage[Form]</a></code>
 
+# Unsubscribes
+
+Types:
+
+```python
+from moonbase.types import Unsubscribe
+```
+
+Methods:
+
+- <code title="post /unsubscribes">client.unsubscribes.<a href="./src/moonbase/resources/unsubscribes.py">create</a>(\*\*<a href="src/moonbase/types/unsubscribe_create_params.py">params</a>) -> <a href="./src/moonbase/types/unsubscribe.py">Unsubscribe</a></code>
+- <code title="get /unsubscribes">client.unsubscribes.<a href="./src/moonbase/resources/unsubscribes.py">list</a>(\*\*<a href="src/moonbase/types/unsubscribe_list_params.py">params</a>) -> <a href="./src/moonbase/types/unsubscribe.py">SyncCursorPage[Unsubscribe]</a></code>
+- <code title="delete /unsubscribes/{email}">client.unsubscribes.<a href="./src/moonbase/resources/unsubscribes.py">delete</a>(email) -> None</code>
+
 # Activities
 
 Types:

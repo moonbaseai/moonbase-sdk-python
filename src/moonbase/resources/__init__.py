@@ -88,6 +88,14 @@ from .collections import (
     CollectionsResourceWithStreamingResponse,
     AsyncCollectionsResourceWithStreamingResponse,
 )
+from .unsubscribes import (
+    UnsubscribesResource,
+    AsyncUnsubscribesResource,
+    UnsubscribesResourceWithRawResponse,
+    AsyncUnsubscribesResourceWithRawResponse,
+    UnsubscribesResourceWithStreamingResponse,
+    AsyncUnsubscribesResourceWithStreamingResponse,
+)
 from .agent_settings import (
     AgentSettingsResource,
     AsyncAgentSettingsResource,
@@ -198,6 +206,12 @@ __all__ = [
     "AsyncFormsResourceWithRawResponse",
     "FormsResourceWithStreamingResponse",
     "AsyncFormsResourceWithStreamingResponse",
+    "UnsubscribesResource",
+    "AsyncUnsubscribesResource",
+    "UnsubscribesResourceWithRawResponse",
+    "AsyncUnsubscribesResourceWithRawResponse",
+    "UnsubscribesResourceWithStreamingResponse",
+    "AsyncUnsubscribesResourceWithStreamingResponse",
     "ActivitiesResource",
     "AsyncActivitiesResource",
     "ActivitiesResourceWithRawResponse",
