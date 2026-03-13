@@ -89,11 +89,9 @@ class Meeting(BaseModel):
     """The physical or virtual location of the meeting."""
 
     note: Optional[Note] = None
-    """Any personal notes taken during the meeting.
-
-    It also includes the AI-generated pre-meeting briefing.
-
-    **Note:** Only present when requested using the `include` query parameter.
+    """
+    The Note object represents a block of text content, often used for meeting notes
+    or summaries.
     """
 
     organizer: Optional[Organizer] = None
@@ -112,9 +110,9 @@ class Meeting(BaseModel):
     """
 
     summary: Optional[Note] = None
-    """A summary of the meeting.
-
-    **Note:** Only present when requested using the `include` query parameter.
+    """
+    The Note object represents a block of text content, often used for meeting notes
+    or summaries.
     """
 
     title: Optional[str] = None
