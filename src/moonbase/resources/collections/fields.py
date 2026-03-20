@@ -7,6 +7,7 @@ from typing import Any, cast
 import httpx
 
 from ..._types import Body, Query, Headers, NotGiven, not_given
+from ..._utils import path_template
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -74,7 +75,7 @@ class FieldsResource(SyncAPIResource):
         return cast(
             Field,
             self._get(
-                f"/collections/{collection_id}/fields/{id}",
+                path_template("/collections/{collection_id}/fields/{id}", collection_id=collection_id, id=id),
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
@@ -136,7 +137,7 @@ class AsyncFieldsResource(AsyncAPIResource):
         return cast(
             Field,
             await self._get(
-                f"/collections/{collection_id}/fields/{id}",
+                path_template("/collections/{collection_id}/fields/{id}", collection_id=collection_id, id=id),
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
