@@ -8,7 +8,7 @@ import httpx
 
 from ..types import activity_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform
+from .._utils import path_template, maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -74,7 +74,7 @@ class ActivitiesResource(SyncAPIResource):
         return cast(
             Activity,
             self._get(
-                f"/activities/{id}",
+                path_template("/activities/{id}", id=id),
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
@@ -193,7 +193,7 @@ class AsyncActivitiesResource(AsyncAPIResource):
         return cast(
             Activity,
             await self._get(
-                f"/activities/{id}",
+                path_template("/activities/{id}", id=id),
                 options=make_request_options(
                     extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),

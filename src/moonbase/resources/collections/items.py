@@ -8,7 +8,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import is_given, maybe_transform, strip_not_given, async_maybe_transform
+from ..._utils import is_given, path_template, maybe_transform, strip_not_given, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -85,7 +85,7 @@ class ItemsResource(SyncAPIResource):
         if not collection_id:
             raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         return self._post(
-            f"/collections/{collection_id}/items",
+            path_template("/collections/{collection_id}/items", collection_id=collection_id),
             body=maybe_transform({"values": values}, item_create_params.ItemCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -122,7 +122,7 @@ class ItemsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/collections/{collection_id}/items/{id}",
+            path_template("/collections/{collection_id}/items/{id}", collection_id=collection_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -173,7 +173,7 @@ class ItemsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._patch(
-            f"/collections/{collection_id}/items/{id}",
+            path_template("/collections/{collection_id}/items/{id}", collection_id=collection_id, id=id),
             body=maybe_transform({"values": values}, item_update_params.ItemUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -228,7 +228,7 @@ class ItemsResource(SyncAPIResource):
         if not collection_id:
             raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         return self._get_api_list(
-            f"/collections/{collection_id}/items",
+            path_template("/collections/{collection_id}/items", collection_id=collection_id),
             page=SyncCursorPage[Item],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -279,7 +279,7 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/collections/{collection_id}/items/{id}",
+            path_template("/collections/{collection_id}/items/{id}", collection_id=collection_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -337,7 +337,7 @@ class ItemsResource(SyncAPIResource):
         if not collection_id:
             raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         return self._get_api_list(
-            f"/collections/{collection_id}/items/search",
+            path_template("/collections/{collection_id}/items/search", collection_id=collection_id),
             page=SyncCursorPage[ItemSearchResponse],
             body=maybe_transform(
                 {
@@ -410,7 +410,7 @@ class ItemsResource(SyncAPIResource):
             **(extra_headers or {}),
         }
         return self._post(
-            f"/collections/{collection_id}/items/upsert",
+            path_template("/collections/{collection_id}/items/upsert", collection_id=collection_id),
             body=maybe_transform(
                 {
                     "identifiers": identifiers,
@@ -476,7 +476,7 @@ class AsyncItemsResource(AsyncAPIResource):
         if not collection_id:
             raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         return await self._post(
-            f"/collections/{collection_id}/items",
+            path_template("/collections/{collection_id}/items", collection_id=collection_id),
             body=await async_maybe_transform({"values": values}, item_create_params.ItemCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -513,7 +513,7 @@ class AsyncItemsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/collections/{collection_id}/items/{id}",
+            path_template("/collections/{collection_id}/items/{id}", collection_id=collection_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -564,7 +564,7 @@ class AsyncItemsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._patch(
-            f"/collections/{collection_id}/items/{id}",
+            path_template("/collections/{collection_id}/items/{id}", collection_id=collection_id, id=id),
             body=await async_maybe_transform({"values": values}, item_update_params.ItemUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -619,7 +619,7 @@ class AsyncItemsResource(AsyncAPIResource):
         if not collection_id:
             raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         return self._get_api_list(
-            f"/collections/{collection_id}/items",
+            path_template("/collections/{collection_id}/items", collection_id=collection_id),
             page=AsyncCursorPage[Item],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -670,7 +670,7 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/collections/{collection_id}/items/{id}",
+            path_template("/collections/{collection_id}/items/{id}", collection_id=collection_id, id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -728,7 +728,7 @@ class AsyncItemsResource(AsyncAPIResource):
         if not collection_id:
             raise ValueError(f"Expected a non-empty value for `collection_id` but received {collection_id!r}")
         return self._get_api_list(
-            f"/collections/{collection_id}/items/search",
+            path_template("/collections/{collection_id}/items/search", collection_id=collection_id),
             page=AsyncCursorPage[ItemSearchResponse],
             body=maybe_transform(
                 {
@@ -801,7 +801,7 @@ class AsyncItemsResource(AsyncAPIResource):
             **(extra_headers or {}),
         }
         return await self._post(
-            f"/collections/{collection_id}/items/upsert",
+            path_template("/collections/{collection_id}/items/upsert", collection_id=collection_id),
             body=await async_maybe_transform(
                 {
                     "identifiers": identifiers,
