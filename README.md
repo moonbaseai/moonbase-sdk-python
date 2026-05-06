@@ -42,7 +42,7 @@ client = Moonbase(
 )
 
 collection = client.collections.retrieve(
-    id="people",
+    "people",
 )
 print(collection.id)
 ```
@@ -68,7 +68,7 @@ client = AsyncMoonbase(
 
 async def main() -> None:
     collection = await client.collections.retrieve(
-        id="people",
+        "people",
     )
     print(collection.id)
 
@@ -104,7 +104,7 @@ async def main() -> None:
         http_client=DefaultAioHttpClient(),
     ) as client:
         collection = await client.collections.retrieve(
-            id="people",
+            "people",
         )
         print(collection.id)
 
@@ -205,10 +205,18 @@ from moonbase import Moonbase
 
 client = Moonbase()
 
-page = client.inbox_conversations.list(
-    filter={},
+item = client.collections.items.merge(
+    collection_id="collection_id",
+    destination={
+        "id": "1CLJt2v7opRhSWqVEtHwYT",
+        "type": "item",
+    },
+    source={
+        "id": "1CLJt2v5aNd8G5SGzEaeVU",
+        "type": "item",
+    },
 )
-print(page.data)
+print(item.destination)
 ```
 
 ## File uploads
@@ -221,7 +229,8 @@ from moonbase import Moonbase
 
 client = Moonbase()
 
-client.files.upload(
+client.inbox_messages.attachments.create(
+    inbox_message_id="inbox_message_id",
     file=Path("/path/to/file"),
 )
 ```
@@ -245,7 +254,7 @@ client = Moonbase()
 
 try:
     client.collections.retrieve(
-        id="people",
+        "people",
     )
 except moonbase.APIConnectionError as e:
     print("The server could not be reached")
@@ -290,7 +299,7 @@ client = Moonbase(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).collections.retrieve(
-    id="people",
+    "people",
 )
 ```
 
@@ -315,7 +324,7 @@ client = Moonbase(
 
 # Override per-request:
 client.with_options(timeout=5.0).collections.retrieve(
-    id="people",
+    "people",
 )
 ```
 
@@ -358,7 +367,7 @@ from moonbase import Moonbase
 
 client = Moonbase()
 response = client.collections.with_raw_response.retrieve(
-    id="people",
+    "people",
 )
 print(response.headers.get('X-My-Header'))
 
@@ -378,7 +387,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.collections.with_streaming_response.retrieve(
-    id="people",
+    "people",
 ) as response:
     print(response.headers.get("X-My-Header"))
 

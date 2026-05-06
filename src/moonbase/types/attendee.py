@@ -4,7 +4,7 @@ from typing import Optional
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .shared.pointer import Pointer
+from .item_pointer import ItemPointer
 
 __all__ = ["Attendee"]
 
@@ -27,8 +27,14 @@ class Attendee(BaseModel):
     Always `meeting_attendee` for this object.
     """
 
-    organization: Optional[Pointer] = None
-    """A lightweight reference to another resource."""
+    organization: Optional[ItemPointer] = None
+    """
+    A reference to an `Item` within a specific `Collection`, providing the context
+    needed to locate the item.
+    """
 
-    person: Optional[Pointer] = None
-    """A lightweight reference to another resource."""
+    person: Optional[ItemPointer] = None
+    """
+    A reference to an `Item` within a specific `Collection`, providing the context
+    needed to locate the item.
+    """

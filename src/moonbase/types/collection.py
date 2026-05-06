@@ -20,17 +20,17 @@ class Collection(BaseModel):
     id: str
     """Unique identifier for the object."""
 
-    core: bool
-    """
-    If `true`, this is one of the foundational collections (People, Organizations,
-    Deals, or Tasks).
-    """
-
     created_at: datetime
     """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
 
     fields: List[Field]
     """A list of `Field` objects that define the schema for items in this collection."""
+
+    kind: Literal["system", "form", "custom"]
+    """
+    `system` collections are managed by Moonbase (e.g., People, Organizations),
+    `form` collections back a Form, and `custom` collections are user-created.
+    """
 
     name: str
     """The user-facing name of the collection (e.g., “Organizations”)."""

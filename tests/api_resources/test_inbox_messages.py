@@ -11,6 +11,7 @@ from moonbase import Moonbase, AsyncMoonbase
 from tests.utils import assert_matches_type
 from moonbase.types import (
     EmailMessage,
+    EmailMessagePointer,
 )
 from moonbase.pagination import SyncCursorPage, AsyncCursorPage
 
@@ -213,21 +214,18 @@ class TestInboxMessages:
     @parametrize
     def test_method_list(self, client: Moonbase) -> None:
         inbox_message = client.inbox_messages.list()
-        assert_matches_type(SyncCursorPage[EmailMessage], inbox_message, path=["response"])
+        assert_matches_type(SyncCursorPage[EmailMessagePointer], inbox_message, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Moonbase) -> None:
         inbox_message = client.inbox_messages.list(
             after="after",
             before="before",
-            filter={
-                "conversation_id": {"eq": "eq"},
-                "inbox_id": {"eq": "eq"},
-            },
-            include=["addresses"],
+            conversation_id={"eq": "eq"},
+            inbox_id={"eq": "eq"},
             limit=1,
         )
-        assert_matches_type(SyncCursorPage[EmailMessage], inbox_message, path=["response"])
+        assert_matches_type(SyncCursorPage[EmailMessagePointer], inbox_message, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Moonbase) -> None:
@@ -236,7 +234,7 @@ class TestInboxMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         inbox_message = response.parse()
-        assert_matches_type(SyncCursorPage[EmailMessage], inbox_message, path=["response"])
+        assert_matches_type(SyncCursorPage[EmailMessagePointer], inbox_message, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Moonbase) -> None:
@@ -245,7 +243,7 @@ class TestInboxMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             inbox_message = response.parse()
-            assert_matches_type(SyncCursorPage[EmailMessage], inbox_message, path=["response"])
+            assert_matches_type(SyncCursorPage[EmailMessagePointer], inbox_message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -486,21 +484,18 @@ class TestAsyncInboxMessages:
     @parametrize
     async def test_method_list(self, async_client: AsyncMoonbase) -> None:
         inbox_message = await async_client.inbox_messages.list()
-        assert_matches_type(AsyncCursorPage[EmailMessage], inbox_message, path=["response"])
+        assert_matches_type(AsyncCursorPage[EmailMessagePointer], inbox_message, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncMoonbase) -> None:
         inbox_message = await async_client.inbox_messages.list(
             after="after",
             before="before",
-            filter={
-                "conversation_id": {"eq": "eq"},
-                "inbox_id": {"eq": "eq"},
-            },
-            include=["addresses"],
+            conversation_id={"eq": "eq"},
+            inbox_id={"eq": "eq"},
             limit=1,
         )
-        assert_matches_type(AsyncCursorPage[EmailMessage], inbox_message, path=["response"])
+        assert_matches_type(AsyncCursorPage[EmailMessagePointer], inbox_message, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncMoonbase) -> None:
@@ -509,7 +504,7 @@ class TestAsyncInboxMessages:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         inbox_message = await response.parse()
-        assert_matches_type(AsyncCursorPage[EmailMessage], inbox_message, path=["response"])
+        assert_matches_type(AsyncCursorPage[EmailMessagePointer], inbox_message, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncMoonbase) -> None:
@@ -518,7 +513,7 @@ class TestAsyncInboxMessages:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             inbox_message = await response.parse()
-            assert_matches_type(AsyncCursorPage[EmailMessage], inbox_message, path=["response"])
+            assert_matches_type(AsyncCursorPage[EmailMessagePointer], inbox_message, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -16,11 +16,7 @@ class AgentSettingRetrieveResponse(BaseModel):
 
     updated_at: datetime
 
-    deal_summary_model: Optional[str] = None
-
     deal_summary_prompt: Optional[str] = None
-
-    meeting_agent_model: Optional[str] = None
 
     meeting_prebrief_prompt: Optional[str] = None
 

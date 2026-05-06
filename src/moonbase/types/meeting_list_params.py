@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["MeetingListParams", "Filter", "FilterICalUid"]
+__all__ = ["MeetingListParams", "ICalUid"]
 
 
 class MeetingListParams(TypedDict, total=False):
@@ -22,7 +22,7 @@ class MeetingListParams(TypedDict, total=False):
     previous page of results.
     """
 
-    filter: Filter
+    i_cal_uid: ICalUid
 
     limit: int
     """Maximum number of items to return per page.
@@ -31,9 +31,5 @@ class MeetingListParams(TypedDict, total=False):
     """
 
 
-class FilterICalUid(TypedDict, total=False):
+class ICalUid(TypedDict, total=False):
     eq: str
-
-
-class Filter(TypedDict, total=False):
-    i_cal_uid: FilterICalUid

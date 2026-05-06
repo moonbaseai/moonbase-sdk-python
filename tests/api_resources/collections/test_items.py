@@ -9,7 +9,7 @@ import pytest
 
 from moonbase import Moonbase, AsyncMoonbase
 from tests.utils import assert_matches_type
-from moonbase.types import Item
+from moonbase.types import Item, ItemPointer
 from moonbase.pagination import SyncCursorPage, AsyncCursorPage
 from moonbase.types.collections import (
     ItemSearchResponse,
@@ -258,7 +258,7 @@ class TestItems:
         item = client.collections.items.list(
             collection_id="collection_id",
         )
-        assert_matches_type(SyncCursorPage[Item], item, path=["response"])
+        assert_matches_type(SyncCursorPage[ItemPointer], item, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Moonbase) -> None:
@@ -266,11 +266,10 @@ class TestItems:
             collection_id="collection_id",
             after="after",
             before="before",
-            include=["string"],
             limit=1,
             sort=["string"],
         )
-        assert_matches_type(SyncCursorPage[Item], item, path=["response"])
+        assert_matches_type(SyncCursorPage[ItemPointer], item, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Moonbase) -> None:
@@ -281,7 +280,7 @@ class TestItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         item = response.parse()
-        assert_matches_type(SyncCursorPage[Item], item, path=["response"])
+        assert_matches_type(SyncCursorPage[ItemPointer], item, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Moonbase) -> None:
@@ -292,7 +291,7 @@ class TestItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             item = response.parse()
-            assert_matches_type(SyncCursorPage[Item], item, path=["response"])
+            assert_matches_type(SyncCursorPage[ItemPointer], item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -349,6 +348,76 @@ class TestItems:
             client.collections.items.with_raw_response.delete(
                 id="",
                 collection_id="collection_id",
+            )
+
+    @parametrize
+    def test_method_merge(self, client: Moonbase) -> None:
+        item = client.collections.items.merge(
+            collection_id="collection_id",
+            destination={
+                "id": "1CLJt2v7opRhSWqVEtHwYT",
+                "type": "item",
+            },
+            source={
+                "id": "1CLJt2v5aNd8G5SGzEaeVU",
+                "type": "item",
+            },
+        )
+        assert_matches_type(Item, item, path=["response"])
+
+    @parametrize
+    def test_raw_response_merge(self, client: Moonbase) -> None:
+        response = client.collections.items.with_raw_response.merge(
+            collection_id="collection_id",
+            destination={
+                "id": "1CLJt2v7opRhSWqVEtHwYT",
+                "type": "item",
+            },
+            source={
+                "id": "1CLJt2v5aNd8G5SGzEaeVU",
+                "type": "item",
+            },
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        item = response.parse()
+        assert_matches_type(Item, item, path=["response"])
+
+    @parametrize
+    def test_streaming_response_merge(self, client: Moonbase) -> None:
+        with client.collections.items.with_streaming_response.merge(
+            collection_id="collection_id",
+            destination={
+                "id": "1CLJt2v7opRhSWqVEtHwYT",
+                "type": "item",
+            },
+            source={
+                "id": "1CLJt2v5aNd8G5SGzEaeVU",
+                "type": "item",
+            },
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            item = response.parse()
+            assert_matches_type(Item, item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_merge(self, client: Moonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection_id` but received ''"):
+            client.collections.items.with_raw_response.merge(
+                collection_id="",
+                destination={
+                    "id": "1CLJt2v7opRhSWqVEtHwYT",
+                    "type": "item",
+                },
+                source={
+                    "id": "1CLJt2v5aNd8G5SGzEaeVU",
+                    "type": "item",
+                },
             )
 
     @parametrize
@@ -818,7 +887,7 @@ class TestAsyncItems:
         item = await async_client.collections.items.list(
             collection_id="collection_id",
         )
-        assert_matches_type(AsyncCursorPage[Item], item, path=["response"])
+        assert_matches_type(AsyncCursorPage[ItemPointer], item, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncMoonbase) -> None:
@@ -826,11 +895,10 @@ class TestAsyncItems:
             collection_id="collection_id",
             after="after",
             before="before",
-            include=["string"],
             limit=1,
             sort=["string"],
         )
-        assert_matches_type(AsyncCursorPage[Item], item, path=["response"])
+        assert_matches_type(AsyncCursorPage[ItemPointer], item, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncMoonbase) -> None:
@@ -841,7 +909,7 @@ class TestAsyncItems:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         item = await response.parse()
-        assert_matches_type(AsyncCursorPage[Item], item, path=["response"])
+        assert_matches_type(AsyncCursorPage[ItemPointer], item, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncMoonbase) -> None:
@@ -852,7 +920,7 @@ class TestAsyncItems:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             item = await response.parse()
-            assert_matches_type(AsyncCursorPage[Item], item, path=["response"])
+            assert_matches_type(AsyncCursorPage[ItemPointer], item, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -909,6 +977,76 @@ class TestAsyncItems:
             await async_client.collections.items.with_raw_response.delete(
                 id="",
                 collection_id="collection_id",
+            )
+
+    @parametrize
+    async def test_method_merge(self, async_client: AsyncMoonbase) -> None:
+        item = await async_client.collections.items.merge(
+            collection_id="collection_id",
+            destination={
+                "id": "1CLJt2v7opRhSWqVEtHwYT",
+                "type": "item",
+            },
+            source={
+                "id": "1CLJt2v5aNd8G5SGzEaeVU",
+                "type": "item",
+            },
+        )
+        assert_matches_type(Item, item, path=["response"])
+
+    @parametrize
+    async def test_raw_response_merge(self, async_client: AsyncMoonbase) -> None:
+        response = await async_client.collections.items.with_raw_response.merge(
+            collection_id="collection_id",
+            destination={
+                "id": "1CLJt2v7opRhSWqVEtHwYT",
+                "type": "item",
+            },
+            source={
+                "id": "1CLJt2v5aNd8G5SGzEaeVU",
+                "type": "item",
+            },
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        item = await response.parse()
+        assert_matches_type(Item, item, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_merge(self, async_client: AsyncMoonbase) -> None:
+        async with async_client.collections.items.with_streaming_response.merge(
+            collection_id="collection_id",
+            destination={
+                "id": "1CLJt2v7opRhSWqVEtHwYT",
+                "type": "item",
+            },
+            source={
+                "id": "1CLJt2v5aNd8G5SGzEaeVU",
+                "type": "item",
+            },
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            item = await response.parse()
+            assert_matches_type(Item, item, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_merge(self, async_client: AsyncMoonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `collection_id` but received ''"):
+            await async_client.collections.items.with_raw_response.merge(
+                collection_id="",
+                destination={
+                    "id": "1CLJt2v7opRhSWqVEtHwYT",
+                    "type": "item",
+                },
+                source={
+                    "id": "1CLJt2v5aNd8G5SGzEaeVU",
+                    "type": "item",
+                },
             )
 
     @parametrize

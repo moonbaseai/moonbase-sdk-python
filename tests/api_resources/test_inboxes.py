@@ -21,22 +21,14 @@ class TestInboxes:
     @parametrize
     def test_method_retrieve(self, client: Moonbase) -> None:
         inbox = client.inboxes.retrieve(
-            id="id",
-        )
-        assert_matches_type(Inbox, inbox, path=["response"])
-
-    @parametrize
-    def test_method_retrieve_with_all_params(self, client: Moonbase) -> None:
-        inbox = client.inboxes.retrieve(
-            id="id",
-            include=["tagsets"],
+            "id",
         )
         assert_matches_type(Inbox, inbox, path=["response"])
 
     @parametrize
     def test_raw_response_retrieve(self, client: Moonbase) -> None:
         response = client.inboxes.with_raw_response.retrieve(
-            id="id",
+            "id",
         )
 
         assert response.is_closed is True
@@ -47,7 +39,7 @@ class TestInboxes:
     @parametrize
     def test_streaming_response_retrieve(self, client: Moonbase) -> None:
         with client.inboxes.with_streaming_response.retrieve(
-            id="id",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,7 +53,7 @@ class TestInboxes:
     def test_path_params_retrieve(self, client: Moonbase) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.inboxes.with_raw_response.retrieve(
-                id="",
+                "",
             )
 
     @parametrize
@@ -74,7 +66,6 @@ class TestInboxes:
         inbox = client.inboxes.list(
             after="after",
             before="before",
-            include=["tagsets"],
             limit=1,
         )
         assert_matches_type(SyncCursorPage[Inbox], inbox, path=["response"])
@@ -108,22 +99,14 @@ class TestAsyncInboxes:
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncMoonbase) -> None:
         inbox = await async_client.inboxes.retrieve(
-            id="id",
-        )
-        assert_matches_type(Inbox, inbox, path=["response"])
-
-    @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncMoonbase) -> None:
-        inbox = await async_client.inboxes.retrieve(
-            id="id",
-            include=["tagsets"],
+            "id",
         )
         assert_matches_type(Inbox, inbox, path=["response"])
 
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncMoonbase) -> None:
         response = await async_client.inboxes.with_raw_response.retrieve(
-            id="id",
+            "id",
         )
 
         assert response.is_closed is True
@@ -134,7 +117,7 @@ class TestAsyncInboxes:
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncMoonbase) -> None:
         async with async_client.inboxes.with_streaming_response.retrieve(
-            id="id",
+            "id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -148,7 +131,7 @@ class TestAsyncInboxes:
     async def test_path_params_retrieve(self, async_client: AsyncMoonbase) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.inboxes.with_raw_response.retrieve(
-                id="",
+                "",
             )
 
     @parametrize
@@ -161,7 +144,6 @@ class TestAsyncInboxes:
         inbox = await async_client.inboxes.list(
             after="after",
             before="before",
-            include=["tagsets"],
             limit=1,
         )
         assert_matches_type(AsyncCursorPage[Inbox], inbox, path=["response"])

@@ -12,6 +12,6 @@ class FunnelStepValue(BaseModel):
     """Funnel step value"""
 
     data: FunnelStep
-    """A specific funnel step, as configured on the Funnel"""
+    """A specific funnel step, as configured on the Funnel."""
 
     type: Literal["value/funnel_step"]

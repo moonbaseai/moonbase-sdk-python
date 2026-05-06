@@ -7,6 +7,7 @@ from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
+from .shared_params.tag_pointer_param import TagPointerParam
 
 __all__ = ["CallUpsertParams", "Participant", "Recording", "Transcript", "TranscriptCue"]
 
@@ -41,6 +42,12 @@ class CallUpsertParams(TypedDict, total=False):
 
     recordings: Iterable[Recording]
     """Any recordings associated with the call."""
+
+    tags: Iterable[TagPointerParam]
+    """Optional list of tag pointers to assign to the call.
+
+    If omitted, existing tags are unchanged. Pass an empty array to clear tags.
+    """
 
     transcript: Transcript
     """A transcript of the call."""

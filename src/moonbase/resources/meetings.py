@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import List, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -21,6 +21,8 @@ from .._response import (
 from ..pagination import SyncCursorPage, AsyncCursorPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.meeting import Meeting
+from ..types.meeting_pointer import MeetingPointer
+from ..types.shared_params.tag_pointer_param import TagPointerParam
 
 __all__ = ["MeetingsResource", "AsyncMeetingsResource"]
 
@@ -93,6 +95,7 @@ class MeetingsResource(SyncAPIResource):
         id: str,
         *,
         recording: meeting_update_params.Recording | Omit = omit,
+        tags: Iterable[TagPointerParam] | Omit = omit,
         transcript: meeting_update_params.Transcript | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -102,10 +105,13 @@ class MeetingsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Meeting:
         """
-        Adds a transcript or recording to an existing meeting.
+        Adds a transcript, recording, or tags to an existing meeting.
 
         Args:
           recording: A video recording of the meeting.
+
+          tags: Optional list of tag pointers to assign to the meeting. If omitted, existing
+              tags are unchanged. Pass an empty array to clear tags.
 
           transcript: The meeting transcript.
 
@@ -124,6 +130,7 @@ class MeetingsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "recording": recording,
+                    "tags": tags,
                     "transcript": transcript,
                 },
                 meeting_update_params.MeetingUpdateParams,
@@ -139,7 +146,7 @@ class MeetingsResource(SyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
-        filter: meeting_list_params.Filter | Omit = omit,
+        i_cal_uid: meeting_list_params.ICalUid | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -147,7 +154,7 @@ class MeetingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncCursorPage[Meeting]:
+    ) -> SyncCursorPage[MeetingPointer]:
         """
         Returns a list of meetings.
 
@@ -173,7 +180,7 @@ class MeetingsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/meetings",
-            page=SyncCursorPage[Meeting],
+            page=SyncCursorPage[MeetingPointer],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -183,13 +190,13 @@ class MeetingsResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "filter": filter,
+                        "i_cal_uid": i_cal_uid,
                         "limit": limit,
                     },
                     meeting_list_params.MeetingListParams,
                 ),
             ),
-            model=Meeting,
+            model=MeetingPointer,
         )
 
 
@@ -261,6 +268,7 @@ class AsyncMeetingsResource(AsyncAPIResource):
         id: str,
         *,
         recording: meeting_update_params.Recording | Omit = omit,
+        tags: Iterable[TagPointerParam] | Omit = omit,
         transcript: meeting_update_params.Transcript | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -270,10 +278,13 @@ class AsyncMeetingsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Meeting:
         """
-        Adds a transcript or recording to an existing meeting.
+        Adds a transcript, recording, or tags to an existing meeting.
 
         Args:
           recording: A video recording of the meeting.
+
+          tags: Optional list of tag pointers to assign to the meeting. If omitted, existing
+              tags are unchanged. Pass an empty array to clear tags.
 
           transcript: The meeting transcript.
 
@@ -292,6 +303,7 @@ class AsyncMeetingsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "recording": recording,
+                    "tags": tags,
                     "transcript": transcript,
                 },
                 meeting_update_params.MeetingUpdateParams,
@@ -307,7 +319,7 @@ class AsyncMeetingsResource(AsyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
-        filter: meeting_list_params.Filter | Omit = omit,
+        i_cal_uid: meeting_list_params.ICalUid | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -315,7 +327,7 @@ class AsyncMeetingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Meeting, AsyncCursorPage[Meeting]]:
+    ) -> AsyncPaginator[MeetingPointer, AsyncCursorPage[MeetingPointer]]:
         """
         Returns a list of meetings.
 
@@ -341,7 +353,7 @@ class AsyncMeetingsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/meetings",
-            page=AsyncCursorPage[Meeting],
+            page=AsyncCursorPage[MeetingPointer],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -351,13 +363,13 @@ class AsyncMeetingsResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "filter": filter,
+                        "i_cal_uid": i_cal_uid,
                         "limit": limit,
                     },
                     meeting_list_params.MeetingListParams,
                 ),
             ),
-            model=Meeting,
+            model=MeetingPointer,
         )
 
 

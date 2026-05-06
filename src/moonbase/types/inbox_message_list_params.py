@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict
 
-__all__ = ["InboxMessageListParams", "Filter", "FilterConversationID", "FilterInboxID"]
+__all__ = ["InboxMessageListParams", "ConversationID", "InboxID"]
 
 
 class InboxMessageListParams(TypedDict, total=False):
@@ -23,13 +22,9 @@ class InboxMessageListParams(TypedDict, total=False):
     previous page of results.
     """
 
-    filter: Filter
+    conversation_id: ConversationID
 
-    include: List[Literal["addresses", "attachments", "conversation"]]
-    """Specifies which related objects to include in the response.
-
-    Valid options are `addresses`, `attachments`, and `conversation`.
-    """
+    inbox_id: InboxID
 
     limit: int
     """Maximum number of items to return per page.
@@ -38,15 +33,9 @@ class InboxMessageListParams(TypedDict, total=False):
     """
 
 
-class FilterConversationID(TypedDict, total=False):
+class ConversationID(TypedDict, total=False):
     eq: str
 
 
-class FilterInboxID(TypedDict, total=False):
+class InboxID(TypedDict, total=False):
     eq: str
-
-
-class Filter(TypedDict, total=False):
-    conversation_id: FilterConversationID
-
-    inbox_id: FilterInboxID

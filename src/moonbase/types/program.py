@@ -7,39 +7,9 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .program_activity_metrics import ProgramActivityMetrics
 
-__all__ = ["Program", "ActivityMetrics"]
-
-
-class ActivityMetrics(BaseModel):
-    """A `ProgramActivityMetrics` object summarizing engagement for this program.
-
-    **Note:** Only present when requested using the `include` query parameter.
-    """
-
-    bounced: int
-    """The number of emails that could not be delivered."""
-
-    clicked: int
-    """The number of recipients who clicked at least one link."""
-
-    complained: int
-    """The number of recipients who marked the email as spam."""
-
-    failed: int
-    """The number of emails that failed to send due to a technical issue."""
-
-    opened: int
-    """The number of recipients who opened the email."""
-
-    sent: int
-    """The total number of emails successfully sent."""
-
-    shielded: int
-    """The number of emails blocked by delivery protection rules."""
-
-    unsubscribed: int
-    """The number of recipients who unsubscribed."""
+__all__ = ["Program"]
 
 
 class Program(BaseModel):
@@ -78,7 +48,7 @@ class Program(BaseModel):
     updated_at: datetime
     """Time at which the object was last updated, as an ISO 8601 timestamp in UTC."""
 
-    activity_metrics: Optional[ActivityMetrics] = None
+    activity_metrics: Optional[ProgramActivityMetrics] = None
     """A `ProgramActivityMetrics` object summarizing engagement for this program.
 
     **Note:** Only present when requested using the `include` query parameter.

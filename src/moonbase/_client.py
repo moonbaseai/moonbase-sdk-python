@@ -55,6 +55,7 @@ if TYPE_CHECKING:
         forms,
         notes,
         views,
+        funnels,
         inboxes,
         tagsets,
         meetings,
@@ -73,6 +74,7 @@ if TYPE_CHECKING:
     from .resources.files import FilesResource, AsyncFilesResource
     from .resources.forms import FormsResource, AsyncFormsResource
     from .resources.notes import NotesResource, AsyncNotesResource
+    from .resources.funnels import FunnelsResource, AsyncFunnelsResource
     from .resources.inboxes import InboxesResource, AsyncInboxesResource
     from .resources.tagsets import TagsetsResource, AsyncTagsetsResource
     from .resources.meetings import MeetingsResource, AsyncMeetingsResource
@@ -81,12 +83,12 @@ if TYPE_CHECKING:
     from .resources.views.views import ViewsResource, AsyncViewsResource
     from .resources.unsubscribes import UnsubscribesResource, AsyncUnsubscribesResource
     from .resources.agent_settings import AgentSettingsResource, AsyncAgentSettingsResource
-    from .resources.inbox_messages import InboxMessagesResource, AsyncInboxMessagesResource
     from .resources.program_messages import ProgramMessagesResource, AsyncProgramMessagesResource
     from .resources.program_templates import ProgramTemplatesResource, AsyncProgramTemplatesResource
     from .resources.webhook_endpoints import WebhookEndpointsResource, AsyncWebhookEndpointsResource
     from .resources.inbox_conversations import InboxConversationsResource, AsyncInboxConversationsResource
     from .resources.collections.collections import CollectionsResource, AsyncCollectionsResource
+    from .resources.inbox_messages.inbox_messages import InboxMessagesResource, AsyncInboxMessagesResource
 
 __all__ = [
     "Timeout",
@@ -165,6 +167,13 @@ class Moonbase(SyncAPIClient):
         )
 
     @cached_property
+    def funnels(self) -> FunnelsResource:
+        """Manage your collections and items"""
+        from .resources.funnels import FunnelsResource
+
+        return FunnelsResource(self)
+
+    @cached_property
     def collections(self) -> CollectionsResource:
         """Manage your collections and items"""
         from .resources.collections import CollectionsResource
@@ -201,7 +210,7 @@ class Moonbase(SyncAPIClient):
 
     @cached_property
     def tagsets(self) -> TagsetsResource:
-        """Manage your inboxes, conversations, and messages"""
+        """Manage your meetings, files, and notes"""
         from .resources.tagsets import TagsetsResource
 
         return TagsetsResource(self)
@@ -379,10 +388,10 @@ class Moonbase(SyncAPIClient):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SearchResponse:
         """
-        Returns items that match the search query.
+        Returns items and files that match the search query.
 
         Args:
-          query: The search text to match against items.
+          query: The search text to match against items and files.
 
           extra_headers: Send extra headers
 
@@ -503,6 +512,13 @@ class AsyncMoonbase(AsyncAPIClient):
         )
 
     @cached_property
+    def funnels(self) -> AsyncFunnelsResource:
+        """Manage your collections and items"""
+        from .resources.funnels import AsyncFunnelsResource
+
+        return AsyncFunnelsResource(self)
+
+    @cached_property
     def collections(self) -> AsyncCollectionsResource:
         """Manage your collections and items"""
         from .resources.collections import AsyncCollectionsResource
@@ -539,7 +555,7 @@ class AsyncMoonbase(AsyncAPIClient):
 
     @cached_property
     def tagsets(self) -> AsyncTagsetsResource:
-        """Manage your inboxes, conversations, and messages"""
+        """Manage your meetings, files, and notes"""
         from .resources.tagsets import AsyncTagsetsResource
 
         return AsyncTagsetsResource(self)
@@ -717,10 +733,10 @@ class AsyncMoonbase(AsyncAPIClient):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SearchResponse:
         """
-        Returns items that match the search query.
+        Returns items and files that match the search query.
 
         Args:
-          query: The search text to match against items.
+          query: The search text to match against items and files.
 
           extra_headers: Send extra headers
 
@@ -787,6 +803,13 @@ class MoonbaseWithRawResponse:
         )
 
     @cached_property
+    def funnels(self) -> funnels.FunnelsResourceWithRawResponse:
+        """Manage your collections and items"""
+        from .resources.funnels import FunnelsResourceWithRawResponse
+
+        return FunnelsResourceWithRawResponse(self._client.funnels)
+
+    @cached_property
     def collections(self) -> collections.CollectionsResourceWithRawResponse:
         """Manage your collections and items"""
         from .resources.collections import CollectionsResourceWithRawResponse
@@ -823,7 +846,7 @@ class MoonbaseWithRawResponse:
 
     @cached_property
     def tagsets(self) -> tagsets.TagsetsResourceWithRawResponse:
-        """Manage your inboxes, conversations, and messages"""
+        """Manage your meetings, files, and notes"""
         from .resources.tagsets import TagsetsResourceWithRawResponse
 
         return TagsetsResourceWithRawResponse(self._client.tagsets)
@@ -922,6 +945,13 @@ class AsyncMoonbaseWithRawResponse:
         )
 
     @cached_property
+    def funnels(self) -> funnels.AsyncFunnelsResourceWithRawResponse:
+        """Manage your collections and items"""
+        from .resources.funnels import AsyncFunnelsResourceWithRawResponse
+
+        return AsyncFunnelsResourceWithRawResponse(self._client.funnels)
+
+    @cached_property
     def collections(self) -> collections.AsyncCollectionsResourceWithRawResponse:
         """Manage your collections and items"""
         from .resources.collections import AsyncCollectionsResourceWithRawResponse
@@ -958,7 +988,7 @@ class AsyncMoonbaseWithRawResponse:
 
     @cached_property
     def tagsets(self) -> tagsets.AsyncTagsetsResourceWithRawResponse:
-        """Manage your inboxes, conversations, and messages"""
+        """Manage your meetings, files, and notes"""
         from .resources.tagsets import AsyncTagsetsResourceWithRawResponse
 
         return AsyncTagsetsResourceWithRawResponse(self._client.tagsets)
@@ -1057,6 +1087,13 @@ class MoonbaseWithStreamedResponse:
         )
 
     @cached_property
+    def funnels(self) -> funnels.FunnelsResourceWithStreamingResponse:
+        """Manage your collections and items"""
+        from .resources.funnels import FunnelsResourceWithStreamingResponse
+
+        return FunnelsResourceWithStreamingResponse(self._client.funnels)
+
+    @cached_property
     def collections(self) -> collections.CollectionsResourceWithStreamingResponse:
         """Manage your collections and items"""
         from .resources.collections import CollectionsResourceWithStreamingResponse
@@ -1093,7 +1130,7 @@ class MoonbaseWithStreamedResponse:
 
     @cached_property
     def tagsets(self) -> tagsets.TagsetsResourceWithStreamingResponse:
-        """Manage your inboxes, conversations, and messages"""
+        """Manage your meetings, files, and notes"""
         from .resources.tagsets import TagsetsResourceWithStreamingResponse
 
         return TagsetsResourceWithStreamingResponse(self._client.tagsets)
@@ -1192,6 +1229,13 @@ class AsyncMoonbaseWithStreamedResponse:
         )
 
     @cached_property
+    def funnels(self) -> funnels.AsyncFunnelsResourceWithStreamingResponse:
+        """Manage your collections and items"""
+        from .resources.funnels import AsyncFunnelsResourceWithStreamingResponse
+
+        return AsyncFunnelsResourceWithStreamingResponse(self._client.funnels)
+
+    @cached_property
     def collections(self) -> collections.AsyncCollectionsResourceWithStreamingResponse:
         """Manage your collections and items"""
         from .resources.collections import AsyncCollectionsResourceWithStreamingResponse
@@ -1228,7 +1272,7 @@ class AsyncMoonbaseWithStreamedResponse:
 
     @cached_property
     def tagsets(self) -> tagsets.AsyncTagsetsResourceWithStreamingResponse:
-        """Manage your inboxes, conversations, and messages"""
+        """Manage your meetings, files, and notes"""
         from .resources.tagsets import AsyncTagsetsResourceWithStreamingResponse
 
         return AsyncTagsetsResourceWithStreamingResponse(self._client.tagsets)

@@ -6,8 +6,8 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 from .item_pointer import ItemPointer
-from .shared.pointer import Pointer
 from .shared.formatted_text import FormattedText
+from .note_association_pointer import NoteAssociationPointer
 
 __all__ = ["Note"]
 
@@ -20,7 +20,7 @@ class Note(BaseModel):
     id: str
     """Unique identifier for the object."""
 
-    associations: List[Pointer]
+    associations: List[NoteAssociationPointer]
     """A list of items, meetings or calls this note is associated with."""
 
     body: FormattedText

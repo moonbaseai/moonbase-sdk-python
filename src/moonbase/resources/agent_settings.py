@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import httpx
 
-from .._types import Body, Query, Headers, NotGiven, not_given
+from ..types import agent_setting_update_params
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -14,6 +16,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
+from ..types.agent_setting_update_response import AgentSettingUpdateResponse
 from ..types.agent_setting_retrieve_response import AgentSettingRetrieveResponse
 
 __all__ = ["AgentSettingsResource", "AsyncAgentSettingsResource"]
@@ -57,6 +60,49 @@ class AgentSettingsResource(SyncAPIResource):
             cast_to=AgentSettingRetrieveResponse,
         )
 
+    def update(
+        self,
+        *,
+        deal_summary_prompt: str | Omit = omit,
+        meeting_prebrief_prompt: str | Omit = omit,
+        meeting_summary_prompt: str | Omit = omit,
+        meeting_web_search: bool | Omit = omit,
+        organization_info: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AgentSettingUpdateResponse:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._patch(
+            "/agent_settings",
+            body=maybe_transform(
+                {
+                    "deal_summary_prompt": deal_summary_prompt,
+                    "meeting_prebrief_prompt": meeting_prebrief_prompt,
+                    "meeting_summary_prompt": meeting_summary_prompt,
+                    "meeting_web_search": meeting_web_search,
+                    "organization_info": organization_info,
+                },
+                agent_setting_update_params.AgentSettingUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AgentSettingUpdateResponse,
+        )
+
 
 class AsyncAgentSettingsResource(AsyncAPIResource):
     @cached_property
@@ -96,6 +142,49 @@ class AsyncAgentSettingsResource(AsyncAPIResource):
             cast_to=AgentSettingRetrieveResponse,
         )
 
+    async def update(
+        self,
+        *,
+        deal_summary_prompt: str | Omit = omit,
+        meeting_prebrief_prompt: str | Omit = omit,
+        meeting_summary_prompt: str | Omit = omit,
+        meeting_web_search: bool | Omit = omit,
+        organization_info: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AgentSettingUpdateResponse:
+        """
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._patch(
+            "/agent_settings",
+            body=await async_maybe_transform(
+                {
+                    "deal_summary_prompt": deal_summary_prompt,
+                    "meeting_prebrief_prompt": meeting_prebrief_prompt,
+                    "meeting_summary_prompt": meeting_summary_prompt,
+                    "meeting_web_search": meeting_web_search,
+                    "organization_info": organization_info,
+                },
+                agent_setting_update_params.AgentSettingUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=AgentSettingUpdateResponse,
+        )
+
 
 class AgentSettingsResourceWithRawResponse:
     def __init__(self, agent_settings: AgentSettingsResource) -> None:
@@ -103,6 +192,9 @@ class AgentSettingsResourceWithRawResponse:
 
         self.retrieve = to_raw_response_wrapper(
             agent_settings.retrieve,
+        )
+        self.update = to_raw_response_wrapper(
+            agent_settings.update,
         )
 
 
@@ -113,6 +205,9 @@ class AsyncAgentSettingsResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             agent_settings.retrieve,
         )
+        self.update = async_to_raw_response_wrapper(
+            agent_settings.update,
+        )
 
 
 class AgentSettingsResourceWithStreamingResponse:
@@ -122,6 +217,9 @@ class AgentSettingsResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             agent_settings.retrieve,
         )
+        self.update = to_streamed_response_wrapper(
+            agent_settings.update,
+        )
 
 
 class AsyncAgentSettingsResourceWithStreamingResponse:
@@ -130,4 +228,7 @@ class AsyncAgentSettingsResourceWithStreamingResponse:
 
         self.retrieve = async_to_streamed_response_wrapper(
             agent_settings.retrieve,
+        )
+        self.update = async_to_streamed_response_wrapper(
+            agent_settings.update,
         )

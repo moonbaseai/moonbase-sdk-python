@@ -13,6 +13,28 @@ class FunnelStep(BaseModel):
     id: str
     """Unique identifier for the object."""
 
+    color: Literal[
+        "amber",
+        "blue",
+        "cyan",
+        "emerald",
+        "fuchsia",
+        "green",
+        "indigo",
+        "lime",
+        "lunar",
+        "orange",
+        "pink",
+        "purple",
+        "red",
+        "rose",
+        "sky",
+        "teal",
+        "violet",
+        "yellow",
+    ]
+    """The display color of the step."""
+
     name: str
     """The name of the step."""
 
