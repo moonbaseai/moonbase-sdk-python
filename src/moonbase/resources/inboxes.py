@@ -2,14 +2,11 @@
 
 from __future__ import annotations
 
-from typing import List
-from typing_extensions import Literal
-
 import httpx
 
-from ..types import inbox_list_params, inbox_retrieve_params
+from ..types import inbox_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -51,7 +48,6 @@ class InboxesResource(SyncAPIResource):
         self,
         id: str,
         *,
-        include: List[Literal["tagsets"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -63,9 +59,6 @@ class InboxesResource(SyncAPIResource):
         Retrieves the details of an existing inbox.
 
         Args:
-          include: Specifies which related objects to include in the response. Valid option is
-              `tagsets`.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -79,11 +72,7 @@ class InboxesResource(SyncAPIResource):
         return self._get(
             path_template("/inboxes/{id}", id=id),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"include": include}, inbox_retrieve_params.InboxRetrieveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Inbox,
         )
@@ -93,7 +82,6 @@ class InboxesResource(SyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
-        include: List[Literal["tagsets"]] | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -137,7 +125,6 @@ class InboxesResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "include": include,
                         "limit": limit,
                     },
                     inbox_list_params.InboxListParams,
@@ -173,7 +160,6 @@ class AsyncInboxesResource(AsyncAPIResource):
         self,
         id: str,
         *,
-        include: List[Literal["tagsets"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -185,9 +171,6 @@ class AsyncInboxesResource(AsyncAPIResource):
         Retrieves the details of an existing inbox.
 
         Args:
-          include: Specifies which related objects to include in the response. Valid option is
-              `tagsets`.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -201,11 +184,7 @@ class AsyncInboxesResource(AsyncAPIResource):
         return await self._get(
             path_template("/inboxes/{id}", id=id),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"include": include}, inbox_retrieve_params.InboxRetrieveParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=Inbox,
         )
@@ -215,7 +194,6 @@ class AsyncInboxesResource(AsyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
-        include: List[Literal["tagsets"]] | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -259,7 +237,6 @@ class AsyncInboxesResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "include": include,
                         "limit": limit,
                     },
                     inbox_list_params.InboxListParams,

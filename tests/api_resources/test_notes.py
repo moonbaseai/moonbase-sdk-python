@@ -32,7 +32,7 @@ class TestNotes:
             associations=[
                 {
                     "id": "id",
-                    "type": "type",
+                    "type": "call",
                 }
             ],
         )
@@ -247,7 +247,7 @@ class TestAsyncNotes:
             associations=[
                 {
                     "id": "id",
-                    "type": "type",
+                    "type": "call",
                 }
             ],
         )

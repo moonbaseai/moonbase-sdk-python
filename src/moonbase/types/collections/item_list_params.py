@@ -24,12 +24,6 @@ class ItemListParams(TypedDict, total=False):
     previous page of results.
     """
 
-    include: SequenceNotStr[str]
-    """Include only specific fields in the returned items.
-
-    Specify fields by id or key.
-    """
-
     limit: int
     """Maximum number of items to return per page.
 

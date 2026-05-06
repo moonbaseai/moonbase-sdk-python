@@ -1,76 +1,49 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
+from typing import List
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypeAlias
+from typing_extensions import Literal
 
-from .._utils import PropertyInfo
 from .._models import BaseModel
-from .item_pointer import ItemPointer
-from .shared.pointer import Pointer
-from .activity_item_merged import ActivityItemMerged
-from .activity_item_created import ActivityItemCreated
-from .activity_meeting_held import ActivityMeetingHeld
-from .activity_note_created import ActivityNoteCreated
-from .activity_call_occurred import ActivityCallOccurred
-from .activity_form_submitted import ActivityFormSubmitted
-from .activity_item_mentioned import ActivityItemMentioned
-from .activity_meeting_scheduled import ActivityMeetingScheduled
-from .activity_inbox_message_sent import ActivityInboxMessageSent
-from .activity_program_message_sent import ActivityProgramMessageSent
-from .activity_program_message_failed import ActivityProgramMessageFailed
-from .activity_program_message_opened import ActivityProgramMessageOpened
-from .activity_program_message_bounced import ActivityProgramMessageBounced
-from .activity_program_message_clicked import ActivityProgramMessageClicked
-from .activity_program_message_shielded import ActivityProgramMessageShielded
-from .activity_program_message_complained import ActivityProgramMessageComplained
-from .activity_program_message_unsubscribed import ActivityProgramMessageUnsubscribed
+from .constituent import Constituent
 
-__all__ = ["Activity", "FileCreatedActivity"]
+__all__ = ["Activity"]
 
 
-class FileCreatedActivity(BaseModel):
-    """Represents an event that occurs when a `File` is created."""
+class Activity(BaseModel):
+    """
+    The Activity object represents a specific event that has occurred, such as a meeting being scheduled or a form being submitted.
+    """
 
     id: str
     """Unique identifier for the object."""
 
-    file: Optional[Pointer] = None
-    """A lightweight reference to another resource."""
+    constituents: List[Constituent]
+    """
+    An array of entities involved along with each entity's relation to the activity.
+    """
 
     occurred_at: datetime
     """The time at which the event occurred, as an ISO 8601 timestamp in UTC."""
 
-    related_item: Optional[ItemPointer] = None
-    """
-    A reference to an `Item` within a specific `Collection`, providing the context
-    needed to locate the item.
-    """
-
-    type: Literal["activity/file_created"]
-    """The type of activity. Always `activity/file_created`."""
-
-
-Activity: TypeAlias = Annotated[
-    Union[
-        ActivityCallOccurred,
-        ActivityFormSubmitted,
-        ActivityInboxMessageSent,
-        ActivityItemCreated,
-        ActivityItemMentioned,
-        ActivityItemMerged,
-        FileCreatedActivity,
-        ActivityMeetingHeld,
-        ActivityMeetingScheduled,
-        ActivityNoteCreated,
-        ActivityProgramMessageBounced,
-        ActivityProgramMessageClicked,
-        ActivityProgramMessageComplained,
-        ActivityProgramMessageFailed,
-        ActivityProgramMessageOpened,
-        ActivityProgramMessageSent,
-        ActivityProgramMessageShielded,
-        ActivityProgramMessageUnsubscribed,
-    ],
-    PropertyInfo(discriminator="type"),
-]
+    type: Literal[
+        "activity/call_occurred",
+        "activity/file_created",
+        "activity/form_submitted",
+        "activity/inbox_message_sent",
+        "activity/item_created",
+        "activity/item_mentioned",
+        "activity/item_merged",
+        "activity/meeting_held",
+        "activity/meeting_scheduled",
+        "activity/note_created",
+        "activity/program_message_bounced",
+        "activity/program_message_clicked",
+        "activity/program_message_complained",
+        "activity/program_message_failed",
+        "activity/program_message_opened",
+        "activity/program_message_sent",
+        "activity/program_message_shielded",
+        "activity/program_message_unsubscribed",
+    ]
+    """The type of activity."""

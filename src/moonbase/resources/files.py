@@ -21,7 +21,7 @@ from .._response import (
 from ..pagination import SyncCursorPage, AsyncCursorPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.moonbase_file import MoonbaseFile
-from ..types.shared_params.pointer import Pointer
+from ..types.item_pointer_param import ItemPointerParam
 
 __all__ = ["FilesResource", "AsyncFilesResource"]
 
@@ -175,7 +175,7 @@ class FilesResource(SyncAPIResource):
         self,
         *,
         file: FileTypes,
-        associations: Iterable[Pointer] | Omit = omit,
+        associations: Iterable[ItemPointerParam] | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -376,7 +376,7 @@ class AsyncFilesResource(AsyncAPIResource):
         self,
         *,
         file: FileTypes,
-        associations: Iterable[Pointer] | Omit = omit,
+        associations: Iterable[ItemPointerParam] | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

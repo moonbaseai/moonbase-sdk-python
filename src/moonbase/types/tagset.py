@@ -5,28 +5,14 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .shared.tag import Tag
 
-__all__ = ["Tagset", "Tag"]
-
-
-class Tag(BaseModel):
-    """
-    A Tag is a label that can be applied to `Conversation` objects for organization and filtering.
-    """
-
-    id: str
-    """Unique identifier for the object."""
-
-    name: str
-    """The name of the tag."""
-
-    type: Literal["tag"]
-    """String representing the object’s type. Always `tag` for this object."""
+__all__ = ["Tagset"]
 
 
 class Tagset(BaseModel):
     """
-    A Tagset is a collection of `Tag` objects that can be applied within a specific `Inbox`.
+    A Tagset is a collection of `Tag` objects whose tags can be applied to conversations, calls, and meetings.
     """
 
     id: str

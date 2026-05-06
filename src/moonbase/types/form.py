@@ -19,6 +19,12 @@ class Form(BaseModel):
     id: str
     """Unique identifier for the object."""
 
+    business_email_required: bool
+    """
+    `true` if submissions require a business email address, blocking free and
+    disposable providers.
+    """
+
     collection: "Collection"
     """The `Collection` that submissions to this form are saved to."""
 
@@ -29,7 +35,10 @@ class Form(BaseModel):
     """The name of the form, used as the title on its public page."""
 
     pages_enabled: bool
-    """`true` if the form is available at a public URL."""
+    """
+    If `true`, a Moonbase Pages hosted page is enabled for this form, providing a
+    standalone public URL for sharing.
+    """
 
     type: Literal["form"]
     """String representing the object’s type. Always `form` for this object."""
@@ -41,7 +50,16 @@ class Form(BaseModel):
     """The public URL for the form, if `pages_enabled` is `true`."""
 
     redirect_url: Optional[str] = None
-    """An optional URL to redirect users to after a successful submission."""
+    """Optional URL the user is redirected to after a successful submission.
+
+    When unset, no redirect occurs. Stored as a Liquid template; rendered at
+    submission time with form field values under `submission.<key>` (keyed by the
+    field's `key`) plus UTM params (`utm_source`, `utm_medium`, `utm_campaign`,
+    `utm_term`, `utm_content`) automatically appended. Use the `uri_encode` filter
+    for URL-safe values, e.g.
+    `https://example.com/thanks?email={{ submission.email | uri_encode }}`. The
+    rendered URL must parse as a valid URL or the submission errors.
+    """
 
 
 from .collection import Collection

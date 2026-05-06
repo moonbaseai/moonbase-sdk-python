@@ -5,12 +5,20 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from .shared_params.tag_pointer_param import TagPointerParam
+
 __all__ = ["MeetingUpdateParams", "Recording", "Transcript", "TranscriptCue"]
 
 
 class MeetingUpdateParams(TypedDict, total=False):
     recording: Recording
     """A video recording of the meeting."""
+
+    tags: Iterable[TagPointerParam]
+    """Optional list of tag pointers to assign to the meeting.
+
+    If omitted, existing tags are unchanged. Pass an empty array to clear tags.
+    """
 
     transcript: Transcript
     """The meeting transcript."""

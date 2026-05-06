@@ -40,6 +40,14 @@ from .views import (
     ViewsResourceWithStreamingResponse,
     AsyncViewsResourceWithStreamingResponse,
 )
+from .funnels import (
+    FunnelsResource,
+    AsyncFunnelsResource,
+    FunnelsResourceWithRawResponse,
+    AsyncFunnelsResourceWithRawResponse,
+    FunnelsResourceWithStreamingResponse,
+    AsyncFunnelsResourceWithStreamingResponse,
+)
 from .inboxes import (
     InboxesResource,
     AsyncInboxesResource,
@@ -146,6 +154,12 @@ from .inbox_conversations import (
 )
 
 __all__ = [
+    "FunnelsResource",
+    "AsyncFunnelsResource",
+    "FunnelsResourceWithRawResponse",
+    "AsyncFunnelsResourceWithRawResponse",
+    "FunnelsResourceWithStreamingResponse",
+    "AsyncFunnelsResourceWithStreamingResponse",
     "CollectionsResource",
     "AsyncCollectionsResource",
     "CollectionsResourceWithRawResponse",

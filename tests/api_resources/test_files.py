@@ -142,7 +142,7 @@ class TestFiles:
             associations=[
                 {
                     "id": "id",
-                    "type": "type",
+                    "type": "item",
                 }
             ],
             name="name",
@@ -303,7 +303,7 @@ class TestAsyncFiles:
             associations=[
                 {
                     "id": "id",
-                    "type": "type",
+                    "type": "item",
                 }
             ],
             name="name",

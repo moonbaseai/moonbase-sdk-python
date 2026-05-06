@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
-
 import httpx
 
 from ..types import activity_list_params
@@ -71,15 +69,12 @@ class ActivitiesResource(SyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return cast(
-            Activity,
-            self._get(
-                path_template("/activities/{id}", id=id),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(Any, Activity),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            path_template("/activities/{id}", id=id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=Activity,
         )
 
     def list(
@@ -87,8 +82,12 @@ class ActivitiesResource(SyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
-        filter: activity_list_params.Filter | Omit = omit,
+        constituent_entity_id: activity_list_params.ConstituentEntityID | Omit = omit,
+        constituent_entity_type: activity_list_params.ConstituentEntityType | Omit = omit,
+        constituent_relation: activity_list_params.ConstituentRelation | Omit = omit,
         limit: int | Omit = omit,
+        occurred_at: activity_list_params.OccurredAt | Omit = omit,
+        type: activity_list_params.Type | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -108,10 +107,21 @@ class ActivitiesResource(SyncAPIResource):
               by this cursor. Use the cursor value from the response's metadata to fetch the
               previous page of results.
 
-          filter: Filter activities by type, date, or item.
+          constituent_entity_id: Filter activities by which entities were involved. Must be paired with
+              constituent_entity_type.
+
+          constituent_entity_type: Filter activities by which entities were involved. Must be paired with
+              constituent_entity_id.
+
+          constituent_relation: Filter activities by which entities were involved via specific relations. Must
+              be paired with constituent_entity_type and constituent_entity_id.
 
           limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
               to 20 if not specified.
+
+          occurred_at: Filter activities by when they occurred.
+
+          type: Filter activities by type.
 
           extra_headers: Send extra headers
 
@@ -133,13 +143,17 @@ class ActivitiesResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "filter": filter,
+                        "constituent_entity_id": constituent_entity_id,
+                        "constituent_entity_type": constituent_entity_type,
+                        "constituent_relation": constituent_relation,
                         "limit": limit,
+                        "occurred_at": occurred_at,
+                        "type": type,
                     },
                     activity_list_params.ActivityListParams,
                 ),
             ),
-            model=cast(Any, Activity),  # Union types cannot be passed in as arguments in the type system
+            model=Activity,
         )
 
 
@@ -190,15 +204,12 @@ class AsyncActivitiesResource(AsyncAPIResource):
         """
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
-        return cast(
-            Activity,
-            await self._get(
-                path_template("/activities/{id}", id=id),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(Any, Activity),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            path_template("/activities/{id}", id=id),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=Activity,
         )
 
     def list(
@@ -206,8 +217,12 @@ class AsyncActivitiesResource(AsyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
-        filter: activity_list_params.Filter | Omit = omit,
+        constituent_entity_id: activity_list_params.ConstituentEntityID | Omit = omit,
+        constituent_entity_type: activity_list_params.ConstituentEntityType | Omit = omit,
+        constituent_relation: activity_list_params.ConstituentRelation | Omit = omit,
         limit: int | Omit = omit,
+        occurred_at: activity_list_params.OccurredAt | Omit = omit,
+        type: activity_list_params.Type | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -227,10 +242,21 @@ class AsyncActivitiesResource(AsyncAPIResource):
               by this cursor. Use the cursor value from the response's metadata to fetch the
               previous page of results.
 
-          filter: Filter activities by type, date, or item.
+          constituent_entity_id: Filter activities by which entities were involved. Must be paired with
+              constituent_entity_type.
+
+          constituent_entity_type: Filter activities by which entities were involved. Must be paired with
+              constituent_entity_id.
+
+          constituent_relation: Filter activities by which entities were involved via specific relations. Must
+              be paired with constituent_entity_type and constituent_entity_id.
 
           limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
               to 20 if not specified.
+
+          occurred_at: Filter activities by when they occurred.
+
+          type: Filter activities by type.
 
           extra_headers: Send extra headers
 
@@ -252,13 +278,17 @@ class AsyncActivitiesResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "filter": filter,
+                        "constituent_entity_id": constituent_entity_id,
+                        "constituent_entity_type": constituent_entity_type,
+                        "constituent_relation": constituent_relation,
                         "limit": limit,
+                        "occurred_at": occurred_at,
+                        "type": type,
                     },
                     activity_list_params.ActivityListParams,
                 ),
             ),
-            model=cast(Any, Activity),  # Union types cannot be passed in as arguments in the type system
+            model=Activity,
         )
 
 

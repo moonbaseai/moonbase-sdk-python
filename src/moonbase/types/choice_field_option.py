@@ -13,6 +13,28 @@ class ChoiceFieldOption(BaseModel):
     id: str
     """Unique identifier for the option."""
 
+    color: Literal[
+        "amber",
+        "blue",
+        "cyan",
+        "emerald",
+        "fuchsia",
+        "green",
+        "indigo",
+        "lime",
+        "lunar",
+        "orange",
+        "pink",
+        "purple",
+        "red",
+        "rose",
+        "sky",
+        "teal",
+        "violet",
+        "yellow",
+    ]
+    """The color of the option."""
+
     name: str
     """The human-readable text displayed for this option."""
 

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import TypeAlias
 
 from .value_param import ValueParam
 from .geo_value_param import GeoValueParam
@@ -18,70 +18,15 @@ from .integer_value_param import IntegerValueParam
 from .datetime_value_param import DatetimeValueParam
 from .monetary_value_param import MonetaryValueParam
 from .relation_value_param import RelationValueParam
+from .social_x_value_param import SocialXValueParam
 from .percentage_value_param import PercentageValueParam
 from .telephone_number_param import TelephoneNumberParam
 from .funnel_step_value_param import FunnelStepValueParam
 from .multi_line_text_value_param import MultiLineTextValueParam
 from .single_line_text_value_param import SingleLineTextValueParam
+from .social_linked_in_value_param import SocialLinkedInValueParam
 
-__all__ = [
-    "FieldValueParam",
-    "SocialXValueParam",
-    "SocialXValueParamData",
-    "SocialLinkedInValueParam",
-    "SocialLinkedInValueParamData",
-]
-
-
-class SocialXValueParamData(TypedDict, total=False):
-    """
-    Social media profile information including both the full URL and extracted username.
-    """
-
-    url: str
-    """The full URL to the X profile, starting with 'https://x.com/'"""
-
-    username: str
-    """
-    The X username, up to 15 characters long, containing only lowercase letters
-    (a-z), uppercase letters (A-Z), numbers (0-9), and underscores (\\__). Does not
-    include the '@' symbol prefix.
-    """
-
-
-class SocialXValueParam(TypedDict, total=False):
-    """The social media profile for the X (formerly Twitter) platform"""
-
-    data: Required[SocialXValueParamData]
-    """
-    Social media profile information including both the full URL and extracted
-    username.
-    """
-
-    type: Required[Literal["value/uri/social_x"]]
-
-
-class SocialLinkedInValueParamData(TypedDict, total=False):
-    """The social media profile for the LinkedIn platform"""
-
-    url: str
-    """The full URL to the LinkedIn profile."""
-
-    username: str
-    """
-    The LinkedIn username, including the prefix 'company/' for company pages or
-    'in/' for personal profiles.
-    """
-
-
-class SocialLinkedInValueParam(TypedDict, total=False):
-    """The social media profile for the LinkedIn platform"""
-
-    data: Required[SocialLinkedInValueParamData]
-    """The social media profile for the LinkedIn platform"""
-
-    type: Required[Literal["value/uri/social_linked_in"]]
-
+__all__ = ["FieldValueParam"]
 
 FieldValueParam: TypeAlias = Union[
     SingleLineTextValueParam,

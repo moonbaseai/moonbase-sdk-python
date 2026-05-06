@@ -5,50 +5,27 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
+from .email_message_address_params import EmailMessageAddressParams
 from .shared_params.formatted_text import FormattedText
 
-__all__ = ["InboxMessageUpdateParams", "Bcc", "Cc", "To"]
+__all__ = ["InboxMessageUpdateParams"]
 
 
 class InboxMessageUpdateParams(TypedDict, total=False):
     lock_version: Required[int]
     """The current lock version of the draft for optimistic concurrency control."""
 
-    bcc: Iterable[Bcc]
+    bcc: Iterable[EmailMessageAddressParams]
     """A list of the BCC recipients."""
 
     body: FormattedText
     """The email body."""
 
-    cc: Iterable[Cc]
+    cc: Iterable[EmailMessageAddressParams]
     """A list of the CC recipients."""
 
     subject: str
     """The subject line of the email."""
 
-    to: Iterable[To]
+    to: Iterable[EmailMessageAddressParams]
     """A list of the recipients."""
-
-
-class Bcc(TypedDict, total=False):
-    email: Required[str]
-    """The email address."""
-
-    name: str
-    """The recipient's name."""
-
-
-class Cc(TypedDict, total=False):
-    email: Required[str]
-    """The email address."""
-
-    name: str
-    """The recipient's name."""
-
-
-class To(TypedDict, total=False):
-    email: Required[str]
-    """The email address."""
-
-    name: str
-    """The recipient's name."""
