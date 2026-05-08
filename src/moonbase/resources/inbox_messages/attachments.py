@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+from typing import Mapping, cast
+
 import httpx
 
+from ..._files import deepcopy_with_paths
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, FileTypes, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._utils import extract_files, path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -72,15 +75,23 @@ class AttachmentsResource(SyncAPIResource):
         """
         if not inbox_message_id:
             raise ValueError(f"Expected a non-empty value for `inbox_message_id` but received {inbox_message_id!r}")
+        body = deepcopy_with_paths(
+            {
+                "file": file,
+                "file_id": file_id,
+            },
+            [["file"]],
+        )
+        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
+        if files:
+            # It should be noted that the actual Content-Type header that will be
+            # sent to the server will contain a `boundary` parameter, e.g.
+            # multipart/form-data; boundary=---abc--
+            extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             path_template("/inbox_messages/{inbox_message_id}/attachments", inbox_message_id=inbox_message_id),
-            body=maybe_transform(
-                {
-                    "file": file,
-                    "file_id": file_id,
-                },
-                attachment_create_params.AttachmentCreateParams,
-            ),
+            body=maybe_transform(body, attachment_create_params.AttachmentCreateParams),
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -178,15 +189,23 @@ class AsyncAttachmentsResource(AsyncAPIResource):
         """
         if not inbox_message_id:
             raise ValueError(f"Expected a non-empty value for `inbox_message_id` but received {inbox_message_id!r}")
+        body = deepcopy_with_paths(
+            {
+                "file": file,
+                "file_id": file_id,
+            },
+            [["file"]],
+        )
+        files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
+        if files:
+            # It should be noted that the actual Content-Type header that will be
+            # sent to the server will contain a `boundary` parameter, e.g.
+            # multipart/form-data; boundary=---abc--
+            extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             path_template("/inbox_messages/{inbox_message_id}/attachments", inbox_message_id=inbox_message_id),
-            body=await async_maybe_transform(
-                {
-                    "file": file,
-                    "file_id": file_id,
-                },
-                attachment_create_params.AttachmentCreateParams,
-            ),
+            body=await async_maybe_transform(body, attachment_create_params.AttachmentCreateParams),
+            files=files,
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
