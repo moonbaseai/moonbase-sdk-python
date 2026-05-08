@@ -19,6 +19,47 @@ class TestForms:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
+    def test_method_create(self, client: Moonbase) -> None:
+        form = client.forms.create(
+            name="Contact Us",
+        )
+        assert_matches_type(Form, form, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Moonbase) -> None:
+        form = client.forms.create(
+            name="Contact Us",
+            business_email_required=True,
+            pages_enabled=True,
+            redirect_url="https://example.com/thanks",
+        )
+        assert_matches_type(Form, form, path=["response"])
+
+    @parametrize
+    def test_raw_response_create(self, client: Moonbase) -> None:
+        response = client.forms.with_raw_response.create(
+            name="Contact Us",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        form = response.parse()
+        assert_matches_type(Form, form, path=["response"])
+
+    @parametrize
+    def test_streaming_response_create(self, client: Moonbase) -> None:
+        with client.forms.with_streaming_response.create(
+            name="Contact Us",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            form = response.parse()
+            assert_matches_type(Form, form, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
     def test_method_retrieve(self, client: Moonbase) -> None:
         form = client.forms.retrieve(
             "id",
@@ -57,6 +98,55 @@ class TestForms:
             )
 
     @parametrize
+    def test_method_update(self, client: Moonbase) -> None:
+        form = client.forms.update(
+            id="id",
+        )
+        assert_matches_type(Form, form, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Moonbase) -> None:
+        form = client.forms.update(
+            id="id",
+            business_email_required=True,
+            name="Updated Form",
+            pages_enabled=True,
+            redirect_url="redirect_url",
+        )
+        assert_matches_type(Form, form, path=["response"])
+
+    @parametrize
+    def test_raw_response_update(self, client: Moonbase) -> None:
+        response = client.forms.with_raw_response.update(
+            id="id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        form = response.parse()
+        assert_matches_type(Form, form, path=["response"])
+
+    @parametrize
+    def test_streaming_response_update(self, client: Moonbase) -> None:
+        with client.forms.with_streaming_response.update(
+            id="id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            form = response.parse()
+            assert_matches_type(Form, form, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_update(self, client: Moonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.forms.with_raw_response.update(
+                id="",
+            )
+
+    @parametrize
     def test_method_list(self, client: Moonbase) -> None:
         form = client.forms.list()
         assert_matches_type(SyncCursorPage[Form], form, path=["response"])
@@ -90,11 +180,90 @@ class TestForms:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_method_delete(self, client: Moonbase) -> None:
+        form = client.forms.delete(
+            "id",
+        )
+        assert form is None
+
+    @parametrize
+    def test_raw_response_delete(self, client: Moonbase) -> None:
+        response = client.forms.with_raw_response.delete(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        form = response.parse()
+        assert form is None
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Moonbase) -> None:
+        with client.forms.with_streaming_response.delete(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            form = response.parse()
+            assert form is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: Moonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.forms.with_raw_response.delete(
+                "",
+            )
+
 
 class TestAsyncForms:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
+
+    @parametrize
+    async def test_method_create(self, async_client: AsyncMoonbase) -> None:
+        form = await async_client.forms.create(
+            name="Contact Us",
+        )
+        assert_matches_type(Form, form, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncMoonbase) -> None:
+        form = await async_client.forms.create(
+            name="Contact Us",
+            business_email_required=True,
+            pages_enabled=True,
+            redirect_url="https://example.com/thanks",
+        )
+        assert_matches_type(Form, form, path=["response"])
+
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncMoonbase) -> None:
+        response = await async_client.forms.with_raw_response.create(
+            name="Contact Us",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        form = await response.parse()
+        assert_matches_type(Form, form, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncMoonbase) -> None:
+        async with async_client.forms.with_streaming_response.create(
+            name="Contact Us",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            form = await response.parse()
+            assert_matches_type(Form, form, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncMoonbase) -> None:
@@ -135,6 +304,55 @@ class TestAsyncForms:
             )
 
     @parametrize
+    async def test_method_update(self, async_client: AsyncMoonbase) -> None:
+        form = await async_client.forms.update(
+            id="id",
+        )
+        assert_matches_type(Form, form, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncMoonbase) -> None:
+        form = await async_client.forms.update(
+            id="id",
+            business_email_required=True,
+            name="Updated Form",
+            pages_enabled=True,
+            redirect_url="redirect_url",
+        )
+        assert_matches_type(Form, form, path=["response"])
+
+    @parametrize
+    async def test_raw_response_update(self, async_client: AsyncMoonbase) -> None:
+        response = await async_client.forms.with_raw_response.update(
+            id="id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        form = await response.parse()
+        assert_matches_type(Form, form, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_update(self, async_client: AsyncMoonbase) -> None:
+        async with async_client.forms.with_streaming_response.update(
+            id="id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            form = await response.parse()
+            assert_matches_type(Form, form, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_update(self, async_client: AsyncMoonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.forms.with_raw_response.update(
+                id="",
+            )
+
+    @parametrize
     async def test_method_list(self, async_client: AsyncMoonbase) -> None:
         form = await async_client.forms.list()
         assert_matches_type(AsyncCursorPage[Form], form, path=["response"])
@@ -167,3 +385,41 @@ class TestAsyncForms:
             assert_matches_type(AsyncCursorPage[Form], form, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncMoonbase) -> None:
+        form = await async_client.forms.delete(
+            "id",
+        )
+        assert form is None
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncMoonbase) -> None:
+        response = await async_client.forms.with_raw_response.delete(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        form = await response.parse()
+        assert form is None
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncMoonbase) -> None:
+        async with async_client.forms.with_streaming_response.delete(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            form = await response.parse()
+            assert form is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncMoonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.forms.with_raw_response.delete(
+                "",
+            )

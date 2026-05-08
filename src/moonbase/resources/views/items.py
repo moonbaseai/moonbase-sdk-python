@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import path_template, maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -23,6 +23,8 @@ __all__ = ["ItemsResource", "AsyncItemsResource"]
 
 
 class ItemsResource(SyncAPIResource):
+    """Manage your collections and items"""
+
     @cached_property
     def with_raw_response(self) -> ItemsResourceWithRawResponse:
         """
@@ -82,7 +84,7 @@ class ItemsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/views/{id}/items",
+            path_template("/views/{id}/items", id=id),
             page=SyncCursorPage[Item],
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -103,6 +105,8 @@ class ItemsResource(SyncAPIResource):
 
 
 class AsyncItemsResource(AsyncAPIResource):
+    """Manage your collections and items"""
+
     @cached_property
     def with_raw_response(self) -> AsyncItemsResourceWithRawResponse:
         """
@@ -162,7 +166,7 @@ class AsyncItemsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get_api_list(
-            f"/views/{id}/items",
+            path_template("/views/{id}/items", id=id),
             page=AsyncCursorPage[Item],
             options=make_request_options(
                 extra_headers=extra_headers,

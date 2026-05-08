@@ -40,6 +40,14 @@ from .views import (
     ViewsResourceWithStreamingResponse,
     AsyncViewsResourceWithStreamingResponse,
 )
+from .funnels import (
+    FunnelsResource,
+    AsyncFunnelsResource,
+    FunnelsResourceWithRawResponse,
+    AsyncFunnelsResourceWithRawResponse,
+    FunnelsResourceWithStreamingResponse,
+    AsyncFunnelsResourceWithStreamingResponse,
+)
 from .inboxes import (
     InboxesResource,
     AsyncInboxesResource,
@@ -87,6 +95,14 @@ from .collections import (
     AsyncCollectionsResourceWithRawResponse,
     CollectionsResourceWithStreamingResponse,
     AsyncCollectionsResourceWithStreamingResponse,
+)
+from .unsubscribes import (
+    UnsubscribesResource,
+    AsyncUnsubscribesResource,
+    UnsubscribesResourceWithRawResponse,
+    AsyncUnsubscribesResourceWithRawResponse,
+    UnsubscribesResourceWithStreamingResponse,
+    AsyncUnsubscribesResourceWithStreamingResponse,
 )
 from .agent_settings import (
     AgentSettingsResource,
@@ -138,6 +154,12 @@ from .inbox_conversations import (
 )
 
 __all__ = [
+    "FunnelsResource",
+    "AsyncFunnelsResource",
+    "FunnelsResourceWithRawResponse",
+    "AsyncFunnelsResourceWithRawResponse",
+    "FunnelsResourceWithStreamingResponse",
+    "AsyncFunnelsResourceWithStreamingResponse",
     "CollectionsResource",
     "AsyncCollectionsResource",
     "CollectionsResourceWithRawResponse",
@@ -198,6 +220,12 @@ __all__ = [
     "AsyncFormsResourceWithRawResponse",
     "FormsResourceWithStreamingResponse",
     "AsyncFormsResourceWithStreamingResponse",
+    "UnsubscribesResource",
+    "AsyncUnsubscribesResource",
+    "UnsubscribesResourceWithRawResponse",
+    "AsyncUnsubscribesResourceWithRawResponse",
+    "UnsubscribesResourceWithStreamingResponse",
+    "AsyncUnsubscribesResourceWithStreamingResponse",
     "ActivitiesResource",
     "AsyncActivitiesResource",
     "ActivitiesResourceWithRawResponse",

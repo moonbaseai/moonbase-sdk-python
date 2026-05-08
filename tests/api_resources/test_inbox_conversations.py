@@ -9,7 +9,10 @@ import pytest
 
 from moonbase import Moonbase, AsyncMoonbase
 from tests.utils import assert_matches_type
-from moonbase.types import InboxConversation
+from moonbase.types import (
+    InboxConversation,
+    InboxConversationListResponse,
+)
 from moonbase.pagination import SyncCursorPage, AsyncCursorPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -67,21 +70,17 @@ class TestInboxConversations:
     @parametrize
     def test_method_list(self, client: Moonbase) -> None:
         inbox_conversation = client.inbox_conversations.list()
-        assert_matches_type(SyncCursorPage[InboxConversation], inbox_conversation, path=["response"])
+        assert_matches_type(SyncCursorPage[InboxConversationListResponse], inbox_conversation, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Moonbase) -> None:
         inbox_conversation = client.inbox_conversations.list(
             after="after",
             before="before",
-            filter={
-                "conversation_id": {"eq": "eq"},
-                "inbox_id": {"eq": "eq"},
-            },
-            include=["inbox"],
+            inbox_id={"eq": "eq"},
             limit=1,
         )
-        assert_matches_type(SyncCursorPage[InboxConversation], inbox_conversation, path=["response"])
+        assert_matches_type(SyncCursorPage[InboxConversationListResponse], inbox_conversation, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Moonbase) -> None:
@@ -90,7 +89,7 @@ class TestInboxConversations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         inbox_conversation = response.parse()
-        assert_matches_type(SyncCursorPage[InboxConversation], inbox_conversation, path=["response"])
+        assert_matches_type(SyncCursorPage[InboxConversationListResponse], inbox_conversation, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Moonbase) -> None:
@@ -99,7 +98,7 @@ class TestInboxConversations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             inbox_conversation = response.parse()
-            assert_matches_type(SyncCursorPage[InboxConversation], inbox_conversation, path=["response"])
+            assert_matches_type(SyncCursorPage[InboxConversationListResponse], inbox_conversation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -158,21 +157,17 @@ class TestAsyncInboxConversations:
     @parametrize
     async def test_method_list(self, async_client: AsyncMoonbase) -> None:
         inbox_conversation = await async_client.inbox_conversations.list()
-        assert_matches_type(AsyncCursorPage[InboxConversation], inbox_conversation, path=["response"])
+        assert_matches_type(AsyncCursorPage[InboxConversationListResponse], inbox_conversation, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncMoonbase) -> None:
         inbox_conversation = await async_client.inbox_conversations.list(
             after="after",
             before="before",
-            filter={
-                "conversation_id": {"eq": "eq"},
-                "inbox_id": {"eq": "eq"},
-            },
-            include=["inbox"],
+            inbox_id={"eq": "eq"},
             limit=1,
         )
-        assert_matches_type(AsyncCursorPage[InboxConversation], inbox_conversation, path=["response"])
+        assert_matches_type(AsyncCursorPage[InboxConversationListResponse], inbox_conversation, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncMoonbase) -> None:
@@ -181,7 +176,7 @@ class TestAsyncInboxConversations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         inbox_conversation = await response.parse()
-        assert_matches_type(AsyncCursorPage[InboxConversation], inbox_conversation, path=["response"])
+        assert_matches_type(AsyncCursorPage[InboxConversationListResponse], inbox_conversation, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncMoonbase) -> None:
@@ -190,6 +185,6 @@ class TestAsyncInboxConversations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             inbox_conversation = await response.parse()
-            assert_matches_type(AsyncCursorPage[InboxConversation], inbox_conversation, path=["response"])
+            assert_matches_type(AsyncCursorPage[InboxConversationListResponse], inbox_conversation, path=["response"])
 
         assert cast(Any, response.is_closed) is True

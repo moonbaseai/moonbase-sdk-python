@@ -10,7 +10,7 @@ import httpx
 
 from ..types import call_list_params, call_create_params, call_upsert_params, call_retrieve_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -22,11 +22,14 @@ from .._response import (
 from ..pagination import SyncCursorPage, AsyncCursorPage
 from ..types.call import Call
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.shared_params.tag_pointer_param import TagPointerParam
 
 __all__ = ["CallsResource", "AsyncCallsResource"]
 
 
 class CallsResource(SyncAPIResource):
+    """View activities and capture calls"""
+
     @cached_property
     def with_raw_response(self) -> CallsResourceWithRawResponse:
         """
@@ -59,6 +62,7 @@ class CallsResource(SyncAPIResource):
         end_at: Union[str, datetime] | Omit = omit,
         provider_metadata: Dict[str, object] | Omit = omit,
         recordings: Iterable[call_create_params.Recording] | Omit = omit,
+        tags: Iterable[TagPointerParam] | Omit = omit,
         transcript: call_create_params.Transcript | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -91,6 +95,8 @@ class CallsResource(SyncAPIResource):
 
           recordings: Any recordings associated with the call.
 
+          tags: Optional list of tag pointers to assign to the call.
+
           transcript: A transcript of the call.
 
           extra_headers: Send extra headers
@@ -115,6 +121,7 @@ class CallsResource(SyncAPIResource):
                     "end_at": end_at,
                     "provider_metadata": provider_metadata,
                     "recordings": recordings,
+                    "tags": tags,
                     "transcript": transcript,
                 },
                 call_create_params.CallCreateParams,
@@ -155,7 +162,7 @@ class CallsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/calls/{id}",
+            path_template("/calls/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -235,6 +242,7 @@ class CallsResource(SyncAPIResource):
         end_at: Union[str, datetime] | Omit = omit,
         provider_metadata: Dict[str, object] | Omit = omit,
         recordings: Iterable[call_upsert_params.Recording] | Omit = omit,
+        tags: Iterable[TagPointerParam] | Omit = omit,
         transcript: call_upsert_params.Transcript | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -267,6 +275,9 @@ class CallsResource(SyncAPIResource):
 
           recordings: Any recordings associated with the call.
 
+          tags: Optional list of tag pointers to assign to the call. If omitted, existing tags
+              are unchanged. Pass an empty array to clear tags.
+
           transcript: A transcript of the call.
 
           extra_headers: Send extra headers
@@ -291,6 +302,7 @@ class CallsResource(SyncAPIResource):
                     "end_at": end_at,
                     "provider_metadata": provider_metadata,
                     "recordings": recordings,
+                    "tags": tags,
                     "transcript": transcript,
                 },
                 call_upsert_params.CallUpsertParams,
@@ -303,6 +315,8 @@ class CallsResource(SyncAPIResource):
 
 
 class AsyncCallsResource(AsyncAPIResource):
+    """View activities and capture calls"""
+
     @cached_property
     def with_raw_response(self) -> AsyncCallsResourceWithRawResponse:
         """
@@ -335,6 +349,7 @@ class AsyncCallsResource(AsyncAPIResource):
         end_at: Union[str, datetime] | Omit = omit,
         provider_metadata: Dict[str, object] | Omit = omit,
         recordings: Iterable[call_create_params.Recording] | Omit = omit,
+        tags: Iterable[TagPointerParam] | Omit = omit,
         transcript: call_create_params.Transcript | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -367,6 +382,8 @@ class AsyncCallsResource(AsyncAPIResource):
 
           recordings: Any recordings associated with the call.
 
+          tags: Optional list of tag pointers to assign to the call.
+
           transcript: A transcript of the call.
 
           extra_headers: Send extra headers
@@ -391,6 +408,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "end_at": end_at,
                     "provider_metadata": provider_metadata,
                     "recordings": recordings,
+                    "tags": tags,
                     "transcript": transcript,
                 },
                 call_create_params.CallCreateParams,
@@ -431,7 +449,7 @@ class AsyncCallsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/calls/{id}",
+            path_template("/calls/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -511,6 +529,7 @@ class AsyncCallsResource(AsyncAPIResource):
         end_at: Union[str, datetime] | Omit = omit,
         provider_metadata: Dict[str, object] | Omit = omit,
         recordings: Iterable[call_upsert_params.Recording] | Omit = omit,
+        tags: Iterable[TagPointerParam] | Omit = omit,
         transcript: call_upsert_params.Transcript | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -543,6 +562,9 @@ class AsyncCallsResource(AsyncAPIResource):
 
           recordings: Any recordings associated with the call.
 
+          tags: Optional list of tag pointers to assign to the call. If omitted, existing tags
+              are unchanged. Pass an empty array to clear tags.
+
           transcript: A transcript of the call.
 
           extra_headers: Send extra headers
@@ -567,6 +589,7 @@ class AsyncCallsResource(AsyncAPIResource):
                     "end_at": end_at,
                     "provider_metadata": provider_metadata,
                     "recordings": recordings,
+                    "tags": tags,
                     "transcript": transcript,
                 },
                 call_upsert_params.CallUpsertParams,

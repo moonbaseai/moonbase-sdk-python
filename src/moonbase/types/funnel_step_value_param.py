@@ -2,21 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Union
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
-from .funnel_step_param import FunnelStepParam
-from .shared_params.pointer import Pointer
+from .funnel_step_pointer_param import FunnelStepPointerParam
 
-__all__ = ["FunnelStepValueParam", "Data"]
-
-Data: TypeAlias = Union[FunnelStepParam, Pointer]
+__all__ = ["FunnelStepValueParam"]
 
 
 class FunnelStepValueParam(TypedDict, total=False):
     """Funnel step value"""
 
-    data: Required[Data]
-    """A specific funnel step, as configured on the Funnel"""
+    data: Required[FunnelStepPointerParam]
+    """A specific funnel step, as configured on the Funnel."""
 
     type: Required[Literal["value/funnel_step"]]

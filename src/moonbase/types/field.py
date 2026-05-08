@@ -18,6 +18,7 @@ from .datetime_field import DatetimeField
 from .monetary_field import MonetaryField
 from .relation_field import RelationField
 from .social_x_field import SocialXField
+from .identifier_field import IdentifierField
 from .percentage_field import PercentageField
 from .multi_line_text_field import MultiLineTextField
 from .single_line_text_field import SingleLineTextField
@@ -30,6 +31,7 @@ Field: TypeAlias = Annotated[
     Union[
         SingleLineTextField,
         MultiLineTextField,
+        IdentifierField,
         IntegerField,
         FloatField,
         MonetaryField,

@@ -9,7 +9,7 @@ import httpx
 
 from ..types import inbox_conversation_list_params, inbox_conversation_retrieve_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -21,11 +21,14 @@ from .._response import (
 from ..pagination import SyncCursorPage, AsyncCursorPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.inbox_conversation import InboxConversation
+from ..types.inbox_conversation_list_response import InboxConversationListResponse
 
 __all__ = ["InboxConversationsResource", "AsyncInboxConversationsResource"]
 
 
 class InboxConversationsResource(SyncAPIResource):
+    """Manage your inboxes, conversations, and messages"""
+
     @cached_property
     def with_raw_response(self) -> InboxConversationsResourceWithRawResponse:
         """
@@ -75,7 +78,7 @@ class InboxConversationsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/inbox_conversations/{id}",
+            path_template("/inbox_conversations/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -93,8 +96,7 @@ class InboxConversationsResource(SyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
-        filter: inbox_conversation_list_params.Filter | Omit = omit,
-        include: List[Literal["inbox", "messages", "messages.addresses"]] | Omit = omit,
+        inbox_id: inbox_conversation_list_params.InboxID | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -102,7 +104,7 @@ class InboxConversationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncCursorPage[InboxConversation]:
+    ) -> SyncCursorPage[InboxConversationListResponse]:
         """
         Returns a list of your conversations.
 
@@ -114,9 +116,6 @@ class InboxConversationsResource(SyncAPIResource):
           before: When specified, returns results starting immediately before the item identified
               by this cursor. Use the cursor value from the response's metadata to fetch the
               previous page of results.
-
-          include: Specifies which related objects to include in the response. Valid options are
-              `inbox`, `messages`, and `messages.addresses`.
 
           limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
               to 20 if not specified.
@@ -131,7 +130,7 @@ class InboxConversationsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/inbox_conversations",
-            page=SyncCursorPage[InboxConversation],
+            page=SyncCursorPage[InboxConversationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -141,18 +140,19 @@ class InboxConversationsResource(SyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "filter": filter,
-                        "include": include,
+                        "inbox_id": inbox_id,
                         "limit": limit,
                     },
                     inbox_conversation_list_params.InboxConversationListParams,
                 ),
             ),
-            model=InboxConversation,
+            model=InboxConversationListResponse,
         )
 
 
 class AsyncInboxConversationsResource(AsyncAPIResource):
+    """Manage your inboxes, conversations, and messages"""
+
     @cached_property
     def with_raw_response(self) -> AsyncInboxConversationsResourceWithRawResponse:
         """
@@ -202,7 +202,7 @@ class AsyncInboxConversationsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/inbox_conversations/{id}",
+            path_template("/inbox_conversations/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -220,8 +220,7 @@ class AsyncInboxConversationsResource(AsyncAPIResource):
         *,
         after: str | Omit = omit,
         before: str | Omit = omit,
-        filter: inbox_conversation_list_params.Filter | Omit = omit,
-        include: List[Literal["inbox", "messages", "messages.addresses"]] | Omit = omit,
+        inbox_id: inbox_conversation_list_params.InboxID | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -229,7 +228,7 @@ class AsyncInboxConversationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[InboxConversation, AsyncCursorPage[InboxConversation]]:
+    ) -> AsyncPaginator[InboxConversationListResponse, AsyncCursorPage[InboxConversationListResponse]]:
         """
         Returns a list of your conversations.
 
@@ -241,9 +240,6 @@ class AsyncInboxConversationsResource(AsyncAPIResource):
           before: When specified, returns results starting immediately before the item identified
               by this cursor. Use the cursor value from the response's metadata to fetch the
               previous page of results.
-
-          include: Specifies which related objects to include in the response. Valid options are
-              `inbox`, `messages`, and `messages.addresses`.
 
           limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
               to 20 if not specified.
@@ -258,7 +254,7 @@ class AsyncInboxConversationsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/inbox_conversations",
-            page=AsyncCursorPage[InboxConversation],
+            page=AsyncCursorPage[InboxConversationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -268,14 +264,13 @@ class AsyncInboxConversationsResource(AsyncAPIResource):
                     {
                         "after": after,
                         "before": before,
-                        "filter": filter,
-                        "include": include,
+                        "inbox_id": inbox_id,
                         "limit": limit,
                     },
                     inbox_conversation_list_params.InboxConversationListParams,
                 ),
             ),
-            model=InboxConversation,
+            model=InboxConversationListResponse,
         )
 
 

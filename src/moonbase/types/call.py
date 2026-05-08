@@ -4,58 +4,13 @@ from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from pydantic import Field as FieldInfo
-
 from .note import Note
 from .._models import BaseModel
-from .shared.pointer import Pointer
+from .shared.tag import Tag
+from .call_transcript import CallTranscript
+from .call_participant import CallParticipant
 
-__all__ = ["Call", "Participant", "Transcript", "TranscriptCue", "TranscriptCueSpeaker"]
-
-
-class Participant(BaseModel):
-    """Represents a participant in a call."""
-
-    id: str
-    """Unique identifier for the object."""
-
-    phone: str
-    """The E.164 formatted phone number of the participant."""
-
-    role: Literal["caller", "callee", "other"]
-    """The role of the participant in the call. Can be `caller`, `callee`, or `other`."""
-
-    type: Literal["call_participant"]
-    """String representing the object’s type.
-
-    Always `call_participant` for this object.
-    """
-
-    organization: Optional[Pointer] = None
-    """A lightweight reference to another resource."""
-
-    person: Optional[Pointer] = None
-    """A lightweight reference to another resource."""
-
-
-class TranscriptCueSpeaker(BaseModel):
-    attendee_id: Optional[str] = None
-
-    label: Optional[str] = None
-
-
-class TranscriptCue(BaseModel):
-    from_: float = FieldInfo(alias="from")
-
-    speaker: TranscriptCueSpeaker
-
-    text: str
-
-    to: float
-
-
-class Transcript(BaseModel):
-    cues: List[TranscriptCue]
+__all__ = ["Call"]
 
 
 class Call(BaseModel):
@@ -73,7 +28,7 @@ class Call(BaseModel):
     direction: Literal["incoming", "outgoing"]
     """The direction of the call, either `incoming` or `outgoing`."""
 
-    participants: List[Participant]
+    participants: List[CallParticipant]
     """The participants involved in the call."""
 
     provider: Literal["openphone", "user", "zoom_phone"]
@@ -87,6 +42,9 @@ class Call(BaseModel):
 
     start_at: datetime
     """The time the call started, as an ISO 8601 timestamp in UTC."""
+
+    tags: List[Tag]
+    """The tags currently applied to this call."""
 
     type: Literal["call"]
     """String representing the object’s type. Always `call` for this object."""
@@ -115,4 +73,4 @@ class Call(BaseModel):
     or summaries.
     """
 
-    transcript: Optional[Transcript] = None
+    transcript: Optional[CallTranscript] = None

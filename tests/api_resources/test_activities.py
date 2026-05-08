@@ -67,15 +67,15 @@ class TestActivities:
         activity = client.activities.list(
             after="after",
             before="before",
-            filter={
-                "item_id": {"eq": "eq"},
-                "occurred_at": {
-                    "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
-                },
-                "type": {"in": ["activity/call_occurred"]},
-            },
+            constituent_entity_id={"eq": "eq"},
+            constituent_entity_type={"eq": "call"},
+            constituent_relation={"eq": "actor"},
             limit=1,
+            occurred_at={
+                "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
+            },
+            type={"eq": "activity/call_occurred"},
         )
         assert_matches_type(SyncCursorPage[Activity], activity, path=["response"])
 
@@ -153,15 +153,15 @@ class TestAsyncActivities:
         activity = await async_client.activities.list(
             after="after",
             before="before",
-            filter={
-                "item_id": {"eq": "eq"},
-                "occurred_at": {
-                    "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
-                    "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
-                },
-                "type": {"in": ["activity/call_occurred"]},
-            },
+            constituent_entity_id={"eq": "eq"},
+            constituent_entity_type={"eq": "call"},
+            constituent_relation={"eq": "actor"},
             limit=1,
+            occurred_at={
+                "gte": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "lte": parse_datetime("2019-12-27T18:11:19.117Z"),
+            },
+            type={"eq": "activity/call_occurred"},
         )
         assert_matches_type(AsyncCursorPage[Activity], activity, path=["response"])
 

@@ -6,7 +6,7 @@ from typing import Iterable
 from typing_extensions import Required, TypedDict
 
 from .._types import FileTypes
-from .shared_params.pointer import Pointer
+from .item_pointer_param import ItemPointerParam
 
 __all__ = ["FileUploadParams"]
 
@@ -15,7 +15,7 @@ class FileUploadParams(TypedDict, total=False):
     file: Required[FileTypes]
     """The File object to be uploaded."""
 
-    associations: Iterable[Pointer]
+    associations: Iterable[ItemPointerParam]
     """
     Link the File to Moonbase items like a person, organization, deal, task, or an
     item in a custom collection.

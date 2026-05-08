@@ -6,6 +6,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 from .choice_field_option import ChoiceFieldOption
+from .field_default_value import FieldDefaultValue
 
 __all__ = ["ChoiceField"]
 
@@ -22,11 +23,16 @@ class ChoiceField(BaseModel):
     (`many`).
     """
 
-    core: bool
-    """If `true`, this is a built-in field included by default."""
-
     created_at: datetime
     """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
+
+    default_values: List[FieldDefaultValue]
+
+    kind: Literal["system", "inverse", "custom"]
+    """
+    `system` fields are managed by Moonbase, `inverse` fields are the reverse side
+    of a two-way relation, and `custom` fields are user-created.
+    """
 
     name: str
     """The human-readable name of the field (e.g., "Priority")."""

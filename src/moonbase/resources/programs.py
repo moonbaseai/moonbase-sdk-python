@@ -9,7 +9,7 @@ import httpx
 
 from ..types import program_list_params, program_retrieve_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -26,6 +26,8 @@ __all__ = ["ProgramsResource", "AsyncProgramsResource"]
 
 
 class ProgramsResource(SyncAPIResource):
+    """Manage your marketing campaigns and forms"""
+
     @cached_property
     def with_raw_response(self) -> ProgramsResourceWithRawResponse:
         """
@@ -75,7 +77,7 @@ class ProgramsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/programs/{id}",
+            path_template("/programs/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -144,6 +146,8 @@ class ProgramsResource(SyncAPIResource):
 
 
 class AsyncProgramsResource(AsyncAPIResource):
+    """Manage your marketing campaigns and forms"""
+
     @cached_property
     def with_raw_response(self) -> AsyncProgramsResourceWithRawResponse:
         """
@@ -193,7 +197,7 @@ class AsyncProgramsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/programs/{id}",
+            path_template("/programs/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

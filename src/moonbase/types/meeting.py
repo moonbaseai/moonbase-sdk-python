@@ -4,34 +4,14 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from pydantic import Field as FieldInfo
-
 from .note import Note
 from .._models import BaseModel
 from .attendee import Attendee
 from .organizer import Organizer
+from .shared.tag import Tag
+from .meeting_transcript import MeetingTranscript
 
-__all__ = ["Meeting", "Transcript", "TranscriptCue", "TranscriptCueSpeaker"]
-
-
-class TranscriptCueSpeaker(BaseModel):
-    attendee_id: Optional[str] = None
-
-    label: Optional[str] = None
-
-
-class TranscriptCue(BaseModel):
-    from_: float = FieldInfo(alias="from")
-
-    speaker: TranscriptCueSpeaker
-
-    text: str
-
-    to: float
-
-
-class Transcript(BaseModel):
-    cues: List[TranscriptCue]
+__all__ = ["Meeting"]
 
 
 class Meeting(BaseModel):
@@ -61,6 +41,9 @@ class Meeting(BaseModel):
     start_at: datetime
     """The start time of the meeting, as an ISO 8601 timestamp in UTC."""
 
+    tags: List[Tag]
+    """The tags currently applied to this meeting."""
+
     time_zone: str
     """
     The IANA time zone in which the meeting is scheduled (e.g.,
@@ -89,11 +72,9 @@ class Meeting(BaseModel):
     """The physical or virtual location of the meeting."""
 
     note: Optional[Note] = None
-    """Any personal notes taken during the meeting.
-
-    It also includes the AI-generated pre-meeting briefing.
-
-    **Note:** Only present when requested using the `include` query parameter.
+    """
+    The Note object represents a block of text content, often used for meeting notes
+    or summaries.
     """
 
     organizer: Optional[Organizer] = None
@@ -112,12 +93,12 @@ class Meeting(BaseModel):
     """
 
     summary: Optional[Note] = None
-    """A summary of the meeting.
-
-    **Note:** Only present when requested using the `include` query parameter.
+    """
+    The Note object represents a block of text content, often used for meeting notes
+    or summaries.
     """
 
     title: Optional[str] = None
     """The title or subject of the meeting."""
 
-    transcript: Optional[Transcript] = None
+    transcript: Optional[MeetingTranscript] = None

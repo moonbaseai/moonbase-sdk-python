@@ -8,7 +8,7 @@ import httpx
 
 from ..types import note_list_params, note_create_params, note_update_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -20,13 +20,15 @@ from .._response import (
 from ..pagination import SyncCursorPage, AsyncCursorPage
 from ..types.note import Note
 from .._base_client import AsyncPaginator, make_request_options
-from ..types.shared_params.pointer import Pointer
 from ..types.shared_params.formatted_text import FormattedText
+from ..types.note_association_param_pointer_param import NoteAssociationParamPointerParam
 
 __all__ = ["NotesResource", "AsyncNotesResource"]
 
 
 class NotesResource(SyncAPIResource):
+    """Manage your meetings, files, and notes"""
+
     @cached_property
     def with_raw_response(self) -> NotesResourceWithRawResponse:
         """
@@ -50,7 +52,7 @@ class NotesResource(SyncAPIResource):
         self,
         *,
         body: FormattedText,
-        associations: Iterable[Pointer] | Omit = omit,
+        associations: Iterable[NoteAssociationParamPointerParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -116,7 +118,7 @@ class NotesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/notes/{id}",
+            path_template("/notes/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -155,7 +157,7 @@ class NotesResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
-            f"/notes/{id}",
+            path_template("/notes/{id}", id=id),
             body=maybe_transform(
                 {
                     "body": body,
@@ -252,7 +254,7 @@ class NotesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
-            f"/notes/{id}",
+            path_template("/notes/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -261,6 +263,8 @@ class NotesResource(SyncAPIResource):
 
 
 class AsyncNotesResource(AsyncAPIResource):
+    """Manage your meetings, files, and notes"""
+
     @cached_property
     def with_raw_response(self) -> AsyncNotesResourceWithRawResponse:
         """
@@ -284,7 +288,7 @@ class AsyncNotesResource(AsyncAPIResource):
         self,
         *,
         body: FormattedText,
-        associations: Iterable[Pointer] | Omit = omit,
+        associations: Iterable[NoteAssociationParamPointerParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -350,7 +354,7 @@ class AsyncNotesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/notes/{id}",
+            path_template("/notes/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -389,7 +393,7 @@ class AsyncNotesResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
-            f"/notes/{id}",
+            path_template("/notes/{id}", id=id),
             body=await async_maybe_transform(
                 {
                     "body": body,
@@ -486,7 +490,7 @@ class AsyncNotesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
-            f"/notes/{id}",
+            path_template("/notes/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

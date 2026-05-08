@@ -8,40 +8,10 @@ from typing_extensions import Literal
 
 from .address import Address
 from .._models import BaseModel
+from .message_attachment import MessageAttachment
 from .shared.formatted_text import FormattedText
 
-__all__ = ["EmailMessage", "Attachment"]
-
-
-class Attachment(BaseModel):
-    """The Attachment object represents a file attached to a message.
-
-    You can download the file content via the `download_url`.
-    """
-
-    id: str
-    """Unique identifier for the object."""
-
-    created_at: datetime
-    """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
-
-    download_url: str
-    """A temporary, signed URL to download the file content.
-
-    The URL expires after one hour.
-    """
-
-    filename: str
-    """The original name of the uploaded file, including its extension."""
-
-    size: int
-    """The size of the file in bytes."""
-
-    type: Literal["message_attachment"]
-    """String representing the object’s type.
-
-    Always `message_attachment` for this object.
-    """
+__all__ = ["EmailMessage"]
 
 
 class EmailMessage(BaseModel):
@@ -89,7 +59,7 @@ class EmailMessage(BaseModel):
     **Note:** Only present when requested using the `include` query parameter.
     """
 
-    attachments: Optional[List[Attachment]] = None
+    attachments: Optional[List[MessageAttachment]] = None
     """A list of `Attachment` objects on the message.
 
     **Note:** Only present when requested using the `include` query parameter.

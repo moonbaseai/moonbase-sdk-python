@@ -9,7 +9,7 @@ import pytest
 
 from moonbase import Moonbase, AsyncMoonbase
 from tests.utils import assert_matches_type
-from moonbase.types import Meeting
+from moonbase.types import Meeting, MeetingPointer
 from moonbase.pagination import SyncCursorPage, AsyncCursorPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -80,6 +80,12 @@ class TestMeetings:
                 "provider_id": "abc123",
                 "url": "https://example.com/recording.mp4",
             },
+            tags=[
+                {
+                    "id": "1CLJt2vYMiFzRLEp238B7G",
+                    "type": "tag",
+                }
+            ],
             transcript={
                 "cues": [
                     {
@@ -135,17 +141,17 @@ class TestMeetings:
     @parametrize
     def test_method_list(self, client: Moonbase) -> None:
         meeting = client.meetings.list()
-        assert_matches_type(SyncCursorPage[Meeting], meeting, path=["response"])
+        assert_matches_type(SyncCursorPage[MeetingPointer], meeting, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Moonbase) -> None:
         meeting = client.meetings.list(
             after="after",
             before="before",
-            filter={"i_cal_uid": {"eq": "eq"}},
+            i_cal_uid={"eq": "eq"},
             limit=1,
         )
-        assert_matches_type(SyncCursorPage[Meeting], meeting, path=["response"])
+        assert_matches_type(SyncCursorPage[MeetingPointer], meeting, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Moonbase) -> None:
@@ -154,7 +160,7 @@ class TestMeetings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         meeting = response.parse()
-        assert_matches_type(SyncCursorPage[Meeting], meeting, path=["response"])
+        assert_matches_type(SyncCursorPage[MeetingPointer], meeting, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Moonbase) -> None:
@@ -163,7 +169,7 @@ class TestMeetings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             meeting = response.parse()
-            assert_matches_type(SyncCursorPage[Meeting], meeting, path=["response"])
+            assert_matches_type(SyncCursorPage[MeetingPointer], meeting, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -235,6 +241,12 @@ class TestAsyncMeetings:
                 "provider_id": "abc123",
                 "url": "https://example.com/recording.mp4",
             },
+            tags=[
+                {
+                    "id": "1CLJt2vYMiFzRLEp238B7G",
+                    "type": "tag",
+                }
+            ],
             transcript={
                 "cues": [
                     {
@@ -290,17 +302,17 @@ class TestAsyncMeetings:
     @parametrize
     async def test_method_list(self, async_client: AsyncMoonbase) -> None:
         meeting = await async_client.meetings.list()
-        assert_matches_type(AsyncCursorPage[Meeting], meeting, path=["response"])
+        assert_matches_type(AsyncCursorPage[MeetingPointer], meeting, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncMoonbase) -> None:
         meeting = await async_client.meetings.list(
             after="after",
             before="before",
-            filter={"i_cal_uid": {"eq": "eq"}},
+            i_cal_uid={"eq": "eq"},
             limit=1,
         )
-        assert_matches_type(AsyncCursorPage[Meeting], meeting, path=["response"])
+        assert_matches_type(AsyncCursorPage[MeetingPointer], meeting, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncMoonbase) -> None:
@@ -309,7 +321,7 @@ class TestAsyncMeetings:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         meeting = await response.parse()
-        assert_matches_type(AsyncCursorPage[Meeting], meeting, path=["response"])
+        assert_matches_type(AsyncCursorPage[MeetingPointer], meeting, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncMoonbase) -> None:
@@ -318,6 +330,6 @@ class TestAsyncMeetings:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             meeting = await response.parse()
-            assert_matches_type(AsyncCursorPage[Meeting], meeting, path=["response"])
+            assert_matches_type(AsyncCursorPage[MeetingPointer], meeting, path=["response"])
 
         assert cast(Any, response.is_closed) is True

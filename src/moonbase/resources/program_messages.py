@@ -24,6 +24,8 @@ __all__ = ["ProgramMessagesResource", "AsyncProgramMessagesResource"]
 
 
 class ProgramMessagesResource(SyncAPIResource):
+    """Manage your marketing campaigns and forms"""
+
     @cached_property
     def with_raw_response(self) -> ProgramMessagesResourceWithRawResponse:
         """
@@ -92,6 +94,8 @@ class ProgramMessagesResource(SyncAPIResource):
 
 
 class AsyncProgramMessagesResource(AsyncAPIResource):
+    """Manage your marketing campaigns and forms"""
+
     @cached_property
     def with_raw_response(self) -> AsyncProgramMessagesResourceWithRawResponse:
         """
