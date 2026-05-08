@@ -15,6 +15,7 @@ from ..boolean_value_param import BooleanValueParam
 from ..integer_value_param import IntegerValueParam
 from ..monetary_value_param import MonetaryValueParam
 from ..social_x_value_param import SocialXValueParam
+from ..identifier_value_param import IdentifierValueParam
 from ..percentage_value_param import PercentageValueParam
 from ..telephone_number_param import TelephoneNumberParam
 from ..stage_field_create_params import StageFieldCreateParams
@@ -30,6 +31,7 @@ __all__ = [
     "Field",
     "FieldSingleLineTextFieldCreateParams",
     "FieldMultiLineTextFieldCreateParams",
+    "FieldIdentifierFieldCreateParams",
     "FieldIntegerFieldCreateParams",
     "FieldFloatFieldCreateParams",
     "FieldMonetaryFieldCreateParams",
@@ -108,6 +110,22 @@ class FieldMultiLineTextFieldCreateParams(TypedDict, total=False):
 
     unique: bool
     """If `true`, values must be unique across all items. Defaults to `false`."""
+
+
+class FieldIdentifierFieldCreateParams(TypedDict, total=False):
+    name: Required[str]
+
+    type: Required[Literal["field/identifier"]]
+
+    cardinality: Literal["one", "many"]
+
+    default_values: Iterable[IdentifierValueParam]
+
+    description: str
+
+    required: bool
+
+    unique: bool
 
 
 class FieldIntegerFieldCreateParams(TypedDict, total=False):
@@ -619,6 +637,7 @@ class FieldRelationFieldCreateParams(TypedDict, total=False):
 Field: TypeAlias = Union[
     FieldSingleLineTextFieldCreateParams,
     FieldMultiLineTextFieldCreateParams,
+    FieldIdentifierFieldCreateParams,
     FieldIntegerFieldCreateParams,
     FieldFloatFieldCreateParams,
     FieldMonetaryFieldCreateParams,

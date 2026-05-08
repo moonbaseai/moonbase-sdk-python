@@ -18,6 +18,7 @@ from .datetime_value_param import DatetimeValueParam
 from .monetary_value_param import MonetaryValueParam
 from .relation_value_param import RelationValueParam
 from .social_x_value_param import SocialXValueParam
+from .identifier_value_param import IdentifierValueParam
 from .percentage_value_param import PercentageValueParam
 from .telephone_number_param import TelephoneNumberParam
 from .funnel_step_value_param import FunnelStepValueParam
@@ -30,6 +31,7 @@ __all__ = ["ValueParam"]
 ValueParam: TypeAlias = Union[
     SingleLineTextValueParam,
     MultiLineTextValueParam,
+    IdentifierValueParam,
     IntegerValueParam,
     FloatValueParam,
     MonetaryValueParam,

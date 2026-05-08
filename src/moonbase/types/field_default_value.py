@@ -20,6 +20,7 @@ from .monetary_value import MonetaryValue
 from .relation_value import RelationValue
 from .social_x_value import SocialXValue
 from .current_datetime import CurrentDatetime
+from .identifier_value import IdentifierValue
 from .percentage_value import PercentageValue
 from .telephone_number import TelephoneNumber
 from .funnel_step_value import FunnelStepValue
@@ -33,6 +34,7 @@ FieldDefaultValue: TypeAlias = Annotated[
     Union[
         SingleLineTextValue,
         MultiLineTextValue,
+        IdentifierValue,
         IntegerValue,
         FloatValue,
         MonetaryValue,

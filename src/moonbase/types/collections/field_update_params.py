@@ -15,6 +15,7 @@ from ..boolean_value_param import BooleanValueParam
 from ..integer_value_param import IntegerValueParam
 from ..monetary_value_param import MonetaryValueParam
 from ..social_x_value_param import SocialXValueParam
+from ..identifier_value_param import IdentifierValueParam
 from ..percentage_value_param import PercentageValueParam
 from ..telephone_number_param import TelephoneNumberParam
 from ..stage_field_update_params import StageFieldUpdateParams
@@ -30,6 +31,7 @@ __all__ = [
     "Field",
     "FieldSingleLineTextFieldUpdateParams",
     "FieldMultiLineTextFieldUpdateParams",
+    "FieldIdentifierFieldUpdateParams",
     "FieldIntegerFieldUpdateParams",
     "FieldFloatFieldUpdateParams",
     "FieldMonetaryFieldUpdateParams",
@@ -104,6 +106,22 @@ class FieldMultiLineTextFieldUpdateParams(TypedDict, total=False):
 
     unique: bool
     """If `true`, values must be unique across all items."""
+
+
+class FieldIdentifierFieldUpdateParams(TypedDict, total=False):
+    type: Required[Literal["field/identifier"]]
+
+    cardinality: Literal["one", "many"]
+
+    default_values: Optional[Iterable[IdentifierValueParam]]
+
+    description: Optional[str]
+
+    name: str
+
+    required: bool
+
+    unique: bool
 
 
 class FieldIntegerFieldUpdateParams(TypedDict, total=False):
@@ -570,6 +588,7 @@ class FieldRelationFieldUpdateParams(TypedDict, total=False):
 Field: TypeAlias = Union[
     FieldSingleLineTextFieldUpdateParams,
     FieldMultiLineTextFieldUpdateParams,
+    FieldIdentifierFieldUpdateParams,
     FieldIntegerFieldUpdateParams,
     FieldFloatFieldUpdateParams,
     FieldMonetaryFieldUpdateParams,
