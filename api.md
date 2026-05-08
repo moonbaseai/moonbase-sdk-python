@@ -72,6 +72,8 @@ from moonbase.types import (
     FunnelStepValueParam,
     GeoField,
     GeoValue,
+    IdentifierField,
+    IdentifierValue,
     IntegerField,
     IntegerValue,
     Item,

@@ -79,6 +79,8 @@ from .current_datetime import CurrentDatetime as CurrentDatetime
 from .date_value_param import DateValueParam as DateValueParam
 from .file_list_params import FileListParams as FileListParams
 from .form_list_params import FormListParams as FormListParams
+from .identifier_field import IdentifierField as IdentifierField
+from .identifier_value import IdentifierValue as IdentifierValue
 from .note_list_params import NoteListParams as NoteListParams
 from .percentage_field import PercentageField as PercentageField
 from .percentage_value import PercentageValue as PercentageValue
@@ -137,6 +139,7 @@ from .multi_line_text_field import MultiLineTextField as MultiLineTextField
 from .multi_line_text_value import MultiLineTextValue as MultiLineTextValue
 from .collection_list_params import CollectionListParams as CollectionListParams
 from .current_datetime_param import CurrentDatetimeParam as CurrentDatetimeParam
+from .identifier_value_param import IdentifierValueParam as IdentifierValueParam
 from .meeting_transcript_cue import MeetingTranscriptCue as MeetingTranscriptCue
 from .percentage_value_param import PercentageValueParam as PercentageValueParam
 from .single_line_text_field import SingleLineTextField as SingleLineTextField
