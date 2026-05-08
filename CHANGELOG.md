@@ -1,5 +1,98 @@
 # Changelog
 
+## 0.1.0-alpha.10 (2026-05-08)
+
+Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
+
+### ⚠ BREAKING CHANGES
+
+* **api:** return PartialCollection from collections list, remove include param
+* **api:** return ItemPointer from items list, remove include param
+* **api:** return InboxConversationPointer and EmailMessagePointer from inbox list endpoints, flatten filter params
+* **api:** return MeetingPointer from meetings list, flatten filter param
+* **api:** rename LlmProfile to AgentSettings, remove model fields
+* **api:** add File results to search response, change data to Item | File union
+* **api:** replace Collection core field with kind enum (system, form, custom)
+* **api:** unified activity response with constituents array, restructured activity filters
+
+### Features
+
+* **api:** add agent settings update method ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** add attachments subresource to inbox_messages (create, delete) ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** add collection create and update methods ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** add default_values support on all field types ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** add field create, update, and delete methods on collections.fields ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** add File results to search response, change data to Item | File union ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** add form create, update, and delete methods ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** add funnels CRUD methods (list, retrieve, create, update, delete) ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** add identifier field and value types ([607e0d9](https://github.com/moonbaseai/moonbase-sdk-python/commit/607e0d95ce29650c89b29e0e83a2d45edb5230ba))
+* **api:** add merge method to collections.items ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** add stage field create/update support via funnel pointer ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** add Tag color field and business_email_required to Form ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** add tags param to calls.create, calls.upsert, meetings.update ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** add tagset create, update, and delete methods with tag color ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** rename LlmProfile to AgentSettings, remove model fields ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** replace Collection core field with kind enum (system, form, custom) ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** return InboxConversationPointer and EmailMessagePointer from inbox list endpoints, flatten filter params ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** return ItemPointer from items list, remove include param ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** return MeetingPointer from meetings list, flatten filter param ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** return PartialCollection from collections list, remove include param ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **api:** unified activity response with constituents array, restructured activity filters ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **internal:** implement indices array format for query and form serialization ([4ea3381](https://github.com/moonbaseai/moonbase-sdk-python/commit/4ea3381b22b2debcc7a894cdf51a403bfffe5a76))
+* support setting headers via env ([003e6ab](https://github.com/moonbaseai/moonbase-sdk-python/commit/003e6ab9ac734f9d341c6671fc49da632f71e35b))
+
+
+### Bug Fixes
+
+* **client:** fix file upload handling in inbox_messages attachments create ([f5bd1b0](https://github.com/moonbaseai/moonbase-sdk-python/commit/f5bd1b0e8ae7be81e75324cfa5a3eaedecd18d36))
+* **client:** preserve hardcoded query params when merging with user params ([cda19f6](https://github.com/moonbaseai/moonbase-sdk-python/commit/cda19f621a334b8a7ca62f1a9638b88bb5922c1c))
+* **deps:** bump minimum typing-extensions version ([0a5b420](https://github.com/moonbaseai/moonbase-sdk-python/commit/0a5b42046951f1385ce831d2f90660cf7585b195))
+* ensure file data are only sent as 1 parameter ([36048c4](https://github.com/moonbaseai/moonbase-sdk-python/commit/36048c4ef179bbbb76ea81a8ae85e15afbbea60c))
+* **pydantic:** do not pass `by_alias` unless set ([01d4ebd](https://github.com/moonbaseai/moonbase-sdk-python/commit/01d4ebdc8b5105db2c4322ed9e3b8702a2a592d5))
+* sanitize endpoint path params ([07e1187](https://github.com/moonbaseai/moonbase-sdk-python/commit/07e118755e04a562e213b33735b79a81b19a773c))
+* **types:** change related_item to related_items list in activity_note_created ([e80b24e](https://github.com/moonbaseai/moonbase-sdk-python/commit/e80b24e5998f1be09e42dda256c706e26e9c128e))
+* use correct field name format for multipart file arrays ([4bb5ae5](https://github.com/moonbaseai/moonbase-sdk-python/commit/4bb5ae5a892606023b286337f6064e4bdab89ccb))
+
+
+### Performance Improvements
+
+* **client:** optimize file structure copying in multipart requests ([a0fc423](https://github.com/moonbaseai/moonbase-sdk-python/commit/a0fc4232b5af03393ba08f18bb92dcca11d65bf1))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([93f06ae](https://github.com/moonbaseai/moonbase-sdk-python/commit/93f06ae9f1078608bedaea069f25a03c59722b8a))
+* **ci:** skip uploading artifacts on stainless-internal branches ([894e633](https://github.com/moonbaseai/moonbase-sdk-python/commit/894e633b2bd8e61482b8b70414eb1d8a175a7659))
+* **docs:** add missing descriptions ([1c158cd](https://github.com/moonbaseai/moonbase-sdk-python/commit/1c158cd55d88524e4262ca6f3b6d97eb8e8ff4b4))
+* **internal:** extract 13 nested types to shared modules ([dc2718b](https://github.com/moonbaseai/moonbase-sdk-python/commit/dc2718badc071dc302f6beb0914379ddaf4a3740))
+* **internal:** more robust bootstrap script ([53f666f](https://github.com/moonbaseai/moonbase-sdk-python/commit/53f666f82e8ac515c355449c1e921ba40dc5405f))
+* **internal:** reformat pyproject.toml ([a21855f](https://github.com/moonbaseai/moonbase-sdk-python/commit/a21855f527529e933383ebedd1ee46af647de866))
+* **internal:** regenerate SDK with no functional changes ([1d41bb9](https://github.com/moonbaseai/moonbase-sdk-python/commit/1d41bb92652d30e9d9c558d1139317a72e42c6f4))
+* **internal:** tweak CI branches ([3dc67ca](https://github.com/moonbaseai/moonbase-sdk-python/commit/3dc67cafca1ca62c70de5cfa9df0b890ff53f477))
+* **internal:** update gitignore ([2044624](https://github.com/moonbaseai/moonbase-sdk-python/commit/2044624c4f889d1a7c037e80a7ab3cc0b54c5f10))
+* **test:** do not count install time for mock server timeout ([f06d04a](https://github.com/moonbaseai/moonbase-sdk-python/commit/f06d04a56f23ba627cb5bbdac3186720b356e1b9))
+* **tests:** bump steady to v0.19.4 ([ae67227](https://github.com/moonbaseai/moonbase-sdk-python/commit/ae67227d786e13ee9ba5f6fe6955808ab0be4a26))
+* **tests:** bump steady to v0.19.5 ([c2aa3f5](https://github.com/moonbaseai/moonbase-sdk-python/commit/c2aa3f50787c01593da859ee91038aa26f338cec))
+* **tests:** bump steady to v0.19.6 ([589463f](https://github.com/moonbaseai/moonbase-sdk-python/commit/589463f8c00ae7de50cd90f925c9a873896028ac))
+* **tests:** bump steady to v0.19.7 ([b03c02e](https://github.com/moonbaseai/moonbase-sdk-python/commit/b03c02e56549a264428aeac4584344c5dc4fc617))
+* **tests:** bump steady to v0.20.1 ([ad5b80d](https://github.com/moonbaseai/moonbase-sdk-python/commit/ad5b80d5534f6b3207e6ab388363dd6072dd2194))
+* **tests:** bump steady to v0.20.2 ([0d3920f](https://github.com/moonbaseai/moonbase-sdk-python/commit/0d3920fb10c58fd6a0f84f7178ed03d470a9a031))
+* **tests:** bump steady to v0.22.1 ([4793aac](https://github.com/moonbaseai/moonbase-sdk-python/commit/4793aac454c8f064bf97fc6e087329fb877b7323))
+* **tests:** update test fixtures for calls and program_messages ([96cfc45](https://github.com/moonbaseai/moonbase-sdk-python/commit/96cfc455958469768b12fbf7927fec3c151a40e0))
+* **tests:** update test fixtures in calls and program_messages ([0ba6418](https://github.com/moonbaseai/moonbase-sdk-python/commit/0ba64183714579eba508299c8c42832e855fa843))
+* update placeholder string ([d4c5d99](https://github.com/moonbaseai/moonbase-sdk-python/commit/d4c5d999276bc068cb1591056ca736164048c076))
+
+
+### Documentation
+
+* **api:** update search method and parameter descriptions ([fb1b63c](https://github.com/moonbaseai/moonbase-sdk-python/commit/fb1b63c0306665eba1e28e68c13491e105154866))
+* **types:** make note and summary fields nullable in Call and Meeting models ([d0a4574](https://github.com/moonbaseai/moonbase-sdk-python/commit/d0a4574906edcc4dc4ff4652eb1941c277da486d))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([70cda61](https://github.com/moonbaseai/moonbase-sdk-python/commit/70cda610305d2a09fb44d32ba7ab1d8d07e7fd16))
+
 ## 0.1.0-alpha.9 (2026-02-26)
 
 Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
