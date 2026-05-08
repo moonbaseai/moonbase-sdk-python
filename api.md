@@ -208,7 +208,6 @@ from moonbase.types import (
     EmailMessageAddressParams,
     EmailMessagePointer,
     MessageAttachment,
-    MessageAttachmentCreateParams,
 )
 ```
 
