@@ -184,11 +184,13 @@ class FilesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MoonbaseFile:
-        """
-        Upload a file
+        """Uploads a file to your library.
+
+        The file must be 5 MB or smaller.
 
         Args:
-          file: The File object to be uploaded.
+          file: The raw file content to upload in a multipart/form-data request. Must be 5 MB or
+              smaller.
 
           associations: Link the File to Moonbase items like a person, organization, deal, task, or an
               item in a custom collection.
@@ -385,11 +387,13 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MoonbaseFile:
-        """
-        Upload a file
+        """Uploads a file to your library.
+
+        The file must be 5 MB or smaller.
 
         Args:
-          file: The File object to be uploaded.
+          file: The raw file content to upload in a multipart/form-data request. Must be 5 MB or
+              smaller.
 
           associations: Link the File to Moonbase items like a person, organization, deal, task, or an
               item in a custom collection.
