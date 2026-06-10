@@ -124,6 +124,7 @@ Methods:
 - <code title="get /collections/{id}">client.collections.<a href="./src/moonbase/resources/collections/collections.py">retrieve</a>(id) -> <a href="./src/moonbase/types/collection.py">Collection</a></code>
 - <code title="patch /collections/{id}">client.collections.<a href="./src/moonbase/resources/collections/collections.py">update</a>(id, \*\*<a href="src/moonbase/types/collection_update_params.py">params</a>) -> <a href="./src/moonbase/types/collection.py">Collection</a></code>
 - <code title="get /collections">client.collections.<a href="./src/moonbase/resources/collections/collections.py">list</a>(\*\*<a href="src/moonbase/types/collection_list_params.py">params</a>) -> <a href="./src/moonbase/types/collection_list_response.py">SyncCursorPage[CollectionListResponse]</a></code>
+- <code title="delete /collections/{id}">client.collections.<a href="./src/moonbase/resources/collections/collections.py">delete</a>(id) -> None</code>
 
 ## Fields
 
