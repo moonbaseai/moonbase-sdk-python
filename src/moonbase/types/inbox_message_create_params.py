@@ -2,18 +2,41 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing import Union, Iterable
+from typing_extensions import Required, TypeAlias, TypedDict
 
 from .email_message_address_params import EmailMessageAddressParams
 from .shared_params.formatted_text import FormattedText
 
-__all__ = ["InboxMessageCreateParams"]
+__all__ = ["InboxMessageCreateParams", "Variant0", "EmailMessageReplyCreateParams"]
 
 
-class InboxMessageCreateParams(TypedDict, total=False):
+class Variant0(TypedDict, total=False):
     body: Required[FormattedText]
     """The email body."""
+
+    inbox_id: Required[str]
+    """The inbox to use for sending the email."""
+
+    subject: Required[str]
+    """The subject line of the email."""
+
+    to: Required[Iterable[EmailMessageAddressParams]]
+    """A list of recipients."""
+
+    bcc: Iterable[EmailMessageAddressParams]
+    """A list of the BCC recipients."""
+
+    cc: Iterable[EmailMessageAddressParams]
+    """A list of the CC recipients."""
+
+
+class EmailMessageReplyCreateParams(TypedDict, total=False):
+    body: Required[FormattedText]
+    """The email body."""
+
+    conversation_id: Required[str]
+    """The ID of the conversation to reply to."""
 
     inbox_id: Required[str]
     """The inbox to use for sending the email."""
@@ -24,11 +47,8 @@ class InboxMessageCreateParams(TypedDict, total=False):
     cc: Iterable[EmailMessageAddressParams]
     """A list of the CC recipients."""
 
-    conversation_id: str
-    """The ID of the conversation, if responding to an existing conversation."""
-
-    subject: str
-    """The subject line of the email."""
-
     to: Iterable[EmailMessageAddressParams]
-    """A list of recipients."""
+    """A list of recipients. If omitted, recipients are derived from the conversation."""
+
+
+InboxMessageCreateParams: TypeAlias = Union[Variant0, EmailMessageReplyCreateParams]
