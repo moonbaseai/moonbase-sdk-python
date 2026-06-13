@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Iterable
-from typing_extensions import Literal
+from typing_extensions import Literal, overload
 
 import httpx
 
@@ -14,7 +14,7 @@ from ...types import (
     inbox_message_retrieve_params,
 )
 from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -68,16 +68,16 @@ class InboxMessagesResource(SyncAPIResource):
         """
         return InboxMessagesResourceWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         *,
         body: FormattedText,
         inbox_id: str,
+        subject: str,
+        to: Iterable[EmailMessageAddressParams],
         bcc: Iterable[EmailMessageAddressParams] | Omit = omit,
         cc: Iterable[EmailMessageAddressParams] | Omit = omit,
-        conversation_id: str | Omit = omit,
-        subject: str | Omit = omit,
-        to: Iterable[EmailMessageAddressParams] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -93,15 +93,13 @@ class InboxMessagesResource(SyncAPIResource):
 
           inbox_id: The inbox to use for sending the email.
 
-          bcc: A list of the BCC recipients.
-
-          cc: A list of the CC recipients.
-
-          conversation_id: The ID of the conversation, if responding to an existing conversation.
-
           subject: The subject line of the email.
 
           to: A list of recipients.
+
+          bcc: A list of the BCC recipients.
+
+          cc: A list of the CC recipients.
 
           extra_headers: Send extra headers
 
@@ -111,17 +109,80 @@ class InboxMessagesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def create(
+        self,
+        *,
+        body: FormattedText,
+        conversation_id: str,
+        inbox_id: str,
+        bcc: Iterable[EmailMessageAddressParams] | Omit = omit,
+        cc: Iterable[EmailMessageAddressParams] | Omit = omit,
+        to: Iterable[EmailMessageAddressParams] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EmailMessage:
+        """
+        Creates a new message draft.
+
+        Args:
+          body: The email body.
+
+          conversation_id: The ID of the conversation to reply to.
+
+          inbox_id: The inbox to use for sending the email.
+
+          bcc: A list of the BCC recipients.
+
+          cc: A list of the CC recipients.
+
+          to: A list of recipients. If omitted, recipients are derived from the conversation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["body", "inbox_id", "subject", "to"], ["body", "conversation_id", "inbox_id"])
+    def create(
+        self,
+        *,
+        body: FormattedText,
+        inbox_id: str,
+        subject: str | Omit = omit,
+        to: Iterable[EmailMessageAddressParams] | Omit = omit,
+        bcc: Iterable[EmailMessageAddressParams] | Omit = omit,
+        cc: Iterable[EmailMessageAddressParams] | Omit = omit,
+        conversation_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EmailMessage:
         return self._post(
             "/inbox_messages",
             body=maybe_transform(
                 {
                     "body": body,
                     "inbox_id": inbox_id,
+                    "subject": subject,
+                    "to": to,
                     "bcc": bcc,
                     "cc": cc,
                     "conversation_id": conversation_id,
-                    "subject": subject,
-                    "to": to,
                 },
                 inbox_message_create_params.InboxMessageCreateParams,
             ),
@@ -356,16 +417,16 @@ class AsyncInboxMessagesResource(AsyncAPIResource):
         """
         return AsyncInboxMessagesResourceWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         *,
         body: FormattedText,
         inbox_id: str,
+        subject: str,
+        to: Iterable[EmailMessageAddressParams],
         bcc: Iterable[EmailMessageAddressParams] | Omit = omit,
         cc: Iterable[EmailMessageAddressParams] | Omit = omit,
-        conversation_id: str | Omit = omit,
-        subject: str | Omit = omit,
-        to: Iterable[EmailMessageAddressParams] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -381,15 +442,13 @@ class AsyncInboxMessagesResource(AsyncAPIResource):
 
           inbox_id: The inbox to use for sending the email.
 
-          bcc: A list of the BCC recipients.
-
-          cc: A list of the CC recipients.
-
-          conversation_id: The ID of the conversation, if responding to an existing conversation.
-
           subject: The subject line of the email.
 
           to: A list of recipients.
+
+          bcc: A list of the BCC recipients.
+
+          cc: A list of the CC recipients.
 
           extra_headers: Send extra headers
 
@@ -399,17 +458,80 @@ class AsyncInboxMessagesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def create(
+        self,
+        *,
+        body: FormattedText,
+        conversation_id: str,
+        inbox_id: str,
+        bcc: Iterable[EmailMessageAddressParams] | Omit = omit,
+        cc: Iterable[EmailMessageAddressParams] | Omit = omit,
+        to: Iterable[EmailMessageAddressParams] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EmailMessage:
+        """
+        Creates a new message draft.
+
+        Args:
+          body: The email body.
+
+          conversation_id: The ID of the conversation to reply to.
+
+          inbox_id: The inbox to use for sending the email.
+
+          bcc: A list of the BCC recipients.
+
+          cc: A list of the CC recipients.
+
+          to: A list of recipients. If omitted, recipients are derived from the conversation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["body", "inbox_id", "subject", "to"], ["body", "conversation_id", "inbox_id"])
+    async def create(
+        self,
+        *,
+        body: FormattedText,
+        inbox_id: str,
+        subject: str | Omit = omit,
+        to: Iterable[EmailMessageAddressParams] | Omit = omit,
+        bcc: Iterable[EmailMessageAddressParams] | Omit = omit,
+        cc: Iterable[EmailMessageAddressParams] | Omit = omit,
+        conversation_id: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EmailMessage:
         return await self._post(
             "/inbox_messages",
             body=await async_maybe_transform(
                 {
                     "body": body,
                     "inbox_id": inbox_id,
+                    "subject": subject,
+                    "to": to,
                     "bcc": bcc,
                     "cc": cc,
                     "conversation_id": conversation_id,
-                    "subject": subject,
-                    "to": to,
                 },
                 inbox_message_create_params.InboxMessageCreateParams,
             ),
