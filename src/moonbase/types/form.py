@@ -1,12 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
-
 from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .collection import Collection
 
 __all__ = ["Form"]
 
@@ -25,7 +24,7 @@ class Form(BaseModel):
     disposable providers.
     """
 
-    collection: "Collection"
+    collection: Collection
     """The `Collection` that submissions to this form are saved to."""
 
     created_at: datetime
@@ -60,6 +59,3 @@ class Form(BaseModel):
     `https://example.com/thanks?email={{ submission.email | uri_encode }}`. The
     rendered URL must parse as a valid URL or the submission errors.
     """
-
-
-from .collection import Collection

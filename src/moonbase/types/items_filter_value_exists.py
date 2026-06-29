@@ -1,19 +1,19 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
+from typing_extensions import Literal
 
-from typing_extensions import Literal, Required, TypedDict
+from .._models import BaseModel
 
-__all__ = ["ItemsFilterValueExistsParam"]
+__all__ = ["ItemsFilterValueExists"]
 
 
-class ItemsFilterValueExistsParam(TypedDict, total=False):
+class ItemsFilterValueExists(BaseModel):
     """Include only items that have a value in the given `field`."""
 
-    field: Required[str]
+    field: str
     """
     The id or key of the field for which a value must exist, or a path to the field
     for which a value must exist.
     """
 
-    op: Required[Literal["exists"]]
+    op: Literal["exists"]

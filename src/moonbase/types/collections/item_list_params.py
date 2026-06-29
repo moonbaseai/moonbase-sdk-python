@@ -31,8 +31,8 @@ class ItemListParams(TypedDict, total=False):
     """
 
     sort: SequenceNotStr[str]
-    """Sort items by the specified field ids or keys.
-
-    Prefix a field with a hyphen/minus (`-`) to sort in descending order by that
-    field.
+    """
+    Sort items returned by the specified fields, specified directly by (`name`) or
+    through relations (`organization.name`, `deals.owner.email`). Prefix with a
+    hyphen/minus (`-`) to sort in descending order.
     """

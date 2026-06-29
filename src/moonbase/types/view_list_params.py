@@ -4,12 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-from ..._types import SequenceNotStr
-
-__all__ = ["ItemSearchParams"]
+__all__ = ["ViewListParams"]
 
 
-class ItemSearchParams(TypedDict, total=False):
+class ViewListParams(TypedDict, total=False):
     after: str
     """
     When specified, returns results starting immediately after the item identified
@@ -29,26 +27,3 @@ class ItemSearchParams(TypedDict, total=False):
 
     Must be between 1 and 100. Defaults to 20 if not specified.
     """
-
-    filter: "ItemsFilterParam"
-    """Return only items that match the filter conditions.
-
-    Complex filters can be created by nesting filters inside of `AND`, `OR`, and
-    `NOT` filters.
-    """
-
-    include: SequenceNotStr[str]
-    """Include only specific fields in the returned items.
-
-    Specify fields by id or key.
-    """
-
-    sort: SequenceNotStr[str]
-    """
-    Sort items returned by the specified fields, specified directly by (`name`) or
-    through relations (`organization.name`, `deals.owner.email`). Prefix with a
-    hyphen/minus (`-`) to sort in descending order.
-    """
-
-
-from ..items_filter_param import ItemsFilterParam

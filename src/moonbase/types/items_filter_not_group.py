@@ -2,18 +2,20 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal
 
-__all__ = ["ItemsFilterNotGroupParam"]
+from .._models import BaseModel
+
+__all__ = ["ItemsFilterNotGroup"]
 
 
-class ItemsFilterNotGroupParam(TypedDict, total=False):
+class ItemsFilterNotGroup(BaseModel):
     """Include only items that do NOT match the nested `filter`."""
 
-    filter: Required["ItemsFilterParam"]
+    filter: "ItemsFilter"
     """A nested filter which must NOT match in order for this `not` filter to match."""
 
-    op: Required[Literal["not"]]
+    op: Literal["not"]
 
 
-from .items_filter_param import ItemsFilterParam
+from .items_filter import ItemsFilter

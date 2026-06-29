@@ -159,12 +159,24 @@ Methods:
 Types:
 
 ```python
-from moonbase.types import View
+from moonbase.types import (
+    View,
+    ViewAggregate,
+    ViewAggregateFieldStatistic,
+    ViewAggregateItemCount,
+    ViewField,
+    ViewRelationValueFilter,
+    ViewListResponse,
+)
 ```
 
 Methods:
 
-- <code title="get /views/{id}">client.views.<a href="./src/moonbase/resources/views/views.py">retrieve</a>(id, \*\*<a href="src/moonbase/types/view_retrieve_params.py">params</a>) -> <a href="./src/moonbase/types/view.py">View</a></code>
+- <code title="post /views">client.views.<a href="./src/moonbase/resources/views/views.py">create</a>(\*\*<a href="src/moonbase/types/view_create_params.py">params</a>) -> <a href="./src/moonbase/types/view.py">View</a></code>
+- <code title="get /views/{id}">client.views.<a href="./src/moonbase/resources/views/views.py">retrieve</a>(id) -> <a href="./src/moonbase/types/view.py">View</a></code>
+- <code title="patch /views/{id}">client.views.<a href="./src/moonbase/resources/views/views.py">update</a>(id, \*\*<a href="src/moonbase/types/view_update_params.py">params</a>) -> <a href="./src/moonbase/types/view.py">View</a></code>
+- <code title="get /views">client.views.<a href="./src/moonbase/resources/views/views.py">list</a>(\*\*<a href="src/moonbase/types/view_list_params.py">params</a>) -> <a href="./src/moonbase/types/view_list_response.py">SyncCursorPage[ViewListResponse]</a></code>
+- <code title="delete /views/{id}">client.views.<a href="./src/moonbase/resources/views/views.py">delete</a>(id) -> None</code>
 
 ## Items
 
