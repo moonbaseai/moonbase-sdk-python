@@ -4,12 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-from ..._types import SequenceNotStr
-
-__all__ = ["ItemListParams"]
+__all__ = ["ViewListParams"]
 
 
-class ItemListParams(TypedDict, total=False):
+class ViewListParams(TypedDict, total=False):
     after: str
     """
     When specified, returns results starting immediately after the item identified
@@ -28,11 +26,4 @@ class ItemListParams(TypedDict, total=False):
     """Maximum number of items to return per page.
 
     Must be between 1 and 100. Defaults to 20 if not specified.
-    """
-
-    sort: SequenceNotStr[str]
-    """
-    Sort items returned by the specified fields, specified directly by (`name`) or
-    through relations (`organization.name`, `deals.owner.email`). Prefix with a
-    hyphen/minus (`-`) to sort in descending order.
     """

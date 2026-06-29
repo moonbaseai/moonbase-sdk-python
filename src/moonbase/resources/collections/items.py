@@ -217,8 +217,9 @@ class ItemsResource(SyncAPIResource):
           limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
               to 20 if not specified.
 
-          sort: Sort items by the specified field ids or keys. Prefix a field with a
-              hyphen/minus (`-`) to sort in descending order by that field.
+          sort: Sort items returned by the specified fields, specified directly by (`name`) or
+              through relations (`organization.name`, `deals.owner.email`). Prefix with a
+              hyphen/minus (`-`) to sort in descending order.
 
           extra_headers: Send extra headers
 
@@ -371,8 +372,9 @@ class ItemsResource(SyncAPIResource):
 
           include: Include only specific fields in the returned items. Specify fields by id or key.
 
-          sort: Sort items by the specified field ids or keys. Prefix a field with a
-              hyphen/minus (`-`) to sort in descending order by that field.
+          sort: Sort items returned by the specified fields, specified directly by (`name`) or
+              through relations (`organization.name`, `deals.owner.email`). Prefix with a
+              hyphen/minus (`-`) to sort in descending order.
 
           extra_headers: Send extra headers
 
@@ -652,8 +654,9 @@ class AsyncItemsResource(AsyncAPIResource):
           limit: Maximum number of items to return per page. Must be between 1 and 100. Defaults
               to 20 if not specified.
 
-          sort: Sort items by the specified field ids or keys. Prefix a field with a
-              hyphen/minus (`-`) to sort in descending order by that field.
+          sort: Sort items returned by the specified fields, specified directly by (`name`) or
+              through relations (`organization.name`, `deals.owner.email`). Prefix with a
+              hyphen/minus (`-`) to sort in descending order.
 
           extra_headers: Send extra headers
 
@@ -806,8 +809,9 @@ class AsyncItemsResource(AsyncAPIResource):
 
           include: Include only specific fields in the returned items. Specify fields by id or key.
 
-          sort: Sort items by the specified field ids or keys. Prefix a field with a
-              hyphen/minus (`-`) to sort in descending order by that field.
+          sort: Sort items returned by the specified fields, specified directly by (`name`) or
+              through relations (`organization.name`, `deals.owner.email`). Prefix with a
+              hyphen/minus (`-`) to sort in descending order.
 
           extra_headers: Send extra headers
 

@@ -1,15 +1,34 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
-
 from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .field import Field
 from .._models import BaseModel
+from .collection_pointer import CollectionPointer
 
-__all__ = ["Collection"]
+__all__ = ["Collection", "View"]
+
+
+class View(BaseModel):
+    id: str
+
+    collection: CollectionPointer
+    """
+    A lightweight reference to a `Collection`, containing the minimal information
+    needed to identify it.
+    """
+
+    created_at: datetime
+
+    name: str
+
+    type: Literal["view"]
+
+    updated_at: datetime
+
+    view_type: Literal["table", "board"]
 
 
 class Collection(BaseModel):
@@ -51,11 +70,8 @@ class Collection(BaseModel):
     description: Optional[str] = None
     """An optional, longer-form description of the collection's purpose."""
 
-    views: Optional[List["View"]] = None
+    views: Optional[List[View]] = None
     """A list of saved `View` objects for presenting the collection's data.
 
     **Note:** Only present when requested using the `include` query parameter.
     """
-
-
-from .view import View
