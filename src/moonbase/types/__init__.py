@@ -6,9 +6,9 @@ from . import (
     view,
     program,
     email_message,
+    slack_message,
     program_message,
     program_template,
-    inbox_conversation,
     items_filter_or_group,
     items_filter_and_group,
     items_filter_not_group,
@@ -26,7 +26,6 @@ from .value import Value as Value
 from .funnel import Funnel as Funnel
 from .shared import Tag as Tag, Error as Error, FormattedText as FormattedText, TagPointerParam as TagPointerParam
 from .tagset import Tagset as Tagset
-from .address import Address as Address
 from .meeting import Meeting as Meeting
 from .program import Program as Program
 from .activity import Activity as Activity
@@ -69,6 +68,7 @@ from .field_pointer import FieldPointer as FieldPointer
 from .integer_field import IntegerField as IntegerField
 from .integer_value import IntegerValue as IntegerValue
 from .moonbase_file import MoonbaseFile as MoonbaseFile
+from .slack_message import SlackMessage as SlackMessage
 from .current_member import CurrentMember as CurrentMember
 from .datetime_field import DatetimeField as DatetimeField
 from .datetime_value import DatetimeValue as DatetimeValue
@@ -83,6 +83,7 @@ from .view_aggregate import ViewAggregate as ViewAggregate
 from .call_transcript import CallTranscript as CallTranscript
 from .geo_value_param import GeoValueParam as GeoValueParam
 from .meeting_pointer import MeetingPointer as MeetingPointer
+from .message_pointer import MessagePointer as MessagePointer
 from .program_message import ProgramMessage as ProgramMessage
 from .program_pointer import ProgramPointer as ProgramPointer
 from .search_response import SearchResponse as SearchResponse
@@ -151,12 +152,13 @@ from .social_x_value_param import SocialXValueParam as SocialXValueParam
 from .tagset_create_params import TagsetCreateParams as TagsetCreateParams
 from .tagset_update_params import TagsetUpdateParams as TagsetUpdateParams
 from .view_aggregate_param import ViewAggregateParam as ViewAggregateParam
-from .email_message_pointer import EmailMessagePointer as EmailMessagePointer
+from .email_message_address import EmailMessageAddress as EmailMessageAddress
 from .items_filter_or_group import ItemsFilterOrGroup as ItemsFilterOrGroup
 from .meeting_pointer_param import MeetingPointerParam as MeetingPointerParam
 from .meeting_update_params import MeetingUpdateParams as MeetingUpdateParams
 from .multi_line_text_field import MultiLineTextField as MultiLineTextField
 from .multi_line_text_value import MultiLineTextValue as MultiLineTextValue
+from .slack_message_address import SlackMessageAddress as SlackMessageAddress
 from .collection_list_params import CollectionListParams as CollectionListParams
 from .current_datetime_param import CurrentDatetimeParam as CurrentDatetimeParam
 from .identifier_value_param import IdentifierValueParam as IdentifierValueParam
@@ -205,10 +207,13 @@ from .items_filter_and_group_param import ItemsFilterAndGroupParam as ItemsFilte
 from .items_filter_not_group_param import ItemsFilterNotGroupParam as ItemsFilterNotGroupParam
 from .program_template_list_params import ProgramTemplateListParams as ProgramTemplateListParams
 from .single_line_text_value_param import SingleLineTextValueParam as SingleLineTextValueParam
+from .slack_message_address_params import SlackMessageAddressParams as SlackMessageAddressParams
 from .social_linked_in_value_param import SocialLinkedInValueParam as SocialLinkedInValueParam
 from .webhook_endpoint_list_params import WebhookEndpointListParams as WebhookEndpointListParams
 from .agent_setting_update_response import AgentSettingUpdateResponse as AgentSettingUpdateResponse
+from .inbox_message_create_response import InboxMessageCreateResponse as InboxMessageCreateResponse
 from .inbox_message_retrieve_params import InboxMessageRetrieveParams as InboxMessageRetrieveParams
+from .inbox_message_update_response import InboxMessageUpdateResponse as InboxMessageUpdateResponse
 from .date_field_default_value_param import DateFieldDefaultValueParam as DateFieldDefaultValueParam
 from .inbox_conversation_list_params import InboxConversationListParams as InboxConversationListParams
 from .social_profile_linked_in_param import SocialProfileLinkedInParam as SocialProfileLinkedInParam
@@ -216,6 +221,7 @@ from .view_aggregate_field_statistic import ViewAggregateFieldStatistic as ViewA
 from .webhook_endpoint_create_params import WebhookEndpointCreateParams as WebhookEndpointCreateParams
 from .webhook_endpoint_update_params import WebhookEndpointUpdateParams as WebhookEndpointUpdateParams
 from .agent_setting_retrieve_response import AgentSettingRetrieveResponse as AgentSettingRetrieveResponse
+from .inbox_message_retrieve_response import InboxMessageRetrieveResponse as InboxMessageRetrieveResponse
 from .items_filter_value_exists_param import ItemsFilterValueExistsParam as ItemsFilterValueExistsParam
 from .view_aggregate_item_count_param import ViewAggregateItemCountParam as ViewAggregateItemCountParam
 from .inbox_conversation_list_response import InboxConversationListResponse as InboxConversationListResponse
@@ -239,8 +245,8 @@ if _compat.PYDANTIC_V1:
     items_filter_or_group.ItemsFilterOrGroup.update_forward_refs()  # type: ignore
     view.View.update_forward_refs()  # type: ignore
     view_relation_value_filter.ViewRelationValueFilter.update_forward_refs()  # type: ignore
-    inbox_conversation.InboxConversation.update_forward_refs()  # type: ignore
     email_message.EmailMessage.update_forward_refs()  # type: ignore
+    slack_message.SlackMessage.update_forward_refs()  # type: ignore
     program.Program.update_forward_refs()  # type: ignore
     program_template.ProgramTemplate.update_forward_refs()  # type: ignore
     program_message.ProgramMessage.update_forward_refs()  # type: ignore
@@ -250,8 +256,8 @@ else:
     items_filter_or_group.ItemsFilterOrGroup.model_rebuild(_parent_namespace_depth=0)
     view.View.model_rebuild(_parent_namespace_depth=0)
     view_relation_value_filter.ViewRelationValueFilter.model_rebuild(_parent_namespace_depth=0)
-    inbox_conversation.InboxConversation.model_rebuild(_parent_namespace_depth=0)
     email_message.EmailMessage.model_rebuild(_parent_namespace_depth=0)
+    slack_message.SlackMessage.model_rebuild(_parent_namespace_depth=0)
     program.Program.model_rebuild(_parent_namespace_depth=0)
     program_template.ProgramTemplate.model_rebuild(_parent_namespace_depth=0)
     program_message.ProgramMessage.model_rebuild(_parent_namespace_depth=0)

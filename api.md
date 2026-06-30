@@ -216,20 +216,26 @@ Types:
 
 ```python
 from moonbase.types import (
-    Address,
     EmailMessage,
+    EmailMessageAddress,
     EmailMessageAddressParams,
-    EmailMessagePointer,
     MessageAttachment,
+    MessagePointer,
+    SlackMessage,
+    SlackMessageAddress,
+    SlackMessageAddressParams,
+    InboxMessageCreateResponse,
+    InboxMessageRetrieveResponse,
+    InboxMessageUpdateResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /inbox_messages">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">create</a>(\*\*<a href="src/moonbase/types/inbox_message_create_params.py">params</a>) -> <a href="./src/moonbase/types/email_message.py">EmailMessage</a></code>
-- <code title="get /inbox_messages/{id}">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">retrieve</a>(id, \*\*<a href="src/moonbase/types/inbox_message_retrieve_params.py">params</a>) -> <a href="./src/moonbase/types/email_message.py">EmailMessage</a></code>
-- <code title="patch /inbox_messages/{id}">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">update</a>(id, \*\*<a href="src/moonbase/types/inbox_message_update_params.py">params</a>) -> <a href="./src/moonbase/types/email_message.py">EmailMessage</a></code>
-- <code title="get /inbox_messages">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">list</a>(\*\*<a href="src/moonbase/types/inbox_message_list_params.py">params</a>) -> <a href="./src/moonbase/types/email_message_pointer.py">SyncCursorPage[EmailMessagePointer]</a></code>
+- <code title="post /inbox_messages">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">create</a>(\*\*<a href="src/moonbase/types/inbox_message_create_params.py">params</a>) -> <a href="./src/moonbase/types/inbox_message_create_response.py">InboxMessageCreateResponse</a></code>
+- <code title="get /inbox_messages/{id}">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">retrieve</a>(id, \*\*<a href="src/moonbase/types/inbox_message_retrieve_params.py">params</a>) -> <a href="./src/moonbase/types/inbox_message_retrieve_response.py">InboxMessageRetrieveResponse</a></code>
+- <code title="patch /inbox_messages/{id}">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">update</a>(id, \*\*<a href="src/moonbase/types/inbox_message_update_params.py">params</a>) -> <a href="./src/moonbase/types/inbox_message_update_response.py">InboxMessageUpdateResponse</a></code>
+- <code title="get /inbox_messages">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">list</a>(\*\*<a href="src/moonbase/types/inbox_message_list_params.py">params</a>) -> <a href="./src/moonbase/types/message_pointer.py">SyncCursorPage[MessagePointer]</a></code>
 - <code title="delete /inbox_messages/{id}">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">delete</a>(id) -> None</code>
 
 ## Attachments

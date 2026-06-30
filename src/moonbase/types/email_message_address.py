@@ -6,11 +6,11 @@ from typing_extensions import Literal
 from .._models import BaseModel
 from .item_pointer import ItemPointer
 
-__all__ = ["Address"]
+__all__ = ["EmailMessageAddress"]
 
 
-class Address(BaseModel):
-    """The Address object represents a recipient or sender of a message.
+class EmailMessageAddress(BaseModel):
+    """The EmailMessageAddress object represents a recipient or sender of a message.
 
     It contains an email address and can be linked to a person and an organization in your collections.
     """
@@ -27,7 +27,7 @@ class Address(BaseModel):
     Can be `from`, `reply_to`, `to`, `cc`, or `bcc`.
     """
 
-    type: Literal["message_address"]
+    type: Literal["email_message_address"]
     """String representing the object’s type.
 
     Always `message_address` for this object.

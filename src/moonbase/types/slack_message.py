@@ -9,14 +9,16 @@ from typing_extensions import Literal
 from .._models import BaseModel
 from .inbox_conversation import InboxConversation
 from .message_attachment import MessageAttachment
-from .email_message_address import EmailMessageAddress
 from .shared.formatted_text import FormattedText
+from .slack_message_address import SlackMessageAddress
 
-__all__ = ["EmailMessage"]
+__all__ = ["SlackMessage"]
 
 
-class EmailMessage(BaseModel):
-    """The Email Message object represents a single email within a `Conversation`."""
+class SlackMessage(BaseModel):
+    """
+    The Slack Message object represents a single Slack post within a `Conversation`.
+    """
 
     id: str
     """Unique identifier for the object."""
@@ -43,19 +45,25 @@ class EmailMessage(BaseModel):
     """`true` if the message is classified as spam."""
 
     subject: str
-    """The subject line of the email."""
+    """
+    The subject line of the message (for messages received from Slack, this is a
+    snippet of the message; for messages sent to Slack, it can be set, but is not
+    sent to Slack).
+    """
 
     trash: bool
     """`true` if the message is in the trash."""
 
-    type: Literal["email_message"]
-    """String representing the object’s type. Always `email_message` for this object."""
+    type: Literal["slack_message"]
+    """String representing the object’s type. Always `slack_message` for this object."""
 
     unread: bool
     """`true` if the message has not been read."""
 
-    addresses: Optional[List[EmailMessageAddress]] = None
-    """A list of `Address` objects associated with the message (sender and recipients).
+    addresses: Optional[List[SlackMessageAddress]] = None
+    """
+    A list of `SlackMessageAddress` objects associated with the message (sender and
+    recipients).
 
     **Note:** Only present when requested using the `include` query parameter.
     """
@@ -73,4 +81,4 @@ class EmailMessage(BaseModel):
     """
 
     summary: Optional[str] = None
-    """A concise, system-generated summary of the email content."""
+    """A concise, system-generated summary of the message content."""

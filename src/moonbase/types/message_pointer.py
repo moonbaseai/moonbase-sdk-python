@@ -4,10 +4,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["EmailMessagePointer"]
+__all__ = ["MessagePointer"]
 
 
-class EmailMessagePointer(BaseModel):
+class MessagePointer(BaseModel):
     id: str
 
-    type: Literal["email_message"]
+    type: Literal["message"]
