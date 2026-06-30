@@ -9,10 +9,10 @@ from .file_pointer import FilePointer
 from .item_pointer import ItemPointer
 from .note_pointer import NotePointer
 from .meeting_pointer import MeetingPointer
+from .message_pointer import MessagePointer
 from .program_pointer import ProgramPointer
 from .collection_pointer import CollectionPointer
 from .unsubscribe_pointer import UnsubscribePointer
-from .email_message_pointer import EmailMessagePointer
 from .program_message_pointer import ProgramMessagePointer
 from .program_template_pointer import ProgramTemplatePointer
 
@@ -25,7 +25,7 @@ ConstituentEntityPointer: TypeAlias = Annotated[
         ItemPointer,
         FilePointer,
         MeetingPointer,
-        EmailMessagePointer,
+        MessagePointer,
         NotePointer,
         ProgramPointer,
         ProgramMessagePointer,

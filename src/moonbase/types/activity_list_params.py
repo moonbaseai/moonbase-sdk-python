@@ -82,10 +82,10 @@ class ConstituentEntityType(TypedDict, total=False):
     eq: Literal[
         "call",
         "collection",
-        "email_message",
         "file",
         "item",
         "meeting",
+        "message",
         "note",
         "program",
         "program_message",
