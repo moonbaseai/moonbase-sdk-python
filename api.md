@@ -250,7 +250,7 @@ Methods:
 Types:
 
 ```python
-from moonbase.types import Tagset, TagsetPointer
+from moonbase.types import Tagset, TagsetAssociation, TagsetPointer
 ```
 
 Methods:
@@ -304,7 +304,7 @@ Methods:
 Types:
 
 ```python
-from moonbase.types import Form
+from moonbase.types import Form, FormListResponse
 ```
 
 Methods:
@@ -312,7 +312,7 @@ Methods:
 - <code title="post /forms">client.forms.<a href="./src/moonbase/resources/forms.py">create</a>(\*\*<a href="src/moonbase/types/form_create_params.py">params</a>) -> <a href="./src/moonbase/types/form.py">Form</a></code>
 - <code title="get /forms/{id}">client.forms.<a href="./src/moonbase/resources/forms.py">retrieve</a>(id) -> <a href="./src/moonbase/types/form.py">Form</a></code>
 - <code title="patch /forms/{id}">client.forms.<a href="./src/moonbase/resources/forms.py">update</a>(id, \*\*<a href="src/moonbase/types/form_update_params.py">params</a>) -> <a href="./src/moonbase/types/form.py">Form</a></code>
-- <code title="get /forms">client.forms.<a href="./src/moonbase/resources/forms.py">list</a>(\*\*<a href="src/moonbase/types/form_list_params.py">params</a>) -> <a href="./src/moonbase/types/form.py">SyncCursorPage[Form]</a></code>
+- <code title="get /forms">client.forms.<a href="./src/moonbase/resources/forms.py">list</a>(\*\*<a href="src/moonbase/types/form_list_params.py">params</a>) -> <a href="./src/moonbase/types/form_list_response.py">SyncCursorPage[FormListResponse]</a></code>
 - <code title="delete /forms/{id}">client.forms.<a href="./src/moonbase/resources/forms.py">delete</a>(id) -> None</code>
 
 # Unsubscribes
