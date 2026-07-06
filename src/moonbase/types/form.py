@@ -5,7 +5,7 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
-from .collection import Collection
+from .collection_pointer import CollectionPointer
 
 __all__ = ["Form"]
 
@@ -24,11 +24,14 @@ class Form(BaseModel):
     disposable providers.
     """
 
-    collection: Collection
+    collection: CollectionPointer
     """The `Collection` that submissions to this form are saved to."""
 
     created_at: datetime
     """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
+
+    html_embed: str
+    """The HTML snippet for embedding the form on your website."""
 
     name: str
     """The name of the form, used as the title on its public page."""

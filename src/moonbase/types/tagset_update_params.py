@@ -5,10 +5,19 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from .tagset_association_param import TagsetAssociationParam
+
 __all__ = ["TagsetUpdateParams", "Tag"]
 
 
 class TagsetUpdateParams(TypedDict, total=False):
+    associations: Iterable[TagsetAssociationParam]
+    """Optional full list of associations for this tagset.
+
+    If provided, it replaces all existing associations. An empty array clears all
+    associations, and omitting it preserves existing associations.
+    """
+
     description: str
     """An updated description of the tagset."""
 

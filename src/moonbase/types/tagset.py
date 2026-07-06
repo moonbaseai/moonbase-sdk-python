@@ -6,6 +6,7 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 from .shared.tag import Tag
+from .tagset_association import TagsetAssociation
 
 __all__ = ["Tagset"]
 
@@ -17,6 +18,9 @@ class Tagset(BaseModel):
 
     id: str
     """Unique identifier for the object."""
+
+    associations: List[TagsetAssociation]
+    """Where a tagset is available (`calls`, `meetings`, or `inbox` with an inbox ID)."""
 
     created_at: datetime
     """Time at which the object was created, as an ISO 8601 timestamp in UTC."""

@@ -117,6 +117,7 @@ from .current_date_param import CurrentDateParam as CurrentDateParam
 from .domain_value_param import DomainValueParam as DomainValueParam
 from .file_upload_params import FileUploadParams as FileUploadParams
 from .form_create_params import FormCreateParams as FormCreateParams
+from .form_list_response import FormListResponse as FormListResponse
 from .form_update_params import FormUpdateParams as FormUpdateParams
 from .funnel_list_params import FunnelListParams as FunnelListParams
 from .inbox_conversation import InboxConversation as InboxConversation
@@ -126,6 +127,7 @@ from .meeting_transcript import MeetingTranscript as MeetingTranscript
 from .message_attachment import MessageAttachment as MessageAttachment
 from .note_create_params import NoteCreateParams as NoteCreateParams
 from .note_update_params import NoteUpdateParams as NoteUpdateParams
+from .tagset_association import TagsetAssociation as TagsetAssociation
 from .tagset_list_params import TagsetListParams as TagsetListParams
 from .view_create_params import ViewCreateParams as ViewCreateParams
 from .view_list_response import ViewListResponse as ViewListResponse
@@ -185,6 +187,7 @@ from .collection_update_params import CollectionUpdateParams as CollectionUpdate
 from .note_association_pointer import NoteAssociationPointer as NoteAssociationPointer
 from .program_activity_metrics import ProgramActivityMetrics as ProgramActivityMetrics
 from .program_template_pointer import ProgramTemplatePointer as ProgramTemplatePointer
+from .tagset_association_param import TagsetAssociationParam as TagsetAssociationParam
 from .funnel_step_pointer_param import FunnelStepPointerParam as FunnelStepPointerParam
 from .inbox_message_list_params import InboxMessageListParams as InboxMessageListParams
 from .items_filter_value_exists import ItemsFilterValueExists as ItemsFilterValueExists

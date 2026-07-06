@@ -20,6 +20,7 @@ from .._response import (
 from ..pagination import SyncCursorPage, AsyncCursorPage
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.tagset import Tagset
+from ..types.tagset_association_param import TagsetAssociationParam
 
 __all__ = ["TagsetsResource", "AsyncTagsetsResource"]
 
@@ -50,6 +51,7 @@ class TagsetsResource(SyncAPIResource):
         self,
         *,
         name: str,
+        associations: Iterable[TagsetAssociationParam] | Omit = omit,
         description: str | Omit = omit,
         tags: Iterable[tagset_create_params.Tag] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -64,6 +66,9 @@ class TagsetsResource(SyncAPIResource):
 
         Args:
           name: The name of the tagset.
+
+          associations: Optional list of associations for this tagset. Include `{type: "calls"}`,
+              `{type: "meetings"}`, or `{type: "inbox", id}`.
 
           description: An optional description of the tagset's purpose.
 
@@ -83,6 +88,7 @@ class TagsetsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "name": name,
+                    "associations": associations,
                     "description": description,
                     "tags": tags,
                 },
@@ -131,6 +137,7 @@ class TagsetsResource(SyncAPIResource):
         self,
         id: str,
         *,
+        associations: Iterable[TagsetAssociationParam] | Omit = omit,
         description: str | Omit = omit,
         name: str | Omit = omit,
         tags: Iterable[tagset_update_params.Tag] | Omit = omit,
@@ -145,6 +152,10 @@ class TagsetsResource(SyncAPIResource):
         Updates an existing tagset.
 
         Args:
+          associations: Optional full list of associations for this tagset. If provided, it replaces all
+              existing associations. An empty array clears all associations, and omitting it
+              preserves existing associations.
+
           description: An updated description of the tagset.
 
           name: The new name of the tagset.
@@ -166,6 +177,7 @@ class TagsetsResource(SyncAPIResource):
             path_template("/tagsets/{id}", id=id),
             body=maybe_transform(
                 {
+                    "associations": associations,
                     "description": description,
                     "name": name,
                     "tags": tags,
@@ -295,6 +307,7 @@ class AsyncTagsetsResource(AsyncAPIResource):
         self,
         *,
         name: str,
+        associations: Iterable[TagsetAssociationParam] | Omit = omit,
         description: str | Omit = omit,
         tags: Iterable[tagset_create_params.Tag] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -309,6 +322,9 @@ class AsyncTagsetsResource(AsyncAPIResource):
 
         Args:
           name: The name of the tagset.
+
+          associations: Optional list of associations for this tagset. Include `{type: "calls"}`,
+              `{type: "meetings"}`, or `{type: "inbox", id}`.
 
           description: An optional description of the tagset's purpose.
 
@@ -328,6 +344,7 @@ class AsyncTagsetsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "name": name,
+                    "associations": associations,
                     "description": description,
                     "tags": tags,
                 },
@@ -376,6 +393,7 @@ class AsyncTagsetsResource(AsyncAPIResource):
         self,
         id: str,
         *,
+        associations: Iterable[TagsetAssociationParam] | Omit = omit,
         description: str | Omit = omit,
         name: str | Omit = omit,
         tags: Iterable[tagset_update_params.Tag] | Omit = omit,
@@ -390,6 +408,10 @@ class AsyncTagsetsResource(AsyncAPIResource):
         Updates an existing tagset.
 
         Args:
+          associations: Optional full list of associations for this tagset. If provided, it replaces all
+              existing associations. An empty array clears all associations, and omitting it
+              preserves existing associations.
+
           description: An updated description of the tagset.
 
           name: The new name of the tagset.
@@ -411,6 +433,7 @@ class AsyncTagsetsResource(AsyncAPIResource):
             path_template("/tagsets/{id}", id=id),
             body=await async_maybe_transform(
                 {
+                    "associations": associations,
                     "description": description,
                     "name": name,
                     "tags": tags,
