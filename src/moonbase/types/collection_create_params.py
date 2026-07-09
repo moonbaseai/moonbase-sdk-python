@@ -16,3 +16,9 @@ class CollectionCreateParams(TypedDict, total=False):
 
     description: str
     """An optional, longer-form description of the collection's purpose."""
+
+    icon_name: str
+    """An optional icon for the collection, as a Phosphor icon name in kebab-case (e.g.
+
+    `users`, `chart-bar`).
+    """
