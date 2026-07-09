@@ -70,6 +70,12 @@ class Collection(BaseModel):
     description: Optional[str] = None
     """An optional, longer-form description of the collection's purpose."""
 
+    icon_name: Optional[str] = None
+    """The collection's icon, as a Phosphor icon name in kebab-case (e.g.
+
+    `users`, `chart-bar`). Only present when an icon is set.
+    """
+
     views: Optional[List[View]] = None
     """A list of saved `View` objects for presenting the collection's data.
 

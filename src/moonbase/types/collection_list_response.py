@@ -29,3 +29,5 @@ class CollectionListResponse(BaseModel):
     updated_at: datetime
 
     description: Optional[str] = None
+
+    icon_name: Optional[str] = None

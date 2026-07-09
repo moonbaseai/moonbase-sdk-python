@@ -33,6 +33,7 @@ class TestCollections:
         collection = client.collections.create(
             name="Leads",
             description="Inbound leads from marketing",
+            icon_name="users",
         )
         assert_matches_type(Collection, collection, path=["response"])
 
@@ -110,6 +111,7 @@ class TestCollections:
         collection = client.collections.update(
             id="id",
             description="Qualified inbound leads",
+            icon_name="flag",
             name="Hot Leads",
         )
         assert_matches_type(Collection, collection, path=["response"])
@@ -235,6 +237,7 @@ class TestAsyncCollections:
         collection = await async_client.collections.create(
             name="Leads",
             description="Inbound leads from marketing",
+            icon_name="users",
         )
         assert_matches_type(Collection, collection, path=["response"])
 
@@ -312,6 +315,7 @@ class TestAsyncCollections:
         collection = await async_client.collections.update(
             id="id",
             description="Qualified inbound leads",
+            icon_name="flag",
             name="Hot Leads",
         )
         assert_matches_type(Collection, collection, path=["response"])
