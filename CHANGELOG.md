@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.1.0-alpha.11 (2026-08-03)
+
+Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
+
+### Features
+
+* **api:** add associations parameter and field to tagsets ([af15f1d](https://github.com/moonbaseai/moonbase-sdk-python/commit/af15f1d7eb489f7c46ce575d004ed8a541f6f4fa))
+* **api:** add channel field to InboxConversation ([e5c9aee](https://github.com/moonbaseai/moonbase-sdk-python/commit/e5c9aee21a16340897eabec6e1b40cb6a93bfbd8))
+* **api:** add delete method to collections ([eed362d](https://github.com/moonbaseai/moonbase-sdk-python/commit/eed362d0baf2013bbe27e17660c0a82d47fd9529))
+* **api:** add icon_name to collections create/update methods ([6c882a7](https://github.com/moonbaseai/moonbase-sdk-python/commit/6c882a7e22b2df3c0b14cae57cdeb3f71c69a873))
+* **api:** add overloads to inbox_messages.create with variant-specific required params ([6f2db24](https://github.com/moonbaseai/moonbase-sdk-python/commit/6f2db24dd1369844b86e04627f647720e2071429))
+* **api:** add slack channel support to inbox_messages create/update methods ([90037b3](https://github.com/moonbaseai/moonbase-sdk-python/commit/90037b30a9d4cd59271acfb48ba5641ac8802795))
+* **api:** add view_options to views, items filter types, view aggregates/fields/groups ([9c961cb](https://github.com/moonbaseai/moonbase-sdk-python/commit/9c961cb659964013ed6c2cdbe9322f0d3bd885d7))
+* **internal/types:** support eagerly validating pydantic iterators ([20c669b](https://github.com/moonbaseai/moonbase-sdk-python/commit/20c669bbf36508b9a9cac480a81cb18b2f2aebd5))
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([0fbd33e](https://github.com/moonbaseai/moonbase-sdk-python/commit/0fbd33e6e8651f652b8c662b907be3fe60c32dc7))
+
+
+### Bug Fixes
+
+* **client:** add missing f-string prefix in file type error message ([f831fcb](https://github.com/moonbaseai/moonbase-sdk-python/commit/f831fcb8f42d192cf05b86dfb5faa58790c5e140))
+* **types:** make default_unit required in collections field_create_params ([739b35f](https://github.com/moonbaseai/moonbase-sdk-python/commit/739b35f87fd68b9ec389c59268f248ef7e364d9b))
+
+
+### Chores
+
+* **internal:** regenerate SDK with no functional changes ([3c03186](https://github.com/moonbaseai/moonbase-sdk-python/commit/3c0318643e3184cb5999d30d429bcc2c1cd3fb12))
+
 ## 0.1.0-alpha.10 (2026-05-08)
 
 Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
