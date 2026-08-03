@@ -20,6 +20,12 @@ class InboxConversation(BaseModel):
     bulk: bool
     """`true` if the conversation appears to be part of a bulk mailing."""
 
+    channel: Literal["email", "chat", "slack"]
+    """
+    The communication channel of the conversation, which can be `email`, `chat`, or
+    `slack`.
+    """
+
     created_at: datetime
     """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
 
