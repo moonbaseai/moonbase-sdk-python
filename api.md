@@ -124,6 +124,7 @@ Methods:
 - <code title="get /collections/{id}">client.collections.<a href="./src/moonbase/resources/collections/collections.py">retrieve</a>(id) -> <a href="./src/moonbase/types/collection.py">Collection</a></code>
 - <code title="patch /collections/{id}">client.collections.<a href="./src/moonbase/resources/collections/collections.py">update</a>(id, \*\*<a href="src/moonbase/types/collection_update_params.py">params</a>) -> <a href="./src/moonbase/types/collection.py">Collection</a></code>
 - <code title="get /collections">client.collections.<a href="./src/moonbase/resources/collections/collections.py">list</a>(\*\*<a href="src/moonbase/types/collection_list_params.py">params</a>) -> <a href="./src/moonbase/types/collection_list_response.py">SyncCursorPage[CollectionListResponse]</a></code>
+- <code title="delete /collections/{id}">client.collections.<a href="./src/moonbase/resources/collections/collections.py">delete</a>(id) -> None</code>
 
 ## Fields
 
@@ -158,12 +159,24 @@ Methods:
 Types:
 
 ```python
-from moonbase.types import View
+from moonbase.types import (
+    View,
+    ViewAggregate,
+    ViewAggregateFieldStatistic,
+    ViewAggregateItemCount,
+    ViewField,
+    ViewRelationValueFilter,
+    ViewListResponse,
+)
 ```
 
 Methods:
 
-- <code title="get /views/{id}">client.views.<a href="./src/moonbase/resources/views/views.py">retrieve</a>(id, \*\*<a href="src/moonbase/types/view_retrieve_params.py">params</a>) -> <a href="./src/moonbase/types/view.py">View</a></code>
+- <code title="post /views">client.views.<a href="./src/moonbase/resources/views/views.py">create</a>(\*\*<a href="src/moonbase/types/view_create_params.py">params</a>) -> <a href="./src/moonbase/types/view.py">View</a></code>
+- <code title="get /views/{id}">client.views.<a href="./src/moonbase/resources/views/views.py">retrieve</a>(id) -> <a href="./src/moonbase/types/view.py">View</a></code>
+- <code title="patch /views/{id}">client.views.<a href="./src/moonbase/resources/views/views.py">update</a>(id, \*\*<a href="src/moonbase/types/view_update_params.py">params</a>) -> <a href="./src/moonbase/types/view.py">View</a></code>
+- <code title="get /views">client.views.<a href="./src/moonbase/resources/views/views.py">list</a>(\*\*<a href="src/moonbase/types/view_list_params.py">params</a>) -> <a href="./src/moonbase/types/view_list_response.py">SyncCursorPage[ViewListResponse]</a></code>
+- <code title="delete /views/{id}">client.views.<a href="./src/moonbase/resources/views/views.py">delete</a>(id) -> None</code>
 
 ## Items
 
@@ -203,20 +216,26 @@ Types:
 
 ```python
 from moonbase.types import (
-    Address,
     EmailMessage,
+    EmailMessageAddress,
     EmailMessageAddressParams,
-    EmailMessagePointer,
     MessageAttachment,
+    MessagePointer,
+    SlackMessage,
+    SlackMessageAddress,
+    SlackMessageAddressParams,
+    InboxMessageCreateResponse,
+    InboxMessageRetrieveResponse,
+    InboxMessageUpdateResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /inbox_messages">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">create</a>(\*\*<a href="src/moonbase/types/inbox_message_create_params.py">params</a>) -> <a href="./src/moonbase/types/email_message.py">EmailMessage</a></code>
-- <code title="get /inbox_messages/{id}">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">retrieve</a>(id, \*\*<a href="src/moonbase/types/inbox_message_retrieve_params.py">params</a>) -> <a href="./src/moonbase/types/email_message.py">EmailMessage</a></code>
-- <code title="patch /inbox_messages/{id}">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">update</a>(id, \*\*<a href="src/moonbase/types/inbox_message_update_params.py">params</a>) -> <a href="./src/moonbase/types/email_message.py">EmailMessage</a></code>
-- <code title="get /inbox_messages">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">list</a>(\*\*<a href="src/moonbase/types/inbox_message_list_params.py">params</a>) -> <a href="./src/moonbase/types/email_message_pointer.py">SyncCursorPage[EmailMessagePointer]</a></code>
+- <code title="post /inbox_messages">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">create</a>(\*\*<a href="src/moonbase/types/inbox_message_create_params.py">params</a>) -> <a href="./src/moonbase/types/inbox_message_create_response.py">InboxMessageCreateResponse</a></code>
+- <code title="get /inbox_messages/{id}">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">retrieve</a>(id, \*\*<a href="src/moonbase/types/inbox_message_retrieve_params.py">params</a>) -> <a href="./src/moonbase/types/inbox_message_retrieve_response.py">InboxMessageRetrieveResponse</a></code>
+- <code title="patch /inbox_messages/{id}">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">update</a>(id, \*\*<a href="src/moonbase/types/inbox_message_update_params.py">params</a>) -> <a href="./src/moonbase/types/inbox_message_update_response.py">InboxMessageUpdateResponse</a></code>
+- <code title="get /inbox_messages">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">list</a>(\*\*<a href="src/moonbase/types/inbox_message_list_params.py">params</a>) -> <a href="./src/moonbase/types/message_pointer.py">SyncCursorPage[MessagePointer]</a></code>
 - <code title="delete /inbox_messages/{id}">client.inbox_messages.<a href="./src/moonbase/resources/inbox_messages/inbox_messages.py">delete</a>(id) -> None</code>
 
 ## Attachments
@@ -231,7 +250,7 @@ Methods:
 Types:
 
 ```python
-from moonbase.types import Tagset, TagsetPointer
+from moonbase.types import Tagset, TagsetAssociation, TagsetPointer
 ```
 
 Methods:
@@ -285,7 +304,7 @@ Methods:
 Types:
 
 ```python
-from moonbase.types import Form
+from moonbase.types import Form, FormListResponse
 ```
 
 Methods:
@@ -293,7 +312,7 @@ Methods:
 - <code title="post /forms">client.forms.<a href="./src/moonbase/resources/forms.py">create</a>(\*\*<a href="src/moonbase/types/form_create_params.py">params</a>) -> <a href="./src/moonbase/types/form.py">Form</a></code>
 - <code title="get /forms/{id}">client.forms.<a href="./src/moonbase/resources/forms.py">retrieve</a>(id) -> <a href="./src/moonbase/types/form.py">Form</a></code>
 - <code title="patch /forms/{id}">client.forms.<a href="./src/moonbase/resources/forms.py">update</a>(id, \*\*<a href="src/moonbase/types/form_update_params.py">params</a>) -> <a href="./src/moonbase/types/form.py">Form</a></code>
-- <code title="get /forms">client.forms.<a href="./src/moonbase/resources/forms.py">list</a>(\*\*<a href="src/moonbase/types/form_list_params.py">params</a>) -> <a href="./src/moonbase/types/form.py">SyncCursorPage[Form]</a></code>
+- <code title="get /forms">client.forms.<a href="./src/moonbase/resources/forms.py">list</a>(\*\*<a href="src/moonbase/types/form_list_params.py">params</a>) -> <a href="./src/moonbase/types/form_list_response.py">SyncCursorPage[FormListResponse]</a></code>
 - <code title="delete /forms/{id}">client.forms.<a href="./src/moonbase/resources/forms.py">delete</a>(id) -> None</code>
 
 # Unsubscribes

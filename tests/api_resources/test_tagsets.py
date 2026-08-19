@@ -29,6 +29,7 @@ class TestTagsets:
     def test_method_create_with_all_params(self, client: Moonbase) -> None:
         tagset = client.tagsets.create(
             name="Support",
+            associations=[{"type": "calls"}],
             description="Tags for our support inbox",
             tags=[
                 {
@@ -123,6 +124,7 @@ class TestTagsets:
     def test_method_update_with_all_params(self, client: Moonbase) -> None:
         tagset = client.tagsets.update(
             id="id",
+            associations=[{"type": "calls"}],
             description="Updated description",
             name="Customer Support",
             tags=[
@@ -255,6 +257,7 @@ class TestAsyncTagsets:
     async def test_method_create_with_all_params(self, async_client: AsyncMoonbase) -> None:
         tagset = await async_client.tagsets.create(
             name="Support",
+            associations=[{"type": "calls"}],
             description="Tags for our support inbox",
             tags=[
                 {
@@ -349,6 +352,7 @@ class TestAsyncTagsets:
     async def test_method_update_with_all_params(self, async_client: AsyncMoonbase) -> None:
         tagset = await async_client.tagsets.update(
             id="id",
+            associations=[{"type": "calls"}],
             description="Updated description",
             name="Customer Support",
             tags=[

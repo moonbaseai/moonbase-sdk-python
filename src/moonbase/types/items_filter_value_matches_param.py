@@ -14,7 +14,10 @@ class ItemsFilterValueMatchesParam(TypedDict, total=False):
     """
 
     field: Required[str]
-    """The id or key of the field in which values are matched."""
+    """
+    The id or key of the field in which values are matched, or a path to the field
+    in which values are matched.
+    """
 
     op: Required[
         Literal["starts_with", "ends_with", "contains", "not_contains", "eq", "not_eq", "gt", "lt", "gte", "lte"]

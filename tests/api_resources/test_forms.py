@@ -9,7 +9,7 @@ import pytest
 
 from moonbase import Moonbase, AsyncMoonbase
 from tests.utils import assert_matches_type
-from moonbase.types import Form
+from moonbase.types import Form, FormListResponse
 from moonbase.pagination import SyncCursorPage, AsyncCursorPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -149,7 +149,7 @@ class TestForms:
     @parametrize
     def test_method_list(self, client: Moonbase) -> None:
         form = client.forms.list()
-        assert_matches_type(SyncCursorPage[Form], form, path=["response"])
+        assert_matches_type(SyncCursorPage[FormListResponse], form, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Moonbase) -> None:
@@ -158,7 +158,7 @@ class TestForms:
             before="before",
             limit=1,
         )
-        assert_matches_type(SyncCursorPage[Form], form, path=["response"])
+        assert_matches_type(SyncCursorPage[FormListResponse], form, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Moonbase) -> None:
@@ -167,7 +167,7 @@ class TestForms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         form = response.parse()
-        assert_matches_type(SyncCursorPage[Form], form, path=["response"])
+        assert_matches_type(SyncCursorPage[FormListResponse], form, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Moonbase) -> None:
@@ -176,7 +176,7 @@ class TestForms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             form = response.parse()
-            assert_matches_type(SyncCursorPage[Form], form, path=["response"])
+            assert_matches_type(SyncCursorPage[FormListResponse], form, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -355,7 +355,7 @@ class TestAsyncForms:
     @parametrize
     async def test_method_list(self, async_client: AsyncMoonbase) -> None:
         form = await async_client.forms.list()
-        assert_matches_type(AsyncCursorPage[Form], form, path=["response"])
+        assert_matches_type(AsyncCursorPage[FormListResponse], form, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncMoonbase) -> None:
@@ -364,7 +364,7 @@ class TestAsyncForms:
             before="before",
             limit=1,
         )
-        assert_matches_type(AsyncCursorPage[Form], form, path=["response"])
+        assert_matches_type(AsyncCursorPage[FormListResponse], form, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncMoonbase) -> None:
@@ -373,7 +373,7 @@ class TestAsyncForms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         form = await response.parse()
-        assert_matches_type(AsyncCursorPage[Form], form, path=["response"])
+        assert_matches_type(AsyncCursorPage[FormListResponse], form, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncMoonbase) -> None:
@@ -382,7 +382,7 @@ class TestAsyncForms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             form = await response.parse()
-            assert_matches_type(AsyncCursorPage[Form], form, path=["response"])
+            assert_matches_type(AsyncCursorPage[FormListResponse], form, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

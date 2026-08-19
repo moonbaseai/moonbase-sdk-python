@@ -6,9 +6,10 @@ from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .address import Address
 from .._models import BaseModel
+from .inbox_conversation import InboxConversation
 from .message_attachment import MessageAttachment
+from .email_message_address import EmailMessageAddress
 from .shared.formatted_text import FormattedText
 
 __all__ = ["EmailMessage"]
@@ -53,7 +54,7 @@ class EmailMessage(BaseModel):
     unread: bool
     """`true` if the message has not been read."""
 
-    addresses: Optional[List[Address]] = None
+    addresses: Optional[List[EmailMessageAddress]] = None
     """A list of `Address` objects associated with the message (sender and recipients).
 
     **Note:** Only present when requested using the `include` query parameter.
@@ -65,7 +66,7 @@ class EmailMessage(BaseModel):
     **Note:** Only present when requested using the `include` query parameter.
     """
 
-    conversation: Optional["InboxConversation"] = None
+    conversation: Optional[InboxConversation] = None
     """The `Conversation` thread this message is part of.
 
     **Note:** Only present when requested using the `include` query parameter.
@@ -73,6 +74,3 @@ class EmailMessage(BaseModel):
 
     summary: Optional[str] = None
     """A concise, system-generated summary of the email content."""
-
-
-from .inbox_conversation import InboxConversation

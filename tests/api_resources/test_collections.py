@@ -33,6 +33,7 @@ class TestCollections:
         collection = client.collections.create(
             name="Leads",
             description="Inbound leads from marketing",
+            icon_name="users",
         )
         assert_matches_type(Collection, collection, path=["response"])
 
@@ -110,6 +111,7 @@ class TestCollections:
         collection = client.collections.update(
             id="id",
             description="Qualified inbound leads",
+            icon_name="flag",
             name="Hot Leads",
         )
         assert_matches_type(Collection, collection, path=["response"])
@@ -179,6 +181,44 @@ class TestCollections:
 
         assert cast(Any, response.is_closed) is True
 
+    @parametrize
+    def test_method_delete(self, client: Moonbase) -> None:
+        collection = client.collections.delete(
+            "id",
+        )
+        assert collection is None
+
+    @parametrize
+    def test_raw_response_delete(self, client: Moonbase) -> None:
+        response = client.collections.with_raw_response.delete(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        collection = response.parse()
+        assert collection is None
+
+    @parametrize
+    def test_streaming_response_delete(self, client: Moonbase) -> None:
+        with client.collections.with_streaming_response.delete(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            collection = response.parse()
+            assert collection is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_delete(self, client: Moonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            client.collections.with_raw_response.delete(
+                "",
+            )
+
 
 class TestAsyncCollections:
     parametrize = pytest.mark.parametrize(
@@ -197,6 +237,7 @@ class TestAsyncCollections:
         collection = await async_client.collections.create(
             name="Leads",
             description="Inbound leads from marketing",
+            icon_name="users",
         )
         assert_matches_type(Collection, collection, path=["response"])
 
@@ -274,6 +315,7 @@ class TestAsyncCollections:
         collection = await async_client.collections.update(
             id="id",
             description="Qualified inbound leads",
+            icon_name="flag",
             name="Hot Leads",
         )
         assert_matches_type(Collection, collection, path=["response"])
@@ -342,3 +384,41 @@ class TestAsyncCollections:
             assert_matches_type(AsyncCursorPage[CollectionListResponse], collection, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncMoonbase) -> None:
+        collection = await async_client.collections.delete(
+            "id",
+        )
+        assert collection is None
+
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncMoonbase) -> None:
+        response = await async_client.collections.with_raw_response.delete(
+            "id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        collection = await response.parse()
+        assert collection is None
+
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncMoonbase) -> None:
+        async with async_client.collections.with_streaming_response.delete(
+            "id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            collection = await response.parse()
+            assert collection is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncMoonbase) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
+            await async_client.collections.with_raw_response.delete(
+                "",
+            )

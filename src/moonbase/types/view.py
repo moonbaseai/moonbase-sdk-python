@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .view_field import ViewField
+from .view_aggregate import ViewAggregate
+from .collection_pointer import CollectionPointer
 
 __all__ = ["View"]
 
@@ -19,11 +22,36 @@ class View(BaseModel):
     id: str
     """Unique identifier for the object."""
 
+    aggregates: List[ViewAggregate]
+    """The metrics computed over the view's items."""
+
+    collection: CollectionPointer
+    """The `Collection` this view belongs to."""
+
     created_at: datetime
     """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
 
+    fields: List[ViewField]
+    """The view's columns, in display order."""
+
+    filter: Optional["ItemsFilter"] = None
+    """Return only items that match the filter conditions.
+
+    Complex filters can be created by nesting filters inside of `AND`, `OR`, and
+    `NOT` filters.
+    """
+
+    groups: List[str]
+    """Fields whose values group the view's items. Empty when the view is not grouped."""
+
     name: str
     """The name of the view."""
+
+    relation_value_filters: List["ViewRelationValueFilter"]
+    """Filters limiting which related items the view's relation columns show."""
+
+    sort: List[str]
+    """Sort items returned by the specified fields. Empty when the view has no sort."""
 
     type: Literal["view"]
     """String representing the object’s type. Always `view` for this object."""
@@ -34,11 +62,9 @@ class View(BaseModel):
     view_type: Literal["table", "board"]
     """The type of view, such as `table` or `board`."""
 
-    collection: Optional["Collection"] = None
-    """The `Collection` this view belongs to.
 
-    **Note:** Only present when requested using the `include` query parameter.
-    """
-
-
-from .collection import Collection
+from .items_filter import ItemsFilter  # noqa: I001
+from .view_relation_value_filter import ViewRelationValueFilter
+from .items_filter_and_group import ItemsFilterAndGroup  # noqa: F401 # pyright: ignore [reportUnusedImport]
+from .items_filter_or_group import ItemsFilterOrGroup  # noqa: F401 # pyright: ignore [reportUnusedImport]
+from .items_filter_not_group import ItemsFilterNotGroup  # noqa: F401 # pyright: ignore [reportUnusedImport]

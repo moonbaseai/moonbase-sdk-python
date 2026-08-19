@@ -185,6 +185,12 @@ class FieldFloatFieldCreateParams(TypedDict, total=False):
 class FieldMonetaryFieldCreateParams(TypedDict, total=False):
     """Parameters for creating a monetary field."""
 
+    default_unit: Required[str]
+    """
+    The default currency for the field, as a 3-letter uppercase ISO 4217 code (e.g.,
+    `USD`, `EUR`, `GBP`).
+    """
+
     name: Required[str]
     """The human-readable name for the field."""
 
@@ -195,12 +201,6 @@ class FieldMonetaryFieldCreateParams(TypedDict, total=False):
     """Whether the field holds a single value (`one`) or multiple values (`many`).
 
     Defaults to `one`.
-    """
-
-    default_unit: str
-    """
-    The default currency for the field, as a 3-letter ISO 4217 code (e.g., `USD`,
-    `EUR`, `GBP`).
     """
 
     default_values: Iterable[MonetaryValueParam]

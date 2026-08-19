@@ -20,6 +20,7 @@ from .._response import (
 from ..pagination import SyncCursorPage, AsyncCursorPage
 from ..types.form import Form
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.form_list_response import FormListResponse
 
 __all__ = ["FormsResource", "AsyncFormsResource"]
 
@@ -210,7 +211,7 @@ class FormsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncCursorPage[Form]:
+    ) -> SyncCursorPage[FormListResponse]:
         """
         Returns a list of your forms.
 
@@ -236,7 +237,7 @@ class FormsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/forms",
-            page=SyncCursorPage[Form],
+            page=SyncCursorPage[FormListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -251,7 +252,7 @@ class FormsResource(SyncAPIResource):
                     form_list_params.FormListParams,
                 ),
             ),
-            model=Form,
+            model=FormListResponse,
         )
 
     def delete(
@@ -476,7 +477,7 @@ class AsyncFormsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Form, AsyncCursorPage[Form]]:
+    ) -> AsyncPaginator[FormListResponse, AsyncCursorPage[FormListResponse]]:
         """
         Returns a list of your forms.
 
@@ -502,7 +503,7 @@ class AsyncFormsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/forms",
-            page=AsyncCursorPage[Form],
+            page=AsyncCursorPage[FormListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -517,7 +518,7 @@ class AsyncFormsResource(AsyncAPIResource):
                     form_list_params.FormListParams,
                 ),
             ),
-            model=Form,
+            model=FormListResponse,
         )
 
     async def delete(

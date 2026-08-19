@@ -13,7 +13,10 @@ __all__ = ["FileUploadParams"]
 
 class FileUploadParams(TypedDict, total=False):
     file: Required[FileTypes]
-    """The File object to be uploaded."""
+    """The raw file content to upload in a multipart/form-data request.
+
+    Must be 5 MB or smaller.
+    """
 
     associations: Iterable[ItemPointerParam]
     """

@@ -5,12 +5,20 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from .tagset_association_param import TagsetAssociationParam
+
 __all__ = ["TagsetCreateParams", "Tag"]
 
 
 class TagsetCreateParams(TypedDict, total=False):
     name: Required[str]
     """The name of the tagset."""
+
+    associations: Iterable[TagsetAssociationParam]
+    """Optional list of associations for this tagset.
+
+    Include `{type: "calls"}`, `{type: "meetings"}`, or `{type: "inbox", id}`.
+    """
 
     description: str
     """An optional description of the tagset's purpose."""

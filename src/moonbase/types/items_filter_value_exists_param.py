@@ -11,6 +11,9 @@ class ItemsFilterValueExistsParam(TypedDict, total=False):
     """Include only items that have a value in the given `field`."""
 
     field: Required[str]
-    """The id or key of the field for which a value must exist."""
+    """
+    The id or key of the field for which a value must exist, or a path to the field
+    for which a value must exist.
+    """
 
     op: Required[Literal["exists"]]

@@ -1,7 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from __future__ import annotations
-
 from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
@@ -21,6 +19,12 @@ class InboxConversation(BaseModel):
 
     bulk: bool
     """`true` if the conversation appears to be part of a bulk mailing."""
+
+    channel: Literal["email", "chat", "slack"]
+    """
+    The communication channel of the conversation, which can be `email`, `chat`, or
+    `slack`.
+    """
 
     created_at: datetime
     """Time at which the object was created, as an ISO 8601 timestamp in UTC."""
@@ -70,8 +74,8 @@ class InboxConversation(BaseModel):
     **Note:** Only present when requested using the `include` query parameter.
     """
 
-    messages: Optional[List["EmailMessage"]] = None
-    """The `EmailMessage` objects that belong to this conversation.
+    messages: Optional[List[object]] = None
+    """The `Message` objects that belong to this conversation.
 
     **Note:** Only present when requested using the `include` query parameter.
     """
@@ -81,6 +85,3 @@ class InboxConversation(BaseModel):
     If the conversation is snoozed, this is the time it will reappear in the inbox,
     as an ISO 8601 timestamp in UTC.
     """
-
-
-from .email_message import EmailMessage
