@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.12 (2026-08-20)
+
+Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
+
+### Chores
+
+* **internal:** allow the mock server port to be set with STAINLESS_MOCK_PORT ([1b043f4](https://github.com/moonbaseai/moonbase-sdk-python/commit/1b043f486bf2bcf0ecf3c2371ed3b60c094f0c29))
+
 ## 0.1.0-alpha.11 (2026-08-03)
 
 Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/moonbaseai/moonbase-sdk-python/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
